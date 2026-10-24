@@ -39,3 +39,18 @@ def test_python_ve_js_ayni_karari_verir(tmp_path):
     farkli = [(i, p, j) for i, (p, j) in enumerate(zip(py_sonuc, js_sonuc)) if p != j]
     assert not farkli, farkli[:5]
     assert len(set(py_sonuc)) == 4, "rastgele vakalar dört seviyeyi de kapsamalı"
+
+
+@pytest.mark.skipif(not NODE, reason="node kurulu değil")
+def test_escalate_python_ve_js_ayni():
+    from decide import escalate
+    oz = lambda **k: {"mantar_mi": True, "foto_kalitesi": "iyi", **k}  # noqa: E731
+    bulgular = [None, {}, {"ozellikler": oz(), "kirmiziya_cek": False}, {"ozellikler": oz(), "kirmiziya_cek": True},
+                {"ozellikler": oz(foto_kalitesi="kotu"), "kirmiziya_cek": False},
+                {"ozellikler": oz(mantar_mi=False), "kirmiziya_cek": True}, {"ozellikler": oz(mantar_mi=True), "kirmiziya_cek": True}]
+    seviyeler = ["GRI", "SARI", "KIRMIZI", "MANTAR_DEGIL"]
+    js = ("const {escalate}=require(process.argv[1]);const L=JSON.parse(process.argv[2]),G=JSON.parse(process.argv[3]);"
+          "console.log(JSON.stringify(L.map(l=>G.map(g=>escalate({level:l,danger:[]},g).level))))")
+    out = json.loads(subprocess.run([NODE, "-e", js, str(ROOT / "app" / "decide.js"), json.dumps(seviyeler), json.dumps(bulgular)],
+                                    capture_output=True, text=True, check=True).stdout)
+    assert out == [[escalate(l, g) for g in bulgular] for l in seviyeler]

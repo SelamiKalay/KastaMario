@@ -37,6 +37,21 @@ def decide(case, info, T):
     return "GRI"
 
 
+def escalate(level, g):
+    """Gemma 4 görsel bulguları riski yalnızca YÜKSELTİR (app/decide.js escalate ile aynı kural).
+    g: /api/analiz yanıtı {ozellikler, kirmiziya_cek, uyarilar} ya da None."""
+    if not g or not g.get("ozellikler"):
+        return level
+    oz = g["ozellikler"]
+    if level == "MANTAR_DEGIL":
+        return ("KIRMIZI" if g.get("kirmiziya_cek") else "SARI") if oz.get("mantar_mi") else level
+    if g.get("kirmiziya_cek"):
+        return "KIRMIZI"
+    if oz.get("foto_kalitesi") == "kotu" and level == "GRI":
+        return "SARI"
+    return level
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     cfg, info = load()
