@@ -83,12 +83,17 @@ def normalize(x):
     return (x - m) / s
 
 
+GRI = torch.tensor([124 / 255, 116 / 255, 104 / 255]).view(1, 3, 1, 1)   # uygulamadaki "tamamı" bakışının dolgu rengi
+
+
 def artir(x, gen=None):
-    """GPU'da örnek başına: rastgele boyutlu kırpma (alan %55-100, en/boy 3/4-4/3) -> 224, yatay çevirme,
-    parlaklık/kontrast ±%25, doygunluk ±%20. x: (B, 3, K, K) float [0, 1] -> (B, 3, 224, 224)."""
+    """GPU'da örnek başına veri artırma. x: (B, 3, K, K) float [0, 1] -> (B, 3, 224, 224).
+    Orman fotoğraflarıyla eğitilen modelin internetten/ekrandan alınmış fotoğraflara dayanması için:
+    rastgele kırpma (alan %30-100), yatay çevirme, ±20° döndürme ve uzaklaştırma (gri dolgu), parlaklık/kontrast/
+    doygunluk, renk sıcaklığı, ara sıra gri tonlama, bulanıklık ve gürültü."""
     B, K, d = x.shape[0], x.shape[-1], x.device
     r = lambda *s: torch.rand(*s, device=d, generator=gen)  # noqa: E731
-    alan = (0.55 + 0.45 * r(B)) * K * K
+    alan = (0.30 + 0.70 * r(B)) * K * K
     oran = torch.exp(math.log(3 / 4) + (math.log(4 / 3) - math.log(3 / 4)) * r(B))
     w, h = (alan * oran).sqrt().clamp(max=K), (alan / oran).sqrt().clamp(max=K)
     x0, y0 = r(B) * (K - w), r(B) * (K - h)
@@ -101,6 +106,23 @@ def artir(x, gen=None):
     out = (out - ort_) * carpan(0.25) + ort_
     gri = out.mean(1, keepdim=True)
     out = (out - gri) * carpan(0.20) + gri
+    # renk sıcaklığı: kanal başına ±%8 kazanç (farklı ekran ve ışıklar)
+    out = out * (1 + (r(B, 3, 1, 1) * 2 - 1) * 0.08)
+    # %5 gri tonlama
+    out = torch.where((r(B) < 0.05)[:, None, None, None], out.mean(1, keepdim=True).expand_as(out), out)
+    # %40: ±20° döndürme ve 1-1.6 kat uzaklaştırma; boşluklar uygulamadaki gibi gri dolgu
+    aci = (r(B) * 2 - 1) * math.radians(20)
+    olcek = torch.where(r(B) < 0.4, 1 + 0.6 * r(B), torch.ones(B, device=d))
+    aci = torch.where(olcek > 1, aci, torch.zeros(B, device=d)) + torch.where(r(B) < 0.2, (r(B) * 2 - 1) * math.radians(15), 0)
+    cos, sin = torch.cos(aci) * olcek, torch.sin(aci) * olcek
+    theta = torch.stack([torch.stack([cos, -sin, torch.zeros_like(cos)], 1), torch.stack([sin, cos, torch.zeros_like(cos)], 1)], 1)
+    izgara = F.affine_grid(theta, list(out.shape), align_corners=False)
+    gri_dolgu = GRI.to(d)
+    out = F.grid_sample(out - gri_dolgu, izgara, mode="bilinear", padding_mode="zeros", align_corners=False) + gri_dolgu
+    # %20 bulanıklık (ekran fotoğrafı / odak kayması), %30 gürültü (düşük ışık / sıkıştırma)
+    out = torch.where((r(B) < 0.2)[:, None, None, None], F.avg_pool2d(out, 3, 1, 1), out)
+    gurultu = torch.randn(out.shape, device=d, generator=gen) * (0.05 * r(B, 1, 1, 1))
+    out = torch.where((r(B) < 0.3)[:, None, None, None], out + gurultu, out)
     return out.clamp(0, 1)
 
 

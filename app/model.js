@@ -24,13 +24,18 @@ window.MycoModel = (function () {
     return loading;
   }
 
-  // Görüntüyü kısa kenarı input_size olacak şekilde ölçekleyip ortadan kırpar, normalize eder (NCHW).
-  function toTensor(img) {
+  // Bir görüntüden 224x224 NCHW tensör üretir. bakis:
+  //   "orta"  kısa kenar -> 224, ortadan kare kırpma (eğitimdeki değerlendirmeyle aynı)
+  //   "tam"   görüntünün tamamı, kenarları gri dolgulu kare (mantar ortada değilse ya da geniş açılı fotoğrafta)
+  //   "ayna"  orta kare, yatay aynalanmış
+  function toTensor(img, bakis = "orta") {
     const S = meta.input_size, cv = document.createElement("canvas");
     cv.width = cv.height = S;
     const ctx = cv.getContext("2d");
-    const k = S / Math.min(img.width, img.height);
+    const k = (bakis === "tam" ? Math.max : Math.min)(S / img.width, S / img.height);
     const w = img.width * k, h = img.height * k;
+    if (bakis === "tam") { ctx.fillStyle = "rgb(124,116,104)"; ctx.fillRect(0, 0, S, S); }   // ImageNet ortalama rengi
+    if (bakis === "ayna") { ctx.translate(S, 0); ctx.scale(-1, 1); }
     ctx.drawImage(img, (S - w) / 2, (S - h) / 2, w, h);
     const px = ctx.getImageData(0, 0, S, S).data, n = S * S, out = new Float32Array(3 * n);
     for (let i = 0; i < n; i++)
@@ -38,12 +43,21 @@ window.MycoModel = (function () {
     return new ort.Tensor("float32", out, [1, 3, S, S]);
   }
 
-  async function classify(img) {
-    if (!(await load())) throw new Error("model-yok");
-    const res = await session.run({ [session.inputNames[0]]: toTensor(img) });
+  async function olasiliklar(img, bakis) {
+    const res = await session.run({ [session.inputNames[0]]: toTensor(img, bakis) });
     const logits = Array.from(res[session.outputNames[0]].data).map(v => v / (meta.temperature || 1));
     const mx = Math.max(...logits), ex = logits.map(v => Math.exp(v - mx)), sum = ex.reduce((a, b) => a + b, 0);
-    const probs = ex.map(v => v / sum);
+    return ex.map(v => v / sum);
+  }
+
+  // Çoklu bakış (test zamanı artırma): üç bakışın olasılık ortalaması. İnternetten/ekrandan alınmış, mantarın
+  // ortada olmadığı ya da geniş açılı fotoğraflarda tek orta kareden daha dayanıklıdır.
+  const BAKISLAR = ["orta", "tam", "ayna"];
+  async function classify(img) {
+    if (!(await load())) throw new Error("model-yok");
+    const tek = [];
+    for (const b of BAKISLAR) tek.push(await olasiliklar(img, b));
+    const probs = tek[0].map((_, i) => tek.reduce((s, p) => s + p[i], 0) / tek.length);
     const neg = meta.classes.indexOf("mantar_degil");
     const pNot = neg >= 0 ? probs[neg] : 0;
     // Tür olasılıkları "mantar olduğu varsayımıyla" yeniden ölçeklenir (demo senaryolarındaki anlamla aynı).

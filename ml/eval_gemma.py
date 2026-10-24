@@ -42,21 +42,36 @@ AMANITA = {"Amanita phalloides", "Amanita pantherina", "Amanita muscaria"}
 class Model:
     """app/model.js ile aynı: kısa kenar -> input_size, ortadan kırp, normalize, sıcaklıkla softmax."""
 
-    def __init__(self):
-        self.meta = json.loads((ROOT / "app" / "model" / "labels.json").read_text(encoding="utf-8"))
-        self.sess = ort.InferenceSession(str(ROOT / "app" / "model" / "mycoguard.onnx"))
+    def __init__(self, dizin=ROOT / "app" / "model"):
+        self.meta = json.loads((Path(dizin) / "labels.json").read_text(encoding="utf-8"))
+        self.sess = ort.InferenceSession(str(Path(dizin) / "mycoguard.onnx"))
 
-    def vaka(self, path):
-        m, S = self.meta, self.meta["input_size"]
+    def _kare(self, im, bakis):
+        """app/model.js toTensor ile aynı: orta kare / tamamı gri dolgulu / aynalanmış orta kare."""
+        S = self.meta["input_size"]
+        if bakis == "tam":
+            k = S / max(im.size)
+            kucuk = im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), Image.Resampling.BILINEAR)
+            kare = Image.new("RGB", (S, S), (124, 116, 104))
+            kare.paste(kucuk, ((S - kucuk.width) // 2, (S - kucuk.height) // 2))
+            return kare
+        k = S / min(im.size)
+        im = im.resize((max(S, round(im.width * k)), max(S, round(im.height * k))), Image.Resampling.BILINEAR)
+        l, t = (im.width - S) // 2, (im.height - S) // 2
+        kare = im.crop((l, t, l + S, t + S))
+        return kare.transpose(Image.Transpose.FLIP_LEFT_RIGHT) if bakis == "ayna" else kare
+
+    def vaka(self, path, bakislar=("orta", "tam", "ayna")):
+        m = self.meta
         with Image.open(path) as im:
             im = im.convert("RGB")
-            k = S / min(im.size)
-            im = im.resize((max(S, round(im.width * k)), max(S, round(im.height * k))), Image.Resampling.BILINEAR)
-            l, t = (im.width - S) // 2, (im.height - S) // 2
-            x = (np.asarray(im.crop((l, t, l + S, t + S)), dtype=np.float32) / 255 - m["mean"]) / m["std"]
-        logit = self.sess.run(None, {"input": x.transpose(2, 0, 1)[None].astype(np.float32)})[0][0] / m.get("temperature", 1)
-        p = np.exp(logit - logit.max())
-        p /= p.sum()
+            xs = np.stack([(np.asarray(self._kare(im, b), dtype=np.float32) / 255 - m["mean"]) / m["std"] for b in bakislar])
+        olas = []
+        for x in xs:
+            logit = self.sess.run(None, {"input": x.transpose(2, 0, 1)[None].astype(np.float32)})[0][0] / m.get("temperature", 1)
+            q = np.exp(logit - logit.max())
+            olas.append(q / q.sum())
+        p = np.mean(olas, axis=0)
         cls = m["classes"]
         neg = cls.index("mantar_degil") if "mantar_degil" in cls else -1
         p_not = float(p[neg]) if neg >= 0 else 0.0
