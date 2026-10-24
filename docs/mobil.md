@@ -22,6 +22,18 @@ Telefon (Android / iOS — Capacitor)                Sunucu (DigitalOcean App Pl
 
 **API anahtarı uygulamanın içine konmaz.** APK içindeki her şey çözümlenebilir; anahtar yalnızca sunucuda ortam değişkenidir. Sunucu IP başına istek sınırı uygular (`MYCOGUARD_RATE`, varsayılan 10 dakikada 30).
 
+## Hızlı test: telefondan https bağlantısı (Cloudflare Tunnel, hesap gerekmez)
+Bilgisayarda sunucu çalışırken herkese açık, geçici bir `https` adresi verir; telefon mobil veride bile açabilir ve uygulamayı ana ekrana **kurabilir** (PWA, https gerektirir).
+
+1. Sunucuyu başlatın: `python server/app.py` (anahtar `.env` dosyasından okunur)
+2. [cloudflared](https://github.com/cloudflare/cloudflared/releases)'ı indirin (Cloudflare imzalı) ve çalıştırın:
+   `cloudflared tunnel --no-autoupdate --url http://localhost:8000`
+3. Çıktıdaki `https://….trycloudflare.com` adresini telefonda açın → menüden **Ana ekrana ekle / Uygulamayı yükle**.
+
+Notlar: Adres tünel her başlatıldığında değişir ve yalnızca bilgisayar açıkken çalışır. Bağlantıyı bilen herkes uygulamayı kullanabilir; Gemma uçları IP başına istek sınırıyla korunur (`MYCOGUARD_RATE`). Kalıcı adres için DigitalOcean'a yayımlayın (aşağıda).
+
+Aynı Wi-Fi'da tünelsiz test: telefonda `http://<bilgisayarın-yerel-IP'si>:8000` (ör. `ipconfig` → IPv4). Bu durumda uygulama kurulamaz, tarayıcıda çalışır.
+
 ## 1. Gemini API anahtarı
 1. https://aistudio.google.com/apikey adresinden anahtar oluşturun (Gemma 4 ücretsiz katmanda sunulur; ücretsiz katmanda gönderilen veriler Google ürünlerini geliştirmek için kullanılabilir).
 2. Yerelde deneme: `GEMINI_API_KEY=... python server/app.py` → http://localhost:8000
