@@ -2,18 +2,21 @@
 
 | Dosya | İçerik |
 |---|---|
-| `species_info.csv` | 20 türlük demo bilgi tablosu. **Tüm satırlar TASLAK**, kaynakla doğrulanacak. `dusuk` risk "güvenli" demek değildir. |
-| `demo_cases.json` | Karar eşikleri + 8 senaryo. `simule_top5` değerleri **elle verilmiştir**, gerçek modelden gelmez. |
+| `species_info.csv` | 28 türlük bilgi tabanı: risk, zehir notu, belirtiler, belirti başlangıcı (saat), ilk yardım, habitat, Kastamonu notu, boy, yetişme süreci, aylar, toplama notu, ikiz türler, ayırt edici ipucu. `dusuk` risk "güvenli" demek değildir. |
+| `demo_cases.json` | Karar eşikleri + 8 örnek vaka (uygulamadaki "Örnek vakalar" ve testler). |
+| `clean/` | `ml/clean.py` çıktıları: temiz eğitim listesi, temiz GBIF kayıtları, tür istatistikleri, temizlik raporu, rehber fotoğraf atıfları. |
+| `raw/` | `ml/collect.py` ham indirmeleri (repoya girmez, `.gitignore`). |
 
-Değişiklikten sonra: `python src/decide.py` (test) ve `python src/build_app_data.py` (arayüz verisi).
+Bilgi tabanı genel mikoloji literatürüne ve GBIF Türkiye kayıtlarına dayanır; her satır uzman incelemesinden geçirilmektedir (`dogrulama_durumu` sütunu).
 
-## Gerçek görüntü verisi (repoya konmaz)
-Görüntü veri setleri büyük olduğu ve lisansları farklı olduğu için repoya eklenmez. İndirme:
+Değişiklikten sonra: `python -m pytest -q` ve `python src/build_app_data.py`.
+
+## Ham veriyi yeniden indirmek
 
 ```bash
-pip install kaggle
-kaggle datasets download -d picekl/fungitastic          # FungiTastic (önce Mini alt kümesini seçin)
-kaggle datasets download -d thehir0/mushroom-species    # yardımcı veri, lisansı doğrulanmadı
+python ml/collect.py            # iNaturalist + GBIF
+python ml/collect.py --only gbif
 ```
 
-İndirilen veriyi `data/raw/` altına koyun (`.gitignore` ile hariç tutulur). Kaynaklar ve lisanslar: `docs/veri-kaynaklari.md`.
+- **iNaturalist:** her tür için Avrupa + Türkiye'den en fazla 400 araştırma düzeyi gözlem, gözlem başına 2 fotoğraf, yalnızca CC lisanslı; "mantar değil" sınıfı için Türkiye'den bitki, çam, yosun ve böcek fotoğrafları.
+- **GBIF:** rehberdeki her türün Türkiye kayıtları + Kastamonu çevresindeki (koordinat kutusu ve il adı) tüm mantar kayıtları.
