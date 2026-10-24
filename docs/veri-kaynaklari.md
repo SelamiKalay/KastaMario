@@ -1,34 +1,30 @@
-# Veri kaynakları
+# Veri kaynakları ve lisanslar
 
-Her kaynağın linki, lisansı ve kontrol tarihi burada tutulur. **Lisans sütunu "DOĞRULANACAK" olan hiçbir kaynak gerçek eğitimde kullanılmaz.**
+## Kullanılan kaynaklar
 
-| Kaynak | Link | İçerik | Rolü | Lisans | Kontrol tarihi | Kontrol eden |
-|---|---|---|---|---|---|---|
-| FungiTastic (CVPRW 2025) | https://bohemianvra.github.io/FungiTastic · Kaggle `picekl/fungitastic` · arXiv 2408.13632 | ~350 bin gözlem, ~6 bin tür, metadata, maskeler, kısmen DNA doğrulamalı test | Ana kaynak (önce Mini alt kümesi) | DOĞRULANACAK | — | — |
-| Danish Fungi 2020 (WACV 2022) | https://sites.google.com/view/danish-fungi-dataset · arXiv 2103.10107 | 1.604 tür, ~248 bin eğitim görüntüsü, uzman etiketli | İkinci ana kaynak (mini / 300px sürüm) | DOĞRULANACAK (bazı ilişkili kaynaklarda CC BY-NC 4.0 belirtiliyor — ticari kullanım yok) | — | — |
-| iNaturalist (araştırma düzeyi) | https://www.inaturalist.org | Topluluk doğrulamalı gözlemler | Türkiye gözlemleri | Görüntü başına (yalnızca CC lisanslılar) | — | — |
-| GBIF | https://www.gbif.org | Tür görülme kayıtları | Türkiye tür listesi, habitat/mevsim istatistiği | Kayıt/medya başına | — | — |
-| Kaggle `thehir0/mushroom-species` | https://www.kaggle.com/datasets/thehir0/mushroom-species | 100 tür, 50 bin+ fotoğraf (Rusya) | Yardımcı / hızlı baseline | DOĞRULANACAK | — | — |
-| UCI Mushroom | https://www.kaggle.com/datasets/uciml/mushroom-classification | Tablo tabanlı, 1981 rehberinden hipotetik örnekler | Kullanılmayacak (gerçek dünya başarısı göstermez) | — | — | — |
-| FungiCLEF 2023 | https://www.imageclef.org/FungiCLEF2023 | Yarışma, değerlendirme protokolü | Metrik/protokol referansı | — | — | — |
+| Kaynak | Link | Ne alındı | Lisans | Erişim |
+|---|---|---|---|---|
+| iNaturalist (araştırma düzeyi gözlemler) | https://www.inaturalist.org · API v1 | 28 tür + "mantar değil" sınıfı için fotoğraf ve gözlem bilgileri (`ml/collect.py`) | Fotoğraf başına CC0 / CC BY / CC BY-SA / CC BY-NC / CC BY-NC-SA / CC BY-ND / CC BY-NC-ND — "tüm hakları saklı" fotoğraflar indirilmez ve temizlikte de elenir | Ekim 2026 |
+| GBIF | https://www.gbif.org · Occurrence API | Rehberdeki türlerin Türkiye kayıtları, Kastamonu çevresindeki mantar kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC (veri setine göre) | Ekim 2026 |
+| Gemma 4 E4B | https://huggingface.co/google/gemma-4-E4B-it | Görsel-dil modeli (Ollama: `gemma4:e4b`) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) | Ekim 2026 |
+| EfficientNet-B0 (ImageNet) | https://pytorch.org/vision | Transfer öğrenme başlangıç ağırlıkları | BSD-3 | Ekim 2026 |
 
-## species_info.csv içerik kaynakları
+Atıflar: rehberde gösterilen her fotoğrafın sahibi ve lisansı `data/clean/thumbs.json` içinde ve uygulamada fotoğrafın üzerinde yazılıdır. Eğitimde kullanılan tüm fotoğrafların atıf ve lisansı `data/clean/inat_clean.csv` içindedir.
 
-Her satır en az bir akademik/resmî kaynakla doğrulanınca `dogrulama_durumu = DOGRULANDI` ve `kaynak` sütununa link yazılır.
+> Lisans notu: CC BY-NC lisanslı fotoğraflar ticari olmayan kullanım içindir. Ticari bir sürümde eğitim seti yalnızca CC0 / CC BY / CC BY-SA ile yeniden üretilmelidir (`ml/clean.py` içinde `ALLOWED_LICENSES`).
 
-Önerilen kaynaklar: Sağlık Bakanlığı / Ulusal Zehir Danışma Merkezi (UZEM) yayınları, üniversite mikoloji makaleleri, GBIF Türkiye kayıtları.
+## İncelenen, gelecek sürüm için aday kaynaklar
 
-| Tür grubu | Sorumlu | Durum |
+| Kaynak | Link | Not |
 |---|---|---|
-| s01–s05 | _TBD_ | Bekliyor |
-| s06–s10 | _TBD_ | Bekliyor |
-| s11–s15 | _TBD_ | Bekliyor |
-| s16–s20 | _TBD_ | Bekliyor |
+| FungiTastic (CVPRW 2025) | https://bohemianvra.github.io/FungiTastic · Kaggle `picekl/fungitastic` | ~350 bin gözlem, kısmen DNA doğrulamalı test seti |
+| Danish Fungi 2020 (WACV 2022) | https://sites.google.com/view/danish-fungi-dataset | Uzman etiketli; ilişkili kaynaklarda CC BY-NC 4.0 |
+| FungiCLEF | https://www.imageclef.org | Değerlendirme protokolü referansı |
 
-## Veri kalite kontrol listesi (gerçek veri aşaması)
-- [ ] Görüntü hash'iyle yinelenenleri temizle (train/test sızıntısını önle)
-- [ ] Bölmeyi **gözlem kimliğine göre** yap
-- [ ] Her kaynağın lisansını bu dosyaya yaz
+## Veri kalite kontrol listesi
+- [x] Görüntü hash'iyle (dHash) birebir ve neredeyse kopyaları temizle
+- [x] Bölmeyi **gözlem kimliğine göre** yap (aynı mantarın fotoğrafları aynı tarafta)
+- [x] Her kaynağın lisansını bu dosyaya yaz
+- [x] "Mantar değil" sınıfı için negatif örnekler (bitki, çam, yosun, böcek)
 - [ ] Rastgele 100 görüntünün etiketini elle kontrol et
-- [ ] "Mantar değil" sınıfı için negatif örnekler topla (taş, kozalak, çiçek, ağaç kabuğu)
-- [ ] Ayrı bir "bilinmeyen tür" test kümesi hazırla
+- [ ] Türkiye'den uzman doğrulamalı "altın test seti" (üniversite mikoloji bölümleriyle)
