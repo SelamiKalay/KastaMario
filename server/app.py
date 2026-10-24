@@ -18,6 +18,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "server")]
+
+
+def env_yukle(path):
+    """KEY=deger satırlarını ortam değişkenlerine yükler (zaten tanımlı olanları ezmez). .env git'e girmez."""
+    if not path.exists():
+        return
+    for satir in path.read_text(encoding="utf-8-sig").splitlines():
+        k, sep, v = satir.strip().partition("=")
+        if sep and k and not k.startswith("#"):
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+env_yukle(ROOT / ".env")
 import gemma  # noqa: E402
 from decide import load  # noqa: E402
 

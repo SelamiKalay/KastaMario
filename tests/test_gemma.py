@@ -161,3 +161,13 @@ def test_js_escalate_riski_asla_dusurmez():
         for yeni in satir:
             assert rank[yeni] >= rank[l], (l, yeni)
     assert out[0][2] == "KIRMIZI" and out[0][3] == "SARI" and out[2] == ["KIRMIZI"] * 5
+
+
+def test_env_dosyasi_yuklenir_ve_tanimliyi_ezmez(tmp_path, monkeypatch):
+    (tmp_path / ".env").write_text("﻿# yorum\nMYCO_TEST_A=\"bir\"\nMYCO_TEST_B=iki\nbozuk satir\n", encoding="utf-8")
+    monkeypatch.setenv("MYCO_TEST_B", "onceden")
+    monkeypatch.delenv("MYCO_TEST_A", raising=False)
+    sunucu.env_yukle(tmp_path / ".env")
+    import os
+    assert os.environ["MYCO_TEST_A"] == "bir" and os.environ["MYCO_TEST_B"] == "onceden"
+    monkeypatch.delenv("MYCO_TEST_A")
