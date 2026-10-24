@@ -866,7 +866,7 @@ function initChat() {
     n.textContent = "Şu an Gemma 4'e bağlı değilim; sorularını çevrimdışı olarak rehber bilgisinden yanıtlarım. İnternet gelince otomatik bağlanırım.";
     $("msgs").appendChild(n);
   }
-  $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında hangi mantarlar çıkar?`, "Saçak ile koçak nasıl tanınır?"]
+  $("sugg").innerHTML = ["Güvenmediğim bir mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?"]
     .map(q => `<button type="button">${esc(q)}</button>`).join("");
 }
 $("sugg").onclick = e => { const b = e.target.closest("button"); if (b) ask(b.textContent); };
