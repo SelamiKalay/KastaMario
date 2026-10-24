@@ -8,9 +8,7 @@
 <title>MycoGuard Kastamonu</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link href="fonts/fonts.css" rel="stylesheet">
 <style>
   /* ---- Belirteçler: spor beyazı, humus, Küre alacakaranlığı + tehlike renkleri ---- */
   :root {
@@ -85,22 +83,27 @@
   /* ---- Tara: anatomi + çekim ---- */
   .scan { display: grid; gap: 28px; align-items: start; }
   @media (min-width: 860px) { .scan { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
-  .anatomy { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 8px 4px; }
-  .anatomy svg { width: 100%; height: auto; display: block; }
-  .anatomy .part { fill: var(--surface); stroke: var(--ink); stroke-width: 1.6; transition: fill .4s, stroke .4s; }
-  .anatomy .gill { stroke: var(--ink); stroke-width: 1; opacity: .7; }
-  .anatomy .soil { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
-  .anatomy .lead { stroke: var(--muted); stroke-width: 1; }
-  .anatomy text { font: 500 12.5px var(--sans); fill: var(--ink); }
-  .anatomy text.val { font-weight: 600; font-size: 11.5px; fill: var(--muted); }
-  .anatomy [data-state="alert"] .part { fill: var(--lethal-soft); stroke: var(--lethal); stroke-width: 2.4; }
-  .anatomy text[data-state="alert"] { fill: var(--lethal); }
-  .anatomy [data-state="seen"] .part { fill: var(--slate-soft); stroke: var(--slate); }
-  .anatomy [data-state="unknown"] .part { stroke-dasharray: 4 3; }
-  .anatomy.reading .part { animation: read 1.6s ease-in-out infinite; }
-  .anatomy.reading #p-lamel .part { animation-delay: .25s; } .anatomy.reading #p-halka .part { animation-delay: .5s; }
-  .anatomy.reading #p-sap .part { animation-delay: .75s; } .anatomy.reading #p-torba .part { animation-delay: 1s; }
-  @keyframes read { 50% { stroke: var(--slate); stroke-width: 3; } }
+  .anatomy { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: #1b1f1d; }
+  .anatomy img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+  .anatomy figcaption { padding: 7px 10px; font-size: .7rem; color: #c9d2cf; background: #1b1f1d; }
+  .pt { position: absolute; width: 0; height: 0; }
+  .pt .dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: #fff;
+             box-shadow: 0 0 0 3px rgba(38, 64, 77, .9), 0 2px 8px rgba(0,0,0,.4); transition: background .3s, box-shadow .3s; }
+  .pt .lab { position: absolute; top: -16px; display: grid; padding: 5px 9px; border-radius: 8px; white-space: nowrap; line-height: 1.2;
+             background: rgba(16, 22, 20, .84); color: #fff; font-size: .8rem; border-left: 3px solid #8fb6c7; backdrop-filter: blur(4px); }
+  .pt.r .lab { left: 18px; } .pt.l .lab { right: 18px; }
+  .pt .lab small { font-size: .72rem; color: #cfe0e6; font-weight: 600; }
+  .pt .lab small:empty { display: none; }
+  .pt[data-state="seen"] .dot { background: #8fb6c7; }
+  .pt[data-state="unknown"] .dot { background: transparent; box-shadow: 0 0 0 2px #fff; outline: 2px dashed rgba(255,255,255,.9); outline-offset: 2px; }
+  .pt[data-state="unknown"] .lab { border-left-color: #9aa5a0; }
+  .pt[data-state="alert"] .dot { background: #e53935; box-shadow: 0 0 0 3px #fff, 0 0 0 8px rgba(229, 57, 53, .45); animation: alarm 1.2s ease-in-out infinite; }
+  .pt[data-state="alert"] .lab { border-left-color: #e53935; background: rgba(120, 18, 14, .9); }
+  @keyframes alarm { 50% { box-shadow: 0 0 0 3px #fff, 0 0 0 14px rgba(229, 57, 53, 0); } }
+  .anatomy.reading .dot { animation: read 1.4s ease-in-out infinite; }
+  .anatomy.reading #p-lamel .dot { animation-delay: .2s; } .anatomy.reading #p-sap .dot { animation-delay: .4s; }
+  .anatomy.reading #p-halka .dot { animation-delay: .6s; } .anatomy.reading #p-torba .dot { animation-delay: .8s; }
+  @keyframes read { 50% { transform: scale(1.35); background: #8fb6c7; } }
   .capture { display: grid; gap: 14px; align-content: start; }
   .angles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .angle { all: unset; box-sizing: border-box; cursor: pointer; display: grid; gap: 6px; text-align: center; font-size: .85rem; }
@@ -206,6 +209,8 @@
   .call { display: grid; place-items: center; padding: 10px; min-height: 64px; border-radius: var(--radius); text-decoration: none;
           background: #b3261e; color: #fff; font-weight: 700; font-size: 1.5rem; line-height: 1.15; }
   .call small { font-size: .75rem; font-weight: 500; }
+  .refs ul { margin: 6px 0 8px; padding-left: 18px; display: grid; gap: 4px; font-size: .88rem; }
+  .refs a, .src-link { color: var(--slate); text-underline-offset: 3px; }
   .link { all: unset; cursor: pointer; color: var(--slate); text-decoration: underline; text-underline-offset: 3px; }
   .link:focus-visible { outline: 3px solid var(--slate); }
 
@@ -354,21 +359,14 @@
           <h2>Mantarı fotoğrafla, riskini öğren</h2>
           <p class="muted measure">Üç açıdan çekin: şapkanın üstü, altı ve toprağı kazıyarak sap tabanı. Ölümcül türleri ayıran işaretler çoğu zaman sap tabanında gizlidir.</p>
         </div>
-        <figure class="anatomy" id="anatomy" aria-label="Mantar anatomisi: şapka, lameller, halka, sap ve torba">
-          <svg viewBox="0 0 340 250" aria-hidden="true">
-            <line class="soil" x1="20" y1="196" x2="320" y2="196"/>
-            <g id="p-sapka"><path class="part" d="M70 112 C 80 40, 260 40, 270 112 Z"/></g>
-            <g id="p-lamel"><path class="part" d="M70 112 L270 112 L250 124 L90 124 Z"/>
-              <g class="gill"><line x1="100" y1="113" x2="104" y2="123"/><line x1="125" y1="113" x2="127" y2="123"/><line x1="150" y1="113" x2="151" y2="123"/><line x1="190" y1="113" x2="189" y2="123"/><line x1="215" y1="113" x2="213" y2="123"/><line x1="240" y1="113" x2="236" y2="123"/></g></g>
-            <g id="p-sap"><path class="part" d="M160 124 L180 124 L183 200 L157 200 Z"/></g>
-            <g id="p-halka"><path class="part" d="M156 142 Q170 136 184 142 L190 156 Q170 150 150 156 Z"/></g>
-            <g id="p-torba"><path class="part" d="M146 186 Q144 216 170 218 Q196 216 194 186 Q184 196 170 196 Q156 196 146 186 Z"/></g>
-            <line class="lead" x1="226" y1="62" x2="288" y2="40"/><text x="292" y="38">Şapka</text><text class="val" id="t-sapka" x="292" y="52"></text>
-            <line class="lead" x1="92" y1="120" x2="44" y2="140"/><text x="6" y="144" id="l-lamel">Lameller</text><text class="val" id="t-lamel" x="6" y="158"></text>
-            <line class="lead" x1="188" y1="148" x2="250" y2="150"/><text x="254" y="148">Halka</text><text class="val" id="t-halka" x="254" y="162"></text>
-            <line class="lead" x1="158" y1="174" x2="62" y2="182"/><text x="30" y="186">Sap</text>
-            <line class="lead" x1="192" y1="206" x2="250" y2="222"/><text x="254" y="222">Torba</text><text class="val" id="t-torba" x="254" y="236"></text>
-          </svg>
+        <figure class="anatomy" id="anatomy" aria-label="Köygöçüren fotoğrafı üzerinde mantar anatomisi: şapka, lameller, sap, halka ve torba">
+          <img src="img/anatomi.jpg" alt="Yandan çekilmiş bir köygöçüren mantarı; şapka, alt yüzdeki lameller, sapta etek şeklinde halka ve sap tabanında torba görünüyor" width="768" height="1024">
+          <div class="pt r" id="p-sapka" style="left:52%;top:13%"><span class="dot"></span><span class="lab"><b>Şapka</b><small id="t-sapka"></small></span></div>
+          <div class="pt l" id="p-lamel" style="left:30%;top:31%"><span class="dot"></span><span class="lab"><b id="l-lamel">Lameller</b><small id="t-lamel"></small></span></div>
+          <div class="pt l" id="p-sap" style="left:45%;top:46%"><span class="dot"></span><span class="lab"><b>Sap</b></span></div>
+          <div class="pt r" id="p-halka" style="left:61%;top:60%"><span class="dot"></span><span class="lab"><b>Halka</b><small id="t-halka"></small></span></div>
+          <div class="pt r" id="p-torba" style="left:59%;top:89%"><span class="dot"></span><span class="lab"><b>Torba</b><small id="t-torba"></small></span></div>
+          <figcaption>Köygöçüren (<i>Amanita phalloides</i>) · fotoğraf: iNaturalist gözlemi 315054013, CC0</figcaption>
         </figure>
       </div>
       <div class="capture">
@@ -449,8 +447,9 @@
         <li><div>Ne zaman, ne kadar yendiğini ve kimlerin yediğini not edin.</div></li>
         <li><div>Aynı yemeği yiyen herkesi uyarın, belirtisi olmasa bile.</div></li>
         <li><div>Kendi kendinize kusturmaya, süt ya da ilaç vermeye çalışmayın.</div></li>
-        <li><div>En yakın acil servise gidin: il merkezinde Kastamonu Eğitim ve Araştırma Hastanesi, ilçelerde devlet hastaneleri.</div></li>
+        <li><div>En yakın hastanenin acil servisine gidin; 112 sizi en uygun hastaneye yönlendirir.</div></li>
       </ol>
+      <p class="small muted" style="margin-top:12px" id="acilKaynak"></p>
     </section>
   </div>
 
@@ -523,6 +522,13 @@ function records(name) {
     <div class="pheno axis">${AY_KISA.map(a => `<span>${a}</span>`).join("")}</div>
     <p class="small muted" style="margin-top:4px">Kaynak: GBIF, temizlenmiş Türkiye kayıtları.</p>`;
 }
+const REFS = window.MYCO_REFS || {};
+const refLink = r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.ad)}</a></li>`;
+function kaynaklar(name) {
+  const liste = [...(REFS.turler?.[name] || []), ...(REFS.genel || [])];
+  return liste.length ? `<div class="refs"><h3>Kaynaklar</h3><ul>${liste.map(refLink).join("")}</ul>
+    <p class="small muted">Bilgiler bu kaynaklara dayanır ve uzman incelemesindedir; tıbbi karar için 114'ü arayın.</p></div>` : "";
+}
 function speciesPage(s) {
   const t = THUMBS[s.latin_name];
   return `<article class="sp">
@@ -548,6 +554,7 @@ function speciesPage(s) {
     <div><h3>Nasıl yetişir?</h3><p class="measure">${esc(s.yetisme_sureci)}</p></div>
     <div><h3>Ne zaman görülür?</h3>${pheno(s)}<p class="measure" style="margin-top:8px">${esc(s.toplama_notu)}</p></div>
     <div><h3>Türkiye kayıtları</h3>${records(s.latin_name)}</div>
+    ${kaynaklar(s.latin_name)}
   </article>`;
 }
 function openSpecies(name) {
@@ -843,6 +850,7 @@ async function ask(q) {
 }
 
 // ---------------- yedim ----------------
+if (REFS.acil) $("acilKaynak").innerHTML = `Kaynak: <a class="src-link" href="${esc(REFS.acil.url)}" target="_blank" rel="noopener">${esc(REFS.acil.ad)}</a>`;
 $("ateSp").innerHTML += SPECIES.slice().sort((a, b) => a.turkce_ad.localeCompare(b.turkce_ad, "tr"))
   .map(s => `<option value="${esc(s.latin_name)}">${esc(s.turkce_ad)}</option>`).join("");
 function triage() {

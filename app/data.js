@@ -1480,3 +1480,263 @@ window.MYCO_THUMBS = {
   "kaynak": "https://www.inaturalist.org/observations/400695240"
  }
 };
+window.MYCO_REFS = {
+ "genel": [
+  {
+   "ad": "White J. ve ark. Mushroom poisoning: A proposed new clinical classification. Toxicon 2019;157:53-65",
+   "url": "https://doi.org/10.1016/j.toxicon.2018.11.007"
+  },
+  {
+   "ad": "Diaz JH. Syndromic diagnosis and management of confirmed mushroom poisonings. Crit Care Med 2005;33(2):427-436",
+   "url": "https://doi.org/10.1097/01.ccm.0000153531.69448.49"
+  },
+  {
+   "ad": "T.C. Tarım ve Orman Bakanlığı (Ordu İl Müdürlüğü): Mantar zehirlenmeleri ve başlıca zehirli mantarlar",
+   "url": "https://ordu.tarimorman.gov.tr/Belgeler/G%C4%B1da%20ve%20Yem/MANTAR%20ZEH%C4%B0RLENMELER%C4%B0%20VE%20BA%C5%9ELICA%20ZEH%C4%B0RL%C4%B0%20MANTARLAR.pdf"
+  }
+ ],
+ "acil": {
+  "ad": "114: Sağlık Bakanlığı Ulusal Zehir Danışma Merkezi (UZEM), 7/24 · 112: Acil Çağrı Merkezi",
+  "url": "https://ordu.tarimorman.gov.tr/BelgelerArsiv/G%C4%B1da%20ve%20Yem/MANTAR%20ZEH%C4%B0RLENMELER%C4%B0NE%20D%C4%B0KKAT.pdf"
+ },
+ "turler": {
+  "Amanita phalloides": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/52135"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5240325"
+   }
+  ],
+  "Galerina marginata": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/1672638"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/8118872"
+   }
+  ],
+  "Lepiota brunneoincarnata": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/515954"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2535390"
+   }
+  ],
+  "Amanita muscaria": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48715"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/8168319"
+   }
+  ],
+  "Amanita pantherina": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48418"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/8961574"
+   }
+  ],
+  "Gyromitra esculenta": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/85120"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5258510"
+   }
+  ],
+  "Omphalotus olearius": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/64021"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2538088"
+   }
+  ],
+  "Entoloma sinuatum": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/510199"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2539308"
+   }
+  ],
+  "Hypholoma fasciculare": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48767"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/3293632"
+   }
+  ],
+  "Rubroboletus satanas": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/544554"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/7722553"
+   }
+  ],
+  "Amanita rubescens": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/1678242"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/7496350"
+   }
+  ],
+  "Agaricus xanthodermus": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/118394"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5243412"
+   }
+  ],
+  "Morchella esculenta": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/58682"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2594602"
+   }
+  ],
+  "Armillaria mellea": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/55950"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2536891"
+   }
+  ],
+  "Agaricus campestris": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/143563"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5243458"
+   }
+  ],
+  "Boletus edulis": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48701"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5954958"
+   }
+  ],
+  "Cantharellus cibarius": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/47347"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5249504"
+   }
+  ],
+  "Lactarius deliciosus": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/155197"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5248629"
+   }
+  ],
+  "Macrolepiota procera": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/63401"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/8914748"
+   }
+  ],
+  "Amanita caesarea": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/204588"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/5240269"
+   }
+  ],
+  "Hydnum repandum": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48641"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2554716"
+   }
+  ],
+  "Craterellus cornucopioides": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48607"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2554662"
+   }
+  ],
+  "Pleurotus ostreatus": [
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2526530"
+   }
+  ],
+  "Coprinus comatus": [
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/7987658"
+   }
+  ],
+  "Marasmius oreades": [
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2537250"
+   }
+  ]
+ }
+};

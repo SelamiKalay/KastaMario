@@ -22,6 +22,8 @@ if stats.exists():
 
 thumbs_path = DATA / "clean" / "thumbs.json"
 thumbs = json.loads(thumbs_path.read_text(encoding="utf-8")) if thumbs_path.exists() else {}
+refs_path = DATA / "kaynaklar.json"
+refs = json.loads(refs_path.read_text(encoding="utf-8")) if refs_path.exists() else {}
 
 out = ROOT / "app" / "data.js"
 dump = lambda o: json.dumps(o, ensure_ascii=False, indent=1)  # noqa: E731
@@ -30,7 +32,8 @@ out.write_text(
     f"window.MYCO_CASES = {dump(cfg)};\n"
     f"window.MYCO_SPECIES = {dump(list(info.values()))};\n"
     f"window.MYCO_GBIF = {dump(gbif)};\n"
-    f"window.MYCO_THUMBS = {dump(thumbs)};\n",
+    f"window.MYCO_THUMBS = {dump(thumbs)};\n"
+    f"window.MYCO_REFS = {dump(refs)};\n",
     encoding="utf-8",
 )
 print(f"{out.relative_to(ROOT)} yazıldı ({len(info)} tür, {len(cfg['senaryolar'])} senaryo, "
