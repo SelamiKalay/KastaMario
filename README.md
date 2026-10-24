@@ -106,7 +106,7 @@ python -m pytest -q
 ├── data/                 # species_info.csv, demo_cases.json, clean/ (raw/ repoya girmez)
 ├── results/              # eğitim raporu, metrikler, grafikler
 ├── tests/                # pytest
-└── docs/                 # veri kaynakları, güvenlik-etik, günlük, plan
+└── docs/                 # veri kaynakları, güvenlik-etik, günlük
 ```
 
 ## Bağımlılıklar ve lisanslar
