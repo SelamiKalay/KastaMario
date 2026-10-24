@@ -1,185 +1,212 @@
-# 🍄 KastaMario — Kastamonu mantar rehberi
+# 🍄 KastaMario — Kastamonu mushroom guide
 
-<img src="app/img/kastamario.png" alt="KastaMario logosu" width="120" align="right">
+[Türkçe](README.tr.md) · **English**
 
-**Yapay zekâ destekli mantar zehirlenme risk rehberi.** Mantarın fotoğrafını çekin; KastaMario olası türleri, zehirlenme riskini, ölümcül ikiz türleri, belirtilerin kaç saatte başladığını, yediyseniz ne yapmanız gerektiğini, mantarın nerede ve ne zaman yetiştiğini gösterir. Kastamonu ormanları (Küre Dağları, Ilgaz, kıyı kestane-meşe ormanları) için hazırlanmıştır.
+<img src="app/img/kastamario.png" alt="KastaMario logo" width="120" align="right">
 
-> KastaMario **hiçbir mantarın yenilebilir olduğunu söylemez.** Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en fazla boş sepettir. Bu asimetri tasarımın temelidir.
+**An AI-powered mushroom poisoning risk guide.** Take a photo of a mushroom and KastaMario shows the likely species, the poisoning risk, deadly look-alikes, how many hours until symptoms start, what to do if you ate it, and where and when the mushroom grows. It is built for the forests of Kastamonu, Türkiye (Küre Mountains, Ilgaz, coastal chestnut–oak forests).
 
-| Tara | Rehber | Takvim | Yedim! |
+> KastaMario **never says a mushroom is edible.** Mistaking a poisonous mushroom for an edible one can kill; mistaking an edible one for poisonous costs, at most, an empty basket. This asymmetry is the foundation of the design.
+
+**Why now:** in October 2026 more than 40 people in Kastamonu went to hospital with mushroom poisoning in a single week, and in neighbouring Sinop 76 people sought treatment between 1 September and 14 October. Experts warn there is no way to tell a poisonous mushroom at home, and folk tests (silver spoon, vinegar, cooking with onion) do not work.
+
+| Scan | Guide | Calendar | I ate it! |
 |:---:|:---:|:---:|:---:|
-| <img src="docs/img/tara.jpg" width="200" alt="Tara ekranı: Gemma 4 bulguları anatomi fotoğrafında"> | <img src="docs/img/rehber.png" width="200" alt="Rehber ekranı"> | <img src="docs/img/takvim.png" width="200" alt="Takvim ekranı"> | <img src="docs/img/acil.png" width="200" alt="Acil durum ekranı"> |
+| <img src="docs/img/tara.jpg" width="200" alt="Scan screen: Gemma 4 findings on the anatomy photo"> | <img src="docs/img/rehber.png" width="200" alt="Guide screen"> | <img src="docs/img/takvim.png" width="200" alt="Calendar screen"> | <img src="docs/img/acil.png" width="200" alt="Emergency screen"> |
 
-## Yapay zekâ ne yapıyor?
+*The app interface is in Turkish, for its local users.*
 
-KastaMario iki açık modeli ve kural tabanlı bir güvenlik katmanını birlikte kullanır:
+## What does the AI do?
 
-| Katman | Model | Lisans | Görevi |
+KastaMario combines two open models with a rule-based safety layer:
+
+| Layer | Model | License | Role |
 |---|---|---|---|
-| 1. Görüntü sınıflandırıcı | **EfficientNet-B0**, bu projede iNaturalist fotoğraflarıyla eğitildi (`ml/train.py`) | Kod MIT; ön eğitimli ağırlıklar [torchvision (BSD-3)](https://github.com/pytorch/vision/blob/main/LICENSE) | Fotoğraftan tür olasılıkları + "mantar değil" tespiti. ONNX olarak **cihazda, internetsiz** çalışır. |
-| 2. Görsel-dil modeli | **[Gemma 4 26B A4B](https://huggingface.co/google/gemma-4-26B-A4B-it)** (Google DeepMind, açık ağırlıklı; 26 milyar parametreli, her adımda ~4 milyarı etkin MoE modeli) — [Gemini API](https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api) üzerinden, model kimliği `gemma-4-26b-a4b-it` | [Apache 2.0 — Gemma 4 lisansı](https://ai.google.dev/gemma/docs/gemma_4_license) | Fotoğraftaki ayırt edici özellikleri **yapılandırılmış JSON** olarak çıkarır (sap tabanında torba, halka, lamel rengi, alt yüz tipi, substrat); bilgi tabanına dayalı Türkçe asistan. |
-| 3. Güvenlik kuralları | — | MIT | **En kötü aday kuralı**: adaylardan biri ≥%5 ihtimalle ölümcül/zehirliyse sonuç KIRMIZI. Gemma bulguları riski **yalnızca yükseltebilir**, asla düşüremez. |
+| 1. Image classifier | **EfficientNet-B0**, trained in this project on iNaturalist photos (`ml/train.py`) | Code MIT; pretrained weights [torchvision (BSD-3)](https://github.com/pytorch/vision/blob/main/LICENSE) | Species probabilities plus a "not a mushroom" class. Runs **on the phone, offline**, as ONNX. |
+| 2. Vision-language model | **[Gemma 4 26B A4B](https://huggingface.co/google/gemma-4-26B-A4B-it)** (Google DeepMind, open weights; 26B-parameter MoE with ~4B active per step), via the [Gemini API](https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api), model id `gemma-4-26b-a4b-it` | [Apache 2.0 — Gemma 4 license](https://ai.google.dev/gemma/docs/gemma_4_license) | Extracts distinguishing features from the photo as **structured JSON** (volva at the stem base, ring, gill colour, underside type, substrate); powers a Turkish assistant grounded in the species knowledge base. |
+| 3. Safety rules | — | MIT | **Worst-candidate rule**: if any candidate is deadly/poisonous with ≥5% probability, the result is RED. Gemma's findings can **only raise** the risk, never lower it. |
 
-### Örnek: Gemma 4 riski nasıl yükseltir?
-Görüntü modeli bir mantarı %70 "çayır mantarı" görür. Gemma 4 fotoğrafta **sap tabanında torba** tespit eder → kural katmanı sonucu **KIRMIZI**'ya çeker: *"Sap tabanında torba görünüyor. Bu, ölümcül köygöçüren grubunun en önemli işaretidir."*
+### Example: how Gemma 4 raises the risk
+The image model sees a mushroom as 70% "meadow mushroom". Gemma 4 detects a **volva at the stem base** → the rule layer moves the result to **RED**: *"A volva is visible at the stem base. This is the most important sign of the deadly death cap group."*
 
 ```
-Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mantar mı?
-          │                                        │
-          └─► [2] Gemma 4 (sunucu → Gemini API) ──► görsel özellikler (JSON)
-                                                   │
-                     [3] Güvenlik kuralları ◄──────┘
-                     • en kötü aday kuralı         → 🔴 Zehirli olabilir
-                     • belirsizlik eşiği (%60)     → 🟡 Emin değiliz
-                     • Gemma risk yükseltmesi      → ⚪ Düşük riskli aday (uzman onayı şart)
-                                                   → ⛔ Mantar değil
-                     ▼
-     Sonuç + ikiz tür uyarıları + belirti süresi + ilk yardım + Kastamonu takvimi
+Photo ─┬─► [1] EfficientNet-B0 (on device) ──► top-5 species + is it a mushroom?
+       │                                          │
+       └─► [2] Gemma 4 (server → Gemini API) ───► visual features (JSON)
+                                                  │
+                    [3] Safety rules ◄────────────┘
+                    • worst-candidate rule        → 🔴 Possibly poisonous
+                    • uncertainty threshold (60%) → 🟡 Not sure
+                    • Gemma risk escalation       → ⚪ Low-risk candidate (expert check required)
+                                                  → ⛔ Not a mushroom
+                    ▼
+    Result + look-alike warnings + symptom onset + first aid + Kastamonu calendar
 ```
 
-## Sonuçlar (test seti — modelin eğitimde hiç görmediği 1.779 fotoğraf)
+## Results (test set — 1,779 photos the model never saw in training)
 
-| Metrik | Değer |
+| Metric | Value |
 |---|---:|
-| Doğru tür ilk tahminde (top-1) / ilk 5'te (top-5) | **%90,7 / %98,6** |
-| Ölümcül tür fotoğrafının **KIRMIZI** gösterilmesi | **%99,3** |
-| Ölümcül veya zehirli tür fotoğrafının **KIRMIZI** gösterilmesi | **%98,5** |
-| **Tehlikeli karışıklık** (zehirli → "düşük riskli aday") | **%0,8** |
-| Zehirli türün "mantar değil" sayılması | %0 |
-| Kalibrasyon hatası (ECE), sıcaklık ölçeklemeyle | 0,110 → 0,018 |
-| Telefonda tahmin süresi (ONNX, internetsiz) | ~0,14 sn |
+| Correct species first (top-1) / in top 5 (top-5) | **90.7% / 98.6%** |
+| Deadly species photo shown **RED** | **99.3%** |
+| Deadly or poisonous species photo shown **RED** | **98.5%** |
+| **Dangerous confusion** (poisonous → "low-risk candidate") | **0.8%** |
+| Poisonous species classified as "not a mushroom" | 0% |
+| Calibration error (ECE), with temperature scaling | 0.110 → 0.018 |
+| Inference time on the phone (ONNX, offline) | ~0.14 s |
 
-Model bazı türleri tek başına zor tanır (ör. *Armillaria mellea* recall %70,8), ama **en kötü aday kuralı** sayesinde ölümcül tür fotoğraflarının %99,3'ü yine KIRMIZI gösterilir: yapay zekâ ile güvenlik kuralları birlikte çalışır. Ayrıntı: [`results/egitim_raporu.md`](results/egitim_raporu.md).
+The model struggles with some species on its own (e.g. *Armillaria mellea*, recall 70.8%). Thanks to the **worst-candidate rule**, 99.3% of deadly-species photos are still shown RED: the AI and the safety rules work together. Details: [`results/egitim_raporu.md`](results/egitim_raporu.md).
 
-### Dış test: internetten bulunan fotoğraflar
-iNaturalist fotoğrafları birbirine benzer (elde, yakın çekim). Gerçek kullanımı ölçmek için modelin hiç görmediği, farklı kaynaktan **315 Wikimedia Commons fotoğrafı** ile ayrıca test edildi (`ml/commons_test.py`, `ml/eval_dis.py`). İlk sürüm internet/ekran fotoğraflarında zayıftı; eğitime **dayanıklılık artırımı** (döndürme, uzaklaştırma, renk sıcaklığı, bulanıklık, gürültü) ve uygulamaya **çoklu bakış** (orta kare + tam görüntü + ayna, olasılık ortalaması) eklendi:
+### External test: photos found on the internet
+iNaturalist photos look alike (in hand, close-up). To measure real-world use, the model was also tested on **315 Wikimedia Commons photos** from a different source that it never saw (`ml/commons_test.py`, `ml/eval_dis.py`). The first version was weak on internet and screen photos. We added **robustness augmentation** to training (rotation, zoom-out, colour temperature, blur, noise) and **multi-view inference** to the app (centre crop + full image + mirror, averaged probabilities):
 
-| Commons (315 fotoğraf) | İlk model | Son model + çoklu bakış |
+| Commons (315 photos) | First model | Final model + multi-view |
 |---|---:|---:|
-| top-1 | %75,6 | **%78,4** |
-| top-5 | %91,4 | **%94,6** |
-| Tehlikeli tür → KIRMIZI | %93,8 | **%94,6** |
+| top-1 | 75.6% | **78.4%** |
+| top-5 | 91.4% | **94.6%** |
+| Dangerous species → RED | 93.8% | **94.6%** |
 
-Aynı modelin iNaturalist test setinde çoklu bakışla top-1'i **%91,2**'dir. Ayrıntı: [`results/dis_test.json`](results/dis_test.json).
+On the iNaturalist test set the same model reaches **91.2%** top-1 with multi-view. Details: [`results/dis_test.json`](results/dis_test.json).
 
-### Gemma 4'ün katkısını da ölçtük
-151 test fotoğrafı iki yoldan geçirildi: yalnızca görüntü modeli ve görüntü modeli + Gemma 4 (`ml/eval_gemma.py`). Ayrıntı: [`results/gemma_degerlendirme.md`](results/gemma_degerlendirme.md).
+### We also measured Gemma 4's contribution
+151 test photos were run two ways: image model only, and image model + Gemma 4 (`ml/eval_gemma.py`). Details: [`results/gemma_degerlendirme.md`](results/gemma_degerlendirme.md).
 
-| | Yalnızca model | Model + Gemma 4 |
+| | Model only | Model + Gemma 4 |
 |---|---:|---:|
-| Zehirli/ölümcül tür → KIRMIZI (n=80) | %98,8 | %98,8 |
-| Düşük riskli türde gereksiz KIRMIZI alarm (n=48) | — | **%0** |
-| Gemma API hatası (151 fotoğraf) | — | **0** |
+| Poisonous/deadly species → RED (n=80) | 98.8% | 98.8% |
+| Unnecessary RED alarm on low-risk species (n=48) | — | **0%** |
+| Gemma API errors (151 photos) | — | **0** |
 
-Bu test setinde görüntü modeli tehlikeli türlerin %98,8'ini zaten KIRMIZI gösterdiği için Gemma'nın risk yükseltmesi ek bir fotoğrafı kurtarmadı. Gereksiz alarm da üretmedi. Gemma'nın Amanita fotoğraflarında sap tabanındaki torbayı görme oranı %8'de kaldı (n=24). iNaturalist fotoğrafları tek açıdan çekilmiş ve çoğunda sap tabanı toprağın içinde. Uygulamanın ayrıca "sap tabanı" fotoğrafı istemesinin nedeni bu. Gemma'nın bugünkü asıl katkısı **açıklanabilirlik** (hangi işareti gördüğünü anatomi fotoğrafında göstermesi) ve **Mybear asistanı**. Görüntü modelinin zorlandığı fotoğraflarda ise ikinci bir güvenlik ağı görevi görüyor.
+On this test set the image model already showed 98.8% of dangerous species as RED, so Gemma's risk escalation did not rescue any additional photo. It also caused no false alarms. Gemma spotted the volva at the stem base in only 8% of *Amanita* photos (n=24): iNaturalist photos are single-angle and the stem base is usually hidden in the soil. That is why the app asks separately for a "stem base" photo. Today Gemma's main contributions are **explainability** (showing which sign it saw on the anatomy photo) and the **Mybear assistant**. On photos where the image model struggles, it acts as a second safety net.
 
-## Özellikler
-- 📷 **Tara:** şapka üstü, şapka altı ve sap tabanı için üç fotoğraf yuvası → görüntü modeli ve Gemma 4 **paralel** çalışır → risk, en olası 5 tür, "karıştırılabilecek tehlikeli türler". Gemma'nın bulguları gerçek bir köygöçüren fotoğrafı üzerindeki anatomi işaretlerinde gösterilir (torba bulunursa kırmızı yanar).
-- 🐻 **Mybear (Gemma 4):** köşedeki balona dokununca açılan sohbet; yanıtlar akarak gelir, internet yoksa **çevrimdışı modda** rehber bilgisinden yanıt verir. "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 27 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
-- 📖 **Rehber:** 27 tür (yöresel **saçak** ve **koçak** dahil), her biri CC lisanslı fotoğraf ve atıfla — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF), iNaturalist/GBIF ve klinik literatür kaynakları
-- 📅 **Takvim:** ay seçici (her ayın tür sayısı, ölümcül tür uyarısı) + seçili ayın türleri; tüm yıl için fenoloji tablosu
-- 🚨 **Yedim!:** 114 (UZEM) / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)
-- 📱 **Mobil:** PWA (ana ekrana eklenebilir, yazı tipleri dahil çevrimdışı çalışır); Capacitor ile Android/iOS paketine hazır
+## Features
+- 📷 **Scan:** three photo slots (cap top, cap underside, stem base). The image model and Gemma 4 run **in parallel**. The result shows the risk, the top 5 species and "dangerous look-alikes". Gemma's findings light up on anatomy markers over a real death cap photo (the volva marker turns red when found).
+- 🐻 **Mybear (Gemma 4):** a chat bubble in the corner. Answers stream in, and with no internet it answers from the guide in **offline mode**. Example questions: "List the mushrooms in Kastamonu", "I ate a mushroom I don't trust, what should I do?", "How do I tell a death cap from Caesar's mushroom?". Under the hood:
+  - full catalogue of the 27 species, plus details of the species relevant to the question (RAG);
+  - formatted bullet-point answers;
+  - forbidden phrases filtered out.
+- 📖 **Guide:** 27 species, including the local **saçak** (coral fungi) and **koçak** (hen-of-the-woods). Each has a CC-licensed photo with attribution and covers:
+  - toxicity, symptoms, onset time, first aid;
+  - size, growth cycle, a Kastamonu note;
+  - Türkiye observation records (GBIF), iNaturalist/GBIF and clinical literature sources.
+- 📅 **Calendar:** a month picker (species count per month, deadly-species warning) plus that month's species, and a full-year phenology table.
+- 🚨 **I ate it!:** 114 (National Poison Information Centre) and 112, plus a symptom timeline: symptoms starting later than 6 hours trigger a deadly poisoning warning.
+- 📱 **Mobile:** PWA you can add to the home screen, works offline including fonts; ready for an Android/iOS package via Capacitor.
 
-**Hız:** Gemma 4'ün yanıt öncesi "düşünme" adımı `thinkingLevel: minimal` ile kısıtlandı. İki fotoğraflı görsel analiz **~180 sn → ~5 sn**'ye indi ve ölçümlerde aynı özellikleri buldu (`MYCOGUARD_THINKING` ile değiştirilebilir).
+**Speed:** Gemma 4's "thinking" step is limited with `thinkingLevel: minimal`. Two-photo visual analysis dropped from **~180 s → ~5 s** while finding the same features in our measurements (configurable with `MYCOGUARD_THINKING`).
 
-## Hızlı başlangıç
+## Quick start
 
 ```bash
 git clone https://github.com/SelamiKalay/BAKLAVA.git
 cd BAKLAVA
 ```
 
-**1. Gemini API anahtarı alın** (Gemma 4 ücretsiz katmanda): https://aistudio.google.com/apikey
+**1. Get a Gemini API key** (Gemma 4 is on the free tier): https://aistudio.google.com/apikey
 
-**2. Uygulamayı başlatın** (yalnızca Python 3.10+, ek paket gerekmez):
+**2. Start the app** (Python 3.10+ only, no extra packages):
 
 ```bash
-GEMINI_API_KEY=<anahtarınız> python server/app.py
+GEMINI_API_KEY=<your-key> python server/app.py
 ```
 
-Tarayıcıda `http://localhost:8000` adresini açın. Anahtar yoksa ya da internet kesikse uygulama görüntü modeli + güvenlik kurallarıyla çalışmaya devam eder; Gemma adımı "kullanılamıyor" görünür.
+Open `http://localhost:8000` in your browser. Without a key, or offline, the app keeps working with the image model and the safety rules; the Gemma step shows as "unavailable".
 
-**Başka sağlayıcı** (OpenAI uyumlu herhangi bir uç; ör. DigitalOcean Serverless Inference, Hugging Face, vLLM, Ollama):
+**Another provider** (any OpenAI-compatible endpoint, e.g. DigitalOcean Serverless Inference, Hugging Face, vLLM, Ollama):
 
 ```bash
 MYCOGUARD_LLM=openai OPENAI_BASE_URL=https://.../v1 OPENAI_API_KEY=... MYCOGUARD_MODEL=<model-id> python server/app.py
 ```
 
-**Telefona aktarma ve sunucuyu yayımlama:** [`docs/mobil.md`](docs/mobil.md) — DigitalOcean App Platform (`.do/app.yaml`) ve Capacitor (Android/iOS).
+**Running on a phone and deploying the server:** [`docs/mobil.md`](docs/mobil.md) — DigitalOcean App Platform (`.do/app.yaml`) and Capacitor (Android/iOS).
 
-> **Gizlilik:** Gemma 4 adımında fotoğraf ve sorular sunucu üzerinden Google Gemini API'ye gönderilir; ücretsiz katmanda bu veriler Google ürünlerini geliştirmek için kullanılabilir. Tür tahmini, rehber, takvim ve acil durum bölümleri tamamen telefonda çalışır ve hiçbir veri göndermez.
+> **Privacy:** in the Gemma 4 step, photos and questions are sent through the server to the Google Gemini API; on the free tier Google may use this data to improve its products. Species prediction, the guide, the calendar and the emergency screen run entirely on the phone and send no data.
 
-## Veri ve model hattı (yeniden üretmek için)
+## Data and model pipeline (to reproduce)
 
 ```bash
 pip install -r requirements-ml.txt
-python ml/collect.py        # 1. ham veri: iNaturalist fotoğrafları + GBIF Türkiye kayıtları
-python ml/clean.py          # 2. temizleme ve ayrıştırma -> data/clean/ + temizlik_raporu.md
-python ml/train.py          # 3. EfficientNet-B0 eğitimi -> app/model/*.onnx + results/
-python ml/eval_gemma.py     # 4. Gemma 4'ün katkısı (test fotoğrafları, .env'de GEMINI_API_KEY gerekir)
-python ml/thumbs.py         # rehber fotoğrafları (CC lisanslı, atıflı)
-python ml/kaynaklar.py      # tür sayfaları için iNaturalist/GBIF bağlantıları
+python ml/collect.py        # 1. raw data: iNaturalist photos + GBIF Türkiye records
+python ml/clean.py          # 2. cleaning and splitting -> data/clean/ + temizlik_raporu.md
+python ml/train.py          # 3. EfficientNet-B0 training -> app/model/*.onnx + results/
+python ml/eval_gemma.py     # 4. Gemma 4's contribution (test photos, needs GEMINI_API_KEY in .env)
+python ml/thumbs.py         # guide photos (CC-licensed, attributed)
+python ml/kaynaklar.py      # iNaturalist/GBIF links for species pages
 python src/build_app_data.py
 ```
 
-**Eğitim hızı:** `ml/train.py` fotoğrafları ilk çalıştırmada bir kez çözüp `%LOCALAPPDATA%\mycoguard\` altına 256×256 önbellek olarak yazar (~2,2 GB; OneDrive dışında, `MYCOGUARD_CACHE` ile değiştirilebilir) ve eğitim sırasında GPU belleğinde tutar; veri artırma (rastgele kırpma, çevirme, renk) toplu halde GPU'da yapılır. Windows'ta klasik DataLoader işçileriyle adım başına ~9,5 sn ölçülürken GPU'nun kendisi 0,26 sn/adım hızındaydı; bu yaklaşım darboğazı kaldırır. Eğitim internet gerektirmez.
+**Training speed:** on its first run `ml/train.py` decodes the photos once into a 256×256 cache under `%LOCALAPPDATA%\mycoguard\` (~2.2 GB, outside OneDrive, configurable with `MYCOGUARD_CACHE`). During training it keeps the cache in pinned memory, and augmentation runs batched on the GPU. With classic Windows DataLoader workers we measured ~9.5 s per step while the GPU itself ran at 0.26 s/step; this approach removes that bottleneck. Training needs no internet.
 
-**Veri temizleme adımları** (`ml/clean.py`, ayrıntı `data/clean/temizlik_raporu.md`): yinelenen kayıtlar, lisans filtresi (yalnızca CC), taksonomi normalizasyonu (alt tür/varyete → tür), bozuk/küçük/aykırı en-boy oranlı görseller, **algısal hash (dHash) ile birebir ve neredeyse kopya fotoğraflar**, tarih/konum ayrıştırma, sınıf dengeleme ve **gözlem kimliğine göre sızıntısız train/val/test ayrımı**. GBIF tarafında: ABSENT kayıtlar, tür düzeyine indirgeme, Türkiye dışı/0-0/ters koordinatlar, aynı tür-yer-gün kopyaları ve il adı normalizasyonu ("KASTAMONU", "Kastamonu İli", "Kastamonu Province" → `kastamonu`).
+**Data cleaning steps** (`ml/clean.py`, details in `data/clean/temizlik_raporu.md`):
+- duplicate records;
+- license filter (CC only);
+- taxonomy normalisation (subspecies/variety → species);
+- broken, tiny or odd-aspect-ratio images;
+- **exact and near-duplicate photos via perceptual hashing (dHash)**;
+- date and location parsing;
+- class balancing;
+- **leak-free train/val/test split by observation id**.
 
-**Model sonuçları:** `results/egitim_raporu.md` — top-1/top-5 doğruluk, sınıf bazında recall, kalibrasyon (ECE) ve güvenlik metrikleri: zehirli tür → KIRMIZI oranı ve **tehlikeli karışıklık oranı** (zehirli bir mantarın "düşük riskli" gösterilmesi; hedef ≈ 0).
+On the GBIF side:
+- ABSENT records;
+- reduction to species level;
+- coordinates outside Türkiye, at 0-0 or swapped;
+- same species–place–day duplicates;
+- province-name normalisation ("KASTAMONU", "Kastamonu İli", "Kastamonu Province" → `kastamonu`).
 
-## Testler
+**Model results:** `results/egitim_raporu.md` covers top-1/top-5 accuracy, per-class recall, calibration (ECE) and the safety metrics. The safety metrics are the poisonous species → RED rate and the **dangerous confusion rate** (a poisonous mushroom shown as "low risk"; target ≈ 0).
+
+## Tests
 
 ```bash
 python -m pytest -q
 ```
 
-| Test dosyası | Ne doğrular |
+| Test file | What it checks |
 |---|---|
-| `tests/test_decide.py` | 8 örnek vaka, eşik sınırları, en kötü aday kuralı, her tehlikeli tür birinci adaysa KIRMIZI |
-| `tests/test_species_table.py` | Tür tablosu şeması, aylar, belirti saatleri, ikiz türler, tehlikeli türler "Toplanmaz", "güvenli" ifadesi yasağı |
-| `tests/test_parity.py` | Tarayıcıdaki `app/decide.js` ile `src/decide.py` 2000 rastgele vakada aynı kararı veriyor; Gemma risk yükseltmesi (`escalate`) iki dilde aynı |
-| `tests/test_gemma.py` | Gemma risk yükseltme kuralları, riskin asla düşmemesi, yasak ifade süzgeci, RAG bağlamı, Gemini ve OpenAI uyumlu istek biçimleri, şema dışı çıktının güvenli varsayılana düşmesi, istek sınırı |
-| `tests/test_clean.py` | İl adı/tür adı/tarih/konum ayrıştırma, lisans filtresi, dHash kopya tespiti, sızıntısız ayırma, dengeleme |
-| `tests/test_train.py` | Eğitim veri hattı (yalnızca CPU): orta kırpma, önbelleğin yeniden kullanımı, GPU veri artırma, toplu üretimi |
+| `tests/test_decide.py` | 8 sample cases, threshold edges, worst-candidate rule, every dangerous species is RED when ranked first |
+| `tests/test_species_table.py` | Species table schema, months, symptom hours, look-alikes, dangerous species marked "do not pick", ban on the word "safe" |
+| `tests/test_parity.py` | The in-browser `app/decide.js` and `src/decide.py` give the same decision on 2,000 random cases; Gemma escalation (`escalate`) is identical in both languages |
+| `tests/test_gemma.py` | Gemma escalation rules, risk never lowered, forbidden-phrase filter, RAG context, Gemini and OpenAI-compatible request formats, off-schema output falls back to safe defaults, rate limit |
+| `tests/test_clean.py` | Province/species/date/location parsing, license filter, dHash duplicate detection, leak-free split, balancing |
+| `tests/test_train.py` | Training data pipeline (CPU only): centre crop, cache reuse, GPU augmentation, batching |
 
-## Proje yapısı
+## Project structure
 
 ```
-├── app/                  # Mobil uyumlu web uygulaması (PWA)
-│   ├── index.html        #   arayüz
-│   ├── decide.js         #   güvenlik kuralları (Python ile eşdeğer)
-│   ├── model.js          #   cihazda ONNX çıkarımı (onnxruntime-web)
-│   ├── model/            #   eğitilmiş model + etiketler
+├── app/                  # Mobile-friendly web app (PWA)
+│   ├── index.html        #   interface
+│   ├── decide.js         #   safety rules (equivalent to Python)
+│   ├── model.js          #   on-device ONNX inference (onnxruntime-web)
+│   ├── model/            #   trained model + labels
 │   └── vendor/ort/       #   onnxruntime-web 1.20.1 (MIT)
-├── server/               # Gemma 4 uç noktaları + statik sunucu (bağımlılıksız)
+├── server/               # Gemma 4 endpoints + static server (no dependencies)
 ├── ml/                   # collect -> clean -> train -> thumbs
-├── src/                  # karar katmanı (Python) + uygulama verisi üretimi
-├── data/                 # species_info.csv, demo_cases.json, clean/ (raw/ repoya girmez)
-├── results/              # eğitim raporu, metrikler, grafikler
+├── src/                  # decision layer (Python) + app data generation
+├── data/                 # species_info.csv, demo_cases.json, clean/ (raw/ is not in the repo)
+├── results/              # training report, metrics, charts
 ├── tests/                # pytest
-└── docs/                 # veri kaynakları, güvenlik-etik, günlük
+└── docs/                 # data sources, safety & ethics, dev log
 ```
 
-## Bağımlılıklar ve lisanslar
+## Dependencies and licenses
 
-| Bileşen | Lisans |
+| Component | License |
 |---|---|
-| KastaMario kodu | MIT (`LICENSE`) |
+| KastaMario code | MIT (`LICENSE`) |
 | Gemma 4 26B A4B (Gemini API) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) |
-| PyTorch / torchvision (EfficientNet-B0 ağırlıkları) | BSD-3 |
+| PyTorch / torchvision (EfficientNet-B0 weights) | BSD-3 |
 | onnxruntime-web 1.20.1 | MIT |
-| IBM Plex Sans, Newsreader (yerel kopya, `app/fonts/`) | SIL Open Font License 1.1 |
-| Anatomi fotoğrafı (`app/img/anatomi.jpg`) | [iNaturalist gözlemi 315054013](https://www.inaturalist.org/observations/315054013), CC0 |
-| iNaturalist fotoğrafları | Her fotoğrafın kendi CC lisansı; atıflar `data/clean/thumbs.json` ve `data/clean/inat_clean.csv` içinde |
-| GBIF kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC — bkz. `docs/veri-kaynaklari.md` |
+| IBM Plex Sans, Newsreader (local copy, `app/fonts/`) | SIL Open Font License 1.1 |
+| Anatomy photo (`app/img/anatomi.jpg`) | [iNaturalist observation 315054013](https://www.inaturalist.org/observations/315054013), CC0 |
+| iNaturalist photos | Each photo's own CC license; attributions in `data/clean/thumbs.json` and `data/clean/inat_clean.csv` |
+| GBIF records | CC0 / CC BY / CC BY-NC per record — see `docs/veri-kaynaklari.md` |
 
-## Ekip
+## Team
 
 - [@SelamiKalay](https://github.com/SelamiKalay)
 - [@emoylmz01](https://github.com/emoylmz01)
 - [@rifo5](https://github.com/rifo5)
 
-## Sorumluluk reddi
-KastaMario bilgilendirme amaçlıdır; tıbbi tavsiye veya uzman tür tanımının yerine geçmez. Model hata yapabilir; bu yüzden güvenlik kuralları her zaman en kötü olasılığı esas alır. Mantar yediyseniz belirti beklemeden **112** veya **114**'ü (Ulusal Zehir Danışma Merkezi) arayın.
+## Disclaimer
+KastaMario is for information only; it does not replace medical advice or expert species identification. The model can make mistakes, which is why the safety rules always assume the worst case. If you ate a wild mushroom, do not wait for symptoms: call **112** or **114** (Türkiye National Poison Information Centre).
