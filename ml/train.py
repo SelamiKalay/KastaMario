@@ -279,15 +279,19 @@ def main():
     y = [classes.index(r["sinif"]) for r in tr + va + te]
     a1, a2 = len(tr), len(tr) + len(va)
     dl_tr = GPUVeri(X[:a1], y[:a1], dev, a.bs, egitim=True)
-    dl_va = GPUVeri(X[a1:a2], y[a1:a2], dev, a.bs * 2, egitim=False)
-    dl_te = GPUVeri(X[a2:], y[a2:], dev, a.bs * 2, egitim=False)
+    dl_va = GPUVeri(X[a1:a2], y[a1:a2], dev, a.bs, egitim=False)
+    dl_te = GPUVeri(X[a2:], y[a2:], dev, a.bs, egitim=False)
     del X
 
     say = Counter(r["sinif"] for r in tr)
     w = torch.tensor([(len(tr) / (len(classes) * say[c])) ** 0.5 for c in classes], dtype=torch.float32)
     crit = nn.CrossEntropyLoss(weight=w.to(dev), label_smoothing=0.1)
     model = model_kur(len(classes)).to(dev)
-    torch.backends.cudnn.benchmark = True
+    if dev.type == "cuda":
+        # Windows sürücüsü GPU belleği dolunca hata vermeden sistem belleğine taşıyor ve eğitim ~100 kat yavaşlıyordu.
+        # Üst sınır koyunca PyTorch önbelleğini boşaltır; cudnn.benchmark'ın büyük çalışma alanlı algoritmaları da kapalı.
+        torch.cuda.set_per_process_memory_fraction(0.85)
+        torch.backends.cudnn.benchmark = False
     gecmis, en_iyi, en_iyi_durum = [], -1.0, None
 
     def asama(epochs, params, lr, isim, ep0):
@@ -302,7 +306,8 @@ def main():
                  "val_top1": topk(vl, vy, 1), "val_top5": topk(vl, vy, 5)}
             gecmis.append(g)
             print(f"[{isim}] epoch {g['epoch']:>2}  train {tl:.3f}  val {vloss:.3f}  top1 {g['val_top1']:.3f}  "
-                  f"top5 {g['val_top5']:.3f}  ({time.time() - t0:.0f}s)", flush=True)
+                  f"top5 {g['val_top5']:.3f}  ({time.time() - t0:.0f}s"
+                  + (f", GPU {torch.cuda.max_memory_reserved() / 2**30:.1f} GB)" if dev.type == "cuda" else ")"), flush=True)
             if g["val_top1"] > en_iyi:
                 en_iyi, en_iyi_durum = g["val_top1"], {k: v.detach().clone() for k, v in model.state_dict().items()}
 

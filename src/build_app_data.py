@@ -7,7 +7,9 @@ Veriyi değiştirdikten sonra çalıştırın:
     python src/build_app_data.py
 """
 import csv
+import hashlib
 import json
+import re
 
 from decide import DATA, ROOT, load
 
@@ -38,3 +40,24 @@ out.write_text(
 )
 print(f"{out.relative_to(ROOT)} yazıldı ({len(info)} tür, {len(cfg['senaryolar'])} senaryo, "
       f"{len(gbif)} GBIF istatistiği, {len(thumbs)} tür fotoğrafı)")
+
+# Önbellek kırıcı: index.html'deki yerel dosya bağlantılarına içerik özetinden sürüm eklenir (?v=...).
+# Telefon ve tarayıcı güncel dosyayı yeni bir adres olarak görür; eski önbellek kopyasına takılmaz.
+APP = ROOT / "app"
+html = (APP / "index.html").read_text(encoding="utf-8")
+
+
+def surumle(m):
+    yol = m.group(2)
+    dosya = APP / yol
+    if not dosya.exists():
+        return m.group(0)
+    v = hashlib.sha1(dosya.read_bytes()).hexdigest()[:8]
+    return f'{m.group(1)}{yol}?v={v}"'
+
+
+yeni = re.sub(r'((?:src|href)=")((?:config|data|decide|model)\.js|vendor/ort/ort\.wasm\.min\.js|fonts/fonts\.css)(?:\?v=[0-9a-f]+)?"',
+              surumle, html)
+if yeni != html:
+    (APP / "index.html").write_text(yeni, encoding="utf-8")
+print("index.html sürüm etiketleri:", ", ".join(re.findall(r'(\w+\.(?:js|css))\?v=([0-9a-f]+)', yeni)[i][0] for i in range(len(re.findall(r'\?v=', yeni)))))

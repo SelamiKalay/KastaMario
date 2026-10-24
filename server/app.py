@@ -55,6 +55,9 @@ def sinir_asildi(ip, simdi=None):
 
 class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
+        # Uygulama dosyaları her istekte yeniden doğrulanır: güncellemeler telefona eski önbellekten takılmadan ulaşır
+        # (dosya değişmediyse 304 döner, yeniden indirilmez). Çevrimdışı kopyayı servis çalışanı ayrıca tutar.
+        self.send_header("Cache-Control", "no-cache")
         if self.path.startswith("/api/"):
             self.send_header("Access-Control-Allow-Origin", CORS)
             self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")

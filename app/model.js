@@ -10,7 +10,8 @@ window.MycoModel = (function () {
         const r = await fetch("model/labels.json", { cache: "no-cache" });
         if (!r.ok) return false;
         meta = await r.json();
-        ort.env.wasm.wasmPaths = "vendor/ort/";
+        // Tam adres gerekir: ORT .mjs dosyasını import() ile yükler ve "vendor/ort/..." gibi göreli adları modül adı sanıp reddeder.
+        ort.env.wasm.wasmPaths = new URL("vendor/ort/", location.href).href;
         ort.env.wasm.numThreads = 1;
         session = await ort.InferenceSession.create("model/mycoguard.onnx", { executionProviders: ["wasm"] });
         return true;
