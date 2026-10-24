@@ -29,3 +29,8 @@
 - Takvim ay seçici + seçili ay görünümü + tüm yıl tablosu olarak yeniden tasarlandı; yazı tipleri çevrimdışı kullanım için uygulamaya gömüldü; 114 (UZEM) resmî kaynakla doğrulandı.
 - Veri: 15.013 ham fotoğraftan temizlikle 11.167 fotoğraf, 26 sınıf, sızıntısız ayrım.
 - Eğitim ilk denemede çok yavaştı (Windows DataLoader, ~9,5 sn/adım; GPU tek başına 0,26 sn/adım). Fotoğraflar GPU belleğinde tutulup veri artırma GPU'ya taşındı. Eğitim, bilgisayar soğuduktan sonra yapılacak.
+
+## 24 Ekim 2026 — 1. gün (son değerlendirme ve entegrasyon)
+- Proje dokümantasyonu, bağlantılar ve ekip katılımı gözden geçirildi (@emoylmz01).
+- Çalışma ortamı ve bağımlılıkların uyumluluğu kontrol edildi.
+
