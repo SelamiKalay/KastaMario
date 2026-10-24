@@ -1,6 +1,6 @@
 // Çevrimdışı çalışma: önce ağ, ağ yoksa önbellek (güncel veri her zaman öncelikli).
-const CACHE = "mycoguard-v3";
-const FILES = ["./", "index.html", "data.js", "decide.js", "model.js", "manifest.webmanifest", "icon.svg",
+const CACHE = "mycoguard-v4";
+const FILES = ["./", "index.html", "config.js", "data.js", "decide.js", "model.js", "manifest.webmanifest", "icon.svg",
   "vendor/ort/ort.wasm.min.js", "vendor/ort/ort-wasm-simd-threaded.wasm", "vendor/ort/ort-wasm-simd-threaded.mjs",
   "model/labels.json", "model/mycoguard.onnx"];
 

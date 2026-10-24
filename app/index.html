@@ -3,496 +3,512 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f2a33">
+<meta name="theme-color" content="#26404d">
 <meta name="description" content="Kastamonu için yapay zekâ destekli mantar zehirlenme risk rehberi.">
 <title>MycoGuard Kastamonu</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <style>
+  /* ---- Belirteçler: spor beyazı, humus, Küre alacakaranlığı + tehlike renkleri ---- */
   :root {
-    --bg: #f4efe7; --bg2: #ebe3d6; --card: #fffdfa; --ink: #18252b; --muted: #687275; --line: #e4dacb;
-    --petrol: #0f2a33; --petrol2: #1d4250; --petrol3: #2c5a69; --kestane: #8a4b2a; --bakir: #c27a3e; --bakir2: #e2a46a;
-    --red: #c62828; --red2: #e53935; --red-bg: #fdeceb; --red-ink: #7f1414;
-    --amber: #b26a00; --amber-bg: #fff3d9; --amber-ink: #5c3800;
-    --gray: #5b646c; --gray-bg: #eceef0; --gray-ink: #2f353b;
-    --stop: #5b2a9a; --stop-bg: #f1e9f9;
-    --shadow: 0 1px 2px rgba(20, 30, 35, .06), 0 6px 24px rgba(20, 30, 35, .07);
-    --shadow-lg: 0 10px 40px rgba(10, 25, 30, .18);
-    --r: 18px; --nav-h: 68px;
-    --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --paper: #f4f5f2; --surface: #ffffff; --ink: #1b1f1d; --muted: #5d6662; --rule: #d8dcd5;
+    --slate: #26404d; --slate-ink: #ffffff; --slate-soft: #e6ecee;
+    --lethal: #b3261e; --lethal-soft: #fbe9e7; --lethal-ink: #7a1610;
+    --toxic: #b54708; --toxic-soft: #fdeee2;
+    --caution: #8a6100; --caution-soft: #fbf1d4; --caution-ink: #5b4000;
+    --low: #4f5b62; --low-soft: #e9ecee;
+    --other: #5b3e96; --other-soft: #efe9f8;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --nav: 64px; --radius: 10px;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0c1a1f; --bg2: #11252c; --card: #132a32; --ink: #e8eef0; --muted: #9aaab0; --line: #22414b;
-      --red-bg: #3a1517; --red-ink: #ffb4ab; --amber-bg: #3a2a0c; --amber-ink: #ffd27a; --gray-bg: #1d3038; --gray-ink: #d6dde0;
-      --stop-bg: #2a1d3d; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.25);
+      --paper: #111614; --surface: #181e1c; --ink: #e5e9e6; --muted: #9aa5a0; --rule: #2a3330;
+      --slate: #8fb6c7; --slate-ink: #0d1a20; --slate-soft: #1c2a30;
+      --lethal: #f2867c; --lethal-soft: #3a1714; --lethal-ink: #ffc9c2;
+      --toxic: #f0a36b; --toxic-soft: #3a2414; --caution: #e8c063; --caution-soft: #33290f; --caution-ink: #f6dc9c;
+      --low: #a9b4ba; --low-soft: #222b2f; --other: #b9a2ec; --other-soft: #2a2238;
+      color-scheme: dark;
     }
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.5;
-         padding-bottom: calc(var(--nav-h) + 20px + env(safe-area-inset-bottom)); -webkit-font-smoothing: antialiased; }
-  button { font: inherit; color: inherit; }
-  img { display: block; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans);
+         padding-bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 24px); -webkit-font-smoothing: antialiased; }
+  button, input, select { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--slate); outline-offset: 2px; border-radius: 4px; }
+  img { display: block; max-width: 100%; }
+  i, .latin { font-family: var(--serif); font-style: italic; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; line-height: 1.2; margin: 0; }
+  h2 { font-size: 1.55rem; }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: .875rem; }
+  .measure { max-width: 62ch; }
+  .wrap { width: min(1080px, 100%); margin: 0 auto; padding: 0 16px; }
 
-  /* ================= HERO ================= */
-  .hero { position: relative; color: #fff; overflow: hidden;
-          background: radial-gradient(120% 90% at 85% 0%, #2c5a69 0%, transparent 55%),
-                      linear-gradient(160deg, #0b2128 0%, #123540 55%, #1b4553 100%); }
-  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-                 background: radial-gradient(40% 60% at 15% 20%, rgba(226,164,106,.18), transparent 70%); }
-  .hero svg.scene { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 92px; }
-  .hero-in { position: relative; z-index: 1; padding: 18px 0 84px; }
-  .brand { display: flex; align-items: center; gap: 12px; }
-  .brand .logo { width: 44px; height: 44px; border-radius: 13px; background: rgba(255,255,255,.1);
-                 display: grid; place-items: center; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.15); }
-  .brand h1 { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.1; }
-  .brand h1 span { color: var(--bakir2); }
-  .brand p { margin: 2px 0 0; font-size: .82rem; opacity: .75; }
-  .status { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 600; padding: 5px 10px;
-          border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: #8fa3aa; }
-  .dot.on { background: #7fd3ff; box-shadow: 0 0 0 3px rgba(127,211,255,.25); }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; max-width: 460px; }
-  .stat { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 8px 10px; }
-  .stat b { display: block; font-size: 1.3rem; font-weight: 800; line-height: 1.1; }
-  .stat small { font-size: .7rem; opacity: .75; }
-  .stat.dng b { color: #ff9a8f; }
+  /* ---- Üst çubuk ---- */
+  .top { border-bottom: 1px solid var(--rule); background: var(--surface); }
+  .top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; }
+  .mark { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .mark svg { width: 30px; height: 30px; flex: none; }
+  .mark b { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; }
+  .mark span { color: var(--muted); font-family: var(--serif); font-style: italic; }
+  .ai { margin-left: auto; display: flex; gap: 14px; font-size: .8rem; color: var(--muted); }
+  .ai > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .ai .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); }
+  .ai .dot.on { background: var(--slate); }
+  @media (max-width: 520px) { .ai .lbl { display: none; } }
 
-  main { position: relative; margin-top: -48px; z-index: 2; }
-  .tab { display: none; gap: 16px; grid-template-columns: minmax(0, 1fr); animation: fade .35s ease; }
-  .tab.on { display: grid; }
-  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; box-shadow: var(--shadow);
-          overflow-wrap: anywhere; }
-  .card h2 { margin: 0 0 10px; font-size: 1.08rem; font-weight: 800; letter-spacing: -.01em; }
-  .eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--bakir); }
-  .muted { color: var(--muted); font-size: .88rem; }
-  h3.sec { display: flex; align-items: center; gap: 8px; margin: 18px 0 6px; font-size: .92rem; font-weight: 700; color: var(--kestane); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) h3.sec { color: var(--bakir2); } }
-  h3.sec .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--bg2); font-size: .9rem; }
+  /* ---- Bölüm düzeni ---- */
+  main { padding-top: 24px; }
+  .view { display: none; }
+  .view.on { display: block; }
+  .view > section + section { margin-top: 40px; }
+  .head { display: grid; gap: 6px; margin-bottom: 16px; }
 
-  /* ================= TARA ================= */
-  .scan { display: grid; gap: 16px; align-items: center; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 760px) { .scan { grid-template-columns: 1.1fr 1fr; } }
-  .shot-btn { position: relative; width: 132px; height: 132px; border-radius: 50%; border: 0; cursor: pointer; margin: 6px auto;
-              background: radial-gradient(circle at 35% 30%, var(--bakir2), var(--kestane) 70%); color: #fff;
-              box-shadow: 0 12px 30px rgba(138,75,42,.35); display: grid; place-items: center; transition: transform .15s; }
-  .shot-btn:hover { transform: scale(1.03); }
-  .shot-btn:active { transform: scale(.97); }
-  .shot-btn::before, .shot-btn::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 2px solid var(--bakir);
-              opacity: .5; animation: ring 2.4s ease-out infinite; }
-  .shot-btn::after { animation-delay: 1.2s; }
-  @keyframes ring { from { transform: scale(.9); opacity: .6; } to { transform: scale(1.25); opacity: 0; } }
-  .shot-btn svg { width: 46px; height: 46px; }
-  .shot-label { text-align: center; font-weight: 700; margin-top: 10px; }
-  .tips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .tip { background: var(--bg2); border-radius: 14px; padding: 10px; text-align: center; font-size: .76rem; font-weight: 600; }
-  .tip span { display: block; font-size: 1.4rem; margin-bottom: 2px; }
-  .frame { position: relative; border-radius: 16px; overflow: hidden; background: #0b1b20; display: none; aspect-ratio: 4 / 3; }
-  .frame img { width: 100%; height: 100%; object-fit: cover; }
-  .frame.scanning::after { content: ""; position: absolute; left: 0; right: 0; height: 30%; top: -30%;
-              background: linear-gradient(to bottom, transparent, rgba(127,211,255,.35), transparent); animation: sweep 1.6s linear infinite; }
-  .frame.scanning::before { content: ""; position: absolute; inset: 0; z-index: 1;
-              background-image: linear-gradient(rgba(127,211,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(127,211,255,.12) 1px, transparent 1px);
-              background-size: 28px 28px; }
-  @keyframes sweep { to { top: 100%; } }
-  .pipe { display: grid; gap: 8px; margin-top: 12px; }
-  .step { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--bg2); font-size: .86rem; }
-  .step b { font-weight: 700; }
-  .step small { display: block; color: var(--muted); font-size: .74rem; }
-  .step .st { margin-left: auto; font-size: .78rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
-  .step.done .st { color: var(--petrol3); }
-  .step.off { opacity: .55; }
-  .step .n { width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: .8rem;
-             background: var(--card); border: 1px solid var(--line); }
-  .spin { width: 16px; height: 16px; border: 2px solid var(--line); border-top-color: var(--bakir); border-radius: 50%; animation: sp .8s linear infinite; display: inline-block; vertical-align: -3px; }
+  /* ---- Düğmeler ---- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px;
+         border-radius: var(--radius); border: 1px solid var(--slate); background: var(--slate); color: var(--slate-ink);
+         font-weight: 600; cursor: pointer; text-decoration: none; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.quiet { background: transparent; color: var(--slate); }
+  .btn svg { width: 20px; height: 20px; }
+  .btn:disabled { opacity: .55; cursor: default; }
+
+  /* ---- Tara: anatomi + çekim ---- */
+  .scan { display: grid; gap: 28px; align-items: start; }
+  @media (min-width: 860px) { .scan { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .anatomy { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 8px 4px; }
+  .anatomy svg { width: 100%; height: auto; display: block; }
+  .anatomy .part { fill: var(--surface); stroke: var(--ink); stroke-width: 1.6; transition: fill .4s, stroke .4s; }
+  .anatomy .gill { stroke: var(--ink); stroke-width: 1; opacity: .7; }
+  .anatomy .soil { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
+  .anatomy .lead { stroke: var(--muted); stroke-width: 1; }
+  .anatomy text { font: 500 12.5px var(--sans); fill: var(--ink); }
+  .anatomy text.val { font-weight: 600; font-size: 11.5px; fill: var(--muted); }
+  .anatomy [data-state="alert"] .part { fill: var(--lethal-soft); stroke: var(--lethal); stroke-width: 2.4; }
+  .anatomy text[data-state="alert"] { fill: var(--lethal); }
+  .anatomy [data-state="seen"] .part { fill: var(--slate-soft); stroke: var(--slate); }
+  .anatomy [data-state="unknown"] .part { stroke-dasharray: 4 3; }
+  .anatomy.reading .part { animation: read 1.6s ease-in-out infinite; }
+  .anatomy.reading #p-lamel .part { animation-delay: .25s; } .anatomy.reading #p-halka .part { animation-delay: .5s; }
+  .anatomy.reading #p-sap .part { animation-delay: .75s; } .anatomy.reading #p-torba .part { animation-delay: 1s; }
+  @keyframes read { 50% { stroke: var(--slate); stroke-width: 3; } }
+  .capture { display: grid; gap: 14px; align-content: start; }
+  .shot { display: none; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--rule); aspect-ratio: 4 / 3; background: #1b1f1d; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 0;
+              border-bottom: 1px solid var(--rule); font-size: .92rem; }
+  .steps .n { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--rule); display: grid; place-items: center;
+              font-size: .78rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .steps .s { font-size: .82rem; color: var(--muted); white-space: nowrap; }
+  .steps li.ok .n { background: var(--slate); border-color: var(--slate); color: var(--slate-ink); }
+  .steps li.off { color: var(--muted); }
+  .steps small { display: block; color: var(--muted); font-size: .8rem; }
+  .spin { width: 14px; height: 14px; border: 2px solid var(--rule); border-top-color: var(--slate); border-radius: 50%; display: inline-block;
+          animation: sp .8s linear infinite; vertical-align: -2px; }
   @keyframes sp { to { transform: rotate(360deg); } }
-  .examples { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x mandatory; }
-  .examples button { flex: 0 0 210px; scroll-snap-align: start; text-align: left; border: 1px solid var(--line); background: var(--card);
-                     border-radius: 14px; padding: 12px; cursor: pointer; transition: border-color .15s, transform .15s; }
-  .examples button:hover { border-color: var(--bakir); transform: translateY(-2px); }
-  .examples button[aria-pressed="true"] { border-color: var(--petrol3); box-shadow: 0 0 0 2px var(--petrol3) inset; }
-  .examples b { display: block; font-size: .86rem; }
-  .examples span { font-size: .75rem; color: var(--muted); }
 
-  /* ================= SONUÇ ================= */
-  .verdict { position: relative; overflow: hidden; border-radius: var(--r); padding: 20px; display: grid; grid-template-columns: auto minmax(0, 1fr);
-             gap: 16px; align-items: center; box-shadow: var(--shadow); animation: pop .4s cubic-bezier(.2,1.4,.4,1); }
-  @keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
-  .verdict .ring { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; font-size: 2rem; color: #fff; }
-  .verdict .q { font-size: .7rem; font-weight: 800; letter-spacing: .1em; opacity: .85; }
-  .verdict h3 { margin: 2px 0 6px; font-size: 1.4rem; line-height: 1.15; font-weight: 800; letter-spacing: -.01em; }
-  .verdict p { margin: 0; }
-  .V-KIRMIZI { background: linear-gradient(135deg, #b71c1c, #e53935); color: #fff; }
-  .V-KIRMIZI .ring { background: rgba(255,255,255,.18); animation: alarm 1.4s ease-in-out infinite; }
-  @keyframes alarm { 50% { box-shadow: 0 0 0 10px rgba(255,255,255,.12); } }
-  .V-SARI { background: linear-gradient(135deg, #a86400, #e09a1a); color: #fff; }
-  .V-SARI .ring { background: rgba(255,255,255,.2); }
-  .V-GRI { background: linear-gradient(135deg, #3f4850, #69737c); color: #fff; }
-  .V-GRI .ring { background: rgba(255,255,255,.18); }
-  .V-MANTAR_DEGIL { background: linear-gradient(135deg, #3f1d73, #6a3bb0); color: #fff; }
-  .V-MANTAR_DEGIL .ring { background: rgba(255,255,255,.18); }
-  .why { margin-top: 10px; font-size: .84rem; background: rgba(0,0,0,.14); border-radius: 10px; padding: 8px 10px; }
-  .feat { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
-  .fchip { border-radius: 12px; padding: 9px 11px; background: var(--bg2); font-size: .82rem; }
-  .fchip small { display: block; color: var(--muted); font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
-  .fchip b { font-weight: 700; }
-  .fchip.alert { background: var(--red-bg); color: var(--red-ink); }
-  .fchip.unk { opacity: .7; }
-  .gwarn { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
-  .gwarn li { background: var(--amber-bg); color: var(--amber-ink); border-radius: 10px; padding: 8px 10px; font-size: .86rem; font-weight: 600; }
-  .gwarn li.r { background: var(--red-bg); color: var(--red-ink); }
-  .ai-tag { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 800; letter-spacing: .04em; padding: 3px 8px;
-            border-radius: 999px; background: linear-gradient(135deg, #1d4250, #2c5a69); color: #cfeaf5; }
-  .grid2 { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 820px) { .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .cand { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 10px 0;
-          border-bottom: 1px solid var(--line); cursor: pointer; }
-  .cand:last-of-type { border-bottom: 0; }
-  .cand .pct { font-variant-numeric: tabular-nums; font-weight: 800; }
-  .cand i { font-weight: 700; }
-  .bar { grid-column: 2 / -1; height: 7px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
-  .bar div { height: 100%; width: 0; background: #8f8577; border-radius: 4px; transition: width .8s cubic-bezier(.2,.8,.2,1); }
-  .cand.danger .bar div { background: linear-gradient(90deg, #c62828, #ff5a4a); }
-  .thumb { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; background: var(--bg2); display: grid; place-items: center; font-size: 1.3rem; }
-  .tag { display: inline-block; font-size: .64rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; white-space: nowrap; letter-spacing: .03em; vertical-align: middle; }
-  .t-olumcul { background: var(--red); color: #fff; }
-  .t-yuksek { background: #e8660c; color: #fff; }
-  .t-orta { background: #f4c55a; color: #4e3200; }
-  .t-dusuk { background: #d3d9de; color: #2f353b; }
-  .twin { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; border-radius: 14px; padding: 12px; margin-bottom: 10px;
-          background: var(--red-bg); color: var(--red-ink); border: 1px solid rgba(198,40,40,.25); }
-  .twin .thumb { width: 64px; height: 64px; }
-  .twin h4 { margin: 0 0 4px; font-size: .95rem; }
-  .twin p { margin: 4px 0 0; font-size: .84rem; }
-  .ask-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; }
+  /* ---- Örnek vakalar: dizin satırları ---- */
+  .index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .index button { all: unset; box-sizing: border-box; width: 100%; display: grid; gap: 2px; padding: 11px 2px; border-bottom: 1px solid var(--rule); cursor: pointer; }
+  .index button:hover { background: var(--surface); }
+  .index button:focus-visible { outline: 3px solid var(--slate); outline-offset: -3px; }
+  .index button[aria-pressed="true"] b { text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ================= TÜR DETAYI ================= */
-  .sp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
-  .sp-hero .ph { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 10; background: var(--bg2); }
-  .sp-hero .ph img { width: 100%; height: 100%; object-fit: cover; }
-  .sp-hero .ph .credit { position: absolute; right: 6px; bottom: 6px; font-size: .62rem; color: #fff; background: rgba(0,0,0,.5); padding: 2px 6px; border-radius: 6px; max-width: 90%; }
-  .ph-ph { width: 100%; height: 100%; display: grid; place-items: center; font-size: 3rem; background: linear-gradient(135deg, var(--bg2), var(--line)); }
-  .sp-title h2 { margin: 6px 0 0; font-size: 1.35rem; font-style: italic; }
-  .sp-title .tr { font-size: 1.05rem; font-weight: 700; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 12px; }
-  .fact { background: var(--bg2); border-radius: 12px; padding: 9px 11px; font-size: .86rem; }
-  .fact b { display: block; font-size: .68rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-  .callout { border-radius: 14px; padding: 12px 14px; }
-  .callout.r { background: var(--red-bg); color: var(--red-ink); }
-  .callout.a { background: var(--amber-bg); color: var(--amber-ink); }
-  .callout.g { background: var(--gray-bg); color: var(--gray-ink); }
-  .months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; margin: 6px 0; }
-  .months span { text-align: center; font-size: .6rem; font-weight: 600; padding: 6px 0; border-radius: 6px; background: var(--bg2); color: var(--muted); overflow: hidden; }
-  .months span.on { background: var(--petrol3); color: #fff; }
-  .months.dng span.on { background: var(--red); }
-  .months span.now { box-shadow: 0 0 0 2px var(--bakir) inset; }
-  .gbif { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; align-items: end; height: 56px; }
-  .gbif div { background: linear-gradient(to top, var(--kestane), var(--bakir2)); border-radius: 4px 4px 0 0; min-height: 2px; }
-  .link { color: var(--kestane); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; background: none; border: 0; padding: 0; font-weight: 600; }
-  .callrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
-  .call { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--red);
-          border-radius: 14px; padding: 12px; font-weight: 800; font-size: 1.15rem; }
-  .call small { font-size: .68rem; font-weight: 600; opacity: .9; display: block; }
+  /* ---- Risk işaretleri: renk + şekil ---- */
+  .risk { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 600; white-space: nowrap; font-family: var(--sans); font-style: normal; }
+  .risk::before { content: ""; width: 10px; height: 10px; flex: none; }
+  .r-olumcul { color: var(--lethal); } .r-olumcul::before { background: var(--lethal); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .r-yuksek { color: var(--toxic); } .r-yuksek::before { background: var(--toxic); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .r-orta { color: var(--caution); } .r-orta::before { background: var(--caution); transform: rotate(45deg) scale(.8); }
+  .r-dusuk { color: var(--low); } .r-dusuk::before { border: 2px solid var(--low); border-radius: 50%; width: 9px; height: 9px; }
 
-  /* ================= REHBER / TAKVİM ================= */
-  .search { width: 100%; padding: 12px 14px 12px 40px; border: 1px solid var(--line); border-radius: 14px; font: inherit; background: var(--card) no-repeat 12px center;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23889' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E"); color: var(--ink); }
-  .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
-  .chip { flex: none; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 14px; cursor: pointer; font-size: .82rem; font-weight: 600; }
-  .chip[aria-pressed="true"] { background: var(--petrol); color: #fff; border-color: var(--petrol); }
-  .chip .c { opacity: .7; margin-left: 4px; font-weight: 500; }
-  .grid-sp { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  .spc { text-align: left; padding: 0; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); background: var(--card); cursor: pointer;
-         box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
-  .spc:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-  .spc .ph { position: relative; aspect-ratio: 4 / 3; background: var(--bg2); }
-  .spc .ph img { width: 100%; height: 100%; object-fit: cover; }
-  .spc .ph .tag { position: absolute; left: 8px; top: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
-  .spc .tx { padding: 10px 12px 12px; }
-  .spc i { font-weight: 700; font-size: .86rem; display: block; }
-  .spc small { color: var(--muted); font-size: .76rem; display: block; }
+  /* ---- Sonuç: tehlike etiketi ---- */
+  .result { display: grid; gap: 36px; margin-top: 32px; }
+  .verdict { display: grid; grid-template-columns: 8px minmax(0, 1fr); border: 1px solid var(--rule); border-radius: var(--radius);
+             background: var(--surface); overflow: hidden; }
+  .verdict .band { background: var(--low); }
+  .verdict .in { padding: 18px 18px 18px 16px; display: grid; gap: 8px; }
+  .verdict h2 { font-size: 1.75rem; }
+  .verdict .why { font-size: .92rem; color: var(--muted); }
+  .verdict .src { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
+  .V-KIRMIZI { border-color: var(--lethal); } .V-KIRMIZI .band { background: var(--lethal); } .V-KIRMIZI h2 { color: var(--lethal); }
+  .V-SARI .band { background: var(--caution); } .V-SARI h2 { color: var(--caution); }
+  .V-MANTAR_DEGIL .band { background: var(--other); } .V-MANTAR_DEGIL h2 { color: var(--other); }
+  .verdict.enter { animation: rise .45s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+  .two { display: grid; gap: 36px; }
+  @media (min-width: 860px) { .two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .found { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; border-top: 1px solid var(--rule); max-width: 560px; }
+  .found dt, .found dd { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: .92rem; }
+  .found dd { font-weight: 600; text-align: right; }
+  .found dd.alert { color: var(--lethal); }
+  .found dd.unk { color: var(--muted); font-weight: 400; }
+  .notes { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 62ch; }
+  .notes li { padding: 10px 12px; border-radius: 8px; background: var(--caution-soft); color: var(--caution-ink); font-size: .92rem; }
+  .notes li.alert { background: var(--lethal-soft); color: var(--lethal-ink); }
+  .cands { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .cands li { border-bottom: 1px solid var(--rule); }
+  .cands button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto;
+                  gap: 2px 12px; align-items: center; padding: 10px 2px; }
+  .cands button:focus-visible { outline: 3px solid var(--slate); outline-offset: -3px; }
+  .th { display: block; object-fit: cover; background: var(--low-soft); border-radius: 6px; }
+  .cands .th { grid-row: span 3; width: 52px; height: 52px; }
+  .cands .p { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .cands .sub { grid-column: 2 / -1; display: flex; gap: 10px; flex-wrap: wrap; font-size: .85rem; }
+  .cands .bar { grid-column: 2 / -1; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .cands .bar div { height: 100%; width: 0; background: var(--muted); transition: width .7s cubic-bezier(.2, .8, .2, 1); }
+  .cands .danger .bar div { background: var(--lethal); }
+  .twin { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; padding: 14px 0;
+          border-bottom: 1px solid var(--rule); cursor: pointer; }
+  .twin:first-of-type { border-top: 1px solid var(--rule); }
+  .twin:focus-visible { outline: 3px solid var(--slate); outline-offset: -3px; }
+  .twin .th { width: 72px; height: 72px; }
+  .twin p { font-size: .92rem; margin-top: 4px; }
 
-  /* ================= ASİSTAN ================= */
-  .chat { display: flex; flex-direction: column; min-height: 420px; }
-  .chat-head { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-  .avatar { width: 42px; height: 42px; flex: none; border-radius: 13px; display: grid; place-items: center; font-size: 1.3rem;
-            background: linear-gradient(135deg, var(--petrol2), var(--petrol3)); color: #fff; }
-  .msgs { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 14px 0; }
-  .msg { max-width: 88%; padding: 10px 13px; border-radius: 16px; font-size: .92rem; white-space: pre-wrap; animation: fade .25s ease; }
-  .msg.u { align-self: flex-end; background: var(--petrol2); color: #fff; border-bottom-right-radius: 4px; }
-  .msg.a { align-self: flex-start; background: var(--bg2); border-bottom-left-radius: 4px; }
-  .msg.a .src { display: block; margin-top: 6px; font-size: .72rem; color: var(--muted); }
-  .typing span { display: inline-block; width: 7px; height: 7px; margin: 0 2px; border-radius: 50%; background: var(--muted); animation: bl 1.2s infinite; }
-  .typing span:nth-child(2) { animation-delay: .2s; } .typing span:nth-child(3) { animation-delay: .4s; }
-  @keyframes bl { 50% { opacity: .2; transform: translateY(-3px); } }
-  .composer { display: flex; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
-  .composer input { flex: 1; min-width: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; font: inherit; background: var(--card); color: var(--ink); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--kestane); color: #fff; border: 0; border-radius: 14px;
-         padding: 12px 18px; font-weight: 700; cursor: pointer; transition: filter .15s; }
-  .btn:hover { filter: brightness(1.1); }
-  .btn:disabled { opacity: .5; cursor: default; }
-  .btn.ghost { background: transparent; color: var(--kestane); border: 1.5px solid var(--kestane); }
-  .btn.dark { background: var(--petrol2); }
-  .notice { border-radius: 12px; padding: 10px 12px; background: var(--gray-bg); color: var(--gray-ink); font-size: .84rem; }
-  .notice code { font-size: .8rem; background: rgba(0,0,0,.08); padding: 1px 5px; border-radius: 5px; }
+  /* ---- Tür sayfası ---- */
+  .sp { display: grid; gap: 24px; }
+  .sp-top { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .sp-top { grid-template-columns: 280px minmax(0, 1fr); align-items: end; } }
+  .sp-ph { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; background: var(--low-soft); }
+  .sp-ph img { width: 100%; height: 100%; object-fit: cover; }
+  .sp-ph figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 8px 5px; font-size: .68rem; color: #fff;
+                      background: linear-gradient(transparent, rgba(0, 0, 0, .65)); }
+  .sp-name h2 { font-size: 2rem; font-style: italic; font-weight: 500; margin-top: 4px; }
+  .sp-name .tr { font-size: 1.15rem; font-weight: 600; margin-top: 2px; }
+  .facts { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+  .facts div { padding: 10px 12px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .facts dt { font-size: .8rem; color: var(--muted); }
+  .facts dd { margin: 2px 0 0; font-weight: 600; }
+  .callout { padding: 12px 14px; border-left: 4px solid var(--low); background: var(--low-soft); border-radius: 0 8px 8px 0; }
+  .callout.olumcul, .callout.yuksek { border-color: var(--lethal); background: var(--lethal-soft); color: var(--lethal-ink); }
+  .callout.orta { border-color: var(--caution); background: var(--caution-soft); color: var(--caution-ink); }
+  .sp h3 { margin-bottom: 6px; }
+  .pheno { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; margin-top: 6px; }
+  .pheno span { text-align: center; font-size: .68rem; padding: 6px 0; background: var(--low-soft); color: var(--muted); border-radius: 3px; overflow: hidden; }
+  .pheno span.on { background: var(--slate); color: var(--slate-ink); font-weight: 600; }
+  .pheno.dng span.on { background: var(--lethal); color: #fff; }
+  .pheno span.now { box-shadow: inset 0 -3px 0 var(--ink); }
+  .pheno.axis span { background: none; padding: 0; }
+  .records { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; align-items: end; height: 56px; margin-top: 8px; }
+  .records div { background: var(--slate); min-height: 1px; border-radius: 2px 2px 0 0; }
+  .calls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; max-width: 480px; }
+  .call { display: grid; place-items: center; padding: 10px; min-height: 64px; border-radius: var(--radius); text-decoration: none;
+          background: #b3261e; color: #fff; font-weight: 700; font-size: 1.5rem; line-height: 1.15; }
+  .call small { font-size: .75rem; font-weight: 500; }
+  .link { all: unset; cursor: pointer; color: var(--slate); text-decoration: underline; text-underline-offset: 3px; }
+  .link:focus-visible { outline: 3px solid var(--slate); }
 
-  /* ================= ACİL ================= */
-  .sos-hero { background: linear-gradient(135deg, #8e0000, #d32f2f); color: #fff; border: 0; }
-  .sos-hero h2 { color: #fff; font-size: 1.25rem; }
-  .bigcall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
-  .bigcall a { text-decoration: none; color: var(--red); background: #fff; border-radius: 16px; padding: 14px; text-align: center; font-size: 2rem; font-weight: 800; line-height: 1.1; }
-  .bigcall a small { display: block; font-size: .72rem; font-weight: 700; color: #7f1414; margin-top: 4px; }
-  .form { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
-  .form label { display: grid; gap: 5px; font-weight: 700; font-size: .88rem; grid-template-columns: minmax(0, 1fr); }
-  .form input, .form select { width: 100%; min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px; font: inherit; background: var(--card); color: var(--ink); }
-  .seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .seg button { border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 10px; cursor: pointer; font-weight: 700; }
-  .seg button[aria-pressed="true"] { background: var(--petrol); color: #fff; border-color: var(--petrol); }
-  .tl { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 10px; }
-  .tl li { counter-increment: s; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }
-  .tl li::before { content: counter(s); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800;
-                   background: var(--red-bg); color: var(--red); }
+  /* ---- Rehber ---- */
+  .tools { display: grid; gap: 12px; margin-bottom: 8px; }
+  .search { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+  .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+  .seg button { min-height: 40px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: .9rem; }
+  .seg button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .group h3 { font-family: var(--sans); font-size: .95rem; font-weight: 600; padding: 20px 0 8px; display: flex; gap: 10px; align-items: baseline; }
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  @media (min-width: 720px) { .rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; } }
+  .rows button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; grid-template-columns: 56px minmax(0, 1fr);
+                 gap: 0 12px; align-items: center; padding: 10px 2px; border-bottom: 1px solid var(--rule); }
+  .rows button:hover { background: var(--surface); }
+  .rows button:focus-visible { outline: 3px solid var(--slate); outline-offset: -3px; }
+  .rows .th { grid-row: span 2; width: 56px; height: 56px; }
+  .rows i { font-size: 1.05rem; }
 
-  /* ================= ALT MENÜ ================= */
-  nav.bottom { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(10px + env(safe-area-inset-bottom)); width: min(560px, calc(100% - 20px));
-               height: var(--nav-h); background: rgba(15, 42, 51, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-               border: 1px solid rgba(255,255,255,.08); border-radius: 22px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
-               z-index: 10; box-shadow: var(--shadow-lg); padding: 6px; }
-  nav.bottom button { background: none; border: 0; color: #9db3ba; border-radius: 16px; display: flex; flex-direction: column; align-items: center;
-                      justify-content: center; gap: 2px; font-size: .68rem; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
-  nav.bottom button span { font-size: 1.25rem; line-height: 1; }
-  nav.bottom button[aria-selected="true"] { background: rgba(255,255,255,.1); color: #fff; }
-  nav.bottom button.sos { color: #ff9a8f; }
-  nav.bottom button.sos[aria-selected="true"] { background: var(--red); color: #fff; }
-  footer { text-align: center; font-size: .74rem; color: var(--muted); padding: 22px 16px 8px; }
-  dialog { border: 0; border-radius: 22px; padding: 0; width: min(760px, calc(100% - 20px)); max-height: calc(100% - 30px); background: var(--card); color: var(--ink); box-shadow: var(--shadow-lg); }
-  dialog[open] { animation: pop .3s ease; }
-  dialog::backdrop { background: rgba(6, 16, 20, .6); backdrop-filter: blur(3px); }
-  .dlg { padding: 18px; overflow-wrap: anywhere; }
-  .close { position: sticky; top: 0; float: right; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--bg2); cursor: pointer; font-size: 1.1rem; }
+  /* ---- Takvim: fenoloji tablosu ---- */
+  .phen { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: .85rem; }
+  .phen th, .phen td { border-bottom: 1px solid var(--rule); padding: 0; }
+  .phen thead th { font-weight: 500; color: var(--muted); text-align: center; padding: 6px 0; font-size: .74rem; }
+  .phen thead th.now { color: var(--ink); font-weight: 700; }
+  .phen th.sp-col { width: 42%; text-align: left; }
+  @media (min-width: 720px) { .phen th.sp-col { width: 28%; } }
+  .phen tbody th { text-align: left; font-weight: 400; padding: 7px 8px 7px 0; }
+  .phen tbody th button { all: unset; cursor: pointer; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .phen tbody th button:focus-visible { outline: 3px solid var(--slate); }
+  .phen td { position: relative; }
+  .phen td.on::after { content: ""; position: absolute; inset: 8px 1px; border-radius: 2px; background: var(--low); opacity: .55; }
+  .phen tr.olumcul td.on::after, .phen tr.yuksek td.on::after { background: var(--lethal); opacity: .9; }
+  .phen tr.orta td.on::after { background: var(--caution); opacity: .85; }
+  .phen .now { background: var(--slate-soft); }
+  .phen tr.grp th { padding: 18px 0 6px; font-weight: 600; }
+
+  /* ---- Acil ---- */
+  .sos { background: #a3241c; color: #fff; border-radius: var(--radius); padding: 20px; display: grid; gap: 10px; }
+  .sos h2 { color: #fff; }
+  .sos .call { background: #fff; color: #8f1d16; }
+  .form { display: grid; gap: 16px; max-width: 560px; }
+  .form label { display: grid; gap: 6px; font-weight: 600; font-size: .95rem; }
+  .form input, .form select { width: 100%; min-width: 0; min-height: 48px; padding: 0 12px; border: 1px solid var(--rule); border-radius: var(--radius);
+                              background: var(--surface); font-weight: 400; }
+  .ol { margin: 0; padding: 0; list-style: none; counter-reset: s; max-width: 62ch; }
+  .ol li { counter-increment: s; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .ol li::before { content: counter(s); font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--lethal); line-height: 1.2; }
+  .tri { display: grid; gap: 12px; margin-top: 18px; max-width: 62ch; }
+
+  /* ---- Asistan ---- */
+  .chat { display: grid; gap: 16px; max-width: 760px; }
+  .msgs { display: grid; gap: 14px; }
+  .msg { max-width: 92%; white-space: pre-wrap; }
+  .msg.u { justify-self: end; background: var(--slate); color: var(--slate-ink); padding: 10px 14px; border-radius: 14px 14px 4px 14px; }
+  .msg.a { justify-self: start; border-left: 3px solid var(--slate); padding: 2px 0 2px 14px; }
+  .msg .src { display: block; margin-top: 6px; font-size: .8rem; color: var(--muted); }
+  .dots span { display: inline-block; width: 6px; height: 6px; margin-right: 4px; border-radius: 50%; background: var(--muted); animation: bl 1.2s infinite; }
+  .dots span:nth-child(2) { animation-delay: .2s; } .dots span:nth-child(3) { animation-delay: .4s; }
+  @keyframes bl { 50% { opacity: .25; } }
+  .sugg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sugg button { min-height: 40px; padding: 6px 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: .9rem; text-align: left; }
+  .composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; position: sticky; bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 8px); }
+  .composer input { min-height: 48px; padding: 0 14px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); min-width: 0; }
+  .note { padding: 12px 14px; border-radius: 8px; background: var(--low-soft); font-size: .92rem; }
+
+  /* ---- Alt sekme çubuğu ---- */
+  nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--rule);
+             padding-bottom: env(safe-area-inset-bottom); }
+  nav.tabs .wrap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: var(--nav); padding: 0 4px; }
+  nav.tabs button { all: unset; cursor: pointer; display: grid; place-items: center; align-content: center; gap: 3px; font-size: .74rem; color: var(--muted); }
+  nav.tabs svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  nav.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 600; }
+  nav.tabs button[aria-selected="true"] svg { stroke-width: 2.3; }
+  nav.tabs button.sos-tab { color: var(--lethal); }
+  nav.tabs button:focus-visible { outline: 3px solid var(--slate); outline-offset: -6px; border-radius: 8px; }
+  footer { margin-top: 56px; padding: 16px 0; border-top: 1px solid var(--rule); font-size: .8rem; color: var(--muted); }
+
+  dialog { border: 0; padding: 0; width: min(820px, 100%); max-width: 100%; max-height: 100%; background: var(--paper); color: var(--ink); }
+  @media (max-width: 719px) { dialog { width: 100%; height: 100%; margin: 0; } }
+  @media (min-width: 720px) { dialog { border-radius: 12px; max-height: calc(100% - 48px); } }
+  dialog::backdrop { background: rgba(10, 14, 13, .55); }
+  .dlg-bar { position: sticky; top: 0; z-index: 2; display: flex; justify-content: flex-end; padding: 8px 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .dlg-body { padding: 20px 16px 40px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
-<header class="hero">
-  <svg class="scene" viewBox="0 0 800 92" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 60 Q110 22 230 46 T470 38 T800 30 V92 H0Z" fill="#18404d" opacity=".9"/>
-    <g fill="#0e2a33">
-      <path d="M30 74 l12 -32 l12 32z M64 76 l9 -24 l9 24z M100 72 l13 -36 l13 36z M140 76 l9 -22 l9 22z M176 74 l12 -30 l12 30z
-               M282 76 l10 -26 l10 26z M318 74 l13 -34 l13 34z M356 76 l9 -22 l9 22z M412 74 l12 -30 l12 30z M452 76 l9 -22 l9 22z"/>
-    </g>
-    <path d="M540 92 Q610 34 700 40 Q760 44 800 58 V92Z" fill="#1d4a58"/>
-    <path d="M610 46 v-16 h7 v5 h6 v-5 h7 v5 h6 v-5 h7 v5 h6 v-5 h7 v18 h12 v-12 h6 v-6 h6 v6 h6 v-6 h6 v6 h6 v12 h5 v7 h-90z" fill="#0b2128"/>
-    <path d="M0 80 Q200 66 400 76 T800 72 V92 H0Z" fill="var(--bg)"/>
-  </svg>
-  <div class="wrap hero-in">
-    <div class="brand">
-      <div class="logo"><svg width="28" height="28" viewBox="0 0 64 64"><path d="M8 32 Q8 10 32 9 Q56 10 56 32Z" fill="#e2a46a"/><circle cx="22" cy="22" r="3.5" fill="#fff"/><circle cx="38" cy="18" r="3" fill="#fff"/><circle cx="45" cy="27" r="3" fill="#fff"/><path d="M25 32h14l-2 22h-10z" fill="#f4efe7"/></svg></div>
-      <div><h1>MycoGuard <span>Kastamonu</span></h1><p>Yapay zekâ destekli mantar zehirlenme risk rehberi</p></div>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#" data-go="tara" aria-label="MycoGuard Kastamonu, tarama ekranı">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16C3 8 9 4 16 4s13 4 13 12z" fill="#26404d"/><path d="M13 16h6l-1 11h-4z" fill="#26404d" opacity=".55"/><path d="M8 13l3-3M15 9V7M22 11l2-2" stroke="#f4f5f2" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <b>MycoGuard</b><span>Kastamonu</span>
+    </a>
+    <div class="ai" aria-live="polite">
+      <span title="Telefondaki görüntü modeli"><span class="dot" id="dotModel"></span><span class="lbl" id="lblModel">Görüntü modeli</span></span>
+      <span title="Gemma 4 görsel analiz ve asistan"><span class="dot" id="dotGemma"></span><span class="lbl" id="lblGemma">Gemma 4</span></span>
     </div>
-    <div class="status">
-      <span class="pill"><i class="dot" id="dotModel"></i><span id="lblModel">Görüntü modeli</span></span>
-      <span class="pill"><i class="dot" id="dotGemma"></i><span id="lblGemma">Gemma 4</span></span>
-    </div>
-    <div class="stats" id="stats"></div>
   </div>
 </header>
 
 <main class="wrap">
   <!-- ================= TARA ================= -->
-  <section class="tab on" id="tab-tara">
-    <div class="card">
-      <div class="scan">
-        <div>
-          <div class="eyebrow">Fotoğrafla analiz</div>
-          <h2 style="font-size:1.3rem;margin-top:4px">Mantarın fotoğrafını çek, riski anında gör</h2>
-          <p class="muted" style="margin-top:0">Görüntü modelimiz türü tahmin eder, <b>Gemma 4</b> ayırt edici özellikleri inceler, güvenlik kurallarımız riski belirler. Sonuç asla "yenilebilir" değildir.</p>
-          <div class="tips"><div class="tip"><span>🍄</span>Şapka üstü</div><div class="tip"><span>🔍</span>Şapka altı</div><div class="tip"><span>⛏️</span>Sap tabanı</div></div>
+  <div class="view on" id="v-tara">
+    <section class="scan">
+      <div>
+        <div class="head">
+          <h2>Mantarı fotoğrafla, riskini öğren</h2>
+          <p class="muted measure">Üç açıdan çekin: şapkanın üstü, altı ve toprağı kazıyarak sap tabanı. Ölümcül türleri ayıran işaretler çoğu zaman sap tabanında gizlidir.</p>
         </div>
-        <div>
-          <div class="frame" id="frame"><img id="preview" alt="Seçilen mantar fotoğrafı"></div>
-          <div id="shootBox">
-            <button class="shot-btn" id="photoBtn" aria-label="Fotoğraf çek veya seç">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="4"/></svg>
-            </button>
-            <div class="shot-label">Fotoğraf çek veya seç</div>
-          </div>
-          <div class="pipe" id="pipe" hidden></div>
-          <button class="btn ghost" id="againBtn" style="width:100%;margin-top:10px" hidden>📷 Yeni fotoğraf</button>
-          <input type="file" id="photo" accept="image/*" capture="environment" hidden>
+        <figure class="anatomy" id="anatomy" aria-label="Mantar anatomisi: şapka, lameller, halka, sap ve torba">
+          <svg viewBox="0 0 340 250" aria-hidden="true">
+            <line class="soil" x1="20" y1="196" x2="320" y2="196"/>
+            <g id="p-sapka"><path class="part" d="M70 112 C 80 40, 260 40, 270 112 Z"/></g>
+            <g id="p-lamel"><path class="part" d="M70 112 L270 112 L250 124 L90 124 Z"/>
+              <g class="gill"><line x1="100" y1="113" x2="104" y2="123"/><line x1="125" y1="113" x2="127" y2="123"/><line x1="150" y1="113" x2="151" y2="123"/><line x1="190" y1="113" x2="189" y2="123"/><line x1="215" y1="113" x2="213" y2="123"/><line x1="240" y1="113" x2="236" y2="123"/></g></g>
+            <g id="p-sap"><path class="part" d="M160 124 L180 124 L183 200 L157 200 Z"/></g>
+            <g id="p-halka"><path class="part" d="M156 142 Q170 136 184 142 L190 156 Q170 150 150 156 Z"/></g>
+            <g id="p-torba"><path class="part" d="M146 186 Q144 216 170 218 Q196 216 194 186 Q184 196 170 196 Q156 196 146 186 Z"/></g>
+            <line class="lead" x1="226" y1="62" x2="288" y2="40"/><text x="292" y="38">Şapka</text><text class="val" id="t-sapka" x="292" y="52"></text>
+            <line class="lead" x1="92" y1="120" x2="44" y2="140"/><text x="6" y="144" id="l-lamel">Lameller</text><text class="val" id="t-lamel" x="6" y="158"></text>
+            <line class="lead" x1="188" y1="148" x2="250" y2="150"/><text x="254" y="148">Halka</text><text class="val" id="t-halka" x="254" y="162"></text>
+            <line class="lead" x1="158" y1="174" x2="62" y2="182"/><text x="30" y="186">Sap</text>
+            <line class="lead" x1="192" y1="206" x2="250" y2="222"/><text x="254" y="222">Torba</text><text class="val" id="t-torba" x="254" y="236"></text>
+          </svg>
+        </figure>
+      </div>
+      <div class="capture">
+        <div class="shot" id="shot"><img id="preview" alt="Seçtiğiniz mantar fotoğrafı"></div>
+        <button class="btn" id="photoBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span id="photoLbl">Fotoğraf çek</span></button>
+        <input type="file" id="photo" accept="image/*" capture="environment" hidden>
+        <ol class="steps" id="steps" hidden></ol>
+        <p class="small muted">Sonuç hiçbir zaman "yenilebilir" değildir. Yeme kararı için uzman onayı gerekir.</p>
+        <div style="margin-top:12px">
+          <h3 style="margin-bottom:8px">Örnek vakalar</h3>
+          <ul class="index" id="cases"></ul>
         </div>
       </div>
-    </div>
-    <div id="result" style="display:grid;gap:16px"></div>
-    <div>
-      <div class="eyebrow" style="margin:4px 2px 8px">Örnek vakalar</div>
-      <div class="examples" id="cases"></div>
-    </div>
-  </section>
+    </section>
+    <div id="result"></div>
+  </div>
 
   <!-- ================= REHBER ================= -->
-  <section class="tab" id="tab-rehber">
-    <div class="card">
-      <div class="eyebrow">Tür rehberi</div>
-      <h2 style="margin-top:4px">Kastamonu ormanlarının mantarları</h2>
-      <input class="search" id="q" placeholder="Ara: köygöçüren, sarıkız, kanlıca, Amanita…" autocomplete="off">
-      <div class="chips" id="riskChips" style="margin-top:10px"></div>
+  <div class="view" id="v-rehber">
+    <div class="head">
+      <h2>Kastamonu mantarları</h2>
+      <p class="muted measure">Küre Dağları, Ilgaz ve kıyı ormanlarında görülen türler; en tehlikeliden başlayarak.</p>
     </div>
-    <div class="grid-sp" id="list"></div>
-  </section>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Tür ara: köygöçüren, sarıkız, kanlıca…" autocomplete="off" aria-label="Tür ara">
+      <div class="seg" id="riskSeg" role="group" aria-label="Risk filtresi"></div>
+    </div>
+    <div id="list"></div>
+  </div>
 
   <!-- ================= ASİSTAN ================= -->
-  <section class="tab" id="tab-asistan">
-    <div class="card chat">
-      <div class="chat-head">
-        <div class="avatar">✦</div>
-        <div><b>MycoGuard Asistan</b><div class="muted" style="font-size:.78rem">Gemma 4 · cihazınızda/yerel sunucuda çalışır · tür bilgi tabanına dayanır</div></div>
+  <div class="view" id="v-asistan">
+    <div class="chat">
+      <div class="head">
+        <h2>Mantar asistanı</h2>
+        <p class="muted measure">Google Gemma 4 ile çalışır ve yalnızca bu rehberdeki tür bilgilerine dayanarak yanıt verir.</p>
       </div>
-      <div class="msgs" id="msgs"></div>
-      <div class="chips" id="sugg" style="padding-bottom:10px"></div>
-      <form class="composer" id="chatForm"><input id="chatIn" placeholder="Sorunuzu yazın…" autocomplete="off"><button class="btn dark" id="chatSend">Gönder</button></form>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <div class="sugg" id="sugg"></div>
+      <form class="composer" id="chatForm"><input id="chatIn" placeholder="Sorunuzu yazın" autocomplete="off" aria-label="Soru"><button class="btn" id="chatSend">Sor</button></form>
     </div>
-  </section>
+  </div>
 
   <!-- ================= TAKVİM ================= -->
-  <section class="tab" id="tab-takvim">
-    <div class="card">
-      <div class="eyebrow">Mevsim takvimi</div>
-      <h2 style="margin-top:4px">Kastamonu'da hangi ay hangi mantar?</h2>
-      <p class="muted" style="margin-top:0">Görülme dönemi hava ve yağışa bağlıdır; bir türün o ay çıkacağını garanti etmez.</p>
-      <div class="chips" id="monthChips"></div>
+  <div class="view" id="v-takvim">
+    <div class="head">
+      <h2>Mevsim takvimi</h2>
+      <p class="muted measure" id="calLead"></p>
     </div>
-    <div id="monthInfo" style="display:grid;gap:16px"></div>
-  </section>
+    <div id="cal"></div>
+  </div>
 
   <!-- ================= YEDİM ================= -->
-  <section class="tab" id="tab-acil">
-    <div class="card sos-hero">
-      <div class="eyebrow" style="color:#ffd0c8">Acil durum</div>
-      <h2 style="margin-top:4px">Mantar yediyseniz belirti beklemeyin</h2>
-      <p style="margin:0;opacity:.92">Ölümcül türlerde belirtiler <b>6–24 saat</b>, bazılarında <b>günler</b> sonra başlar ve bir süre "iyileşmiş gibi" hissettirebilir.</p>
-      <div class="bigcall"><a href="tel:114">114<small>Ulusal Zehir Danışma Merkezi</small></a><a href="tel:112">112<small>Acil Çağrı Merkezi</small></a></div>
+  <div class="view" id="v-acil">
+    <div class="sos">
+      <h2>Mantar yediyseniz belirti beklemeyin</h2>
+      <p class="measure">Ölümcül türlerde belirtiler 6–24 saat, bazılarında günler sonra başlar ve bir süre "iyileşmiş gibi" hissettirebilir.</p>
+      <div class="calls"><a class="call" href="tel:114">114<small>Zehir Danışma Merkezi</small></a><a class="call" href="tel:112">112<small>Acil Çağrı</small></a></div>
     </div>
-    <div class="card">
-      <h2>⏱️ Belirti zaman çizelgesi</h2>
+    <section style="margin-top:36px">
+      <div class="head"><h2>Belirti zamanlaması</h2><p class="muted measure">Ne zaman yediğinizi ve belirtilerin ne zaman başladığını girin.</p></div>
       <div class="form">
-        <label>Yedikten bu yana geçen süre (saat)<input type="number" id="hAgo" min="0" step="0.5" inputmode="decimal" placeholder="ör. 3"></label>
-        <div><div style="font-weight:700;font-size:.88rem;margin-bottom:5px">Belirti başladı mı? (bulantı, kusma, ishal, terleme, baş dönmesi…)</div>
-          <div class="seg" id="symp"><button type="button" data-v="hayir" aria-pressed="false">Henüz yok</button><button type="button" data-v="evet" aria-pressed="false">Evet, başladı</button></div></div>
-        <label id="hOnsetWrap" hidden>Belirtiler yedikten kaç saat sonra başladı?<input type="number" id="hOnset" min="0" step="0.5" inputmode="decimal" placeholder="ör. 8"></label>
-        <label>Hangi mantar olabilir? (biliyorsanız)<select id="ateSp"><option value="">Bilmiyorum</option></select></label>
+        <label>Yedikten bu yana geçen süre (saat)<input type="number" id="hAgo" min="0" step="0.5" inputmode="decimal" placeholder="Örneğin 3"></label>
+        <label>Belirti başladı mı?
+          <select id="symp"><option value="">Seçin</option><option value="hayir">Henüz yok</option><option value="evet">Evet, başladı</option></select></label>
+        <label id="hOnsetWrap" hidden>Belirtiler yedikten kaç saat sonra başladı?<input type="number" id="hOnset" min="0" step="0.5" inputmode="decimal" placeholder="Örneğin 8"></label>
+        <label>Hangi mantar olabilir?<select id="ateSp"><option value="">Bilmiyorum</option></select></label>
       </div>
-      <div id="triage" style="margin-top:12px;display:grid;gap:10px"></div>
-    </div>
-    <div class="card">
-      <h2>Ne yapmalı?</h2>
-      <ol class="tl">
-        <li><div>Hemen <b>114</b>'ü (Zehir Danışma) veya <b>112</b>'yi arayın.</div></li>
-        <li><div>Yenen mantardan örnek saklayın (pişmiş artık ve çöp dahil), fotoğraflayın ve hastaneye götürün.</div></li>
+      <div class="tri" id="triage" aria-live="polite"></div>
+    </section>
+    <section>
+      <div class="head"><h2>Ne yapmalı?</h2></div>
+      <ol class="ol">
+        <li><div>Hemen 114'ü (Zehir Danışma) veya 112'yi arayın.</div></li>
+        <li><div>Yenen mantardan örnek saklayın; pişmiş artık ve çöp de olur. Fotoğraflayıp hastaneye götürün.</div></li>
         <li><div>Ne zaman, ne kadar yendiğini ve kimlerin yediğini not edin.</div></li>
-        <li><div>Aynı yemeği yiyen <b>herkesi</b> uyarın — belirtisi olmasa bile.</div></li>
-        <li><div>Kendi kendinize kusturmaya, süt ya da ilaç vermeye çalışmayın; sağlık görevlisinin talimatına uyun.</div></li>
+        <li><div>Aynı yemeği yiyen herkesi uyarın, belirtisi olmasa bile.</div></li>
+        <li><div>Kendi kendinize kusturmaya, süt ya da ilaç vermeye çalışmayın.</div></li>
         <li><div>En yakın acil servise gidin: il merkezinde Kastamonu Eğitim ve Araştırma Hastanesi, ilçelerde devlet hastaneleri.</div></li>
       </ol>
-    </div>
-  </section>
-  <footer>MycoGuard bilgilendirme amaçlıdır; tıbbi tavsiye veya uzman tür tanımının yerine geçmez. Hiçbir sonuç "yenilebilir" onayı değildir.<br>Açık kaynak · MIT · Gemma 4 (Apache 2.0)</footer>
+    </section>
+  </div>
+
+  <footer>MycoGuard bilgilendirme amaçlıdır; tıbbi tavsiyenin veya uzman tür tanımının yerine geçmez. Açık kaynak (MIT). Asistan: Google Gemma 4 (Apache 2.0).</footer>
 </main>
 
-<nav class="bottom" role="tablist">
-  <button role="tab" data-tab="tara" aria-selected="true"><span>📷</span>Tara</button>
-  <button role="tab" data-tab="rehber"><span>📖</span>Rehber</button>
-  <button role="tab" data-tab="asistan"><span>✦</span>Asistan</button>
-  <button role="tab" data-tab="takvim"><span>📅</span>Takvim</button>
-  <button role="tab" data-tab="acil" class="sos"><span>🚨</span>Yedim!</button>
+<nav class="tabs" aria-label="Bölümler">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-go="tara" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Tara</button>
+    <button role="tab" data-go="rehber" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Rehber</button>
+    <button role="tab" data-go="asistan" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-5 4z"/><path d="M9 10h6"/></svg>Asistan</button>
+    <button role="tab" data-go="takvim" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Takvim</button>
+    <button role="tab" data-go="acil" aria-selected="false" class="sos-tab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Yedim</button>
+  </div>
 </nav>
 
-<dialog id="spDlg"><div class="dlg"><button class="close" id="spClose" aria-label="Kapat">✕</button><div id="spBody"></div></div></dialog>
+<dialog id="spDlg" aria-label="Tür bilgisi"><div class="dlg-bar"><button class="btn quiet" id="spClose">Kapat</button></div><div class="dlg-body" id="spBody"></div></dialog>
 
+<script src="config.js"></script>
 <script src="data.js"></script>
 <script src="decide.js"></script>
 <script src="vendor/ort/ort.wasm.min.js"></script>
 <script src="model.js"></script>
 <script>
-const CFG = window.MYCO_CASES, T = CFG.esikler;
+const CFG = window.MYCO_CASES, T = CFG.esikler, API = window.MYCO_API || "";
 const SPECIES = window.MYCO_SPECIES, GBIF = window.MYCO_GBIF || {}, THUMBS = window.MYCO_THUMBS || {};
 const INFO = Object.fromEntries(SPECIES.map(s => [s.latin_name, s]));
-const RISK_LABEL = { olumcul: "ÖLÜMCÜL", yuksek: "ZEHİRLİ", orta: "ŞARTLI RİSK", dusuk: "DÜŞÜK RİSK" };
+const RISK = { olumcul: "Ölümcül", yuksek: "Zehirli", orta: "Şartlı risk", dusuk: "Düşük risk" };
 const RISK_ORDER = ["olumcul", "yuksek", "orta", "dusuk"];
-const AY = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+const AY = ["O", "Ş", "M", "N", "M", "H", "T", "A", "E", "E", "K", "A"];
+const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const AY_UZUN = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const NOW_M = new Date().getMonth() + 1;
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pct = p => Math.round(p * 100) + "%";
 const months = s => (s.aylar || "").split(";").filter(Boolean).map(Number);
-const tag = r => `<span class="tag t-${r}">${RISK_LABEL[r]}</span>`;
-const spLink = n => INFO[n] ? `<button class="link" data-sp="${esc(n)}"><i>${esc(n)}</i></button>` : `<i>${esc(n)}</i>`;
-const thumb = (n, cls = "thumb") => THUMBS[n] ? `<img class="${cls}" src="${esc(THUMBS[n].src)}" alt="" loading="lazy">` : `<div class="${cls}">🍄</div>`;
+const risk = r => `<span class="risk r-${r}">${RISK[r]}</span>`;
+const dng = s => s.risk === "olumcul" || s.risk === "yuksek";
+const spLink = n => INFO[n] ? `<button class="link latin" data-sp="${esc(n)}">${esc(n)}</button>` : `<i>${esc(n)}</i>`;
+const thumb = n => THUMBS[n] ? `<img class="th" src="${esc(THUMBS[n].src)}" alt="" loading="lazy">` : `<span class="th" aria-hidden="true"></span>`;
 let gemmaReady = false, lastCtx = null;
 
-// ---------------- başlık istatistikleri ----------------
-const buAy = SPECIES.filter(s => months(s).includes(NOW_M));
-$("stats").innerHTML = `<div class="stat"><b>${SPECIES.length}</b><small>tür rehberde</small></div>
-  <div class="stat dng"><b>${SPECIES.filter(s => s.risk === "olumcul").length}</b><small>ölümcül tür</small></div>
-  <div class="stat"><b>${buAy.length}</b><small>${AY_UZUN[NOW_M - 1]} ayında</small></div>`;
-
-// ---------------- sekmeler ----------------
-function showTab(name) {
-  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("on", t.id === "tab-" + name));
-  document.querySelectorAll("nav.bottom button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name));
-  window.scrollTo({ top: 0, behavior: "smooth" });
+// ---------------- gezinme ----------------
+function go(name) {
+  document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id === "v-" + name));
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.go === name));
+  window.scrollTo({ top: 0 });
 }
-document.querySelectorAll("nav.bottom button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
-document.addEventListener("click", e => { const b = e.target.closest("[data-sp]"); if (b) openSpecies(b.dataset.sp); });
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]");
+  if (g) { e.preventDefault(); go(g.dataset.go); return; }
+  const s = e.target.closest("[data-sp]");
+  if (s) openSpecies(s.dataset.sp);
+});
 
-// ---------------- tür detayı ----------------
-function monthStrip(s, danger) {
+// ---------------- tür sayfası ----------------
+function pheno(s) {
   const on = months(s);
-  return `<div class="months ${danger ? "dng" : ""}">` + AY.map((a, i) =>
+  return `<div class="pheno ${dng(s) ? "dng" : ""}" aria-label="Görülme ayları">` + AY_KISA.map((a, i) =>
     `<span class="${on.includes(i + 1) ? "on" : ""} ${i + 1 === NOW_M ? "now" : ""}">${a}</span>`).join("") + `</div>`;
 }
-function gbifBlock(name) {
+function records(name) {
   const g = GBIF[name];
-  if (!g || !g.tr) return `<p class="muted" style="margin:0">Türkiye'de bu tür için yayımlanmış GBIF kaydı bulunamadı.</p>`;
+  if (!g || !g.tr) return `<p class="muted">Türkiye için yayımlanmış GBIF kaydı bulunamadı.</p>`;
   const mx = Math.max(1, ...g.aylar);
-  return `<p style="margin:0 0 8px">Türkiye'de <b>${g.tr}</b> doğrulanmış gözlem kaydı${g.kastamonu ? ` · Kastamonu'da <b>${g.kastamonu}</b>` : ""}.</p>
-    <div class="gbif">${g.aylar.map((v, i) => `<div style="height:${Math.round(v / mx * 100)}%" title="${AY_UZUN[i]}: ${v}"></div>`).join("")}</div>
-    <div class="months" style="margin-top:3px">${AY.map(a => `<span style="background:none;padding:0">${a}</span>`).join("")}</div>
-    <p class="muted" style="margin:4px 0 0;font-size:.74rem">Kaynak: GBIF Türkiye kayıtları (temizlenmiş), aylara göre dağılım.</p>`;
+  return `<p class="measure">Türkiye'de ${g.tr} gözlem kaydı var${g.kastamonu ? `; bunların ${g.kastamonu} tanesi Kastamonu'da` : ""}. Kayıtların aylara dağılımı:</p>
+    <div class="records">${g.aylar.map((v, i) => `<div style="height:${Math.round(v / mx * 100)}%" title="${AY_UZUN[i]}: ${v}"></div>`).join("")}</div>
+    <div class="pheno axis">${AY_KISA.map(a => `<span>${a}</span>`).join("")}</div>
+    <p class="small muted" style="margin-top:4px">Kaynak: GBIF, temizlenmiş Türkiye kayıtları.</p>`;
 }
-function speciesDetail(s) {
-  const dng = ["olumcul", "yuksek"].includes(s.risk);
+function speciesPage(s) {
   const t = THUMBS[s.latin_name];
-  return `<div class="sp-hero">
-      <div class="ph">${t ? `<img src="${esc(t.src)}" alt="${esc(s.turkce_ad)}"><span class="credit">📷 ${esc(t.atif)}</span>` : `<div class="ph-ph">🍄</div>`}</div>
-      <div class="sp-title">${tag(s.risk)}<h2>${esc(s.latin_name)}</h2><div class="tr">${esc(s.turkce_ad)}</div>
-        ${s.yerel_ad && s.yerel_ad !== "—" ? `<div class="muted">Yöresel ad: ${esc(s.yerel_ad)}</div>` : ""}</div>
+  return `<article class="sp">
+    <div class="sp-top">
+      <figure class="sp-ph">${t ? `<img src="${esc(t.src)}" alt="${esc(s.turkce_ad)}"><figcaption>${esc(t.atif)}</figcaption>` : ""}</figure>
+      <div class="sp-name">${risk(s.risk)}<h2>${esc(s.latin_name)}</h2><div class="tr">${esc(s.turkce_ad)}</div>
+        ${s.yerel_ad && s.yerel_ad !== "—" ? `<p class="muted">Yöresel adı: ${esc(s.yerel_ad)}</p>` : ""}</div>
     </div>
-    <div class="facts">
-      <div class="fact"><b>Şapka çapı</b>${esc(s.sapka_cm)} cm</div><div class="fact"><b>Sap boyu</b>${esc(s.sap_cm)} cm</div>
-      <div class="fact"><b>Etki süresi</b>${esc(s.belirti_baslangici)}</div><div class="fact"><b>Mevsim</b>${esc(s.mevsim)}</div>
-    </div>
-    <h3 class="sec"><span class="ic">☠️</span>Zehirli mi?</h3><div class="callout ${dng ? "r" : s.risk === "orta" ? "a" : "g"}">${esc(s.zehir_notu)}</div>
-    <h3 class="sec"><span class="ic">🤢</span>Yersen ne olur?</h3><p style="margin:0">${esc(s.belirtiler)}</p>
-    <h3 class="sec"><span class="ic">🚑</span>Ne yapmalısın?</h3><p style="margin:0">${esc(s.ilk_yardim_notu)}</p>
-    ${dng ? `<div class="callrow"><a class="call" href="tel:114">114<small>Zehir Danışma</small></a><a class="call" href="tel:112">112<small>Acil</small></a></div>` : ""}
-    <h3 class="sec"><span class="ic">🌲</span>Nerede yetişir?</h3><p style="margin:0">${esc(s.habitat)} · <span class="muted">${esc(s.substrat)}</span></p>
-    <div class="callout g" style="margin-top:8px"><b>Kastamonu:</b> ${esc(s.kastamonu_notu)}</div>
-    <h3 class="sec"><span class="ic">🌱</span>Yetişme süreci</h3><p style="margin:0">${esc(s.yetisme_sureci)}</p>
-    <h3 class="sec"><span class="ic">📅</span>Ne zaman görülür, ne zaman toplanır?</h3>${monthStrip(s, dng)}<p style="margin:0">${esc(s.toplama_notu)}</p>
-    <h3 class="sec"><span class="ic">📊</span>Türkiye gözlem kayıtları</h3>${gbifBlock(s.latin_name)}
-    <h3 class="sec"><span class="ic">🔍</span>Nasıl ayırt edilir?</h3><p style="margin:0">${esc(s.ayirt_edici_ipucu)}</p>
-    <h3 class="sec"><span class="ic">⚠️</span>Karışabileceği türler</h3><p style="margin:0">${s.ikiz_turler.split(";").filter(Boolean).map(spLink).join(", ")}</p>`;
+    <div class="callout ${s.risk}">${esc(s.zehir_notu)}</div>
+    <dl class="facts">
+      <div><dt>Belirtiler başlar</dt><dd>${esc(s.belirti_baslangici)}</dd></div>
+      <div><dt>Şapka çapı</dt><dd>${esc(s.sapka_cm)} cm</dd></div>
+      <div><dt>Sap boyu</dt><dd>${esc(s.sap_cm)} cm</dd></div>
+      <div><dt>Mevsim</dt><dd>${esc(s.mevsim)}</dd></div>
+    </dl>
+    <div><h3>Yerseniz ne olur?</h3><p class="measure">${esc(s.belirtiler)}</p></div>
+    <div><h3>Ne yapmalısınız?</h3><p class="measure">${esc(s.ilk_yardim_notu)}</p>
+      ${dng(s) ? `<div class="calls"><a class="call" href="tel:114">114<small>Zehir Danışma</small></a><a class="call" href="tel:112">112<small>Acil</small></a></div>` : ""}</div>
+    <div><h3>Nasıl ayırt edilir?</h3><p class="measure">${esc(s.ayirt_edici_ipucu)}</p>
+      <p class="measure" style="margin-top:8px">Karışabileceği türler: ${s.ikiz_turler.split(";").filter(Boolean).map(spLink).join(", ")}</p></div>
+    <div><h3>Nerede yetişir?</h3><p class="measure">${esc(s.habitat)}. ${esc(s.substrat)}.</p>
+      <p class="measure" style="margin-top:8px"><b>Kastamonu'da:</b> ${esc(s.kastamonu_notu)}</p></div>
+    <div><h3>Nasıl yetişir?</h3><p class="measure">${esc(s.yetisme_sureci)}</p></div>
+    <div><h3>Ne zaman görülür?</h3>${pheno(s)}<p class="measure" style="margin-top:8px">${esc(s.toplama_notu)}</p></div>
+    <div><h3>Türkiye kayıtları</h3>${records(s.latin_name)}</div>
+  </article>`;
 }
 function openSpecies(name) {
-  $("spBody").innerHTML = speciesDetail(INFO[name]);
+  $("spBody").innerHTML = speciesPage(INFO[name]);
   const d = $("spDlg");
   if (!d.open) d.showModal();
   d.scrollTop = 0;
@@ -500,104 +516,112 @@ function openSpecies(name) {
 $("spClose").onclick = () => $("spDlg").close();
 $("spDlg").addEventListener("click", e => { if (e.target === $("spDlg")) $("spDlg").close(); });
 
+// ---------------- anatomi: Gemma bulgularını çizime işle ----------------
+const TRV = { var: "var", yok: "yok", gorunmuyor: "görünmüyor", lamel: "lamel", gozenek: "gözenek", diken: "diken", damar: "damar", petek: "petek",
+  beyaz: "beyaz", krem: "krem", sari: "sarı", pembe: "pembe", kahverengi: "kahverengi", siyah: "siyah", diger: "diğer",
+  toprak: "toprak", odun: "odun", cim: "çim", evet: "evet", hayir: "hayır", iyi: "iyi", orta: "orta", kotu: "kötü" };
+function paintAnatomy(oz) {
+  const set = (id, state) => { if (state) $(id).dataset.state = state; else delete $(id).dataset.state; };
+  ["p-sapka", "p-lamel", "p-halka", "p-sap", "p-torba", "t-torba"].forEach(id => set(id, ""));
+  ["t-sapka", "t-lamel", "t-halka", "t-torba"].forEach(id => $(id).textContent = "");
+  $("l-lamel").textContent = "Lameller";
+  if (!oz) return;
+  const st = v => v === "var" ? "seen" : v === "gorunmuyor" ? "unknown" : "";
+  set("p-sapka", oz.sapka_rengi ? "seen" : "unknown"); $("t-sapka").textContent = oz.sapka_rengi || "";
+  $("l-lamel").textContent = { gozenek: "Gözenekler", diken: "Dikenler", damar: "Damarlar", petek: "Petekli şapka" }[oz.alt_yuz] || "Lameller";
+  set("p-lamel", oz.alt_yuz === "gorunmuyor" ? "unknown" : "seen");
+  $("t-lamel").textContent = oz.alt_yuz === "lamel" ? TRV[oz.lamel_rengi] : TRV[oz.alt_yuz];
+  set("p-halka", st(oz.sapta_halka)); $("t-halka").textContent = TRV[oz.sapta_halka];
+  set("p-sap", "seen");
+  const torba = oz.sap_tabaninda_torba;
+  set("p-torba", torba === "var" ? "alert" : st(torba)); set("t-torba", torba === "var" ? "alert" : "");
+  $("t-torba").textContent = TRV[torba];
+  if (oz.lamel_rengi === "beyaz" && oz.sapta_halka === "var") { set("p-lamel", "alert"); set("p-halka", "alert"); }
+}
+
 // ---------------- sonuç ----------------
 const LEVEL = {
-  KIRMIZI: { q: "ZEHİRLİ Mİ?", icon: "☠", title: "Zehirli olabilir — yemeyin", msg: "Bu mantar ölümcül veya zehirli bir türle karıştırılabilir. Diğer mantarlardan ayırın ve uzmana gösterin." },
-  SARI: { q: "ZEHİRLİ Mİ?", icon: "?", title: "Emin değiliz — yemeyin", msg: "Bu fotoğraftan güvenilir bir sonuç çıkmadı. Eksik açılardan yeni fotoğraf çekin veya uzmana gösterin." },
-  GRI: { q: "ZEHİRLİ Mİ?", icon: "i", title: "Düşük riskli aday", msg: "Bu sonuç 'zehirsiz' anlamına gelmez. Yeme kararı için mutlaka uzman onayı alın." },
-  MANTAR_DEGIL: { q: "SONUÇ", icon: "⛔", title: "Mantar algılanmadı", msg: "Fotoğrafta mantar görünmüyor. Mantarı yakından ve net çekin." },
+  KIRMIZI: ["Zehirli olabilir. Yemeyin.", "Bu mantar ölümcül veya zehirli bir türle karıştırılabilir. Diğer mantarlardan ayırın ve uzmana gösterin."],
+  SARI: ["Emin değiliz. Yemeyin.", "Bu fotoğraftan güvenilir bir sonuç çıkmadı. Eksik açılardan yeni fotoğraf çekin veya uzmana gösterin."],
+  GRI: ["Düşük riskli bir türe benziyor.", "Bu, zehirsiz olduğu anlamına gelmez. Yeme kararı için mutlaka uzman onayı alın."],
+  MANTAR_DEGIL: ["Fotoğrafta mantar görünmüyor.", "Mantarı yakından, net ve iyi ışıkta çekip tekrar deneyin."],
 };
 function why(c, d) {
-  if (d.reason === "gemma_ozellik") return "Gemma 4 görsel analizi ölümcül türlere özgü bir özellik buldu; risk kırmızıya yükseltildi.";
-  if (d.reason === "gemma_mantar") return "Görüntü modeli mantar görmedi ama Gemma 4 mantar tespit etti; temkinli olarak risk yükseltildi.";
-  if (d.reason === "gemma_kalite") return "Gemma 4 fotoğraf kalitesini düşük buldu; güvenilir sonuç için yeni fotoğraf gerekli.";
-  if (c.sadece_gemma && d.level !== "MANTAR_DEGIL") return "Tür tahmini yapılmadı; yalnızca Gemma 4 görsel bulguları değerlendirildi. Tür bilinmeden hiçbir mantar düşük riskli sayılmaz.";
-  if (d.level === "MANTAR_DEGIL") return `Mantar olma olasılığı ${pct(c.mantar_olma_olasiligi)} (eşik ${pct(T.mantar_degil_esigi)}).`;
-  if (d.level === "KIRMIZI") return `Adaylar arasında tehlikeli tür var: ${d.danger.map(x => `${INFO[x.latin_name].turkce_ad} (${pct(x.p)})`).join(", ")}. Birinci tahmin ne olursa olsun en kötü aday esas alınır.`;
+  if (d.reason === "gemma_ozellik") return "Gemma 4, fotoğrafta ölümcül türlere özgü bir işaret buldu; risk bu yüzden yükseltildi.";
+  if (d.reason === "gemma_mantar") return "Görüntü modeli mantar görmedi, Gemma 4 gördü; temkinli olmak için risk yükseltildi.";
+  if (d.reason === "gemma_kalite") return "Gemma 4 fotoğrafı yeterince net bulmadı; güvenilir sonuç için yeni fotoğraf gerekli.";
+  if (c.sadece_gemma && d.level !== "MANTAR_DEGIL") return "Tür tahmini yapılamadı; yalnızca Gemma 4'ün görsel bulguları değerlendirildi. Türü bilinmeyen hiçbir mantar düşük riskli sayılmaz.";
+  if (d.level === "MANTAR_DEGIL") return `Mantar olma olasılığı ${pct(c.mantar_olma_olasiligi)}; eşik ${pct(T.mantar_degil_esigi)}.`;
+  if (d.level === "KIRMIZI") return `Olası türler arasında ${d.danger.map(x => `${INFO[x.latin_name].turkce_ad} (${pct(x.p)})`).join(", ")} var. En olası tür ne olursa olsun en tehlikeli aday esas alınır.`;
   const top1 = c.simule_top5[0];
-  if (d.level === "SARI") return d.reason === "belirsiz" ? `En güçlü aday yalnızca ${pct(top1.p)}; güven eşiği ${pct(T.belirsizlik_esigi)}.` : `${INFO[top1.latin_name].turkce_ad} pişirme/ayırt etme koşulu gerektiren bir tür.`;
-  return `En güçlü aday ${pct(top1.p)}; tehlikeli adayların olasılığı eşiğin altında.`;
+  if (d.level === "SARI") return d.reason === "belirsiz" ? `En olası tür yalnızca ${pct(top1.p)} ihtimalle; güven eşiği ${pct(T.belirsizlik_esigi)}.` : `${INFO[top1.latin_name].turkce_ad}, ayırt etme ve pişirme koşulu gerektiren bir tür.`;
+  return `En olası tür ${pct(top1.p)} ihtimalle; tehlikeli adayların olasılığı eşiğin altında.`;
 }
-const FEAT = [
-  ["sap_tabaninda_torba", "Sap tabanında torba", v => v === "var"],
-  ["sapta_halka", "Sapta halka", () => false],
-  ["alt_yuz", "Şapka altı", () => false],
-  ["lamel_rengi", "Lamel rengi", () => false],
-  ["sapka_rengi", "Şapka rengi", () => false],
-  ["yetistigi_yer", "Yetiştiği yer", () => false],
-  ["kumeler_halinde", "Kümeler halinde", () => false],
-  ["foto_kalitesi", "Fotoğraf kalitesi", v => v === "kotu"],
-];
-const TRV = { var: "Var", yok: "Yok", gorunmuyor: "Görünmüyor", lamel: "Lamel", gozenek: "Gözenek", diken: "Diken", damar: "Damar", petek: "Petek",
-  beyaz: "Beyaz", krem: "Krem", sari: "Sarı", pembe: "Pembe", kahverengi: "Kahverengi", siyah: "Siyah", diger: "Diğer", toprak: "Toprak", odun: "Odun",
-  cim: "Çim", evet: "Evet", hayir: "Hayır", iyi: "İyi", orta: "Orta", kotu: "Kötü" };
-function gemmaBlock(g) {
+function gemmaSection(g) {
   if (!g) return "";
-  if (g.hata) return `<div class="card"><span class="ai-tag">✦ GEMMA 4</span><p class="muted" style="margin:8px 0 0">${esc(g.hata)}</p></div>`;
+  if (g.hata) return `<section><h3>Gemma 4 görsel analizi</h3><p class="muted" style="margin-top:6px">${esc(g.hata)}</p></section>`;
   const oz = g.ozellikler;
-  return `<div class="card"><div style="display:flex;align-items:center;gap:8px;justify-content:space-between;flex-wrap:wrap">
-      <h2 style="margin:0">Gemma 4 ne gördü?</h2><span class="ai-tag">✦ GEMMA 4 · GÖRSEL ANALİZ</span></div>
-    <p style="margin:8px 0 12px">${esc(oz.aciklama)}</p>
-    <div class="feat">${FEAT.filter(([k]) => oz[k] !== undefined && oz[k] !== "").map(([k, l, alert]) =>
-      `<div class="fchip ${alert(oz[k]) ? "alert" : ""} ${oz[k] === "gorunmuyor" ? "unk" : ""}"><small>${l}</small><b>${esc(TRV[oz[k]] || oz[k])}</b></div>`).join("")}</div>
-    ${g.uyarilar.length ? `<ul class="gwarn">${g.uyarilar.map((u, i) => `<li class="${g.kirmiziya_cek && i === 0 ? "r" : ""}">${esc(u)}</li>`).join("")}</ul>` : ""}
-    ${oz.eksik_acilar?.length ? `<p class="muted" style="margin:10px 0 0">📸 Eksik açılar: ${oz.eksik_acilar.map(esc).join(" · ")}</p>` : ""}</div>`;
+  const rows = [["Sap tabanında torba", oz.sap_tabaninda_torba, oz.sap_tabaninda_torba === "var"], ["Sapta halka", oz.sapta_halka],
+    ["Şapka altı", oz.alt_yuz], ["Lamel rengi", oz.lamel_rengi], ["Şapka rengi", oz.sapka_rengi], ["Yetiştiği yer", oz.yetistigi_yer],
+    ["Kümeler halinde", oz.kumeler_halinde], ["Fotoğraf kalitesi", oz.foto_kalitesi, oz.foto_kalitesi === "kotu"]].filter(r => r[1]);
+  return `<section><h3>Gemma 4 ne gördü?</h3><p class="measure" style="margin:6px 0 12px">${esc(oz.aciklama)}</p>
+    <dl class="found">${rows.map(([k, v, a]) => `<dt>${k}</dt><dd class="${a ? "alert" : v === "gorunmuyor" ? "unk" : ""}">${esc(TRV[v] || v)}</dd>`).join("")}</dl>
+    ${g.uyarilar.length ? `<ul class="notes">${g.uyarilar.map((u, i) => `<li class="${g.kirmiziya_cek && i === 0 ? "alert" : ""}">${esc(u)}</li>`).join("")}</ul>` : ""}
+    ${oz.eksik_acilar?.length ? `<p class="small muted" style="margin-top:10px">Çekilmesi gereken açılar: ${oz.eksik_acilar.map(esc).join(", ")}.</p>` : ""}</section>`;
 }
 function render(c, source, g) {
-  const d = MycoDecide.escalate(MycoDecide.decide(c, INFO, T), g), L = LEVEL[d.level];
-  lastCtx = { seviye: d.level, adaylar: c.simule_top5.map(x => x.latin_name), ozellikler: g?.ozellikler || null };
-  let html = `<div class="verdict V-${d.level}"><div class="ring">${L.icon}</div><div>
-      <div class="q">${L.q}</div><h3>${L.title}</h3><p>${L.msg}</p><div class="why"><b>Neden?</b> ${esc(why(c, d))}</div>
-      <div style="font-size:.74rem;opacity:.8;margin-top:8px">${esc(source)}</div></div></div>`;
-  html += gemmaBlock(g);
+  const d = MycoDecide.escalate(MycoDecide.decide(c, INFO, T), g), [title, msg] = LEVEL[d.level];
+  lastCtx = { seviye: d.level, adaylar: c.sadece_gemma ? [] : c.simule_top5.map(x => x.latin_name), ozellikler: g?.ozellikler || null };
+  paintAnatomy(g?.ozellikler);
+  let html = `<div class="verdict V-${d.level} enter" role="status"><div class="band"></div><div class="in">
+      <h2>${title}</h2><p class="measure">${msg}</p><p class="why measure">${esc(why(c, d))}</p><p class="src">${esc(source)}</p></div></div>`;
+  html += gemmaSection(g);
   if (d.level !== "MANTAR_DEGIL" && !c.sadece_gemma) {
     const danger = new Set(d.danger.map(x => x.latin_name));
     const top1 = INFO[c.simule_top5[0].latin_name];
     const twins = [...danger];
-    top1.ikiz_turler.split(";").forEach(n => { if (INFO[n] && ["olumcul", "yuksek"].includes(INFO[n].risk) && !twins.includes(n)) twins.push(n); });
-    html += `<div class="grid2"><div class="card"><h2>En olası 5 tür</h2>` + c.simule_top5.map(x => {
+    top1.ikiz_turler.split(";").forEach(n => { if (INFO[n] && dng(INFO[n]) && !twins.includes(n)) twins.push(n); });
+    html += `<div class="two"><section><h3 style="margin-bottom:10px">En olası türler</h3><ul class="cands">` + c.simule_top5.map(x => {
       const s = INFO[x.latin_name];
-      return `<div class="cand ${danger.has(x.latin_name) ? "danger" : ""}" data-sp="${esc(x.latin_name)}">${thumb(x.latin_name)}
-        <div><i>${esc(x.latin_name)}</i> ${tag(s.risk)}<br><span class="muted">${esc(s.turkce_ad)}</span></div><div class="pct">${pct(x.p)}</div>
-        <div class="bar"><div data-w="${Math.min(100, x.p * 100)}"></div></div></div>`;
-    }).join("") + `<p class="muted" style="margin:10px 0 0;font-size:.8rem">Ayrıntı için bir türe dokunun.</p></div>`;
-    html += `<div class="card"><h2>⚠️ Bunu sakın karıştırma</h2>` + (twins.length ? twins.map(n => {
+      return `<li class="${danger.has(x.latin_name) ? "danger" : ""}"><button data-sp="${esc(x.latin_name)}">${thumb(x.latin_name)}
+        <i>${esc(x.latin_name)}</i><span class="p">${pct(x.p)}</span>
+        <span class="sub"><span>${esc(s.turkce_ad)}</span>${risk(s.risk)}</span><span class="bar"><div data-w="${Math.min(100, x.p * 100)}"></div></span></button></li>`;
+    }).join("") + `</ul></section>`;
+    html += `<section><h3 style="margin-bottom:10px">Karıştırılabilecek tehlikeli türler</h3>` + (twins.length ? twins.map(n => {
       const s = INFO[n];
-      return `<div class="twin" data-sp="${esc(n)}" style="cursor:pointer">${thumb(n)}<div><h4>${s.risk === "olumcul" ? "☠️" : "⚠️"} ${esc(s.turkce_ad)} <i style="font-weight:500">(${esc(n)})</i></h4>
-        <p><b>${RISK_LABEL[s.risk]}</b> · Etki: ${esc(s.belirti_baslangici)}</p><p><b>Ayırt et:</b> ${esc(s.ayirt_edici_ipucu)}</p></div></div>`;
-    }).join("") : `<p class="muted">Adaylar arasında bilinen tehlikeli bir ikiz yok. Yine de rehberimiz ${SPECIES.length} türü kapsar; bilinmeyen türler her zaman risklidir.</p>`) + `</div></div>`;
-    const inSeason = months(top1).includes(NOW_M);
-    html += `<div class="card"><div class="callout ${inSeason ? "g" : "a"}" style="margin-bottom:14px">📅 ${AY_UZUN[NOW_M - 1]}: <b>${esc(top1.turkce_ad)}</b> ${inSeason
-      ? "bu ay görülme döneminde." : "genelde bu ay <b>görülmez</b>. Tahmin yanlış olabilir, ekstra dikkat!"}</div>${speciesDetail(top1)}
-      <button class="btn dark ask-btn" id="askBtn">✦ Bu sonucu asistana sor</button></div>`;
+      return `<button class="twin" data-sp="${esc(n)}">${thumb(n)}<span>${risk(s.risk)}<br><b>${esc(s.turkce_ad)}</b> <i>${esc(n)}</i>
+        <p><b>Ayırt etmek için:</b> ${esc(s.ayirt_edici_ipucu)}</p><p class="muted">Belirtiler ${esc(s.belirti_baslangici)} içinde başlar.</p></span></button>`;
+    }).join("") : `<p class="muted measure">Olası türler arasında bilinen tehlikeli bir benzer yok. Rehber ${SPECIES.length} türü kapsar; tanımadığınız her mantar risklidir.</p>`) + `</section></div>`;
+    const sezon = months(top1).includes(NOW_M);
+    html += `<section><div class="callout ${sezon ? "" : "orta"}" style="margin-bottom:24px">${sezon
+      ? `${esc(top1.turkce_ad)} ${AY_UZUN[NOW_M - 1]} ayında görülebilir.` : `${esc(top1.turkce_ad)} genelde ${AY_UZUN[NOW_M - 1]} ayında görülmez. Tahmin yanlış olabilir; ekstra dikkatli olun.`}</div>
+      ${speciesPage(top1)}<p style="margin-top:24px"><button class="btn quiet" id="askBtn">Bu sonucu asistana sor</button></p></section>`;
   }
-  $("result").innerHTML = html;
+  $("result").innerHTML = `<div class="result">${html}</div>`;
   requestAnimationFrame(() => document.querySelectorAll(".bar div[data-w]").forEach(b => b.style.width = b.dataset.w + "%"));
   const ab = $("askBtn");
-  if (ab) ab.onclick = () => { showTab("asistan"); ask(`Analiz sonucumu açıklar mısın? En olası tür ${INFO[c.simule_top5[0].latin_name].turkce_ad}. Neye dikkat etmeliyim?`); };
+  if (ab) ab.onclick = () => { go("asistan"); ask(`Analiz sonucumu açıklar mısın? En olası tür ${INFO[c.simule_top5[0].latin_name].turkce_ad}. Neye dikkat etmeliyim?`); };
 }
 
 // ---------------- yapay zekâ durumu ----------------
 MycoModel.load().then(ok => {
-  const m = ok && MycoModel.info();
   $("dotModel").classList.toggle("on", !!ok);
-  $("lblModel").textContent = ok ? `Görüntü modeli · ${m.arch}` : "Görüntü modeli yüklenmedi";
+  $("lblModel").textContent = ok ? "Görüntü modeli hazır" : "Görüntü modeli yok";
 });
-fetch("api/durum").then(r => r.ok ? r.json() : null).then(s => {
+fetch(API + "api/durum").then(r => r.ok ? r.json() : null).then(s => {
   gemmaReady = !!(s && s.hazir);
   $("dotGemma").classList.toggle("on", gemmaReady);
-  $("lblGemma").textContent = gemmaReady ? `Gemma 4 aktif · ${s.model}` : "Gemma 4 çevrimdışı";
-  initChat(s);
-}).catch(() => initChat(null));
+  $("lblGemma").textContent = gemmaReady ? "Gemma 4 bağlı" : "Gemma 4 bağlı değil";
+  initChat();
+}).catch(() => { $("lblGemma").textContent = "Gemma 4 bağlı değil"; initChat(); });
 
 // ---------------- fotoğraf analizi ----------------
-const STEPS = [["Görüntü modeli", "Tür olasılıkları (cihazda)"], ["Gemma 4", "Ayırt edici özellik analizi"], ["Güvenlik kuralları", "En kötü aday + risk yükseltme"]];
-function pipe(state) {
-  $("pipe").hidden = false;
-  $("pipe").innerHTML = STEPS.map(([t, s], i) => {
-    const st = state[i];
-    const lbl = st === "run" ? `<span class="spin"></span>` : st === "ok" ? "✓ Tamam" : st === "off" ? "Kullanılamıyor" : "Bekliyor";
-    return `<div class="step ${st === "ok" ? "done" : ""} ${st === "off" ? "off" : ""}"><span class="n">${i + 1}</span><div><b>${t}</b><small>${s}</small></div><span class="st">${lbl}</span></div>`;
+const STEPS = [["Görüntü modeli", "Türü telefonda tahmin eder"], ["Gemma 4", "Ayırt edici işaretleri inceler"], ["Güvenlik kuralları", "En tehlikeli adayı esas alır"]];
+function steps(st) {
+  $("steps").hidden = false;
+  $("steps").innerHTML = STEPS.map(([t, s], i) => {
+    const lbl = st[i] === "run" ? `<span class="spin" aria-label="Çalışıyor"></span>` : st[i] === "ok" ? "Tamam" : st[i] === "off" ? "Kullanılamıyor" : "Sırada";
+    return `<li class="${st[i] === "ok" ? "ok" : ""} ${st[i] === "off" ? "off" : ""}"><span class="n">${i + 1}</span><span>${t}<small>${s}</small></span><span class="s">${lbl}</span></li>`;
   }).join("");
 }
 function toB64(img, max = 896) {
@@ -607,7 +631,7 @@ function toB64(img, max = 896) {
   cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
   return cv.toDataURL("image/jpeg", .85).split(",")[1];
 }
-$("photoBtn").onclick = $("againBtn").onclick = () => $("photo").click();
+$("photoBtn").onclick = () => $("photo").click();
 $("photo").onchange = async e => {
   const f = e.target.files[0];
   if (!f) return;
@@ -615,96 +639,84 @@ $("photo").onchange = async e => {
   const img = $("preview");
   img.src = URL.createObjectURL(f);
   await img.decode();
-  $("frame").style.display = "block"; $("frame").classList.add("scanning");
-  $("shootBox").hidden = true; $("againBtn").hidden = true;
+  $("shot").style.display = "block";
+  $("photoLbl").textContent = "Yeni fotoğraf çek";
+  $("photoBtn").disabled = true;
   $("result").innerHTML = "";
-  const st = ["run", "wait", "wait"]; pipe(st);
+  paintAnatomy(null);
+  $("anatomy").classList.add("reading");
+  const st = ["run", "wait", "wait"]; steps(st);
   let c = null, src = "", g = null;
   try {
     c = await MycoModel.classify(img);
     const m = MycoModel.info();
-    src = `Görüntü modeli: ${m.arch}, ${m.classes.length} sınıf · test seti top-1 ${pct(m.metrics?.top1 ?? 0)}, top-5 ${pct(m.metrics?.top5 ?? 0)}`;
+    src = `Görüntü modeli ${m.arch}, ${m.classes.length} sınıf; test setinde ilk tahmin doğruluğu ${pct(m.metrics?.top1 ?? 0)}, ilk 5'te ${pct(m.metrics?.top5 ?? 0)}.`;
     st[0] = "ok";
   } catch { st[0] = "off"; }
-  st[1] = gemmaReady ? "run" : "off"; pipe(st);
+  st[1] = gemmaReady ? "run" : "off"; steps(st);
   if (gemmaReady) {
     try {
-      const r = await fetch("api/analiz", { method: "POST", headers: { "Content-Type": "application/json" },
+      const r = await fetch(API + "api/analiz", { method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: toB64(img), adaylar: c ? c.simule_top5.map(x => x.latin_name) : [] }) });
       g = await r.json();
-      if (!r.ok) g = { hata: g.hata || "Gemma analizi başarısız." };
-      st[1] = g.hata ? "off" : "ok";
-    } catch { g = { hata: "Gemma sunucusuna ulaşılamadı." }; st[1] = "off"; }
+      if (!r.ok) g = { hata: g.hata || "Gemma 4 analizi tamamlanamadı." };
+    } catch { g = { hata: "Gemma 4'e bağlanılamadı. İnternet bağlantınızı kontrol edin." }; }
+    st[1] = g.hata ? "off" : "ok";
   }
-  st[2] = "run"; pipe(st);
+  st[2] = "ok"; steps(st);
+  $("anatomy").classList.remove("reading");
+  $("photoBtn").disabled = false;
   if (!c) {
-    // Görüntü modeli yoksa: tür tahmini yapılamaz -> en iyi ihtimalle "emin değiliz"
     c = { sadece_gemma: true, mantar_olma_olasiligi: g?.ozellikler?.mantar_mi === false ? 0 : 1,
           simule_top5: [{ latin_name: SPECIES.find(s => s.risk === "dusuk").latin_name, p: 0 }] };
-    src = "Görüntü modeli kullanılamadı; tür tahmini yapılmadı.";
+    src = "Görüntü modeli bu cihazda yüklenemedi; tür tahmini yapılmadı.";
   }
-  st[2] = "ok"; pipe(st);
-  $("frame").classList.remove("scanning"); $("againBtn").hidden = false;
   render(c, src, g);
   $("result").scrollIntoView({ behavior: "smooth", block: "start" });
 };
-CFG.senaryolar.forEach(c => {
-  const b = document.createElement("button");
-  b.setAttribute("aria-pressed", "false");
-  b.innerHTML = `<b>${esc(c.baslik)}</b><span>${esc(c.foto_ipucu)}</span>`;
-  b.onclick = () => {
-    $("cases").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
-    b.setAttribute("aria-pressed", "true");
-    render(c, `Örnek vaka · ${c.aciklama}`);
-    $("result").scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-  $("cases").appendChild(b);
-});
+$("cases").innerHTML = CFG.senaryolar.map((c, i) => `<li><button data-case="${i}" aria-pressed="false"><b>${esc(c.baslik)}</b><span class="small muted">${esc(c.foto_ipucu)}</span></button></li>`).join("");
+$("cases").onclick = e => {
+  const b = e.target.closest("[data-case]"); if (!b) return;
+  $("cases").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  const c = CFG.senaryolar[+b.dataset.case];
+  render(c, `Örnek vaka: ${c.aciklama}`);
+  $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+};
 
 // ---------------- rehber ----------------
 let riskFilter = "";
-$("riskChips").innerHTML = [["", "Tümü", SPECIES.length], ...RISK_ORDER.map(r => [r, RISK_LABEL[r], SPECIES.filter(s => s.risk === r).length])]
-  .map(([r, l, n]) => `<button class="chip" data-r="${r}" aria-pressed="${r === ""}">${l}<span class="c">${n}</span></button>`).join("");
-$("riskChips").onclick = e => {
-  const b = e.target.closest(".chip"); if (!b) return;
+$("riskSeg").innerHTML = [["", "Tümü"], ...RISK_ORDER.map(r => [r, RISK[r]])].map(([r, l]) => `<button data-r="${r}" aria-pressed="${r === ""}">${l}</button>`).join("");
+$("riskSeg").onclick = e => {
+  const b = e.target.closest("button"); if (!b) return;
   riskFilter = b.dataset.r;
-  $("riskChips").querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+  $("riskSeg").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
   drawList();
 };
 const norm = s => s.toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[̀-ͯ]/g, "");
-const card = s => `<button class="spc" data-sp="${esc(s.latin_name)}"><div class="ph">${THUMBS[s.latin_name] ? `<img src="${esc(THUMBS[s.latin_name].src)}" alt="" loading="lazy">` : `<div class="ph-ph">🍄</div>`}${tag(s.risk)}</div>
-  <div class="tx"><i>${esc(s.latin_name)}</i><small>${esc(s.turkce_ad)}</small></div></button>`;
+const row = s => `<li><button data-sp="${esc(s.latin_name)}">${thumb(s.latin_name)}<i>${esc(s.latin_name)}</i><span class="small">${esc(s.turkce_ad)}</span></button></li>`;
 function drawList() {
   const q = norm($("q").value.trim());
-  const rows = SPECIES.filter(s => (!riskFilter || s.risk === riskFilter) && (!q || norm(`${s.latin_name} ${s.turkce_ad} ${s.yerel_ad}`).includes(q)))
-    .sort((a, b) => RISK_ORDER.indexOf(a.risk) - RISK_ORDER.indexOf(b.risk));
-  $("list").innerHTML = rows.map(card).join("") || `<p class="muted">Sonuç bulunamadı.</p>`;
+  const hits = SPECIES.filter(s => (!riskFilter || s.risk === riskFilter) && (!q || norm(`${s.latin_name} ${s.turkce_ad} ${s.yerel_ad}`).includes(q)));
+  $("list").innerHTML = RISK_ORDER.map(r => {
+    const g = hits.filter(s => s.risk === r);
+    return g.length ? `<div class="group"><h3>${risk(r)} <span class="muted small">${g.length} tür</span></h3><ul class="rows">${g.map(row).join("")}</ul></div>` : "";
+  }).join("") || `<p class="muted" style="padding:16px 0">"${esc($("q").value)}" için tür bulunamadı. Türkçe ya da Latince adla aramayı deneyin.</p>`;
 }
 $("q").oninput = drawList;
 drawList();
 
-// ---------------- takvim ----------------
-let selM = NOW_M;
-$("monthChips").innerHTML = AY_UZUN.map((a, i) => `<button class="chip" data-m="${i + 1}" aria-pressed="${i + 1 === selM}">${a}<span class="c">${SPECIES.filter(s => months(s).includes(i + 1)).length}</span></button>`).join("");
-$("monthChips").onclick = e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  selM = +b.dataset.m;
-  $("monthChips").querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
-  drawMonth();
-};
-function drawMonth() {
-  const sp = SPECIES.filter(s => months(s).includes(selM));
-  const deadly = sp.filter(s => s.risk === "olumcul");
-  let html = deadly.length ? `<div class="callout r"><b>☠️ ${AY_UZUN[selM - 1]} ayında ölümcül türlerin görülme dönemi:</b> ${deadly.map(s => spLink(s.latin_name) + " (" + esc(s.turkce_ad) + ")").join(", ")}</div>` : "";
-  RISK_ORDER.forEach(r => {
-    const g = sp.filter(s => s.risk === r);
-    if (g.length) html += `<div><div style="margin:0 2px 8px">${tag(r)} <span class="muted">${g.length} tür</span></div><div class="grid-sp">${g.map(card).join("")}</div></div>`;
-  });
-  $("monthInfo").innerHTML = html || `<div class="card muted">Bu ay için rehberde tür yok.</div>`;
-}
-drawMonth();
+// ---------------- takvim (fenoloji tablosu) ----------------
+const buAy = SPECIES.filter(s => months(s).includes(NOW_M));
+const buAyOl = buAy.filter(s => s.risk === "olumcul");
+$("calLead").textContent = `${AY_UZUN[NOW_M - 1]} ayında rehberdeki ${buAy.length} tür görülebilir` + (buAyOl.length ? `; bunlardan ${buAyOl.length} tanesi ölümcül.` : ".") + " Görülme dönemi hava ve yağışa göre değişir.";
+$("cal").innerHTML = `<table class="phen"><thead><tr><th class="sp-col">Tür</th>${AY.map((a, i) => `<th class="${i + 1 === NOW_M ? "now" : ""}" title="${AY_UZUN[i]}">${a}</th>`).join("")}</tr></thead><tbody>` +
+  RISK_ORDER.map(r => `<tr class="grp"><th colspan="13">${risk(r)}</th></tr>` + SPECIES.filter(s => s.risk === r).map(s => {
+    const on = months(s);
+    return `<tr class="${s.risk}"><th><button data-sp="${esc(s.latin_name)}" title="${esc(s.latin_name)}">${esc(s.turkce_ad.replace(/\s*\(.*\)/, ""))}</button></th>` +
+      AY.map((_, i) => `<td class="${on.includes(i + 1) ? "on" : ""} ${i + 1 === NOW_M ? "now" : ""}"></td>`).join("") + `</tr>`;
+  }).join("")).join("") + `</tbody></table>`;
 
-// ---------------- asistan (Gemma 4) ----------------
+// ---------------- asistan ----------------
 const chat = [];
 function bubble(role, text, src) {
   const el = document.createElement("div");
@@ -712,65 +724,57 @@ function bubble(role, text, src) {
   el.textContent = text;
   if (src && src.length) { const s = document.createElement("span"); s.className = "src"; s.textContent = "Kaynak: " + src.map(n => INFO[n]?.turkce_ad || n).join(", "); el.appendChild(s); }
   $("msgs").appendChild(el);
-  el.scrollIntoView({ behavior: "smooth", block: "end" });
   return el;
 }
-function initChat(s) {
-  bubble("assistant", "Merhaba! Kastamonu'daki mantarlar, zehirlenme belirtileri, ne zaman ve nerede yetiştikleri hakkında sorabilirsiniz. Hiçbir mantar için \"yenir\" demem; yediyseniz önce 112 / 114.");
+function initChat() {
+  bubble("assistant", "Kastamonu'daki mantarlar, zehirlenme belirtileri, ne zaman ve nerede yetiştikleri hakkında sorabilirsiniz. Hiçbir mantar için \"yenir\" demem. Mantar yediyseniz önce 112'yi veya 114'ü arayın.");
   if (!gemmaReady) {
-    const n = document.createElement("div");
-    n.className = "notice";
-    n.innerHTML = `Asistan şu an çevrimdışı. Başlatmak için: <code>ollama pull gemma4:e4b</code> ve <code>python server/app.py</code>`;
+    const n = document.createElement("p");
+    n.className = "note";
+    n.textContent = "Asistan için internet bağlantısı gerekir. Rehber, takvim ve acil durum bölümleri internetsiz de çalışır.";
     $("msgs").appendChild(n);
   }
-  $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında Kastamonu'da hangi mantarlar çıkar?`, "Sarıkız ile zeytin mantarı farkı nedir?"]
-    .map(q => `<button class="chip" type="button">${esc(q)}</button>`).join("");
+  $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında hangi mantarlar çıkar?`, "Sarıkız ile zeytin mantarının farkı ne?"]
+    .map(q => `<button type="button">${esc(q)}</button>`).join("");
 }
-$("sugg").onclick = e => { const b = e.target.closest(".chip"); if (b) ask(b.textContent); };
+$("sugg").onclick = e => { const b = e.target.closest("button"); if (b) ask(b.textContent); };
 $("chatForm").onsubmit = e => { e.preventDefault(); const v = $("chatIn").value.trim(); if (v) { $("chatIn").value = ""; ask(v); } };
 async function ask(q) {
-  bubble("user", q);
+  bubble("user", q).scrollIntoView({ block: "nearest" });
   chat.push({ role: "user", content: q });
-  if (!gemmaReady) { bubble("assistant", "Asistan şu an çevrimdışı. Rehber, takvim ve acil durum bölümleri çevrimdışı da çalışır."); return; }
-  const t = bubble("assistant", ""); t.innerHTML = `<span class="typing"><span></span><span></span><span></span></span>`;
+  if (!gemmaReady) { bubble("assistant", "Şu an asistana bağlanılamıyor. İnternet bağlantınızı kontrol edip tekrar deneyin; bu sırada Rehber ve Yedim bölümlerini kullanabilirsiniz."); return; }
+  const t = bubble("assistant", ""); t.innerHTML = `<span class="dots" aria-label="Yanıt yazılıyor"><span></span><span></span><span></span></span>`;
   $("chatSend").disabled = true;
   try {
-    const r = await fetch("api/sohbet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mesajlar: chat, baglam: lastCtx || {} }) });
+    const r = await fetch(API + "api/sohbet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mesajlar: chat, baglam: lastCtx || {} }) });
     const j = await r.json();
     t.remove();
     if (!r.ok) throw new Error(j.hata);
     chat.push({ role: "assistant", content: j.cevap });
-    bubble("assistant", j.cevap, j.kaynak_turler);
-  } catch (err) { t.remove(); bubble("assistant", "Yanıt alınamadı: " + (err.message || "bağlantı hatası")); }
+    bubble("assistant", j.cevap, j.kaynak_turler).scrollIntoView({ block: "nearest" });
+  } catch (err) { t.remove(); bubble("assistant", (err.message || "Bağlantı kurulamadı.") + " Lütfen tekrar deneyin."); }
   $("chatSend").disabled = false;
 }
 
-// ---------------- yedim: zaman çizelgesi ----------------
-let symp = "";
+// ---------------- yedim ----------------
 $("ateSp").innerHTML += SPECIES.slice().sort((a, b) => a.turkce_ad.localeCompare(b.turkce_ad, "tr"))
   .map(s => `<option value="${esc(s.latin_name)}">${esc(s.turkce_ad)}</option>`).join("");
-$("symp").onclick = e => {
-  const b = e.target.closest("button"); if (!b) return;
-  symp = b.dataset.v;
-  $("symp").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  triage();
-};
 function triage() {
-  const ago = parseFloat($("hAgo").value), onset = parseFloat($("hOnset").value), sp = INFO[$("ateSp").value];
+  const ago = parseFloat($("hAgo").value), symp = $("symp").value, onset = parseFloat($("hOnset").value), sp = INFO[$("ateSp").value];
   $("hOnsetWrap").hidden = symp !== "evet";
   let out = "";
-  if (symp === "evet" && onset >= 6) out += `<div class="callout r"><b>☠️ Geç başlayan belirti (6 saat ve sonrası) ölümcül amatoksin zehirlenmesini düşündürür.</b> Kendinizi iyi hissetseniz bile HEMEN 112'yi arayın ve acile gidin.</div>`;
-  else if (symp === "evet" && onset < 6) out += `<div class="callout a"><b>⚠️ Erken belirtiler çoğu zaman daha hafif zehirlenmelerde görülür</b>, ancak aynı yemekte birden fazla tür olabilir. Hemen 114'ü arayın.</div>`;
-  else if (symp === "hayir") out += `<div class="callout a"><b>⚠️ Belirti olmaması güvende olduğunuz anlamına gelmez.</b> Ölümcül türlerde belirtiler 6–24 saat sonra başlar${ago < 24 ? ` (şu ana kadar ${ago} saat geçti)` : ""}. Türünden emin değilseniz şimdi 114'ü arayın.</div>`;
+  if (symp === "evet" && onset >= 6) out += `<div class="callout olumcul"><b>Geç başlayan belirti ölümcül zehirlenmeyi düşündürür.</b> Belirtiler yedikten 6 saat ya da daha sonra başladıysa kendinizi iyi hissetseniz bile hemen 112'yi arayın ve acile gidin.</div>`;
+  else if (symp === "evet" && onset < 6) out += `<div class="callout orta"><b>Erken belirtiler genellikle daha hafif zehirlenmelerde görülür</b>, ama aynı yemekte birden fazla tür olabilir. Hemen 114'ü arayın.</div>`;
+  else if (symp === "hayir") out += `<div class="callout orta"><b>Belirti olmaması güvende olduğunuz anlamına gelmez.</b> Ölümcül türlerde belirtiler 6–24 saat sonra başlar${ago < 24 ? `; şu ana kadar ${ago} saat geçti` : ""}. Türünden emin değilseniz şimdi 114'ü arayın.</div>`;
   if (sp) {
     const mn = parseFloat(sp.belirti_saat_min), mx = parseFloat(sp.belirti_saat_max);
-    let t = `<b>${esc(sp.turkce_ad)}</b> ${tag(sp.risk)} · beklenen başlangıç: <b>${esc(sp.belirti_baslangici)}</b>.`;
-    if (!isNaN(ago) && !isNaN(mn)) t += ago < mn ? ` Henüz beklenen süreye girilmedi (${mn} saat); belirtiler daha sonra başlayabilir.` : ago <= mx ? " Şu an beklenen belirti aralığındasınız." : " Beklenen süre geçti; yine de doktora danışın.";
-    out += `<div class="card" style="box-shadow:none"><p style="margin:0">${t}</p><p style="margin:8px 0 0">${esc(sp.belirtiler)}</p><p style="margin:8px 0 0"><b>Ne yapmalı:</b> ${esc(sp.ilk_yardim_notu)}</p></div>`;
+    let t = `${risk(sp.risk)}<p style="margin-top:6px"><b>${esc(sp.turkce_ad)}</b>: belirtiler ${esc(sp.belirti_baslangici)} içinde başlar.`;
+    if (!isNaN(ago) && !isNaN(mn)) t += ago < mn ? ` Henüz bu süreye girilmedi; belirtiler ${mn} saatten sonra başlayabilir.` : ago <= mx ? " Şu anda beklenen aralıktasınız." : " Beklenen süre geçti; yine de doktora danışın.";
+    out += `<div class="callout ${sp.risk}">${t}</p><p style="margin-top:6px">${esc(sp.belirtiler)}</p><p style="margin-top:6px"><b>Ne yapmalı:</b> ${esc(sp.ilk_yardim_notu)}</p></div>`;
   }
   $("triage").innerHTML = out;
 }
-["hAgo", "hOnset", "ateSp"].forEach(id => $(id).addEventListener("input", triage));
+["hAgo", "symp", "hOnset", "ateSp"].forEach(id => $(id).addEventListener("input", triage));
 
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(() => {});
 </script>
