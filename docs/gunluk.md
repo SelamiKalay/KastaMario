@@ -14,3 +14,10 @@
 - Arayüz yeniden tasarlandı: Kastamonu teması, 5 sekme (Tara, Rehber, Asistan, Takvim, Yedim!), karanlık mod, PWA.
 - Testler: 141 test geçti (karar katmanı, tür tablosu, Python↔JS eşdeğerliği, Gemma kuralları, temizlik fonksiyonları).
 - Not: Windows Smart App Control pandas DLL'ini engelledi → veri hattı csv + numpy ile yazıldı.
+
+## 24 Ekim 2026 — 1. gün (akşam)
+- Asistan uzak API'ye taşındı: Gemini API üzerinden Gemma 4 (`gemma-4-26b-a4b-it`, ücretsiz katman); OpenAI uyumlu sağlayıcılar yedek. CORS ve IP başına istek sınırı eklendi.
+- Mobil yol belirlendi: tür tahmini, rehber, takvim ve acil durum telefonda internetsiz; Gemma adımları sunucu üzerinden. DigitalOcean App Platform tanımı ve Capacitor yapılandırması eklendi (`docs/mobil.md`).
+- Arayüz Anthropic frontend-design yönergeleriyle yeniden tasarlandı: mantar anatomisi çizimi ana öğe, Gemma bulguları çizim üzerinde işaretleniyor; fenoloji tablosu; tehlike etiketi biçiminde sonuç.
+- GBIF verisiyle Karadeniz'de kaydı olmayan 3 tür rehberden çıkarıldı (25 tür kaldı).
+- Not: PyTorch'un CUDA 12.8 deposunda Python 3.14 için torch+torchvision eşleşmesi yok; CUDA 13.0 deposuna geçildi.

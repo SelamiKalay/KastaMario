@@ -34,7 +34,7 @@ Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mant
 ## Özellikler
 - 📷 **Tara:** fotoğraf → 3 adımlı yapay zekâ hattı → risk, en olası 5 tür, "bunu sakın karıştırma" kartları
 - ✦ **Asistan (Gemma 4):** "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — yanıtlar yalnızca tür bilgi tabanına dayanır (RAG), yasak ifadeler süzülür
-- 📖 **Rehber:** 28 tür — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF)
+- 📖 **Rehber:** 25 tür — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF)
 - 📅 **Takvim:** Kastamonu'da hangi ay hangi türler çıkar; ölümcül türlerin dönemi vurgulanır
 - 🚨 **Yedim!:** 114 / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)
 - 📱 **Mobil:** PWA (ana ekrana eklenebilir, çevrimdışı çalışır); Capacitor ile Android/iOS paketine hazır

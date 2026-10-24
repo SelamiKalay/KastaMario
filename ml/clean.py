@@ -161,6 +161,11 @@ def filtre_lisans(rows):
     return out
 
 
+def rehberdekiler(rows, turler):
+    """Rehberde (species_info.csv) olmayan sınıfları çıkarır; 'mantar_degil' korunur."""
+    return [r for r in rows if r["sinif"] == "mantar_degil" or r["sinif"] in turler]
+
+
 def taksonomi_normalize(rows):
     out = []
     for r in rows:
@@ -211,7 +216,7 @@ def dengele(rows, en_fazla=MAX_PER_CLASS, en_az=MIN_PER_CLASS, seed=SEED):
     return out, atilan
 
 
-def temizle_inat(rapor):
+def temizle_inat(rapor, turler):
     rows = oku(RAW / "inat_photos.csv")
     print(f"iNaturalist ham: {len(rows)} fotoğraf kaydı", flush=True)
     R = lambda ad, yeni, ack: rapor.adim("iNat", ad, rows, yeni, ack)  # noqa: E731
@@ -219,6 +224,8 @@ def temizle_inat(rapor):
     gor = set()
     rows = R("1. Yinelenen photo_id", [r for r in rows if not (r["photo_id"] in gor or gor.add(r["photo_id"]))],
              "Aynı fotoğraf birden fazla sorguda gelmiş")
+    rows = R("1b. Rehber dışı sınıflar", rehberdekiler(rows, set(turler)),
+             "Kastamonu/Karadeniz'de GBIF kaydı olmadığı için rehberden çıkarılan türler")
     rows = R("2. Lisans filtresi", filtre_lisans(rows), "Yalnızca CC lisanslı fotoğraflar")
     rows = R("3. Eksik URL", [r for r in rows if r["fotograf_url"].startswith("http")], "Fotoğraf adresi olmayan kayıtlar")
     rows = R("4. Taksonomi normalizasyonu", taksonomi_normalize(rows), "Alt tür/varyete -> tür; sınıfla uyuşmayanlar atıldı")
@@ -341,7 +348,7 @@ def main():
     turler = [r["latin_name"] for r in oku(ROOT / "data" / "species_info.csv")]
     rapor = Rapor()
     gbif = temizle_gbif(rapor, turler) if (RAW / "gbif_tr_fungi.csv").exists() else None
-    inat, atilan = temizle_inat(rapor) if (RAW / "inat_photos.csv").exists() else (None, [])
+    inat, atilan = temizle_inat(rapor, turler) if (RAW / "inat_photos.csv").exists() else (None, [])
     rapor_yaz(rapor, inat, atilan, gbif, turler)
     print(f"\nRapor: {(CLEAN / 'temizlik_raporu.md').relative_to(ROOT)}")
 

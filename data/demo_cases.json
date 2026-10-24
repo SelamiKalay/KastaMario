@@ -4,7 +4,10 @@
   "esikler": {
     "mantar_degil_esigi": 0.5,
     "tehlikeli_aday_min_olasilik": 0.05,
-    "tehlikeli_risk_seviyeleri": ["olumcul", "yuksek"],
+    "tehlikeli_risk_seviyeleri": [
+      "olumcul",
+      "yuksek"
+    ],
     "belirsizlik_esigi": 0.6
   },
   "senaryolar": [
@@ -15,11 +18,26 @@
       "foto_ipucu": "Beyaz şapka, çimenlik alan, sap tabanı görünmüyor",
       "mantar_olma_olasiligi": 0.97,
       "simule_top5": [
-        {"latin_name": "Agaricus campestris", "p": 0.62},
-        {"latin_name": "Amanita phalloides", "p": 0.18},
-        {"latin_name": "Agaricus xanthodermus", "p": 0.10},
-        {"latin_name": "Macrolepiota procera", "p": 0.06},
-        {"latin_name": "Coprinus comatus", "p": 0.04}
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.62
+        },
+        {
+          "latin_name": "Amanita phalloides",
+          "p": 0.18
+        },
+        {
+          "latin_name": "Agaricus xanthodermus",
+          "p": 0.1
+        },
+        {
+          "latin_name": "Macrolepiota procera",
+          "p": 0.06
+        },
+        {
+          "latin_name": "Coprinus comatus",
+          "p": 0.04
+        }
       ],
       "beklenen_seviye": "KIRMIZI"
     },
@@ -30,11 +48,26 @@
       "foto_ipucu": "Zeytin yeşili şapka, beyaz lameller, sapta halka",
       "mantar_olma_olasiligi": 0.99,
       "simule_top5": [
-        {"latin_name": "Amanita phalloides", "p": 0.91},
-        {"latin_name": "Amanita rubescens", "p": 0.04},
-        {"latin_name": "Amanita pantherina", "p": 0.03},
-        {"latin_name": "Agaricus campestris", "p": 0.01},
-        {"latin_name": "Entoloma sinuatum", "p": 0.01}
+        {
+          "latin_name": "Amanita phalloides",
+          "p": 0.91
+        },
+        {
+          "latin_name": "Amanita rubescens",
+          "p": 0.04
+        },
+        {
+          "latin_name": "Amanita pantherina",
+          "p": 0.03
+        },
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.01
+        },
+        {
+          "latin_name": "Entoloma sinuatum",
+          "p": 0.01
+        }
       ],
       "beklenen_seviye": "KIRMIZI"
     },
@@ -45,11 +78,26 @@
       "foto_ipucu": "Turuncu huni şeklinde şapka, alt yüz net değil",
       "mantar_olma_olasiligi": 0.98,
       "simule_top5": [
-        {"latin_name": "Cantharellus cibarius", "p": 0.78},
-        {"latin_name": "Omphalotus olearius", "p": 0.14},
-        {"latin_name": "Lactarius deliciosus", "p": 0.04},
-        {"latin_name": "Cortinarius orellanus", "p": 0.02},
-        {"latin_name": "Boletus edulis", "p": 0.02}
+        {
+          "latin_name": "Cantharellus cibarius",
+          "p": 0.78
+        },
+        {
+          "latin_name": "Omphalotus olearius",
+          "p": 0.14
+        },
+        {
+          "latin_name": "Lactarius deliciosus",
+          "p": 0.04
+        },
+        {
+          "latin_name": "Hydnum repandum",
+          "p": 0.02
+        },
+        {
+          "latin_name": "Boletus edulis",
+          "p": 0.02
+        }
       ],
       "beklenen_seviye": "KIRMIZI"
     },
@@ -60,11 +108,26 @@
       "foto_ipucu": "Kahverengi kıvrımlı şapka, kesit fotoğrafı yok",
       "mantar_olma_olasiligi": 0.96,
       "simule_top5": [
-        {"latin_name": "Morchella esculenta", "p": 0.70},
-        {"latin_name": "Gyromitra esculenta", "p": 0.22},
-        {"latin_name": "Boletus edulis", "p": 0.03},
-        {"latin_name": "Coprinus comatus", "p": 0.03},
-        {"latin_name": "Agaricus campestris", "p": 0.02}
+        {
+          "latin_name": "Morchella esculenta",
+          "p": 0.7
+        },
+        {
+          "latin_name": "Gyromitra esculenta",
+          "p": 0.22
+        },
+        {
+          "latin_name": "Boletus edulis",
+          "p": 0.03
+        },
+        {
+          "latin_name": "Coprinus comatus",
+          "p": 0.03
+        },
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.02
+        }
       ],
       "beklenen_seviye": "KIRMIZI"
     },
@@ -75,11 +138,26 @@
       "foto_ipucu": "Bulanık, kahverengimsi bir şekil",
       "mantar_olma_olasiligi": 0.81,
       "simule_top5": [
-        {"latin_name": "Agaricus campestris", "p": 0.28},
-        {"latin_name": "Boletus edulis", "p": 0.22},
-        {"latin_name": "Macrolepiota procera", "p": 0.20},
-        {"latin_name": "Lactarius deliciosus", "p": 0.18},
-        {"latin_name": "Pleurotus ostreatus", "p": 0.12}
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.28
+        },
+        {
+          "latin_name": "Boletus edulis",
+          "p": 0.22
+        },
+        {
+          "latin_name": "Macrolepiota procera",
+          "p": 0.2
+        },
+        {
+          "latin_name": "Lactarius deliciosus",
+          "p": 0.18
+        },
+        {
+          "latin_name": "Pleurotus ostreatus",
+          "p": 0.12
+        }
       ],
       "beklenen_seviye": "SARI"
     },
@@ -90,26 +168,56 @@
       "foto_ipucu": "Çam kozalağı, toprak zemin",
       "mantar_olma_olasiligi": 0.12,
       "simule_top5": [
-        {"latin_name": "Boletus edulis", "p": 0.35},
-        {"latin_name": "Morchella esculenta", "p": 0.25},
-        {"latin_name": "Lactarius deliciosus", "p": 0.20},
-        {"latin_name": "Gyromitra esculenta", "p": 0.12},
-        {"latin_name": "Pleurotus ostreatus", "p": 0.08}
+        {
+          "latin_name": "Boletus edulis",
+          "p": 0.35
+        },
+        {
+          "latin_name": "Morchella esculenta",
+          "p": 0.25
+        },
+        {
+          "latin_name": "Lactarius deliciosus",
+          "p": 0.2
+        },
+        {
+          "latin_name": "Gyromitra esculenta",
+          "p": 0.12
+        },
+        {
+          "latin_name": "Pleurotus ostreatus",
+          "p": 0.08
+        }
       ],
       "beklenen_seviye": "MANTAR_DEGIL"
     },
     {
       "id": "c7",
-      "baslik": "Peri halkası + zehirli çayır hunisi",
-      "aciklama": "Çimenlikte halka şeklinde dizilmiş küçük açık renkli mantarlar. Aynı çayırda gerçekçi karışıklık.",
-      "foto_ipucu": "Küçük bej şapkalar, çimen, halka düzeni",
+      "baslik": "Çayır mantarı + kurşuni pembe yaprak",
+      "aciklama": "Yayla çayırında bulunan açık renkli mantar. Birinci tahmin zararsız görünüyor ama ağır zehirlenme yapan Entoloma adaylar arasında.",
+      "foto_ipucu": "Beyazımsı şapka, çayır kenarı, lameller soluk pembe",
       "mantar_olma_olasiligi": 0.95,
       "simule_top5": [
-        {"latin_name": "Marasmius oreades", "p": 0.58},
-        {"latin_name": "Clitocybe rivulosa", "p": 0.30},
-        {"latin_name": "Agaricus campestris", "p": 0.06},
-        {"latin_name": "Coprinus comatus", "p": 0.04},
-        {"latin_name": "Macrolepiota procera", "p": 0.02}
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.55
+        },
+        {
+          "latin_name": "Entoloma sinuatum",
+          "p": 0.25
+        },
+        {
+          "latin_name": "Marasmius oreades",
+          "p": 0.1
+        },
+        {
+          "latin_name": "Agaricus xanthodermus",
+          "p": 0.06
+        },
+        {
+          "latin_name": "Coprinus comatus",
+          "p": 0.04
+        }
       ],
       "beklenen_seviye": "KIRMIZI"
     },
@@ -120,11 +228,26 @@
       "foto_ipucu": "Gri-bej istiridye şekilli şapkalar, ağaç gövdesi",
       "mantar_olma_olasiligi": 0.98,
       "simule_top5": [
-        {"latin_name": "Pleurotus ostreatus", "p": 0.88},
-        {"latin_name": "Lactarius deliciosus", "p": 0.04},
-        {"latin_name": "Agaricus campestris", "p": 0.03},
-        {"latin_name": "Coprinus comatus", "p": 0.03},
-        {"latin_name": "Marasmius oreades", "p": 0.02}
+        {
+          "latin_name": "Pleurotus ostreatus",
+          "p": 0.88
+        },
+        {
+          "latin_name": "Lactarius deliciosus",
+          "p": 0.04
+        },
+        {
+          "latin_name": "Agaricus campestris",
+          "p": 0.03
+        },
+        {
+          "latin_name": "Coprinus comatus",
+          "p": 0.03
+        },
+        {
+          "latin_name": "Marasmius oreades",
+          "p": 0.02
+        }
       ],
       "beklenen_seviye": "GRI"
     }

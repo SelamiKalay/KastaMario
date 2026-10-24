@@ -51,7 +51,7 @@ def test_tehlikeli_turler_toplanmaz(r):
 
 
 def test_amatoksinli_turler_gecikmeli():
-    for ad in ("Amanita phalloides", "Amanita virosa", "Galerina marginata", "Lepiota brunneoincarnata"):
+    for ad in ("Amanita phalloides", "Galerina marginata", "Lepiota brunneoincarnata"):
         assert float(INFO[ad]["belirti_saat_min"]) >= 6
 
 

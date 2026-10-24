@@ -55,6 +55,11 @@ def test_taksonomi_normalize_uyusmayani_atar():
     assert out[0]["tur"] == "Amanita muscaria"
 
 
+def test_rehber_disi_siniflar_cikarilir_mantar_degil_kalir():
+    rows = [{"sinif": s} for s in ["Amanita phalloides", "Clitocybe rivulosa", "mantar_degil"]]
+    assert [r["sinif"] for r in clean.rehberdekiler(rows, {"Amanita phalloides"})] == ["Amanita phalloides", "mantar_degil"]
+
+
 def test_taksonomi_normalize_es_anlamli_adi_kabul_eder():
     rows = [{"sinif": "Clitocybe rivulosa", "istenen_taxon_adi": "Clitocybe dealbata", "gozlem_taxon_adi": "Clitocybe dealbata"},
             {"sinif": "Clitocybe rivulosa", "istenen_taxon_adi": "Clitocybe dealbata", "gozlem_taxon_adi": "Clitocybe nebularis"}]
