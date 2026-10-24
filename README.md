@@ -1,12 +1,14 @@
-# 🍄 MycoGuard Kastamonu
+# 🍄 KastaMario — Kastamonu mantar rehberi
 
-**Yapay zekâ destekli mantar zehirlenme risk rehberi.** Mantarın fotoğrafını çekin; MycoGuard olası türleri, zehirlenme riskini, ölümcül ikiz türleri, belirtilerin kaç saatte başladığını, yediyseniz ne yapmanız gerektiğini, mantarın nerede ve ne zaman yetiştiğini gösterir. Kastamonu ormanları (Küre Dağları, Ilgaz, kıyı kestane-meşe ormanları) için hazırlanmıştır.
+<img src="app/img/kastamario.png" alt="KastaMario logosu" width="120" align="right">
 
-> MycoGuard **hiçbir mantarın yenilebilir olduğunu söylemez.** Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en fazla boş sepettir. Bu asimetri tasarımın temelidir.
+**Yapay zekâ destekli mantar zehirlenme risk rehberi.** Mantarın fotoğrafını çekin; KastaMario olası türleri, zehirlenme riskini, ölümcül ikiz türleri, belirtilerin kaç saatte başladığını, yediyseniz ne yapmanız gerektiğini, mantarın nerede ve ne zaman yetiştiğini gösterir. Kastamonu ormanları (Küre Dağları, Ilgaz, kıyı kestane-meşe ormanları) için hazırlanmıştır.
+
+> KastaMario **hiçbir mantarın yenilebilir olduğunu söylemez.** Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en fazla boş sepettir. Bu asimetri tasarımın temelidir.
 
 ## Yapay zekâ ne yapıyor?
 
-MycoGuard iki açık modeli ve kural tabanlı bir güvenlik katmanını birlikte kullanır:
+KastaMario iki açık modeli ve kural tabanlı bir güvenlik katmanını birlikte kullanır:
 
 | Katman | Model | Lisans | Görevi |
 |---|---|---|---|
@@ -31,10 +33,24 @@ Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mant
      Sonuç + ikiz tür uyarıları + belirti süresi + ilk yardım + Kastamonu takvimi
 ```
 
+## Sonuçlar (test seti — modelin eğitimde hiç görmediği 1.779 fotoğraf)
+
+| Metrik | Değer |
+|---|---:|
+| Doğru tür ilk tahminde (top-1) / ilk 5'te (top-5) | **%89,7 / %98,2** |
+| Ölümcül tür fotoğrafının **KIRMIZI** gösterilmesi | **%100** |
+| Ölümcül veya zehirli tür fotoğrafının **KIRMIZI** gösterilmesi | **%98,8** |
+| **Tehlikeli karışıklık** (zehirli → "düşük riskli aday") | **%0,5** |
+| Zehirli türün "mantar değil" sayılması | %0 |
+| Kalibrasyon hatası (ECE), sıcaklık ölçeklemeyle | 0,114 → 0,016 |
+| Telefonda tahmin süresi (ONNX, internetsiz) | ~0,14 sn |
+
+Model bazı türleri tek başına zor tanır (ör. *Lepiota brunneoincarnata* recall %66,7), ama **en kötü aday kuralı** sayesinde ölümcül türlerin tamamı yine KIRMIZI gösterilir: yapay zekâ ile güvenlik kuralları birlikte çalışır. Ayrıntı: [`results/egitim_raporu.md`](results/egitim_raporu.md).
+
 ## Özellikler
 - 📷 **Tara:** şapka üstü, şapka altı ve sap tabanı için üç fotoğraf yuvası → görüntü modeli ve Gemma 4 **paralel** çalışır → risk, en olası 5 tür, "karıştırılabilecek tehlikeli türler". Gemma'nın bulguları gerçek bir köygöçüren fotoğrafı üzerindeki anatomi işaretlerinde gösterilir (torba bulunursa kırmızı yanar).
-- ✦ **Asistan (Gemma 4):** "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 25 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
-- 📖 **Rehber:** 25 tür, her biri CC lisanslı fotoğraf ve atıfla — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF), iNaturalist/GBIF ve klinik literatür kaynakları
+- 🐻 **Mybear (Gemma 4):** köşedeki balona dokununca açılan sohbet; yanıtlar akarak gelir, internet yoksa **çevrimdışı modda** rehber bilgisinden yanıt verir. "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 25 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
+- 📖 **Rehber:** 27 tür (yöresel **saçak** ve **koçak** dahil), her biri CC lisanslı fotoğraf ve atıfla — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF), iNaturalist/GBIF ve klinik literatür kaynakları
 - 📅 **Takvim:** ay seçici (her ayın tür sayısı, ölümcül tür uyarısı) + seçili ayın türleri; tüm yıl için fenoloji tablosu
 - 🚨 **Yedim!:** 114 (UZEM) / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)
 - 📱 **Mobil:** PWA (ana ekrana eklenebilir, yazı tipleri dahil çevrimdışı çalışır); Capacitor ile Android/iOS paketine hazır
@@ -124,7 +140,7 @@ python -m pytest -q
 
 | Bileşen | Lisans |
 |---|---|
-| MycoGuard kodu | MIT (`LICENSE`) |
+| KastaMario kodu | MIT (`LICENSE`) |
 | Gemma 4 26B A4B (Gemini API) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) |
 | PyTorch / torchvision (EfficientNet-B0 ağırlıkları) | BSD-3 |
 | onnxruntime-web 1.20.1 | MIT |
@@ -134,4 +150,4 @@ python -m pytest -q
 | GBIF kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC — bkz. `docs/veri-kaynaklari.md` |
 
 ## Sorumluluk reddi
-MycoGuard bilgilendirme amaçlıdır; tıbbi tavsiye veya uzman tür tanımının yerine geçmez. Model hata yapabilir; bu yüzden güvenlik kuralları her zaman en kötü olasılığı esas alır. Mantar yediyseniz belirti beklemeden **112** veya **114**'ü (Ulusal Zehir Danışma Merkezi) arayın.
+KastaMario bilgilendirme amaçlıdır; tıbbi tavsiye veya uzman tür tanımının yerine geçmez. Model hata yapabilir; bu yüzden güvenlik kuralları her zaman en kötü olasılığı esas alır. Mantar yediyseniz belirti beklemeden **112** veya **114**'ü (Ulusal Zehir Danışma Merkezi) arayın.

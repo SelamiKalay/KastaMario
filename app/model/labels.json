@@ -16,6 +16,7 @@
   "Craterellus cornucopioides",
   "Entoloma sinuatum",
   "Galerina marginata",
+  "Grifola frondosa",
   "Gyromitra esculenta",
   "Hydnum repandum",
   "Hypholoma fasciculare",
@@ -26,6 +27,7 @@
   "Morchella esculenta",
   "Omphalotus olearius",
   "Pleurotus ostreatus",
+  "Ramaria spp.",
   "Rubroboletus satanas",
   "mantar_degil"
  ],
@@ -40,13 +42,13 @@
   0.224,
   0.225
  ],
- "temperature": 0.6812846660614014,
+ "temperature": 0.6782135963439941,
  "metrics": {
-  "top1": 0.8988350629806519,
-  "top5": 0.9773145318031311,
-  "macro_recall": 0.8943158806641414,
-  "tehlikeli_tur_kirmizi_orani": 0.9762308998302207,
-  "tehlikeli_karisiklik_orani": 0.010186757215619695,
-  "ece_kalibre": 0.01721344143152237
+  "top1": 0.8971332311630249,
+  "top5": 0.9820123910903931,
+  "macro_recall": 0.8901314563175104,
+  "tehlikeli_tur_kirmizi_orani": 0.9881756756756757,
+  "tehlikeli_karisiklik_orani": 0.005067567567567568,
+  "ece_kalibre": 0.016428418457508087
  }
 }
