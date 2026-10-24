@@ -1,0 +1,132 @@
+{
+  "aciklama": "MycoGuard konsept prototipi için 8 demo senaryosu. Model çıktıları SİMÜLEDİR (elle verilmiştir); gerçek bir modelden gelmez.",
+  "surum": "0.1.0",
+  "esikler": {
+    "mantar_degil_esigi": 0.5,
+    "tehlikeli_aday_min_olasilik": 0.05,
+    "tehlikeli_risk_seviyeleri": ["olumcul", "yuksek"],
+    "belirsizlik_esigi": 0.6
+  },
+  "senaryolar": [
+    {
+      "id": "c1",
+      "baslik": "Çayır mantarı + ölümcül ikiz",
+      "aciklama": "Çayırda bulunan beyaz şapkalı mantar. Birinci tahmin zararsız görünüyor ama ölümcül Amanita phalloides adaylar arasında.",
+      "foto_ipucu": "Beyaz şapka, çimenlik alan, sap tabanı görünmüyor",
+      "mantar_olma_olasiligi": 0.97,
+      "simule_top5": [
+        {"latin_name": "Agaricus campestris", "p": 0.62},
+        {"latin_name": "Amanita phalloides", "p": 0.18},
+        {"latin_name": "Agaricus xanthodermus", "p": 0.10},
+        {"latin_name": "Macrolepiota procera", "p": 0.06},
+        {"latin_name": "Coprinus comatus", "p": 0.04}
+      ],
+      "beklenen_seviye": "KIRMIZI"
+    },
+    {
+      "id": "c2",
+      "baslik": "Köygöçüren (%91)",
+      "aciklama": "Meşe altında yeşilimsi şapkalı mantar. Ölümcül tür net biçimde birinci aday.",
+      "foto_ipucu": "Zeytin yeşili şapka, beyaz lameller, sapta halka",
+      "mantar_olma_olasiligi": 0.99,
+      "simule_top5": [
+        {"latin_name": "Amanita phalloides", "p": 0.91},
+        {"latin_name": "Amanita rubescens", "p": 0.04},
+        {"latin_name": "Amanita pantherina", "p": 0.03},
+        {"latin_name": "Agaricus campestris", "p": 0.01},
+        {"latin_name": "Entoloma sinuatum", "p": 0.01}
+      ],
+      "beklenen_seviye": "KIRMIZI"
+    },
+    {
+      "id": "c3",
+      "baslik": "Horoz mantarı + zeytin mantarı",
+      "aciklama": "Turuncu-sarı mantar. Birinci tahmin güven eşiğini geçiyor ama zehirli ikiz adaylar arasında.",
+      "foto_ipucu": "Turuncu huni şeklinde şapka, alt yüz net değil",
+      "mantar_olma_olasiligi": 0.98,
+      "simule_top5": [
+        {"latin_name": "Cantharellus cibarius", "p": 0.78},
+        {"latin_name": "Omphalotus olearius", "p": 0.14},
+        {"latin_name": "Lactarius deliciosus", "p": 0.04},
+        {"latin_name": "Cortinarius orellanus", "p": 0.02},
+        {"latin_name": "Boletus edulis", "p": 0.02}
+      ],
+      "beklenen_seviye": "KIRMIZI"
+    },
+    {
+      "id": "c4",
+      "baslik": "Kuzugöbeği + sahte kuzugöbeği",
+      "aciklama": "İlkbaharda bulunan petekli/kıvrımlı şapkalı mantar.",
+      "foto_ipucu": "Kahverengi kıvrımlı şapka, kesit fotoğrafı yok",
+      "mantar_olma_olasiligi": 0.96,
+      "simule_top5": [
+        {"latin_name": "Morchella esculenta", "p": 0.70},
+        {"latin_name": "Gyromitra esculenta", "p": 0.22},
+        {"latin_name": "Boletus edulis", "p": 0.03},
+        {"latin_name": "Coprinus comatus", "p": 0.03},
+        {"latin_name": "Agaricus campestris", "p": 0.02}
+      ],
+      "beklenen_seviye": "KIRMIZI"
+    },
+    {
+      "id": "c5",
+      "baslik": "Bulanık fotoğraf",
+      "aciklama": "Odaklanmamış, uzaktan çekilmiş fotoğraf. Hiçbir aday baskın değil.",
+      "foto_ipucu": "Bulanık, kahverengimsi bir şekil",
+      "mantar_olma_olasiligi": 0.81,
+      "simule_top5": [
+        {"latin_name": "Agaricus campestris", "p": 0.28},
+        {"latin_name": "Boletus edulis", "p": 0.22},
+        {"latin_name": "Macrolepiota procera", "p": 0.20},
+        {"latin_name": "Lactarius deliciosus", "p": 0.18},
+        {"latin_name": "Pleurotus ostreatus", "p": 0.12}
+      ],
+      "beklenen_seviye": "SARI"
+    },
+    {
+      "id": "c6",
+      "baslik": "Taş / kozalak fotoğrafı",
+      "aciklama": "Kullanıcı yanlışlıkla bir kozalak fotoğrafı yüklüyor.",
+      "foto_ipucu": "Çam kozalağı, toprak zemin",
+      "mantar_olma_olasiligi": 0.12,
+      "simule_top5": [
+        {"latin_name": "Boletus edulis", "p": 0.35},
+        {"latin_name": "Morchella esculenta", "p": 0.25},
+        {"latin_name": "Lactarius deliciosus", "p": 0.20},
+        {"latin_name": "Gyromitra esculenta", "p": 0.12},
+        {"latin_name": "Pleurotus ostreatus", "p": 0.08}
+      ],
+      "beklenen_seviye": "MANTAR_DEGIL"
+    },
+    {
+      "id": "c7",
+      "baslik": "Peri halkası + zehirli çayır hunisi",
+      "aciklama": "Çimenlikte halka şeklinde dizilmiş küçük açık renkli mantarlar. Aynı çayırda gerçekçi karışıklık.",
+      "foto_ipucu": "Küçük bej şapkalar, çimen, halka düzeni",
+      "mantar_olma_olasiligi": 0.95,
+      "simule_top5": [
+        {"latin_name": "Marasmius oreades", "p": 0.58},
+        {"latin_name": "Clitocybe rivulosa", "p": 0.30},
+        {"latin_name": "Agaricus campestris", "p": 0.06},
+        {"latin_name": "Coprinus comatus", "p": 0.04},
+        {"latin_name": "Macrolepiota procera", "p": 0.02}
+      ],
+      "beklenen_seviye": "KIRMIZI"
+    },
+    {
+      "id": "c8",
+      "baslik": "İstiridye mantarı (%88)",
+      "aciklama": "Kayın gövdesinde raf şeklinde dizilmiş mantarlar. Düşük riskli aday; ama sistem yine de 'güvenli' demez.",
+      "foto_ipucu": "Gri-bej istiridye şekilli şapkalar, ağaç gövdesi",
+      "mantar_olma_olasiligi": 0.98,
+      "simule_top5": [
+        {"latin_name": "Pleurotus ostreatus", "p": 0.88},
+        {"latin_name": "Lactarius deliciosus", "p": 0.04},
+        {"latin_name": "Agaricus campestris", "p": 0.03},
+        {"latin_name": "Coprinus comatus", "p": 0.03},
+        {"latin_name": "Marasmius oreades", "p": 0.02}
+      ],
+      "beklenen_seviye": "GRI"
+    }
+  ]
+}
