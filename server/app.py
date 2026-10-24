@@ -6,6 +6,7 @@ Uç noktalar (mobil uygulama için CORS açık):
     GET  /api/durum    -> asistan hazır mı?
     POST /api/analiz   {images: [base64, ...] (1-3 açı)}      -> görsel özellikler + risk yükseltme
     POST /api/sohbet   {mesajlar: [...], baglam: {...}}       -> bilgi tabanına dayalı yanıt
+    POST /api/sohbet-akis  (aynı gövde)                       -> yanıt parça parça (NDJSON: {"t": ...} ... {"son": true})
 """
 import json
 import os
@@ -68,6 +69,27 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _akis(self, olaylar):
+        """Her satırı bir JSON olay olan akış (NDJSON). İlk parça gelmeden hata olursa normal 503 döner."""
+        olaylar = iter(olaylar)
+        ilk = next(olaylar)   # API hatası burada yakalanır (do_POST'taki except)
+        self.send_response(200)
+        self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+        self.send_header("Cache-Control", "no-cache")
+        self.send_header("X-Accel-Buffering", "no")
+        self.end_headers()
+        try:
+            for olay in [ilk] if ilk else []:
+                self.wfile.write((json.dumps(olay, ensure_ascii=False) + "\n").encode())
+            for olay in olaylar:
+                self.wfile.write((json.dumps(olay, ensure_ascii=False) + "\n").encode())
+                self.wfile.flush()
+        except gemma.LLMHatasi as e:
+            self.log_error("LLM akış: %s", e)
+            self.wfile.write((json.dumps({"hata": "Yanıt yarıda kesildi; lütfen tekrar deneyin."}, ensure_ascii=False) + "\n").encode())
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass   # kullanıcı paneli kapattı
+
     def do_OPTIONS(self):
         self.send_response(204)
         self.end_headers()
@@ -94,6 +116,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, {"ozellikler": oz, "foto_sayisi": min(3, len(images)), **gemma.risk_yukseltme(oz)})
             if self.path == "/api/sohbet":
                 return self._json(200, gemma.sohbet(INFO, body["mesajlar"], body.get("baglam", {})))
+            if self.path == "/api/sohbet-akis":
+                return self._akis(gemma.sohbet_akis(INFO, body["mesajlar"], body.get("baglam", {})))
             return self._json(404, {"hata": "Bulunamadı"})
         except (KeyError, ValueError, TypeError) as e:
             return self._json(400, {"hata": f"Geçersiz istek: {e}"})

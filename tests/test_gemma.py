@@ -217,3 +217,39 @@ def test_gemini_dusunme_seviyesi_gonderilir(yakala, monkeypatch):
     monkeypatch.setattr(gemma, "DUSUNME", "")
     gemma.uret([{"role": "user", "content": "x"}])
     assert "thinkingConfig" not in yakala["body"]["generationConfig"]
+
+
+# ------------------------------------------------------------------ akışlı sohbet
+def test_akis_parcalari_birlesir_ve_son_olay_gelir(monkeypatch):
+    monkeypatch.setattr(gemma, "uret_akis", lambda m, **k: iter(["Köygöçüren ", "ölümcül", "dür.\n- Hemen ", "112"]))
+    olaylar = list(gemma.sohbet_akis(INFO, [{"role": "user", "content": "köygöçüren"}], {}))
+    assert "".join(o.get("t", "") for o in olaylar) == "Köygöçüren ölümcüldür.\n- Hemen 112"
+    assert olaylar[-1]["son"] is True and "Amanita phalloides" in olaylar[-1]["kaynak_turler"]
+
+
+def test_akista_bolunmus_yasak_kelime_suzulur(monkeypatch):
+    monkeypatch.setattr(gemma, "uret_akis", lambda m, **k: iter(["Bu mantar yenile", "bilir ve ", "lezzetlidir."]))
+    metin = "".join(o.get("t", "") for o in gemma.sohbet_akis(INFO, [{"role": "user", "content": "x"}], {}))
+    assert "yenilebilir" not in metin.split("⚠️")[0] and "uzman onayı" in metin
+
+
+@pytest.mark.parametrize("parca,beklenen", [
+    ({"candidates": [{"content": {"parts": [{"text": "düşünce", "thought": True}, {"text": "yanıt"}]}}]}, "yanıt"),
+    ({"candidates": [{"content": {}}]}, ""),
+    ({"choices": [{"delta": {"content": "parça"}}]}, "parça"),
+    ({"choices": [{"delta": {}}]}, ""),
+    ({"choices": [{"message": {"content": "tam"}}]}, "tam"),
+])
+def test_metin_ayiklama(parca, beklenen):
+    assert gemma._metin(parca) == beklenen
+
+
+def test_akis_istegi_dogru_uca_gider(monkeypatch):
+    monkeypatch.setattr(gemma, "_anahtar", lambda: "TEST")
+    monkeypatch.setattr(gemma, "SAGLAYICI", "gemini")
+    url, govde, _ = gemma._istek([{"role": "user", "content": "x"}], (), 0.2, akis=True)
+    assert url.endswith(":streamGenerateContent?alt=sse")
+    monkeypatch.setattr(gemma, "SAGLAYICI", "openai")
+    monkeypatch.setattr(gemma, "OPENAI_URL", "https://x/v1")
+    url, govde, _ = gemma._istek([{"role": "user", "content": "x"}], (), 0.2, akis=True)
+    assert url.endswith("/chat/completions") and govde["stream"] is True

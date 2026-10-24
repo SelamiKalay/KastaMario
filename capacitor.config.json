@@ -3,5 +3,5 @@
   "appName": "KastaMario",
   "webDir": "app",
   "android": { "allowMixedContent": false },
-  "plugins": { "SplashScreen": { "backgroundColor": "#f4f5f2" } }
+  "plugins": { "SplashScreen": { "backgroundColor": "#0d2113" } }
 }

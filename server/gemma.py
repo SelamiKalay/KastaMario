@@ -45,7 +45,8 @@ SISTEM = (
     "genellikle 4-10 madde). Türleri Türkçe adı ve parantez içinde Latince adıyla an, önemli kelimeleri **kalın** yaz. "
     "Uygun olduğunda risk seviyesi, belirtilerin kaç saatte başladığı, ayırt edici özellikler, yetiştiği yer ve "
     "görüldüğü aylar gibi bilgileri ekle. Liste istenirse TÜR KATALOĞU'ndaki türleri risk gruplarına göre listele. "
-    "Sonunda tek cümlelik güvenlik hatırlatması ve gerekiyorsa bir sonraki adım önerisi yaz.\n"
+    "Sonunda tek cümlelik güvenlik hatırlatması ve gerekiyorsa bir sonraki adım önerisi yaz. Kendini tanıtma ve "
+    "selamlama yapma; doğrudan soruya yanıt ver.\n"
     "KESİN KURALLAR: (1) Hiçbir mantar için 'yenilebilir', 'güvenli', 'zehirsiz', 'yiyebilirsin' deme; yeme kararı "
     "her zaman uzman onayı gerektirir. (2) Yalnızca TÜR KATALOĞU ve BİLGİ TABANI metnine dayan; orada olmayan tür "
     "bilgisini uydurma, rehberde olmadığını söyle. (3) Biri mantar yediğini söylerse önce 112 / 114'ü aramasını, "
@@ -77,14 +78,12 @@ def _post(url, body, headers=None, timeout=120):
         raise LLMHatasi(f"{SAGLAYICI} API'ye ulaşılamadı: {e}") from e
 
 
-def uret(mesajlar, images=(), temperature=0.2):
-    """mesajlar: [{role: system|user|assistant, content}] -> model yanıt metni.
-    images (base64 JPEG listesi) verilirse son kullanıcı mesajına eklenir."""
+def _istek(mesajlar, images, temperature, akis):
+    """Sağlayıcıya göre (url, gövde, başlıklar). akis=True ise yanıt parça parça (SSE) gelir."""
     if not _anahtar():
         raise LLMHatasi("API anahtarı tanımlı değil")
     sistem = "\n\n".join(m["content"] for m in mesajlar if m["role"] == "system")
     diyalog = [m for m in mesajlar if m["role"] != "system"]
-
     if SAGLAYICI == "gemini":
         contents = []
         for i, m in enumerate(diyalog):
@@ -96,27 +95,57 @@ def uret(mesajlar, images=(), temperature=0.2):
         cfg = {"temperature": temperature}
         if DUSUNME:
             cfg["thinkingConfig"] = {"thinkingLevel": DUSUNME}
-        r = _post(f"{GEMINI_URL}/models/{MODEL}:generateContent", {"contents": contents, "generationConfig": cfg},
-                  {"x-goog-api-key": _anahtar()})
-        try:
-            parts = r["candidates"][0]["content"]["parts"]
-        except (KeyError, IndexError) as e:
-            raise LLMHatasi(f"Beklenmeyen yanıt: {json.dumps(r)[:300]}") from e
-        # Düşünme (thought) parçalarını atla, yalnızca yanıt metnini al
-        return "".join(p.get("text", "") for p in parts if not p.get("thought")).strip()
-
+        yol = ":streamGenerateContent?alt=sse" if akis else ":generateContent"
+        return f"{GEMINI_URL}/models/{MODEL}{yol}", {"contents": contents, "generationConfig": cfg}, {"x-goog-api-key": _anahtar()}
     if not OPENAI_URL:
         raise LLMHatasi("OPENAI_BASE_URL tanımlı değil")
     msgs = ([{"role": "system", "content": sistem}] if sistem else []) + [dict(m) for m in diyalog]
     if images:
         msgs[-1]["content"] = [{"type": "text", "text": msgs[-1]["content"]}] + \
             [{"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{b}"}} for b in images]
-    r = _post(f"{OPENAI_URL}/chat/completions", {"model": MODEL, "messages": msgs, "temperature": temperature},
-              {"Authorization": f"Bearer {_anahtar()}"})
+    govde = {"model": MODEL, "messages": msgs, "temperature": temperature, **({"stream": True} if akis else {})}
+    return f"{OPENAI_URL}/chat/completions", govde, {"Authorization": f"Bearer {_anahtar()}"}
+
+
+def _metin(r):
+    """Tek bir (tam ya da akış parçası) yanıttan metni çıkarır; Gemini'nin düşünme (thought) parçaları atlanır."""
+    if "candidates" in r:
+        parts = (r["candidates"][0].get("content") or {}).get("parts", [])
+        return "".join(p.get("text", "") for p in parts if not p.get("thought"))
+    c = r["choices"][0]
+    return (c.get("delta") or c.get("message") or {}).get("content") or ""
+
+
+def uret(mesajlar, images=(), temperature=0.2):
+    """mesajlar: [{role: system|user|assistant, content}] -> model yanıt metni.
+    images (base64 JPEG listesi) verilirse son kullanıcı mesajına eklenir."""
+    r = _post(*_istek(mesajlar, images, temperature, akis=False))
     try:
-        return r["choices"][0]["message"]["content"].strip()
+        return _metin(r).strip()
     except (KeyError, IndexError) as e:
         raise LLMHatasi(f"Beklenmeyen yanıt: {json.dumps(r)[:300]}") from e
+
+
+def uret_akis(mesajlar, temperature=0.2):
+    """Yanıtı geldikçe parça parça üretir (Gemini ve OpenAI uyumlu SSE)."""
+    url, govde, basliklar = _istek(mesajlar, (), temperature, akis=True)
+    req = urllib.request.Request(url, data=json.dumps(govde).encode(), headers={"Content-Type": "application/json", **basliklar})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            for satir in r:
+                satir = satir.decode("utf-8").strip()
+                if not satir.startswith("data:") or satir == "data: [DONE]":
+                    continue
+                try:
+                    parca = _metin(json.loads(satir[5:]))
+                except (ValueError, KeyError, IndexError):
+                    continue
+                if parca:
+                    yield parca
+    except urllib.error.HTTPError as e:
+        raise LLMHatasi(f"{SAGLAYICI} API hatası {e.code}: {e.read()[:300].decode(errors='replace')}") from e
+    except OSError as e:
+        raise LLMHatasi(f"{SAGLAYICI} API'ye ulaşılamadı: {e}") from e
 
 
 def durum():
@@ -202,15 +231,14 @@ def katalog(info):
     for r in sorted(info.values(), key=lambda r: ["olumcul", "yuksek", "orta", "dusuk"].index(r["risk"])):
         aylar = ", ".join(AY_ADLARI[int(a) - 1] for a in r["aylar"].split(";") if a)
         yerel = f"; yöresel adı: {r['yerel_ad']}" if r["yerel_ad"] not in ("", "—") else ""
-        satirlar.append(f"- {r['turkce_ad']} ({r['latin_name']}) — {RISK_ADI[r['risk']]}{yerel}; görüldüğü aylar: {aylar}; "
-                        f"belirti başlangıcı: {r['belirti_baslangici']}; yetiştiği yer: {r['habitat']}")
+        satirlar.append(f"- {r['turkce_ad']} ({r['latin_name']}) — {RISK_ADI[r['risk']]}{yerel}; aylar: {aylar}")
     return "\n".join(satirlar)
 
 
 GENEL_KELIMELER = {"mantarı", "mantar", "mantari", "zehirli", "yeşil", "kırmızı", "beyaz", "siyah", "sahte", "benekli"}
 
 
-def ilgili_turler(info, soru, baglam_adlari, n=6):
+def ilgili_turler(info, soru, baglam_adlari, n=3):
     """Basit anahtar kelime eşleşmesiyle (RAG) soruyla ilgili türleri seçer.
     'mantarı' gibi her türün adında geçen genel kelimeler eşleşme sayılmaz."""
     kelimeler = re.findall(r"\w+", soru.lower())
@@ -224,8 +252,10 @@ def ilgili_turler(info, soru, baglam_adlari, n=6):
     return secilen[:n]
 
 
-def sohbet(info, mesajlar, baglam):
-    """mesajlar: [{role, content}], baglam: {seviye, adaylar:[ad], ozellikler}"""
+HATIRLATMA = "\n\n⚠️ Hatırlatma: KastaMario hiçbir mantarın yenilebilir olduğunu söylemez; yeme kararı için uzman onayı şarttır."
+
+
+def _sohbet_hazirla(info, mesajlar, baglam):
     mesajlar = [{"role": m["role"] if m.get("role") in ("user", "assistant") else "user", "content": str(m.get("content", ""))[:2000]}
                 for m in mesajlar[-8:]]
     adlar = ilgili_turler(info, mesajlar[-1]["content"], baglam.get("adaylar", []))
@@ -235,8 +265,38 @@ def sohbet(info, mesajlar, baglam):
         sistem += (f"\n\nSON ANALİZ: risk seviyesi {baglam['seviye']}; adaylar: {', '.join(baglam.get('adaylar', []))}; "
                    f"görsel bulgular: {json.dumps(baglam.get('ozellikler') or {}, ensure_ascii=False)}. "
                    "Risk seviyesini asla düşük gösterme.")
-    cevap = uret([{"role": "system", "content": sistem}] + mesajlar)
+    return [{"role": "system", "content": sistem}] + mesajlar, adlar
+
+
+def sohbet(info, mesajlar, baglam):
+    """mesajlar: [{role, content}], baglam: {seviye, adaylar:[ad], ozellikler}"""
+    msgs, adlar = _sohbet_hazirla(info, mesajlar, baglam)
+    cevap = uret(msgs)
     if YASAK.search(cevap):
-        cevap = YASAK.sub("[uzman onayı gerekir]", cevap)
-        cevap += "\n\n⚠️ Hatırlatma: KastaMario hiçbir mantarın yenilebilir olduğunu söylemez; yeme kararı için uzman onayı şarttır."
+        cevap = YASAK.sub("[uzman onayı gerekir]", cevap) + HATIRLATMA
     return {"cevap": cevap, "kaynak_turler": adlar}
+
+
+def sohbet_akis(info, mesajlar, baglam):
+    """Akışlı sohbet: {"t": metin parçası} olayları, en sonda {"son": true, "kaynak_turler": [...]}.
+    Yasak ifade süzgeci parçalar arasında bölünen kelimeleri kaçırmasın diye metin kelime sınırında gönderilir."""
+    msgs, adlar = _sohbet_hazirla(info, mesajlar, baglam)
+    tampon, suzuldu = "", False
+
+    def temizle(s):
+        nonlocal suzuldu
+        yeni = YASAK.sub("[uzman onayı gerekir]", s)
+        suzuldu |= yeni != s
+        return yeni
+
+    for parca in uret_akis(msgs):
+        tampon += parca
+        kes = max(tampon.rfind(" "), tampon.rfind("\n"))
+        if kes > 0:
+            yield {"t": temizle(tampon[:kes + 1])}
+            tampon = tampon[kes + 1:]
+    if tampon:
+        yield {"t": temizle(tampon)}
+    if suzuldu:
+        yield {"t": HATIRLATMA}
+    yield {"son": True, "kaynak_turler": adlar}

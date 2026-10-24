@@ -1,0 +1,52 @@
+{
+ "version": "1.0",
+ "arch": "EfficientNet-B0",
+ "classes": [
+  "Agaricus campestris",
+  "Agaricus xanthodermus",
+  "Amanita caesarea",
+  "Amanita muscaria",
+  "Amanita pantherina",
+  "Amanita phalloides",
+  "Amanita rubescens",
+  "Armillaria mellea",
+  "Boletus edulis",
+  "Cantharellus cibarius",
+  "Coprinus comatus",
+  "Craterellus cornucopioides",
+  "Entoloma sinuatum",
+  "Galerina marginata",
+  "Gyromitra esculenta",
+  "Hydnum repandum",
+  "Hypholoma fasciculare",
+  "Lactarius deliciosus",
+  "Lepiota brunneoincarnata",
+  "Macrolepiota procera",
+  "Marasmius oreades",
+  "Morchella esculenta",
+  "Omphalotus olearius",
+  "Pleurotus ostreatus",
+  "Rubroboletus satanas",
+  "mantar_degil"
+ ],
+ "input_size": 224,
+ "mean": [
+  0.485,
+  0.456,
+  0.406
+ ],
+ "std": [
+  0.229,
+  0.224,
+  0.225
+ ],
+ "temperature": 0.6812846660614014,
+ "metrics": {
+  "top1": 0.8988350629806519,
+  "top5": 0.9773145318031311,
+  "macro_recall": 0.8943158806641414,
+  "tehlikeli_tur_kirmizi_orani": 0.9762308998302207,
+  "tehlikeli_karisiklik_orani": 0.010186757215619695,
+  "ece_kalibre": 0.01721344143152237
+ }
+}

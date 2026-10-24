@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#26404d">
+<meta name="theme-color" content="#08180c">
 <meta name="description" content="KastaMario: Kastamonu için yapay zekâ destekli mantar zehirlenme risk rehberi.">
 <meta name="apple-mobile-web-app-title" content="KastaMario">
 <title>KastaMario</title>
@@ -12,29 +12,20 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
-  /* ---- Belirteçler: spor beyazı, humus, Küre alacakaranlığı + tehlike renkleri ---- */
+  /* ---- Belirteçler: KastaMario logosundan — orman yeşili zemin, krem yazı; kırmızı yalnızca tehlike için ---- */
   :root {
-    --paper: #f4f5f2; --surface: #ffffff; --ink: #1b1f1d; --muted: #5d6662; --rule: #d8dcd5;
-    --slate: #26404d; --slate-ink: #ffffff; --slate-soft: #e6ecee;
-    --lethal: #b3261e; --lethal-soft: #fbe9e7; --lethal-ink: #7a1610;
-    --toxic: #b54708; --toxic-soft: #fdeee2;
-    --caution: #8a6100; --caution-soft: #fbf1d4; --caution-ink: #5b4000;
-    --low: #4f5b62; --low-soft: #e9ecee;
-    --other: #5b3e96; --other-soft: #efe9f8;
+    --paper: #0d2113; --surface: #16321d; --ink: #f8f0e0; --muted: #bcc6aa; --rule: #2b4a31;
+    --slate: #f8f0e0; --slate-ink: #0d2113; --slate-soft: #24452c;
+    --lethal: #ff8f84; --lethal-soft: #4e1f1b; --lethal-ink: #ffd9d3;
+    --toxic: #ffb37a; --toxic-soft: #4a2c16;
+    --caution: #f3c75c; --caution-soft: #46391a; --caution-ink: #ffe6a6;
+    --low: #cfd6c4; --low-soft: #20402a;
+    --other: #cdb8f5; --other-soft: #3a2f4f;
+    --nav-bg: #08180c;
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --nav: 64px; --radius: 10px;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #111614; --surface: #181e1c; --ink: #e5e9e6; --muted: #9aa5a0; --rule: #2a3330;
-      --slate: #8fb6c7; --slate-ink: #0d1a20; --slate-soft: #1c2a30;
-      --lethal: #f2867c; --lethal-soft: #3a1714; --lethal-ink: #ffc9c2;
-      --toxic: #f0a36b; --toxic-soft: #3a2414; --caution: #e8c063; --caution-soft: #33290f; --caution-ink: #f6dc9c;
-      --low: #a9b4ba; --low-soft: #222b2f; --other: #b9a2ec; --other-soft: #2a2238;
-      color-scheme: dark;
-    }
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -54,7 +45,7 @@
   .wrap { width: min(1080px, 100%); margin: 0 auto; padding: 0 16px; }
 
   /* ---- Üst çubuk ---- */
-  .top { border-bottom: 1px solid var(--rule); background: var(--surface); }
+  .top { border-bottom: 1px solid var(--rule); background: var(--nav-bg); }
   .top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; }
   .mark { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
   .mark img { width: 40px; height: 40px; flex: none; }
@@ -86,18 +77,18 @@
   /* ---- Tara: anatomi + çekim ---- */
   .scan { display: grid; gap: 28px; align-items: start; }
   @media (min-width: 860px) { .scan { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
-  .anatomy { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: #1b1f1d; }
+  .anatomy { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: #08180c; }
   .anatomy img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
-  .anatomy figcaption { padding: 7px 10px; font-size: .7rem; color: #c9d2cf; background: #1b1f1d; }
+  .anatomy figcaption { padding: 7px 10px; font-size: .7rem; color: #bcc6aa; background: #08180c; }
   .pt { position: absolute; width: 0; height: 0; }
   .pt .dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: #fff;
-             box-shadow: 0 0 0 3px rgba(38, 64, 77, .9), 0 2px 8px rgba(0,0,0,.4); transition: background .3s, box-shadow .3s; }
+             box-shadow: 0 0 0 3px rgba(13, 33, 19, .95), 0 2px 8px rgba(0,0,0,.4); transition: background .3s, box-shadow .3s; }
   .pt .lab { position: absolute; top: -16px; display: grid; padding: 5px 9px; border-radius: 8px; white-space: nowrap; line-height: 1.2;
-             background: rgba(16, 22, 20, .84); color: #fff; font-size: .8rem; border-left: 3px solid #8fb6c7; backdrop-filter: blur(4px); }
+             background: rgba(16, 22, 20, .84); color: #fff; font-size: .8rem; border-left: 3px solid #a9c49a; backdrop-filter: blur(4px); }
   .pt.r .lab { left: 18px; } .pt.l .lab { right: 18px; }
-  .pt .lab small { font-size: .72rem; color: #cfe0e6; font-weight: 600; }
+  .pt .lab small { font-size: .72rem; color: #e3ecd6; font-weight: 600; }
   .pt .lab small:empty { display: none; }
-  .pt[data-state="seen"] .dot { background: #8fb6c7; }
+  .pt[data-state="seen"] .dot { background: #a9c49a; }
   .pt[data-state="unknown"] .dot { background: transparent; box-shadow: 0 0 0 2px #fff; outline: 2px dashed rgba(255,255,255,.9); outline-offset: 2px; }
   .pt[data-state="unknown"] .lab { border-left-color: #9aa5a0; }
   .pt[data-state="alert"] .dot { background: #e53935; box-shadow: 0 0 0 3px #fff, 0 0 0 8px rgba(229, 57, 53, .45); animation: alarm 1.2s ease-in-out infinite; }
@@ -106,7 +97,7 @@
   .anatomy.reading .dot { animation: read 1.4s ease-in-out infinite; }
   .anatomy.reading #p-lamel .dot { animation-delay: .2s; } .anatomy.reading #p-sap .dot { animation-delay: .4s; }
   .anatomy.reading #p-halka .dot { animation-delay: .6s; } .anatomy.reading #p-torba .dot { animation-delay: .8s; }
-  @keyframes read { 50% { transform: scale(1.35); background: #8fb6c7; } }
+  @keyframes read { 50% { transform: scale(1.35); background: #a9c49a; } }
   .capture { display: grid; gap: 14px; align-content: start; }
   .angles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .angle { all: unset; box-sizing: border-box; cursor: pointer; display: grid; gap: 6px; text-align: center; font-size: .85rem; }
@@ -148,7 +139,7 @@
   .verdict h2 { font-size: 1.75rem; }
   .verdict .why { font-size: .92rem; color: var(--muted); }
   .verdict .src { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
-  .V-KIRMIZI { border-color: var(--lethal); } .V-KIRMIZI .band { background: var(--lethal); } .V-KIRMIZI h2 { color: var(--lethal); }
+  .V-KIRMIZI { border-color: #e5483c; } .V-KIRMIZI .band { background: #e5483c; } .V-KIRMIZI h2 { color: var(--lethal); }
   .V-SARI .band { background: var(--caution); } .V-SARI h2 { color: var(--caution); }
   .V-MANTAR_DEGIL .band { background: var(--other); } .V-MANTAR_DEGIL h2 { color: var(--other); }
   .verdict.enter { animation: rise .45s cubic-bezier(.2, .8, .2, 1); }
@@ -203,7 +194,7 @@
   .pheno { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; margin-top: 6px; }
   .pheno span { text-align: center; font-size: .68rem; padding: 6px 0; background: var(--low-soft); color: var(--muted); border-radius: 3px; overflow: hidden; }
   .pheno span.on { background: var(--slate); color: var(--slate-ink); font-weight: 600; }
-  .pheno.dng span.on { background: var(--lethal); color: #fff; }
+  .pheno.dng span.on { background: #c62828; color: #fff; }
   .pheno span.now { box-shadow: inset 0 -3px 0 var(--ink); }
   .pheno.axis span { background: none; padding: 0; }
   .records { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; align-items: end; height: 56px; margin-top: 8px; }
@@ -262,7 +253,7 @@
   .strip { grid-column: 2; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; margin-top: 6px; }
   .strip span { font-size: .58rem; text-align: center; padding: 3px 0; border-radius: 3px; background: var(--low-soft); color: var(--muted); overflow: hidden; }
   .strip span.on { background: var(--slate); color: var(--slate-ink); }
-  .strip.dng span.on { background: var(--lethal); color: #fff; }
+  .strip.dng span.on { background: #c62828; color: #fff; }
   .strip span.sel { box-shadow: 0 0 0 2px var(--ink); position: relative; z-index: 1; }
   .phen { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: .85rem; margin-top: 8px; }
   .phen th, .phen td { padding: 0; }
@@ -347,7 +338,7 @@
   .note { padding: 12px 14px; border-radius: 8px; background: var(--low-soft); font-size: .92rem; }
 
   /* ---- Alt sekme çubuğu ---- */
-  nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--rule);
+  nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--nav-bg); border-top: 1px solid var(--rule);
              padding-bottom: env(safe-area-inset-bottom); }
   nav.tabs .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: var(--nav); padding: 0 4px; }
   nav.tabs button { all: unset; cursor: pointer; display: grid; place-items: center; align-content: center; gap: 3px; font-size: .74rem; color: var(--muted); }
@@ -689,12 +680,18 @@ MycoModel.load().then(ok => {
   $("dotModel").classList.toggle("on", !!ok);
   $("lblModel").textContent = ok ? "Görüntü modeli hazır" : "Görüntü modeli yok";
 });
-fetch(API + "api/durum").then(r => r.ok ? r.json() : null).then(s => {
-  gemmaReady = !!(s && s.hazir);
+// Gemma bağlantısı açılışta ve her soruda (bağlı değilse) yeniden denenir: telefon sonradan internete bağlanabilir.
+async function durumYenile() {
+  try {
+    const r = await fetch(API + "api/durum", { cache: "no-store", signal: AbortSignal.timeout(6000) });
+    const s = r.ok ? await r.json() : null;
+    gemmaReady = !!(s && s.hazir);
+  } catch { gemmaReady = false; }
   $("dotGemma").classList.toggle("on", gemmaReady);
   $("lblGemma").textContent = gemmaReady ? "Gemma 4 bağlı" : "Gemma 4 bağlı değil";
-  initChat();
-}).catch(() => { $("lblGemma").textContent = "Gemma 4 bağlı değil"; initChat(); });
+  return gemmaReady;
+}
+durumYenile().then(initChat);
 
 // ---------------- fotoğraf analizi ----------------
 const STEPS = [["Görüntü modeli", "Türü telefonda tahmin eder"], ["Gemma 4", "Ayırt edici işaretleri inceler"], ["Güvenlik kuralları", "En tehlikeli adayı esas alır"]];
@@ -866,28 +863,76 @@ function initChat() {
   if (!gemmaReady) {
     const n = document.createElement("p");
     n.className = "note";
-    n.textContent = "Mybear için internet bağlantısı gerekir. Rehber, takvim ve acil durum bölümleri internetsiz de çalışır.";
+    n.textContent = "Şu an Gemma 4'e bağlı değilim; sorularını çevrimdışı olarak rehber bilgisinden yanıtlarım. İnternet gelince otomatik bağlanırım.";
     $("msgs").appendChild(n);
   }
-  $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında hangi mantarlar çıkar?`, "Sarıkız ile zeytin mantarının farkı ne?"]
+  $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında hangi mantarlar çıkar?`, "Saçak ile koçak nasıl tanınır?"]
     .map(q => `<button type="button">${esc(q)}</button>`).join("");
 }
 $("sugg").onclick = e => { const b = e.target.closest("button"); if (b) ask(b.textContent); };
 $("chatForm").onsubmit = e => { e.preventDefault(); const v = $("chatIn").value.trim(); if (v) { $("chatIn").value = ""; ask(v); } };
+
+// ---- Mybear çevrimdışı modu: Gemma'ya ulaşılamazsa rehber verisinden yanıt (telefon ormanda internetsiz olabilir)
+const GENEL = new Set(["mantar", "mantari", "mantarlar", "zehirli", "yesil", "kirmizi", "beyaz", "siyah", "sahte", "benekli"]);
+function sorudakiTurler(q) {
+  const k = norm(q).split(/[^a-z0-9]+/).filter(Boolean);
+  return SPECIES.map(s => {
+    const adlar = norm(`${s.latin_name} ${s.turkce_ad} ${s.yerel_ad}`).split(/[^a-z0-9]+/).filter(w => w.length >= 4 && !GENEL.has(w));
+    return [s, adlar.filter(a => k.some(w => w.startsWith(a))).length];
+  }).filter(([, p]) => p > 0).sort((a, b) => b[1] - a[1]).map(([s]) => s).slice(0, 3);
+}
+const turOzet = s => `**${s.turkce_ad}** (*${s.latin_name}*) — ${RISK[s.risk]}\n- ${s.zehir_notu}\n- **Belirtiler:** ${s.belirtiler} (başlangıç: ${s.belirti_baslangici})\n- **Nasıl ayırt edilir:** ${s.ayirt_edici_ipucu}\n- **Nerede, ne zaman:** ${s.habitat}; ${s.mevsim}.\n- **Kastamonu:** ${s.kastamonu_notu}`;
+const ayListesi = m => RISK_ORDER.map(r => { const g = SPECIES.filter(s => s.risk === r && months(s).includes(m)); return g.length ? `- **${RISK[r]}:** ${g.map(s => kisaAd(s)).join(", ")}` : ""; }).filter(Boolean).join("\n");
+function yerelYanit(q) {
+  const n = norm(q), turler = sorudakiTurler(q);
+  const ay = AY_UZUN.findIndex(a => n.includes(norm(a))) + 1 || (/\bbu ay|simdi|mevsim|hangi ay|ne zaman/.test(n) ? NOW_M : 0);
+  const parcalar = [];
+  if (/yedi|yedik|yedim|zehirlen|kus|ishal|bulanti|mide|karin|bas don|terle/.test(n))
+    parcalar.push("**Mantar yediysen belirti beklemeden 112'yi ya da 114'ü (Zehir Danışma) ara.**\n- Yenen mantardan örnek sakla, fotoğrafla.\n- Aynı yemeği yiyen herkesi uyar.\n- Belirtiler 6 saatten sonra başladıysa ölümcül zehirlenme olabilir; hemen acile git.\n- Ayrıntılı zaman çizelgesi için **Yedim** sekmesini aç.");
+  turler.forEach(s => parcalar.push(turOzet(s)));
+  if (ay && !turler.length) parcalar.push(`**${AY_UZUN[ay - 1]} ayında rehberdeki türler:**\n${ayListesi(ay)}`);
+  if (!parcalar.length && /liste|hangi mantar|turler|kac tur|hepsi|tum/.test(n))
+    parcalar.push(`**Rehberdeki ${SPECIES.length} tür:**\n` + RISK_ORDER.map(r => `- **${RISK[r]}:** ${SPECIES.filter(s => s.risk === r).map(kisaAd).join(", ")}`).join("\n"));
+  if (!parcalar.length) parcalar.push("Bunu çevrimdışı yanıtlayamadım. Bir tür adı (ör. *köygöçüren*, *saçak*, *kanlıca*), bir ay (ör. *ekim*) ya da *mantar yedim* yazabilirsin.");
+  return "📖 *Çevrimdışı yanıt (rehber bilgisi)*\n\n" + parcalar.join("\n\n") + "\n\nHiçbir mantar için \"yenir\" demem; yeme kararı için uzman onayı gerekir.";
+}
+
 async function ask(q) {
   bubble("user", q);
   chat.push({ role: "user", content: q });
-  if (!gemmaReady) { bubble("assistant", "Şu an Mybear'a bağlanılamıyor. İnternet bağlantınızı kontrol edip tekrar deneyin; bu sırada Rehber ve Yedim bölümlerini kullanabilirsiniz."); return; }
-  const t = bubble("assistant", ""); t.innerHTML = `<span class="dots" aria-label="Yanıt yazılıyor"><span></span><span></span><span></span></span>`;
   $("chatSend").disabled = true;
+  if (!gemmaReady) await durumYenile();
+  if (!gemmaReady) { bubble("assistant", yerelYanit(q)); $("chatSend").disabled = false; return; }
+  const t = bubble("assistant", ""); t.innerHTML = `<span class="dots" aria-label="Yanıt yazılıyor"><span></span><span></span><span></span></span>`;
+  let metin = "", kaynak = [];
   try {
-    const r = await fetch(API + "api/sohbet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mesajlar: chat, baglam: lastCtx || {} }) });
-    const j = await r.json();
-    t.remove();
-    if (!r.ok) throw new Error(j.hata);
-    chat.push({ role: "assistant", content: j.cevap });
-    bubble("assistant", j.cevap, j.kaynak_turler);
-  } catch (err) { t.remove(); bubble("assistant", (err.message || "Bağlantı kurulamadı.") + " Lütfen tekrar deneyin."); }
+    const r = await fetch(API + "api/sohbet-akis", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mesajlar: chat, baglam: lastCtx || {} }), signal: AbortSignal.timeout(90000) });
+    if (!r.ok || !r.body) throw new Error((await r.json().catch(() => ({}))).hata || "bağlantı");
+    const okuyucu = r.body.getReader(), coz = new TextDecoder();
+    let tampon = "";
+    for (;;) {
+      const { value, done } = await okuyucu.read();
+      if (done) break;
+      tampon += coz.decode(value, { stream: true });
+      let i;
+      while ((i = tampon.indexOf("\n")) >= 0) {
+        const satir = tampon.slice(0, i).trim();
+        tampon = tampon.slice(i + 1);
+        if (!satir) continue;
+        const o = JSON.parse(satir);
+        if (o.hata) throw new Error(o.hata);
+        if (o.t) { metin += o.t; t.innerHTML = md(metin); kaydir(); }
+        if (o.son) kaynak = o.kaynak_turler || [];
+      }
+    }
+    if (!metin.trim()) throw new Error("boş yanıt");
+    chat.push({ role: "assistant", content: metin });
+    if (kaynak.length) { const s = document.createElement("span"); s.className = "src"; s.textContent = "Kaynak: " + kaynak.map(n => INFO[n]?.turkce_ad || n).join(", "); t.appendChild(s); }
+  } catch {
+    if (metin.trim()) { t.innerHTML = md(metin + "\n\n*(Yanıt yarıda kesildi.)*"); }
+    else { t.remove(); bubble("assistant", yerelYanit(q)); durumYenile(); }
+  }
   $("chatSend").disabled = false;
 }
 
