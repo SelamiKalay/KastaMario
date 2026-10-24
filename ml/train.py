@@ -74,8 +74,11 @@ def calistir(model, dl, dev, opt=None, crit=None, sched=None, scaler=None):
     egit = opt is not None
     model.train(egit)
     tum_logit, tum_y, kayip = [], [], 0.0
+    t0 = time.time()
     with torch.set_grad_enabled(egit):
-        for x, y in dl:
+        for adim, (x, y) in enumerate(dl, 1):
+            if egit and adim % 25 == 0:
+                print(f"    adım {adim}/{len(dl)}  {time.time() - t0:.0f} sn", flush=True)
             x, y = x.to(dev, non_blocking=True), y.to(dev, non_blocking=True)
             with torch.autocast(dev.type, enabled=dev.type == "cuda"):
                 out = model(x)

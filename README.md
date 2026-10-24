@@ -32,12 +32,14 @@ Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mant
 ```
 
 ## Özellikler
-- 📷 **Tara:** fotoğraf → 3 adımlı yapay zekâ hattı → risk, en olası 5 tür, "bunu sakın karıştırma" kartları
-- ✦ **Asistan (Gemma 4):** "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — yanıtlar yalnızca tür bilgi tabanına dayanır (RAG), yasak ifadeler süzülür
-- 📖 **Rehber:** 25 tür — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF)
-- 📅 **Takvim:** Kastamonu'da hangi ay hangi türler çıkar; ölümcül türlerin dönemi vurgulanır
-- 🚨 **Yedim!:** 114 / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)
-- 📱 **Mobil:** PWA (ana ekrana eklenebilir, çevrimdışı çalışır); Capacitor ile Android/iOS paketine hazır
+- 📷 **Tara:** şapka üstü, şapka altı ve sap tabanı için üç fotoğraf yuvası → görüntü modeli ve Gemma 4 **paralel** çalışır → risk, en olası 5 tür, "karıştırılabilecek tehlikeli türler". Gemma'nın bulguları gerçek bir köygöçüren fotoğrafı üzerindeki anatomi işaretlerinde gösterilir (torba bulunursa kırmızı yanar).
+- ✦ **Asistan (Gemma 4):** "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 25 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
+- 📖 **Rehber:** 25 tür, her biri CC lisanslı fotoğraf ve atıfla — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF), iNaturalist/GBIF ve klinik literatür kaynakları
+- 📅 **Takvim:** ay seçici (her ayın tür sayısı, ölümcül tür uyarısı) + seçili ayın türleri; tüm yıl için fenoloji tablosu
+- 🚨 **Yedim!:** 114 (UZEM) / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)
+- 📱 **Mobil:** PWA (ana ekrana eklenebilir, yazı tipleri dahil çevrimdışı çalışır); Capacitor ile Android/iOS paketine hazır
+
+**Hız:** Gemma 4'ün yanıt öncesi "düşünme" adımı `thinkingLevel: minimal` ile kısıtlandı. İki fotoğraflı görsel analiz **~180 sn → ~5 sn**'ye indi ve ölçümlerde aynı özellikleri buldu (`MYCOGUARD_THINKING` ile değiştirilebilir).
 
 ## Hızlı başlangıç
 
@@ -73,7 +75,9 @@ pip install -r requirements-ml.txt
 python ml/collect.py        # 1. ham veri: iNaturalist fotoğrafları + GBIF Türkiye kayıtları
 python ml/clean.py          # 2. temizleme ve ayrıştırma -> data/clean/ + temizlik_raporu.md
 python ml/train.py          # 3. EfficientNet-B0 eğitimi -> app/model/*.onnx + results/
+python ml/eval_gemma.py     # 4. Gemma 4'ün katkısı (test fotoğrafları, .env'de GEMINI_API_KEY gerekir)
 python ml/thumbs.py         # rehber fotoğrafları (CC lisanslı, atıflı)
+python ml/kaynaklar.py      # tür sayfaları için iNaturalist/GBIF bağlantıları
 python src/build_app_data.py
 ```
 
@@ -91,7 +95,7 @@ python -m pytest -q
 |---|---|
 | `tests/test_decide.py` | 8 örnek vaka, eşik sınırları, en kötü aday kuralı, her tehlikeli tür birinci adaysa KIRMIZI |
 | `tests/test_species_table.py` | Tür tablosu şeması, aylar, belirti saatleri, ikiz türler, tehlikeli türler "Toplanmaz", "güvenli" ifadesi yasağı |
-| `tests/test_parity.py` | Tarayıcıdaki `app/decide.js` ile `src/decide.py` 2000 rastgele vakada aynı kararı veriyor |
+| `tests/test_parity.py` | Tarayıcıdaki `app/decide.js` ile `src/decide.py` 2000 rastgele vakada aynı kararı veriyor; Gemma risk yükseltmesi (`escalate`) iki dilde aynı |
 | `tests/test_gemma.py` | Gemma risk yükseltme kuralları, riskin asla düşmemesi, yasak ifade süzgeci, RAG bağlamı, Gemini ve OpenAI uyumlu istek biçimleri, şema dışı çıktının güvenli varsayılana düşmesi, istek sınırı |
 | `tests/test_clean.py` | İl adı/tür adı/tarih/konum ayrıştırma, lisans filtresi, dHash kopya tespiti, sızıntısız ayırma, dengeleme |
 
@@ -121,6 +125,8 @@ python -m pytest -q
 | Gemma 4 26B A4B (Gemini API) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) |
 | PyTorch / torchvision (EfficientNet-B0 ağırlıkları) | BSD-3 |
 | onnxruntime-web 1.20.1 | MIT |
+| IBM Plex Sans, Newsreader (yerel kopya, `app/fonts/`) | SIL Open Font License 1.1 |
+| Anatomi fotoğrafı (`app/img/anatomi.jpg`) | [iNaturalist gözlemi 315054013](https://www.inaturalist.org/observations/315054013), CC0 |
 | iNaturalist fotoğrafları | Her fotoğrafın kendi CC lisansı; atıflar `data/clean/thumbs.json` ve `data/clean/inat_clean.csv` içinde |
 | GBIF kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC — bkz. `docs/veri-kaynaklari.md` |
 
