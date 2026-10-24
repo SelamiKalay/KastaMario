@@ -904,6 +904,58 @@ window.MYCO_SPECIES = [
   "ayirt_edici_ipucu": "Seyrek, sapa bağlanmayan lameller; sert, bükülünce kırılmayan esnek sap; kuruyup suyla yeniden canlanır.",
   "dogrulama_durumu": "uzman_incelemesinde",
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
+ },
+ {
+  "id": "s26",
+  "latin_name": "Ramaria spp.",
+  "turkce_ad": "Saçak (Mercan mantarları)",
+  "yerel_ad": "Saçak; Mercan mantarı; Keçi sakalı",
+  "risk": "orta",
+  "zehir_notu": "Saçak (mercan) mantarlarının bir kısmı, ör. Ramaria formosa ve Ramaria pallida, şiddetli ishal ve kusma yapar. Türler birbirinden ancak mikroskop ve kimyasal testlerle güvenilir şekilde ayrılabilir; yaşlı örnekler acılaşır.",
+  "belirtiler": "Bulantı, kusma, karın krampları, sulu ishal.",
+  "belirti_baslangici": "30 dakika - 4 saat",
+  "belirti_saat_min": "0.5",
+  "belirti_saat_max": "4",
+  "ilk_yardim_notu": "114'ü arayın; sıvı kaybına dikkat edin, yaşlılarda ve çocuklarda hastaneye başvurun.",
+  "habitat": "Kayın, göknar ve meşe ormanları; yaprak ve iğne döküntüsü olan topraklar",
+  "substrat": "Toprak (mikorizal)",
+  "kastamonu_notu": "Kastamonu'da 'saçak' adıyla toplanan dallı mercan mantarlarındandır; Kastamonu Üniversitesi çalışmalarında yörede toplanan Ramaria türleri bildirilmiştir. Benzer türler çok olduğundan en riskli toplanan gruplardandır.",
+  "sapka_cm": "6-20 (küme genişliği)",
+  "sap_cm": "3-8 (ortak gövde)",
+  "yetisme_sureci": "Mikorizal; yaz sonu-sonbahar yağmurlarından sonra kalın beyaz bir gövdeden yukarı doğru çok sayıda ince dal çıkarır; dal uçları yaşla birlikte solar ve et acılaşır.",
+  "mevsim": "Yaz sonu - Sonbahar",
+  "aylar": "8;9;10;11",
+  "toplama_notu": "Görülme dönemi Ağustos-Kasım. Zehirli benzerleri çok olduğundan toplanması önerilmez; yalnızca uzman onayıyla.",
+  "ikiz_turler": "Ramaria formosa;Ramaria pallida;Calocera viscosa",
+  "ayirt_edici_ipucu": "Şapkası yoktur; kalın beyaz bir gövdeden çıkan sarı, sık dallar mercan gibi görünür. Somon-pembe dallı ve sarı uçlu olanlar (R. formosa) ile soluk mor-krem olanlar (R. pallida) ishal yapar. Odun üzerinde çıkan küçük, yapışkan turuncu 'boynuzlar' (Calocera viscosa) ayrı bir türdür.",
+  "dogrulama_durumu": "uzman_incelemesinde",
+  "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
+ },
+ {
+  "id": "s27",
+  "latin_name": "Grifola frondosa",
+  "turkce_ad": "Koçak (Koyun başı mantarı)",
+  "yerel_ad": "Koçak; Koç mantarı",
+  "risk": "dusuk",
+  "zehir_notu": "Genel olarak zehirsiz kabul edilir. Ağaç dibinde iri kümeler yapan başka türlerle karışabilir; tür onayı uzmana yaptırılmalı.",
+  "belirtiler": "Genelde zehirlenme beklenmez; bozulmuş ya da yanlış tanınmış mantar sindirim şikâyeti yapabilir.",
+  "belirti_baslangici": "—",
+  "belirti_saat_min": "",
+  "belirti_saat_max": "",
+  "ilk_yardim_notu": "Yanlış tür olabilir: şikâyet varsa 114.",
+  "habitat": "Yaşlı meşe ve kestane ağaçlarının dibi, kökleri üzerinde",
+  "substrat": "Canlı ağaç kökü / kütük dibi (büyük kümeler)",
+  "kastamonu_notu": "Kastamonu'da 'koçak' ya da 'koç mantarı' olarak bilinir; yaşlı meşe ve kestane ağaçlarının dibinde sonbaharda iri kümeler halinde çıkması beklenir.",
+  "sapka_cm": "2-7 (tek şapka); küme 15-50",
+  "sap_cm": "1-3 (ortak dallı sap)",
+  "yetisme_sureci": "Yaşlı meşe köklerinde yıllarca yaşar; her sonbahar aynı ağacın dibinde, yüzlerce yelpaze biçimli şapkadan oluşan büyük bir küme verir.",
+  "mevsim": "Sonbahar",
+  "aylar": "9;10;11",
+  "toplama_notu": "Görülme dönemi Eylül-Kasım. Yalnızca uzman tür onayından sonra.",
+  "ikiz_turler": "Meripilus giganteus;Bondarzewia mesenterica",
+  "ayirt_edici_ipucu": "Gri-kahve, kaşık ya da yelpaze biçimli çok sayıda küçük şapka ortak, dallı bir saptan çıkar; alt yüz beyaz ve gözeneklidir. Dev yelpaze mantarı (Meripilus giganteus) daha iri şapkalıdır ve kesilince ya da ezilince kararır.",
+  "dogrulama_durumu": "uzman_incelemesinde",
+  "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  }
 ];
 window.MYCO_GBIF = {
@@ -1356,6 +1408,42 @@ window.MYCO_GBIF = {
    3,
    2
   ]
+ },
+ "Ramaria spp.": {
+  "tr": 7,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4,
+   0,
+   0
+  ]
+ },
+ "Grifola frondosa": {
+  "tr": 0,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
  }
 };
 window.MYCO_THUMBS = {
@@ -1508,6 +1596,18 @@ window.MYCO_THUMBS = {
   "atif": "no rights reserved",
   "lisans": "cc0",
   "kaynak": "https://www.inaturalist.org/observations/58984897"
+ },
+ "Ramaria spp.": {
+  "src": "img/sp/s26.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/179124796"
+ },
+ "Grifola frondosa": {
+  "src": "img/sp/s27.jpg",
+  "atif": "(c) Lorenz Wenner, some rights reserved (CC BY)",
+  "lisans": "cc-by",
+  "kaynak": "https://www.inaturalist.org/observations/113253071"
  }
 };
 window.MYCO_REFS = {
@@ -1778,6 +1878,26 @@ window.MYCO_REFS = {
    {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2537250"
+   }
+  ],
+  "Ramaria spp.": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48707"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2521461"
+   }
+  ],
+  "Grifola frondosa": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/53714"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2540800"
    }
   ]
  }

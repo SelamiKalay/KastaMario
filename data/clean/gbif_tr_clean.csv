@@ -658,6 +658,13 @@ gbifID,tur,enlem,boylam,ay,eventDate,il_norm,kastamonu,basisOfRecord,datasetName
 4910881748,Marasmius oreades,41.166455,29.648498,11,2020-11-01T06:08:02Z,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
 5133138486,Marasmius oreades,39.86264,32.798706,5,2019-05-26T13:03,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
 1990326743,Marasmius oreades,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+6231179721,Ramaria stricta,41.1945,28.992,10,2024-10-05,istanbul,False,HUMAN_OBSERVATION,
+6231346162,Ramaria stricta,41.1731,28.9603,10,2024-10-05,istanbul,False,HUMAN_OBSERVATION,
+6231412192,Ramaria formosa,41.0933,31.6204,10,2020-10-16,gumeli,False,HUMAN_OBSERVATION,
+3456606488,Ramaria stricta,41.178284,28.991934,10,2019-10-29T17:04,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3972049059,Ramaria stricta,41.23179,41.82019,3,2015-03-23,,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+3972078753,Ramaria stricta,,,3,2015-03-23,artvin,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+3761391574,Ramaria stricta,41.2317,41.82,,2010/2021,,False,MATERIAL_SAMPLE,
 6274131581,Fomitopsis pinicola,41.532458,32.761652,4,2026-04-22T15:06,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
 6320710714,Evernia prunastri,41.52792,32.769237,4,2026-04-24T14:26,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
 6320766339,Hypogymnia tubulosa,41.529343,32.770543,4,2026-04-24T13:58,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations

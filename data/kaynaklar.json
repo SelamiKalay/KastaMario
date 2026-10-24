@@ -267,6 +267,26 @@
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2537250"
    }
+  ],
+  "Ramaria spp.": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/48707"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2521461"
+   }
+  ],
+  "Grifola frondosa": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/53714"
+   },
+   {
+    "ad": "GBIF tür sayfası ve görülme kayıtları",
+    "url": "https://www.gbif.org/species/2540800"
+   }
   ]
  }
 }

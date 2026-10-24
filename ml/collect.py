@@ -57,6 +57,7 @@ def get_json(url, params=None, tries=4):
 
 def taxon(name):
     """(taxon_id, iNaturalist'in kabul ettiği ad). Eş anlamlı adlar (sinonim) kabul edilen taksona çözülür."""
+    name = name.removesuffix(" spp.")   # cins düzeyi sınıf: cinsin tüm türleri
     res = get_json(f"{INAT}/taxa", {"q": name, "per_page": 30})["results"]
     for t in res:
         if t["name"].lower() == name.lower():
@@ -176,7 +177,7 @@ def gbif_sorgulari():
     Sorgular bilerek örtüşür; kopyalar temizlik adımında ayıklanır."""
     with open(ROOT / "data" / "species_info.csv", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            key = get_json(f"{GBIF}/species/match", {"name": r["latin_name"], "kingdom": "Fungi"}).get("usageKey")
+            key = get_json(f"{GBIF}/species/match", {"name": r["latin_name"].removesuffix(" spp."), "kingdom": "Fungi"}).get("usageKey")
             if key:
                 yield f"tur:{r['latin_name']}", {"country": "TR", "taxonKey": key}
     yield "kastamonu:kutu", {"country": "TR", "kingdomKey": 5, **KASTAMONU_BBOX}

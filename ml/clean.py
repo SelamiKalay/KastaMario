@@ -166,12 +166,21 @@ def rehberdekiler(rows, turler):
     return [r for r in rows if r["sinif"] == "mantar_degil" or r["sinif"] in turler]
 
 
+def sinifa_uyar(tur, sinif, istenen=""):
+    """Gözlemin türü sınıfa uyuyor mu? 'Ramaria spp.' gibi cins düzeyi sınıflarda cinsin her türü kabul edilir;
+    iNaturalist'in kabul ettiği ad rehberdeki addan farklı olabilir (eş anlamlı / sinonim)."""
+    if not tur:
+        return False
+    if sinif.endswith(" spp."):
+        return tur.split()[0] == sinif.split()[0]
+    return tur in (sinif, tur_adi(istenen))
+
+
 def taksonomi_normalize(rows):
     out = []
     for r in rows:
         tur = tur_adi(r["gozlem_taxon_adi"])
-        # iNaturalist'in kabul ettiği ad, rehberdeki addan farklı olabilir (eş anlamlı / sinonim)
-        if r["sinif"] == "mantar_degil" or (tur and tur in (r["sinif"], tur_adi(r.get("istenen_taxon_adi")))):
+        if r["sinif"] == "mantar_degil" or sinifa_uyar(tur, r["sinif"], r.get("istenen_taxon_adi")):
             out.append({**r, "tur": tur})
     return out
 
@@ -306,7 +315,7 @@ def temizle_gbif(rapor, turler):
         w = csv.writer(f)
         w.writerow(["latin_name", "tr_kayit", "kastamonu_kayit"] + [f"ay_{m:02d}" for m in range(1, 13)])
         for t in turler:
-            g = tur_rows.get(t, [])
+            g = [r for k, v in tur_rows.items() if sinifa_uyar(k, t) for r in v]
             aylar = Counter(r["ay"] for r in g if r["ay"])
             w.writerow([t, len(g), sum(r["kastamonu"] for r in g)] + [aylar.get(m, 0) for m in range(1, 13)])
     return rows
@@ -335,10 +344,10 @@ def rapor_yaz(rapor, inat, atilan, gbif, turler):
         tur_say = Counter(r["tur"] for r in gbif)
         kast = Counter(r["tur"] for r in gbif if r["kastamonu"])
         L += ["", "## GBIF — rehberdeki türler", "", "| Tür | Türkiye | Kastamonu |", "|---|---:|---:|"]
-        L += [f"| *{t}* | {tur_say[t]} | {kast[t]} |" for t in turler]
+        L += [f"| *{t}* | {sum(n for k, n in tur_say.items() if sinifa_uyar(k, t))} | {sum(n for k, n in kast.items() if sinifa_uyar(k, t))} |" for t in turler]
         L += ["", f"## Kastamonu'da en çok kaydı olan 25 tür (GBIF, toplam {sum(kast.values())} kayıt)", "",
               "| Tür | Kayıt | Rehberde |", "|---|---:|:---:|"]
-        L += [f"| *{t}* | {n} | {'✅' if t in turler else ''} |" for t, n in kast.most_common(25)]
+        L += [f"| *{t}* | {n} | {'✅' if any(sinifa_uyar(t, s) for s in turler) else ''} |" for t, n in kast.most_common(25)]
     (CLEAN / "temizlik_raporu.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 

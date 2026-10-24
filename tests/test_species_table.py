@@ -29,7 +29,7 @@ def test_idler_benzersiz():
 @pytest.mark.parametrize("r", ROWS, ids=lambda r: r["id"])
 def test_satir_gecerli(r):
     assert r["risk"] in {"olumcul", "yuksek", "orta", "dusuk"}
-    assert re.fullmatch(r"[A-Z][a-z]+ [a-z]+", r["latin_name"])
+    assert re.fullmatch(r"[A-Z][a-z]+ ([a-z]+|spp\.)", r["latin_name"]), "tür ya da cins düzeyi (Ramaria spp.)"
     aylar = [int(a) for a in r["aylar"].split(";")]
     assert aylar and all(1 <= a <= 12 for a in aylar) and len(set(aylar)) == len(aylar)
     for k in ("turkce_ad", "zehir_notu", "belirtiler", "habitat", "ayirt_edici_ipucu", "kastamonu_notu",

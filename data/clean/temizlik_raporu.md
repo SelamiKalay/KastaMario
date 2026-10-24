@@ -6,23 +6,23 @@
 
 | Veri | Adım | Önce | Sonra | Elenen | Açıklama |
 |---|---|---:|---:|---:|---|
-| GBIF | 1. Yinelenen gbifID | 1268 | 1168 | 100 | Aynı kayıt birden çok sayfada |
-| GBIF | 2. 'Yok' (ABSENT) kayıtlar | 1168 | 1168 | 0 | Türün bulunmadığını bildiren kayıtlar |
-| GBIF | 3. Tür düzeyine indirgeme | 1168 | 1044 | 124 | Cins veya üstü düzeyde tanımlanan kayıtlar |
-| GBIF | 4. Koordinat aykırı değerleri | 1044 | 1044 | 0 | Türkiye dışı, 0/0 veya ters girilmiş koordinatlar |
-| GBIF | 5. Aynı tür-yer-gün kopyaları | 1044 | 839 | 205 | Aynı gözlemin farklı veri setlerindeki kopyası |
-| GBIF | 6. İl adı normalizasyonu | 839 | 839 | 0 | 53 farklı yazım -> 52 il; Kastamonu yazımları: 'Kastamonu'; Kastamonu kaydı: 129 |
-| iNat | 1. Yinelenen photo_id | 15013 | 14460 | 553 | Aynı fotoğraf birden fazla sorguda gelmiş |
-| iNat | 1b. Rehber dışı sınıflar | 14460 | 14460 | 0 | Kastamonu/Karadeniz'de GBIF kaydı olmadığı için rehberden çıkarılan türler |
-| iNat | 2. Lisans filtresi | 14460 | 14460 | 0 | Yalnızca CC lisanslı fotoğraflar |
-| iNat | 3. Eksik URL | 14460 | 14460 | 0 | Fotoğraf adresi olmayan kayıtlar |
-| iNat | 4. Taksonomi normalizasyonu | 14460 | 14312 | 148 | Alt tür/varyete -> tür; sınıfla uyuşmayanlar atıldı |
-| iNat | 5. Bozuk / inmemiş görüntü | 14312 | 14312 | 0 | Açılamayan veya indirilemeyen dosyalar |
-| iNat | 6. Boyut / en-boy aykırı değer | 14312 | 14312 | 0 | Kısa kenar < 128px veya en/boy > 3.0 |
-| iNat | 7. Birebir kopya (aynı dHash) | 14312 | 14299 | 13 | Farklı kimlikle yüklenmiş aynı fotoğraf |
-| iNat | 8. Neredeyse kopya (Hamming<=4) | 14299 | 14279 | 20 | Kırpılmış/sıkıştırılmış kopyalar (train-test sızıntısını önler) |
-| iNat | 9. Tarih / konum ayrıştırma | 14279 | 14279 | 0 | Ay bilinmeyen: 0, konum bilinmeyen: 0 (atılmadı) |
-| iNat | 10. Sınıf dengeleme | 14279 | 11167 | 3112 | Sınıf başına en fazla 450; < 60 örnekli sınıflar çıkarıldı: yok |
+| GBIF | 1. Yinelenen gbifID | 1324 | 1224 | 100 | Aynı kayıt birden çok sayfada |
+| GBIF | 2. 'Yok' (ABSENT) kayıtlar | 1224 | 1224 | 0 | Türün bulunmadığını bildiren kayıtlar |
+| GBIF | 3. Tür düzeyine indirgeme | 1224 | 1092 | 132 | Cins veya üstü düzeyde tanımlanan kayıtlar |
+| GBIF | 4. Koordinat aykırı değerleri | 1092 | 1092 | 0 | Türkiye dışı, 0/0 veya ters girilmiş koordinatlar |
+| GBIF | 5. Aynı tür-yer-gün kopyaları | 1092 | 846 | 246 | Aynı gözlemin farklı veri setlerindeki kopyası |
+| GBIF | 6. İl adı normalizasyonu | 846 | 846 | 0 | 54 farklı yazım -> 53 il; Kastamonu yazımları: 'Kastamonu'; Kastamonu kaydı: 129 |
+| iNat | 1. Yinelenen photo_id | 16132 | 15576 | 556 | Aynı fotoğraf birden fazla sorguda gelmiş |
+| iNat | 1b. Rehber dışı sınıflar | 15576 | 15576 | 0 | Kastamonu/Karadeniz'de GBIF kaydı olmadığı için rehberden çıkarılan türler |
+| iNat | 2. Lisans filtresi | 15576 | 15576 | 0 | Yalnızca CC lisanslı fotoğraflar |
+| iNat | 3. Eksik URL | 15576 | 15576 | 0 | Fotoğraf adresi olmayan kayıtlar |
+| iNat | 4. Taksonomi normalizasyonu | 15576 | 15363 | 213 | Alt tür/varyete -> tür; sınıfla uyuşmayanlar atıldı |
+| iNat | 5. Bozuk / inmemiş görüntü | 15363 | 15363 | 0 | Açılamayan veya indirilemeyen dosyalar |
+| iNat | 6. Boyut / en-boy aykırı değer | 15363 | 15363 | 0 | Kısa kenar < 128px veya en/boy > 3.0 |
+| iNat | 7. Birebir kopya (aynı dHash) | 15363 | 15344 | 19 | Farklı kimlikle yüklenmiş aynı fotoğraf |
+| iNat | 8. Neredeyse kopya (Hamming<=4) | 15344 | 15323 | 21 | Kırpılmış/sıkıştırılmış kopyalar (train-test sızıntısını önler) |
+| iNat | 9. Tarih / konum ayrıştırma | 15323 | 15323 | 0 | Ay bilinmeyen: 0, konum bilinmeyen: 0 (atılmadı) |
+| iNat | 10. Sınıf dengeleme | 15323 | 12057 | 3266 | Sınıf başına en fazla 450; < 60 örnekli sınıflar çıkarıldı: yok |
 
 ## Model veri seti (sınıf × ayrım)
 
@@ -42,21 +42,23 @@
 | Craterellus cornucopioides | 319 | 65 | 66 | 450 | 315 |
 | Entoloma sinuatum | 192 | 40 | 37 | 269 | 177 |
 | Galerina marginata | 313 | 68 | 69 | 450 | 262 |
-| Gyromitra esculenta | 317 | 68 | 65 | 450 | 317 |
-| Hydnum repandum | 324 | 64 | 61 | 449 | 277 |
-| Hypholoma fasciculare | 311 | 70 | 69 | 450 | 296 |
-| Lactarius deliciosus | 318 | 65 | 67 | 450 | 294 |
-| Lepiota brunneoincarnata | 92 | 18 | 20 | 130 | 81 |
-| Macrolepiota procera | 313 | 71 | 65 | 449 | 314 |
-| Marasmius oreades | 315 | 70 | 64 | 449 | 289 |
-| Morchella esculenta | 316 | 66 | 68 | 450 | 330 |
-| Omphalotus olearius | 312 | 68 | 70 | 450 | 288 |
-| Pleurotus ostreatus | 295 | 63 | 66 | 424 | 254 |
-| Rubroboletus satanas | 319 | 67 | 64 | 450 | 287 |
+| Grifola frondosa | 308 | 75 | 67 | 450 | 298 |
+| Gyromitra esculenta | 321 | 65 | 63 | 449 | 322 |
+| Hydnum repandum | 315 | 67 | 68 | 450 | 274 |
+| Hypholoma fasciculare | 313 | 69 | 68 | 450 | 299 |
+| Lactarius deliciosus | 313 | 66 | 70 | 449 | 295 |
+| Lepiota brunneoincarnata | 90 | 19 | 21 | 130 | 81 |
+| Macrolepiota procera | 318 | 64 | 68 | 450 | 312 |
+| Marasmius oreades | 315 | 65 | 69 | 449 | 293 |
+| Morchella esculenta | 316 | 69 | 64 | 449 | 331 |
+| Omphalotus olearius | 315 | 64 | 71 | 450 | 289 |
+| Pleurotus ostreatus | 298 | 62 | 64 | 424 | 254 |
+| Ramaria spp. | 306 | 69 | 66 | 441 | 293 |
+| Rubroboletus satanas | 313 | 69 | 68 | 450 | 281 |
 | mantar_degil | 315 | 68 | 67 | 450 | 450 |
 
 Çıkarılan sınıflar (< 60 örnek): yok
-Türkiye'den gelen fotoğraf: 542 / 11167
+Türkiye'den gelen fotoğraf: 543 / 12057
 
 Sızıntı kontrolü (her gözlem yalnızca bir ayrımda): ✅ geçti
 
@@ -89,6 +91,8 @@ Sızıntı kontrolü (her gözlem yalnızca bir ayrımda): ✅ geçti
 | *Pleurotus ostreatus* | 37 | 0 |
 | *Coprinus comatus* | 129 | 0 |
 | *Marasmius oreades* | 10 | 0 |
+| *Ramaria spp.* | 7 | 0 |
+| *Grifola frondosa* | 0 | 0 |
 
 ## Kastamonu'da en çok kaydı olan 25 tür (GBIF, toplam 129 kayıt)
 

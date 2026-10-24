@@ -12,13 +12,13 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "ml"))
-from clean import ALLOWED_LICENSES, IMG, goruntu_kontrol, oku, tur_adi  # noqa: E402
+from clean import ALLOWED_LICENSES, IMG, goruntu_kontrol, oku, sinifa_uyar, tur_adi  # noqa: E402
 
 OUT = ROOT / "app" / "img" / "sp"
 # Tüm CC lisansları kabul; önce en serbest olanlar tercih edilir
 TERCIH = ["cc0", "cc-by", "cc-by-sa", "cc-by-nc", "cc-by-nc-sa", "cc-by-nd", "cc-by-nc-nd"]
 # Otomatik seçim türü temsil etmediğinde elle seçilen fotoğraflar (ör. bal mantarında kök kordonu yerine mantar kümesi)
-ELLE_SECIM = {"Armillaria mellea": "119677564"}
+ELLE_SECIM = {"Armillaria mellea": "119677564", "Grifola frondosa": "191362270"}
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
     for r in ham:
         lis = (r["lisans"] or "").lower()
         tur = tur_adi(r["gozlem_taxon_adi"])
-        if lis in ALLOWED_LICENSES and tur and tur in (r["sinif"], tur_adi(r.get("istenen_taxon_adi"))):
+        if lis in ALLOWED_LICENSES and sinifa_uyar(tur, r["sinif"], r.get("istenen_taxon_adi")):
             rows.append({**r, "lisans": lis})
     sonuc = {}
     for ad, sid in turler.items():

@@ -148,5 +148,17 @@
   "atif": "no rights reserved",
   "lisans": "cc0",
   "kaynak": "https://www.inaturalist.org/observations/58984897"
+ },
+ "Ramaria spp.": {
+  "src": "img/sp/s26.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/179124796"
+ },
+ "Grifola frondosa": {
+  "src": "img/sp/s27.jpg",
+  "atif": "(c) Lorenz Wenner, some rights reserved (CC BY)",
+  "lisans": "cc-by",
+  "kaynak": "https://www.inaturalist.org/observations/113253071"
  }
 }

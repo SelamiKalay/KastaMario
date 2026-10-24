@@ -42,7 +42,7 @@ def main():
     turler = {}
     for r in oku(ROOT / "data" / "species_info.csv"):
         ad = r["latin_name"]
-        key = get_json(f"{GBIF}/species/match", {"name": ad, "kingdom": "Fungi"}).get("usageKey")
+        key = get_json(f"{GBIF}/species/match", {"name": ad.removesuffix(" spp."), "kingdom": "Fungi"}).get("usageKey")
         turler[ad] = [x for x in [
             {"ad": "iNaturalist tür sayfası", "url": f"https://www.inaturalist.org/taxa/{inat[ad]}"} if ad in inat else None,
             {"ad": "GBIF tür sayfası ve görülme kayıtları", "url": f"https://www.gbif.org/species/{key}"} if key else None,
