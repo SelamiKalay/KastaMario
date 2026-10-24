@@ -1,0 +1,14 @@
+# Uygulama sunucusu (server/app.py) yalnızca Python standart kütüphanesini kullanır.
+# Aşağıdakiler veri hattı, model eğitimi ve testler içindir.
+numpy>=2.0
+pandas>=2.2
+pillow>=10.0
+scikit-learn>=1.5
+matplotlib>=3.8
+onnx>=1.16
+onnxruntime>=1.18
+pytest>=8.0
+# GPU ile eğitim için PyTorch'u CUDA sürümüyle kurun:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+torch>=2.5
+torchvision>=0.20
