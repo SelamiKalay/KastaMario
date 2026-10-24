@@ -62,6 +62,17 @@ iNaturalist fotoğrafları birbirine benzer (elde, yakın çekim). Gerçek kulla
 
 Aynı modelin iNaturalist test setinde çoklu bakışla top-1'i **%91,2**'dir. Ayrıntı: [`results/dis_test.json`](results/dis_test.json).
 
+### Gemma 4'ün katkısını da ölçtük
+151 test fotoğrafı iki yoldan geçirildi: yalnızca görüntü modeli ve görüntü modeli + Gemma 4 (`ml/eval_gemma.py`). Ayrıntı: [`results/gemma_degerlendirme.md`](results/gemma_degerlendirme.md).
+
+| | Yalnızca model | Model + Gemma 4 |
+|---|---:|---:|
+| Zehirli/ölümcül tür → KIRMIZI (n=80) | %98,8 | %98,8 |
+| Düşük riskli türde gereksiz KIRMIZI alarm (n=48) | — | **%0** |
+| Gemma API hatası (151 fotoğraf) | — | **0** |
+
+Bu test setinde görüntü modeli tehlikeli türlerin %98,8'ini zaten KIRMIZI gösterdiği için Gemma'nın risk yükseltmesi ek bir fotoğrafı kurtarmadı. Gereksiz alarm da üretmedi. Gemma'nın Amanita fotoğraflarında sap tabanındaki torbayı görme oranı %8'de kaldı (n=24). iNaturalist fotoğrafları tek açıdan çekilmiş ve çoğunda sap tabanı toprağın içinde. Uygulamanın ayrıca "sap tabanı" fotoğrafı istemesinin nedeni bu. Gemma'nın bugünkü asıl katkısı **açıklanabilirlik** (hangi işareti gördüğünü anatomi fotoğrafında göstermesi) ve **Mybear asistanı**. Görüntü modelinin zorlandığı fotoğraflarda ise ikinci bir güvenlik ağı görevi görüyor.
+
 ## Özellikler
 - 📷 **Tara:** şapka üstü, şapka altı ve sap tabanı için üç fotoğraf yuvası → görüntü modeli ve Gemma 4 **paralel** çalışır → risk, en olası 5 tür, "karıştırılabilecek tehlikeli türler". Gemma'nın bulguları gerçek bir köygöçüren fotoğrafı üzerindeki anatomi işaretlerinde gösterilir (torba bulunursa kırmızı yanar).
 - 🐻 **Mybear (Gemma 4):** köşedeki balona dokununca açılan sohbet; yanıtlar akarak gelir, internet yoksa **çevrimdışı modda** rehber bilgisinden yanıt verir. "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 27 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
