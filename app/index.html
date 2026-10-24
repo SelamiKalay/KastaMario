@@ -108,6 +108,21 @@
   .angle.filled .slot { border: 1px solid var(--slate); }
   .angle small { color: var(--muted); }
   .angle:focus-visible .slot { outline: 3px solid var(--slate); outline-offset: 2px; }
+  .angle-kutu { position: relative; }
+  .angle-kutu .angle { width: 100%; }
+  .angle-sil { position: absolute; top: -8px; right: -8px; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--paper);
+               background: #c62828; color: #fff; font-size: .9rem; font-weight: 700; cursor: pointer; display: grid; place-items: center;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+  .angle-sil:focus-visible { outline: 3px solid var(--slate); outline-offset: 2px; }
+  .kaynak { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; border: 1px solid var(--rule);
+            border-radius: 14px; background: var(--surface); }
+  .kaynak[hidden] { display: none; }
+  .kaynak p { grid-column: 1 / -1; margin: 0; font-weight: 600; }
+  .kaynak button { all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 8px;
+                   min-height: 48px; border-radius: 10px; background: var(--slate); color: var(--slate-ink); font-weight: 600; cursor: pointer; }
+  .kaynak button svg { width: 20px; height: 20px; }
+  .kaynak button.vazgec { grid-column: 1 / -1; min-height: 40px; background: transparent; color: var(--muted); }
+  .kaynak button:focus-visible { outline: 3px solid var(--caution); outline-offset: 2px; }
   .steps { list-style: none; margin: 0; padding: 0; }
   .steps li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 0;
               border-bottom: 1px solid var(--rule); font-size: .92rem; }
@@ -393,9 +408,16 @@
       </div>
       <div class="capture">
         <div class="angles" id="angles" role="group" aria-label="Fotoğraf açıları"></div>
+        <div class="kaynak" id="kaynak" role="group" aria-labelledby="kaynakBaslik" hidden>
+          <p id="kaynakBaslik"></p>
+          <button id="kaynakKamera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Kamera</button>
+          <button id="kaynakGaleri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="1.6"/><path d="M20 15l-5-5-9 9"/></svg>Galeri</button>
+          <button class="vazgec" id="kaynakVazgec">Vazgeç</button>
+        </div>
         <p class="small muted">Bir fotoğraf yeterli; üç açı en güvenilir sonucu verir.</p>
         <button class="btn" id="analyzeBtn" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Analiz et</button>
         <input type="file" id="photo" accept="image/*" capture="environment" hidden>
+        <input type="file" id="photoGaleri" accept="image/*" hidden>
         <ol class="steps" id="steps" hidden></ol>
         <p class="small muted">Sonuç hiçbir zaman "yenilebilir" değildir. Yeme kararı için uzman onayı gerekir.</p>
       </div>
@@ -715,12 +737,36 @@ const photos = [null, null, null];
 let slot = 0;
 const camIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M19 3v4M17 5h4"/></svg>`;
 function drawAngles() {
-  $("angles").innerHTML = ACILAR.map((a, i) => `<button class="angle ${photos[i] ? "filled" : ""}" data-i="${i}" aria-label="${a} fotoğrafı ${photos[i] ? "değiştir" : "ekle"}">
-    <span class="slot">${photos[i] ? `<img src="${photos[i].url}" alt="">` : camIcon}</span><b>${a}</b><small>${photos[i] ? "Değiştir" : "Ekle"}</small></button>`).join("");
+  $("angles").innerHTML = ACILAR.map((a, i) => `<div class="angle-kutu">
+    <button class="angle ${photos[i] ? "filled" : ""}" data-i="${i}" aria-label="${a} fotoğrafı ${photos[i] ? "değiştir" : "ekle"}">
+      <span class="slot">${photos[i] ? `<img src="${photos[i].url}" alt="">` : camIcon}</span><b>${a}</b><small>${photos[i] ? "Değiştir" : "Ekle"}</small></button>
+    ${photos[i] ? `<button class="angle-sil" data-sil="${i}" aria-label="${a} fotoğrafını sil">✕</button>` : ""}</div>`).join("");
   $("analyzeBtn").disabled = !photos.some(Boolean);
 }
-$("angles").onclick = e => { const b = e.target.closest(".angle"); if (b) { slot = +b.dataset.i; $("photo").click(); } };
-$("photo").onchange = async e => {
+$("angles").onclick = e => {
+  const sil = e.target.closest("[data-sil]");
+  if (sil) {
+    const i = +sil.dataset.sil;
+    URL.revokeObjectURL(photos[i].url);
+    photos[i] = null;
+    drawAngles();
+    $("angles").querySelector(`.angle[data-i="${i}"]`).focus();
+    return;
+  }
+  const b = e.target.closest(".angle");
+  if (b) { slot = +b.dataset.i; kaynakAc(true); }
+};
+// Fotoğraf kaynağı: "capture" özniteliği telefonda doğrudan kamerayı açar; galeri için ayrı, özniteliksiz bir giriş kullanılır.
+function kaynakAc(ac) {
+  $("kaynak").hidden = !ac;
+  if (!ac) return;
+  $("kaynakBaslik").textContent = `${ACILAR[slot]} fotoğrafı`;
+  $("kaynakKamera").focus();
+}
+$("kaynakKamera").onclick = () => { kaynakAc(false); $("photo").click(); };
+$("kaynakGaleri").onclick = () => { kaynakAc(false); $("photoGaleri").click(); };
+$("kaynakVazgec").onclick = () => { kaynakAc(false); $("angles").querySelector(`.angle[data-i="${slot}"]`).focus(); };
+$("photo").onchange = $("photoGaleri").onchange = async e => {
   const f = e.target.files[0];
   if (!f) return;
   e.target.value = "";
