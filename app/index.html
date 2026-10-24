@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MycoGuard</title>
+<style>
+  :root {
+    --bg: #f6f4f1; --card: #ffffff; --ink: #1f1d1b; --muted: #6b655e; --line: #e2ddd6;
+    --red: #c62828; --red-bg: #fdecea; --amber: #b26a00; --amber-bg: #fff4dc;
+    --gray: #57606a; --gray-bg: #eef0f2; --stop: #4a148c; --stop-bg: #f1e9f9;
+    --bar: #8d8478;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: var(--bg); color: var(--ink); line-height: 1.45; padding-bottom: 72px; }
+  header { background: var(--ink); color: #fff; padding: 14px 16px; display: flex;
+           align-items: center; gap: 12px; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 1.25rem; }
+  header p { margin: 0; font-size: .85rem; opacity: .75; flex: 1 1 200px; }
+  .sim { background: #ffcc80; color: #4e2c00; font-weight: 700; font-size: .72rem;
+         padding: 3px 8px; border-radius: 4px; letter-spacing: .04em; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .card h2 { margin: 0 0 10px; font-size: 1rem; }
+  .muted { color: var(--muted); font-size: .88rem; }
+  .cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .cases button { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 8px;
+                  padding: 10px; cursor: pointer; font: inherit; }
+  .cases button:hover { border-color: var(--ink); }
+  .cases button[aria-pressed="true"] { border: 2px solid var(--ink); padding: 9px; }
+  .cases b { display: block; font-size: .9rem; }
+  .cases span { font-size: .78rem; color: var(--muted); }
+  .photo { display: flex; gap: 12px; align-items: center; background: #f0ece6; border: 2px dashed #cfc7bc;
+           border-radius: 8px; padding: 12px; margin-bottom: 14px; }
+  .photo .ico { font-size: 2.2rem; }
+  .level { border-radius: 10px; padding: 16px; border-left: 8px solid; margin-bottom: 14px; }
+  .level h3 { margin: 0 0 4px; font-size: 1.3rem; }
+  .level p { margin: 0; }
+  .level .why { margin-top: 8px; font-size: .85rem; opacity: .9; }
+  .L-KIRMIZI { background: var(--red-bg); border-color: var(--red); color: #7f1414; }
+  .L-SARI { background: var(--amber-bg); border-color: var(--amber); color: #5c3800; }
+  .L-GRI { background: var(--gray-bg); border-color: var(--gray); color: #2f353b; }
+  .L-MANTAR_DEGIL { background: var(--stop-bg); border-color: var(--stop); color: var(--stop); }
+  .cand { display: grid; grid-template-columns: minmax(0, 1fr) 54px; gap: 4px 10px; align-items: center;
+          padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .cand:last-child { border-bottom: 0; }
+  .cand .nm i { font-weight: 600; }
+  .cand .nm small { color: var(--muted); }
+  .cand .pct { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .track { grid-column: 1 / -1; height: 8px; background: #efebe5; border-radius: 4px; overflow: hidden; }
+  .track div { height: 100%; background: var(--bar); }
+  .tag { font-size: .7rem; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+         white-space: nowrap; vertical-align: middle; }
+  .t-olumcul { background: var(--red); color: #fff; }
+  .t-yuksek { background: #ef6c00; color: #fff; }
+  .t-orta { background: #f9d27a; color: #4e3200; }
+  .t-dusuk { background: #d6dade; color: #2f353b; }
+  .cand.danger .track div { background: var(--red); }
+  .twins { display: grid; gap: 10px; }
+  .twin { border: 2px solid var(--red); border-radius: 8px; padding: 12px; background: #fff8f7; }
+  .twin h4 { margin: 0 0 6px; color: var(--red); }
+  dl { margin: 0; display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; font-size: .9rem; }
+  dt { color: var(--muted); }
+  dd { margin: 0; }
+  .draft { font-size: .75rem; color: var(--amber); margin-top: 10px; }
+  .steps { margin: 6px 0 0; padding-left: 20px; }
+  .grid2 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .grid2 { grid-template-columns: 1fr 1fr; } dl { grid-template-columns: 150px 1fr; } }
+  @media (max-width: 480px) { dl { grid-template-columns: 1fr; } dt { margin-top: 6px; } }
+  .band { position: fixed; left: 0; right: 0; bottom: 0; background: #2b0d0d; color: #fff; padding: 10px 16px;
+          display: flex; align-items: center; gap: 12px; z-index: 5; }
+  .band p { margin: 0; font-size: .82rem; flex: 1; }
+  .sos { background: var(--red); color: #fff; border: 0; border-radius: 8px; padding: 10px 14px;
+         font-weight: 700; cursor: pointer; font: inherit; font-weight: 700; white-space: nowrap; }
+  dialog { border: 0; border-radius: 12px; padding: 0; max-width: 520px; width: calc(100% - 32px); }
+  dialog::backdrop { background: rgba(0,0,0,.55); }
+  .dlg { padding: 20px; }
+  .dlg h2 { margin-top: 0; color: var(--red); }
+  .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .nums a { display: block; text-align: center; background: var(--red); color: #fff; text-decoration: none;
+            border-radius: 8px; padding: 12px; font-size: 1.6rem; font-weight: 800; }
+  .nums a small { display: block; font-size: .72rem; font-weight: 500; }
+  .close { margin-top: 12px; border: 1px solid var(--line); background: #fff; padding: 8px 14px;
+           border-radius: 8px; cursor: pointer; font: inherit; }
+  .empty { text-align: center; padding: 30px 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🍄 MycoGuard</h1>
+  <span class="sim">SİMÜLE DEMO</span>
+  <p>Mantar zehirlenme risk uyarı sistemi — konsept prototip. Model çıktıları elle verilmiştir.</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1. Fotoğraf seç (demo senaryoları)</h2>
+    <p class="muted">Gerçek üründe burada kamera açılır. Prototipte her buton, bir fotoğrafın simüle edilmiş model çıktısını yükler.</p>
+    <div class="cases" id="cases"></div>
+  </section>
+
+  <section id="result" class="card"><div class="empty">Sonucu görmek için yukarıdan bir senaryo seçin.</div></section>
+</main>
+
+<div class="band" role="note">
+  <p>⚠️ MycoGuard hiçbir mantarın yenilebilir olduğunu söylemez. Yeme kararı için mutlaka uzman onayı alın.</p>
+  <button class="sos" id="sosBtn">🚨 Yedim, ne yapmalıyım?</button>
+</div>
+
+<dialog id="sos">
+  <div class="dlg">
+    <h2>🚨 Mantar yediyseniz</h2>
+    <p><b>Belirti beklemeyin.</b> Ölümcül türlerde belirtiler 6-24 saat, bazılarında günler sonra başlar; ilk belirtiler geçip "iyileşmiş gibi" hissettirebilir.</p>
+    <div class="nums">
+      <a href="tel:114">114<small>Ulusal Zehir Danışma Merkezi</small></a>
+      <a href="tel:112">112<small>Acil Çağrı</small></a>
+    </div>
+    <ol class="steps">
+      <li>Hemen 114'ü veya 112'yi arayın.</li>
+      <li>Yenen mantardan bir örnek (pişmiş artık dahil) saklayın; fotoğraflayın.</li>
+      <li>Ne zaman, ne kadar yendiğini ve kimlerin yediğini not edin.</li>
+      <li>Aynı yemeği yiyen herkesi uyarın — belirtisi olmasa bile.</li>
+      <li>Kendi kendinize kusturmaya çalışmayın; sağlık görevlisinin talimatına uyun.</li>
+    </ol>
+    <p class="draft">⚠️ TASLAK: Numaralar ve adımlar sunumdan önce resmî kaynaklardan (Sağlık Bakanlığı / UZEM) doğrulanacak.</p>
+    <button class="close" id="sosClose">Kapat</button>
+  </div>
+</dialog>
+
+<script src="data.js"></script>
+<script>
+const CFG = window.MYCO_CASES;
+const T = CFG.esikler;
+const INFO = Object.fromEntries(window.MYCO_SPECIES.map(s => [s.latin_name, s]));
+const RISK_LABEL = { olumcul: "ÖLÜMCÜL", yuksek: "YÜKSEK RİSK", orta: "ŞARTLI / ORTA", dusuk: "DÜŞÜK RİSK" };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = p => Math.round(p * 100) + "%";
+
+// src/decide.py ile birebir aynı kural (en kötü aday kuralı). Gerekçeyi de döndürür.
+function decide(c) {
+  if (c.mantar_olma_olasiligi < T.mantar_degil_esigi)
+    return { level: "MANTAR_DEGIL", why: `Mantar olma olasılığı ${pct(c.mantar_olma_olasiligi)} (< ${pct(T.mantar_degil_esigi)}).` };
+  const top5 = c.simule_top5;
+  const danger = top5.filter(x => x.p >= T.tehlikeli_aday_min_olasilik && T.tehlikeli_risk_seviyeleri.includes(INFO[x.latin_name].risk));
+  if (danger.length)
+    return { level: "KIRMIZI", danger, why: `Adaylar arasında ≥${pct(T.tehlikeli_aday_min_olasilik)} olasılıklı tehlikeli tür var: ` +
+      danger.map(d => `${d.latin_name} (${pct(d.p)})`).join(", ") + ". Birinci tahmin ne olursa olsun en kötü aday esas alınır." };
+  const top1 = top5[0];
+  if (top1.p < T.belirsizlik_esigi)
+    return { level: "SARI", why: `Birinci aday yalnızca ${pct(top1.p)} (< ${pct(T.belirsizlik_esigi)}); güvenilir tahmin yapılamadı.` };
+  if (INFO[top1.latin_name].risk === "orta")
+    return { level: "SARI", why: `${top1.latin_name} şartlı/orta riskli bir tür.` };
+  return { level: "GRI", why: `Birinci aday ${pct(top1.p)}, tehlikeli aday eşiği aşılmadı. Bu bir onay DEĞİLDİR.` };
+}
+
+const LEVEL = {
+  KIRMIZI: { icon: "🔴", title: "Tehlikeli aday var. Yeme.", msg: "Bu fotoğraf ölümcül veya yüksek riskli bir türle karıştırılabilir. Mantarı yemeyin; uzmana gösterin." },
+  SARI: { icon: "🟡", title: "Belirsiz. Yeni fotoğraf çek / uzmana göster.", msg: "Sistem bu fotoğraftan güvenilir bir sonuç çıkaramadı." },
+  GRI: { icon: "⚪", title: "Düşük riskli aday. Yeme kararı için uzman onayı gerekir.", msg: "Bu sonuç 'güvenli' anlamına gelmez. Fotoğraftan tür tanımı tek başına yeterli değildir." },
+  MANTAR_DEGIL: { icon: "⛔", title: "Bu bir mantar fotoğrafı gibi görünmüyor.", msg: "Lütfen mantarın net bir fotoğrafını yükleyin." },
+};
+
+function speciesCard(s, heading) {
+  return `<dl>
+    <dt>Risk</dt><dd><span class="tag t-${s.risk}" style="margin:0">${RISK_LABEL[s.risk]}</span></dd>
+    <dt>Zehir notu</dt><dd>${esc(s.zehir_notu)}</dd>
+    <dt>Belirti başlangıcı</dt><dd>${esc(s.belirti_baslangici)}</dd>
+    <dt>Habitat</dt><dd>${esc(s.habitat)}</dd>
+    <dt>Substrat</dt><dd>${esc(s.substrat)}</dd>
+    <dt>Mevsim</dt><dd>${esc(s.mevsim)}</dd>
+    <dt>Ayırt edici ipucu</dt><dd>${esc(s.ayirt_edici_ipucu)}</dd>
+    <dt>Karışabileceği türler</dt><dd><i>${esc(s.ikiz_turler.split(";").join(", "))}</i></dd>
+  </dl>`;
+}
+
+function render(c) {
+  const d = decide(c);
+  const L = LEVEL[d.level];
+  let html = `
+    <div class="photo"><div class="ico">📷</div><div><b>${esc(c.baslik)}</b><div class="muted">Simüle fotoğraf: ${esc(c.foto_ipucu)}</div></div></div>
+    <div class="level L-${d.level}">
+      <h3>${L.icon} ${L.title}</h3><p>${L.msg}</p>
+      <p class="why"><b>Neden?</b> ${esc(d.why)}</p>
+    </div>`;
+
+  if (d.level === "MANTAR_DEGIL") {
+    html += `<p class="muted">Sistem mantar olmayan girdilerde tür tahmini göstermez (aksi halde kozalağa bile bir "tür" uydurur).</p>`;
+    document.getElementById("result").innerHTML = html;
+    return;
+  }
+
+  if (d.level === "SARI") {
+    html += `<div class="card" style="margin-bottom:14px"><h2>📸 Daha iyi fotoğraf için</h2><ol class="steps">
+      <li>Şapkanın <b>üstünü</b> ve <b>altını</b> (lameller/gözenekler) ayrı ayrı çekin.</li>
+      <li>Mantarı topraktan <b>kazıyarak</b> çıkarın, <b>sap tabanını</b> da çekin (torba/volva var mı?).</li>
+      <li>İyi ışıkta, netleme yaparak, yakından çekin.</li>
+      <li>Yetiştiği ortamı (ağaç, çayır, odun) gösteren bir fotoğraf ekleyin.</li></ol></div>`;
+  }
+
+  const danger = new Set((d.danger || []).map(x => x.latin_name));
+  html += `<div class="grid2"><div><h2>İlk 5 aday</h2>` + c.simule_top5.map(x => {
+    const s = INFO[x.latin_name];
+    return `<div class="cand ${danger.has(x.latin_name) ? "danger" : ""}">
+      <div class="nm"><i>${esc(x.latin_name)}</i><span class="tag t-${s.risk}">${RISK_LABEL[s.risk]}</span><br><small>${esc(s.turkce_ad)}</small></div>
+      <div class="pct">${pct(x.p)}</div>
+      <div class="track"><div style="width:${x.p * 100}%"></div></div></div>`;
+  }).join("") + `<p class="muted">Olasılıklar simüledir. Gerçek üründe kalibre edilmiş bir model kullanılacaktır.</p></div>`;
+
+  // İkiz tür kartları: önce tehlikeli adaylar, sonra birinci adayın tabloda bulunan tehlikeli ikizleri.
+  const top1 = INFO[c.simule_top5[0].latin_name];
+  const twinNames = [...danger];
+  top1.ikiz_turler.split(";").forEach(n => {
+    if (INFO[n] && ["olumcul", "yuksek"].includes(INFO[n].risk) && !twinNames.includes(n)) twinNames.push(n);
+  });
+  html += `<div><h2>⚠️ Bunu sakın karıştırma</h2>`;
+  if (twinNames.length) {
+    html += `<div class="twins">` + twinNames.map(n => {
+      const s = INFO[n];
+      return `<div class="twin"><h4>${s.risk === "olumcul" ? "☠️" : "⚠️"} <i>${esc(n)}</i> — ${esc(s.turkce_ad)}</h4>
+        <p style="margin:0 0 6px"><b>${RISK_LABEL[s.risk]}.</b> ${esc(s.zehir_notu)}</p>
+        <p style="margin:0" class="muted"><b>Belirti:</b> ${esc(s.belirti_baslangici)}</p>
+        <p style="margin:6px 0 0"><b>Nasıl ayırt edilir?</b> ${esc(s.ayirt_edici_ipucu)}</p></div>`;
+    }).join("") + `</div>`;
+  } else {
+    html += `<p class="muted">Tablodaki tehlikeli ikiz türlerden hiçbiri bu adaylar arasında değil. Bu, tehlike olmadığı anlamına gelmez: tablo yalnızca 20 tür içerir.</p>`;
+  }
+  html += `</div></div>`;
+
+  html += `<div class="card" style="margin-top:16px"><h2>Birinci aday hakkında: <i>${esc(top1.latin_name)}</i> — ${esc(top1.turkce_ad)}</h2>
+    ${speciesCard(top1)}
+    <p class="draft">⚠️ Bilgi tablosu TASLAK — kaynaklarla doğrulanacak (${esc(top1.kaynak)}).</p></div>`;
+
+  document.getElementById("result").innerHTML = html;
+}
+
+const casesEl = document.getElementById("cases");
+CFG.senaryolar.forEach(c => {
+  const b = document.createElement("button");
+  b.setAttribute("aria-pressed", "false");
+  b.innerHTML = `<b>${esc(c.id)} · ${esc(c.baslik)}</b><span>${esc(c.foto_ipucu)}</span>`;
+  b.onclick = () => {
+    casesEl.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
+    b.setAttribute("aria-pressed", "true");
+    render(c);
+    document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  casesEl.appendChild(b);
+});
+
+const dlg = document.getElementById("sos");
+document.getElementById("sosBtn").onclick = () => dlg.showModal();
+document.getElementById("sosClose").onclick = () => dlg.close();
+</script>
+</body>
+</html>
