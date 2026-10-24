@@ -4,3 +4,4 @@ __pycache__/
 .ipynb_checkpoints/
 results/*
 !results/.gitkeep
+.pytest_cache/
