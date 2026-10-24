@@ -165,7 +165,8 @@ def taksonomi_normalize(rows):
     out = []
     for r in rows:
         tur = tur_adi(r["gozlem_taxon_adi"])
-        if r["sinif"] == "mantar_degil" or tur == r["sinif"]:
+        # iNaturalist'in kabul ettiği ad, rehberdeki addan farklı olabilir (eş anlamlı / sinonim)
+        if r["sinif"] == "mantar_degil" or (tur and tur in (r["sinif"], tur_adi(r.get("istenen_taxon_adi")))):
             out.append({**r, "tur": tur})
     return out
 

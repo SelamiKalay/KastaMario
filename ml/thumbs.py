@@ -26,7 +26,8 @@ def main():
     rows = []
     for r in oku(ROOT / "data" / "raw" / "inat_photos.csv"):
         lis = (r["lisans"] or "").lower()
-        if lis in ALLOWED_LICENSES and tur_adi(r["gozlem_taxon_adi"]) == r["sinif"]:
+        tur = tur_adi(r["gozlem_taxon_adi"])
+        if lis in ALLOWED_LICENSES and tur and tur in (r["sinif"], tur_adi(r.get("istenen_taxon_adi"))):
             rows.append({**r, "lisans": lis})
     sonuc = {}
     for ad, sid in turler.items():

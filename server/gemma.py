@@ -1,12 +1,16 @@
-"""Gemma 4 (Ollama) ile görsel özellik analizi ve bilgi tabanına dayalı soru-cevap.
+"""Gemma 4 (uzak API) ile görsel özellik analizi ve bilgi tabanına dayalı soru-cevap.
+
+Sağlayıcılar (ortam değişkeni MYCOGUARD_LLM):
+  * gemini  (varsayılan) — Google Gemini API üzerinden Gemma 4, GEMINI_API_KEY gerekir
+  * openai  — OpenAI uyumlu herhangi bir uç: DigitalOcean Gradient, Hugging Face, vLLM, Ollama…
+              OPENAI_BASE_URL + OPENAI_API_KEY
+Model adı: MYCOGUARD_MODEL (varsayılan gemma-4-26b-a4b-it)
 
 Güvenlik tasarımı:
-  * Gemma'dan serbest metin "yenir/yenmez" kararı istenmez. Önce YAPILANDIRILMIŞ görsel
-    özellikler (JSON) istenir; risk kararını kural katmanı verir.
-  * Gemma'nın bulguları riski yalnızca YÜKSELTEBİLİR (ör. sap tabanında torba görülürse
-    ölümcül Amanita uyarısı), hiçbir zaman düşüremez.
-  * Sohbet yanıtları yalnızca species_info.csv bilgisine dayanır (RAG) ve sistem talimatı
-    "yenilebilir/güvenli" demeyi yasaklar; çıktı ayrıca süzgeçten geçirilir.
+  * Gemma'dan serbest "yenir/yenmez" kararı istenmez; YAPILANDIRILMIŞ görsel özellikler (JSON)
+    istenir ve şemaya uymayan her değer "gorunmuyor" kabul edilir. Risk kararını kural katmanı verir.
+  * Gemma bulguları riski yalnızca YÜKSELTEBİLİR, asla düşüremez.
+  * Sohbet yanıtları yalnızca species_info.csv bilgisine dayanır (RAG); çıktı süzgeçten geçer.
 """
 import json
 import os
@@ -14,27 +18,20 @@ import re
 import urllib.error
 import urllib.request
 
-OLLAMA = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
-MODEL = os.environ.get("MYCOGUARD_GEMMA", "gemma4:e4b")
+SAGLAYICI = os.environ.get("MYCOGUARD_LLM", "gemini").lower()
+MODEL = os.environ.get("MYCOGUARD_MODEL", "gemma-4-26b-a4b-it")
+GEMINI_URL = os.environ.get("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta").rstrip("/")
+OPENAI_URL = os.environ.get("OPENAI_BASE_URL", "").rstrip("/")
 
-OZELLIK_SEMASI = {
-    "type": "object",
-    "properties": {
-        "mantar_mi": {"type": "boolean"},
-        "alt_yuz": {"type": "string", "enum": ["lamel", "gozenek", "diken", "damar", "petek", "gorunmuyor"]},
-        "lamel_rengi": {"type": "string", "enum": ["beyaz", "krem", "sari", "pembe", "kahverengi", "siyah", "diger", "gorunmuyor"]},
-        "sapta_halka": {"type": "string", "enum": ["var", "yok", "gorunmuyor"]},
-        "sap_tabaninda_torba": {"type": "string", "enum": ["var", "yok", "gorunmuyor"]},
-        "sapka_rengi": {"type": "string"},
-        "sapka_ustunde_sigil_pul": {"type": "string", "enum": ["var", "yok", "gorunmuyor"]},
-        "yetistigi_yer": {"type": "string", "enum": ["toprak", "odun", "cim", "gorunmuyor"]},
-        "kumeler_halinde": {"type": "string", "enum": ["evet", "hayir", "gorunmuyor"]},
-        "foto_kalitesi": {"type": "string", "enum": ["iyi", "orta", "kotu"]},
-        "eksik_acilar": {"type": "array", "items": {"type": "string"}},
-        "aciklama": {"type": "string"},
-    },
-    "required": ["mantar_mi", "alt_yuz", "lamel_rengi", "sapta_halka", "sap_tabaninda_torba", "yetistigi_yer",
-                 "foto_kalitesi", "eksik_acilar", "aciklama"],
+ENUMLAR = {
+    "alt_yuz": ["lamel", "gozenek", "diken", "damar", "petek", "gorunmuyor"],
+    "lamel_rengi": ["beyaz", "krem", "sari", "pembe", "kahverengi", "siyah", "diger", "gorunmuyor"],
+    "sapta_halka": ["var", "yok", "gorunmuyor"],
+    "sap_tabaninda_torba": ["var", "yok", "gorunmuyor"],
+    "sapka_ustunde_sigil_pul": ["var", "yok", "gorunmuyor"],
+    "yetistigi_yer": ["toprak", "odun", "cim", "gorunmuyor"],
+    "kumeler_halinde": ["evet", "hayir", "gorunmuyor"],
+    "foto_kalitesi": ["iyi", "orta", "kotu"],
 }
 
 SISTEM = (
@@ -48,35 +45,106 @@ SISTEM = (
 YASAK = re.compile(r"\b(yenilebilir|yenebilir|güvenle yiye|güvenlidir|zehirsizdir|yiyebilirsin|yiyebilirsiniz)\b", re.I)
 
 
-def _post(path, body, timeout=300):
-    req = urllib.request.Request(OLLAMA + path, data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.load(r)
+class LLMHatasi(Exception):
+    pass
+
+
+def _anahtar():
+    return os.environ.get("GEMINI_API_KEY" if SAGLAYICI == "gemini" else "OPENAI_API_KEY", "")
+
+
+def _post(url, body, headers=None, timeout=120):
+    req = urllib.request.Request(url, data=json.dumps(body).encode(),
+                                 headers={"Content-Type": "application/json", **(headers or {})})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as e:
+        raise LLMHatasi(f"{SAGLAYICI} API hatası {e.code}: {e.read()[:300].decode(errors='replace')}") from e
+    except OSError as e:
+        raise LLMHatasi(f"{SAGLAYICI} API'ye ulaşılamadı: {e}") from e
+
+
+def uret(mesajlar, image_b64=None, temperature=0.2):
+    """mesajlar: [{role: system|user|assistant, content}] -> model yanıt metni.
+    image_b64 verilirse son kullanıcı mesajına eklenir."""
+    if not _anahtar():
+        raise LLMHatasi("API anahtarı tanımlı değil")
+    sistem = "\n\n".join(m["content"] for m in mesajlar if m["role"] == "system")
+    diyalog = [m for m in mesajlar if m["role"] != "system"]
+
+    if SAGLAYICI == "gemini":
+        contents = []
+        for i, m in enumerate(diyalog):
+            metin = (sistem + "\n\n" + m["content"]) if i == 0 and sistem else m["content"]
+            parts = [{"text": metin}]
+            if image_b64 and i == len(diyalog) - 1:
+                parts.append({"inline_data": {"mime_type": "image/jpeg", "data": image_b64}})
+            contents.append({"role": "model" if m["role"] == "assistant" else "user", "parts": parts})
+        r = _post(f"{GEMINI_URL}/models/{MODEL}:generateContent", {"contents": contents, "generationConfig": {"temperature": temperature}},
+                  {"x-goog-api-key": _anahtar()})
+        try:
+            parts = r["candidates"][0]["content"]["parts"]
+        except (KeyError, IndexError) as e:
+            raise LLMHatasi(f"Beklenmeyen yanıt: {json.dumps(r)[:300]}") from e
+        # Düşünme (thought) parçalarını atla, yalnızca yanıt metnini al
+        return "".join(p.get("text", "") for p in parts if not p.get("thought")).strip()
+
+    if not OPENAI_URL:
+        raise LLMHatasi("OPENAI_BASE_URL tanımlı değil")
+    msgs = ([{"role": "system", "content": sistem}] if sistem else []) + [dict(m) for m in diyalog]
+    if image_b64:
+        msgs[-1]["content"] = [{"type": "text", "text": msgs[-1]["content"]},
+                               {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"}}]
+    r = _post(f"{OPENAI_URL}/chat/completions", {"model": MODEL, "messages": msgs, "temperature": temperature},
+              {"Authorization": f"Bearer {_anahtar()}"})
+    try:
+        return r["choices"][0]["message"]["content"].strip()
+    except (KeyError, IndexError) as e:
+        raise LLMHatasi(f"Beklenmeyen yanıt: {json.dumps(r)[:300]}") from e
 
 
 def durum():
-    """Ollama çalışıyor mu, model yüklü mü?"""
+    return {"saglayici": SAGLAYICI, "model": MODEL, "hazir": bool(_anahtar()) and (SAGLAYICI == "gemini" or bool(OPENAI_URL))}
+
+
+# ------------------------------------------------------------------ görsel özellikler
+def json_cikar(metin):
+    """Model yanıtındaki ilk JSON nesnesini çıkarır (```json bloklarına ve önsöze dayanıklı)."""
+    m = re.search(r"\{.*\}", metin or "", re.S)
+    if not m:
+        raise LLMHatasi("Yanıtta JSON bulunamadı")
     try:
-        with urllib.request.urlopen(OLLAMA + "/api/tags", timeout=3) as r:
-            adlar = [m["name"] for m in json.load(r).get("models", [])]
-        return {"ollama": True, "model": MODEL, "hazir": any(a == MODEL or a.startswith(MODEL + ":") for a in adlar)}
-    except (urllib.error.URLError, OSError, ValueError):
-        return {"ollama": False, "model": MODEL, "hazir": False}
+        return json.loads(m.group(0))
+    except json.JSONDecodeError as e:
+        raise LLMHatasi(f"JSON çözülemedi: {e}") from e
+
+
+def ozellik_dogrula(ham):
+    """Şemaya uymayan her değeri güvenli varsayılana çeker ('gorunmuyor' / kötü kalite)."""
+    oz = {}
+    for k, izinli in ENUMLAR.items():
+        v = str(ham.get(k, "")).strip().lower()
+        oz[k] = v if v in izinli else ("orta" if k == "foto_kalitesi" else "gorunmuyor")
+    oz["mantar_mi"] = ham.get("mantar_mi") is not False
+    oz["sapka_rengi"] = str(ham.get("sapka_rengi", ""))[:40]
+    oz["eksik_acilar"] = [str(x)[:60] for x in ham.get("eksik_acilar", []) if x][:4] if isinstance(ham.get("eksik_acilar"), list) else []
+    oz["aciklama"] = YASAK.sub("", str(ham.get("aciklama", "")))[:300]
+    return oz
 
 
 def gorsel_ozellikler(image_b64):
-    """Fotoğraftan yapılandırılmış ayırt edici özellikleri çıkarır."""
+    alanlar = "\n".join(f'  "{k}": {" | ".join(repr(x) for x in v)}' for k, v in ENUMLAR.items())
     prompt = (
-        "Bu fotoğraftaki mantarın YALNIZCA görünen özelliklerini şemaya göre doldur. Emin olmadığın veya fotoğrafta "
-        "görünmeyen her şey için 'gorunmuyor' yaz; tahmin etme. 'eksik_acilar' alanına güvenli tanı için çekilmesi "
-        "gereken eksik fotoğrafları yaz (ör. 'şapka altı', 'sap tabanı (toprağı kazıyarak)', 'boyuna kesit'). "
-        "'aciklama' alanına gördüklerini 1-2 Türkçe cümleyle yaz; tür adı veya yenebilirlik yorumu yapma."
+        "Bu fotoğraftaki mantarın YALNIZCA görünen özelliklerini çıkar. Emin olmadığın veya fotoğrafta görünmeyen her "
+        "şey için 'gorunmuyor' yaz; tahmin etme. Tür adı veya yenebilirlik yorumu YAPMA.\n"
+        "Yalnızca şu JSON nesnesini döndür, başka metin yazma:\n{\n"
+        '  "mantar_mi": true | false,\n' + alanlar + ',\n'
+        '  "sapka_rengi": "kısa Türkçe renk",\n'
+        '  "eksik_acilar": ["güvenli tanı için çekilmesi gereken eksik fotoğraflar, ör. şapka altı, sap tabanı (toprağı kazıyarak), boyuna kesit"],\n'
+        '  "aciklama": "gördüklerinin 1-2 cümlelik Türkçe özeti"\n}'
     )
-    r = _post("/api/chat", {
-        "model": MODEL, "stream": False, "format": OZELLIK_SEMASI, "options": {"temperature": 0},
-        "messages": [{"role": "user", "content": prompt, "images": [image_b64]}],
-    })
-    return json.loads(r["message"]["content"])
+    return ozellik_dogrula(json_cikar(uret([{"role": "user", "content": prompt}], image_b64=image_b64, temperature=0)))
 
 
 def risk_yukseltme(oz, info, aday_adlari):
@@ -88,7 +156,7 @@ def risk_yukseltme(oz, info, aday_adlari):
         uyarilar.append("Sap tabanında torba (volva) görünüyor. Bu, ölümcül köygöçüren grubunun (Amanita) en önemli işaretidir.")
     if lamel == "beyaz" and halka == "var" and oz.get("alt_yuz") == "lamel":
         kirmizi = True
-        uyarilar.append("Beyaz lamel + sapta halka: ölümcül beyaz Amanita türleriyle (köygöçüren, ak köygöçüren) uyumlu bir özellik bileşimi.")
+        uyarilar.append("Beyaz lamel + sapta halka: ölümcül köygöçüren ile uyumlu bir özellik bileşimi.")
     if oz.get("yetistigi_yer") == "odun" and oz.get("kumeler_halinde") == "evet" and \
             any(info.get(a, {}).get("risk") == "dusuk" for a in aday_adlari[:1]):
         uyarilar.append("Odun üzerinde kümeler halinde: ölümcül galerina, zeytin mantarı ve kükürt mantarı da böyle büyür.")
@@ -101,6 +169,7 @@ def risk_yukseltme(oz, info, aday_adlari):
     return {"kirmiziya_cek": kirmizi, "uyarilar": uyarilar}
 
 
+# ------------------------------------------------------------------ sohbet (RAG)
 def bilgi_tabani(info, adlar):
     alanlar = ["turkce_ad", "risk", "zehir_notu", "belirtiler", "belirti_baslangici", "ilk_yardim_notu", "habitat",
                "kastamonu_notu", "sapka_cm", "sap_cm", "yetisme_sureci", "mevsim", "toplama_notu", "ikiz_turler",
@@ -121,16 +190,15 @@ def ilgili_turler(info, soru, baglam_adlari, n=6):
 
 def sohbet(info, mesajlar, baglam):
     """mesajlar: [{role, content}], baglam: {seviye, adaylar:[ad], ozellikler}"""
-    soru = mesajlar[-1]["content"]
-    adlar = ilgili_turler(info, soru, baglam.get("adaylar", []))
+    mesajlar = [{"role": m["role"] if m.get("role") in ("user", "assistant") else "user", "content": str(m.get("content", ""))[:2000]}
+                for m in mesajlar[-8:]]
+    adlar = ilgili_turler(info, mesajlar[-1]["content"], baglam.get("adaylar", []))
     sistem = SISTEM + "\n\nBİLGİ TABANI (yalnızca buna dayan):\n" + bilgi_tabani(info, adlar)
     if baglam.get("seviye"):
         sistem += (f"\n\nSON ANALİZ: risk seviyesi {baglam['seviye']}; adaylar: {', '.join(baglam.get('adaylar', []))}; "
                    f"görsel bulgular: {json.dumps(baglam.get('ozellikler') or {}, ensure_ascii=False)}. "
                    "Risk seviyesini asla düşük gösterme.")
-    r = _post("/api/chat", {"model": MODEL, "stream": False, "options": {"temperature": 0.2},
-                            "messages": [{"role": "system", "content": sistem}] + mesajlar[-8:]})
-    cevap = r["message"]["content"].strip()
+    cevap = uret([{"role": "system", "content": sistem}] + mesajlar)
     if YASAK.search(cevap):
         cevap = YASAK.sub("[uzman onayı gerekir]", cevap)
         cevap += "\n\n⚠️ Hatırlatma: MycoGuard hiçbir mantarın yenilebilir olduğunu söylemez; yeme kararı için uzman onayı şarttır."

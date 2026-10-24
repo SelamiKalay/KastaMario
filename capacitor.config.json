@@ -1,0 +1,7 @@
+{
+  "appId": "app.mycoguard.kastamonu",
+  "appName": "MycoGuard",
+  "webDir": "app",
+  "android": { "allowMixedContent": false },
+  "plugins": { "SplashScreen": { "backgroundColor": "#0f2a33" } }
+}

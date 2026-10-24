@@ -1,0 +1,2 @@
+# Sunucu (server/app.py) yalnızca Python standart kütüphanesini kullanır.
+# Veri hattı, model eğitimi ve testler için: pip install -r requirements-ml.txt

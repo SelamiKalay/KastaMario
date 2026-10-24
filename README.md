@@ -65,7 +65,7 @@ Farklı model: `MYCOGUARD_GEMMA=gemma4:e2b python server/app.py`
 ## Veri ve model hattı (yeniden üretmek için)
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-ml.txt
 python ml/collect.py        # 1. ham veri: iNaturalist fotoğrafları + GBIF Türkiye kayıtları
 python ml/clean.py          # 2. temizleme ve ayrıştırma -> data/clean/ + temizlik_raporu.md
 python ml/train.py          # 3. EfficientNet-B0 eğitimi -> app/model/*.onnx + results/

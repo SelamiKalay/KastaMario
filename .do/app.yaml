@@ -1,0 +1,27 @@
+# DigitalOcean App Platform tanımı:  doctl apps create --spec .do/app.yaml
+# GEMINI_API_KEY değerini panelden "Encrypted" ortam değişkeni olarak girin (repoya yazmayın).
+name: mycoguard
+region: fra
+services:
+  - name: web
+    github:
+      repo: SelamiKalay/BAKLAVA
+      branch: main
+      deploy_on_push: true
+    environment_slug: python
+    run_command: python server/app.py
+    http_port: 8080
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    health_check:
+      http_path: /api/durum
+    envs:
+      - key: PORT
+        value: "8080"
+      - key: MYCOGUARD_LLM
+        value: gemini
+      - key: MYCOGUARD_MODEL
+        value: gemma-4-26b-a4b-it
+      - key: GEMINI_API_KEY
+        type: SECRET
+        scope: RUN_TIME

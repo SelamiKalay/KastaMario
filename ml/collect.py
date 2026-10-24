@@ -55,10 +55,16 @@ def get_json(url, params=None, tries=4):
     raise RuntimeError(f"İstek başarısız: {url}")
 
 
-def taxon_id(name):
-    for t in get_json(f"{INAT}/taxa", {"q": name, "per_page": 30})["results"]:
+def taxon(name):
+    """(taxon_id, iNaturalist'in kabul ettiği ad). Eş anlamlı adlar (sinonim) kabul edilen taksona çözülür."""
+    res = get_json(f"{INAT}/taxa", {"q": name, "per_page": 30})["results"]
+    for t in res:
         if t["name"].lower() == name.lower():
-            return t["id"]
+            return t["id"], t["name"]
+    for t in res:
+        if (t.get("matched_term") or "").lower() == name.lower():
+            print(f"  {name} -> iNaturalist kabul edilen ad: {t['name']}", flush=True)
+            return t["id"], t["name"]
     raise RuntimeError(f"iNaturalist taksonu bulunamadı: {name}")
 
 
@@ -77,11 +83,12 @@ def observations(tid, place, limit):
     return out[:limit]
 
 
-def photo_rows(sinif, tid, obs, kapsam, per_obs):
+def photo_rows(sinif, tid, kabul_adi, obs, kapsam, per_obs):
     for o in obs:
         for ph in o.get("photos", [])[:per_obs]:
             yield {
                 "photo_id": ph["id"], "observation_id": o["id"], "sinif": sinif, "istenen_taxon_id": tid,
+                "istenen_taxon_adi": kabul_adi,
                 "gozlem_taxon_adi": (o.get("taxon") or {}).get("name", ""),
                 "gozlem_taxon_rank": (o.get("taxon") or {}).get("rank", ""),
                 "lisans": ph.get("license_code") or "", "atif": ph.get("attribution", ""),
@@ -111,9 +118,20 @@ def collect_inat():
     with open(ROOT / "data" / "species_info.csv", encoding="utf-8") as f:
         species = [r["latin_name"] for r in csv.DictReader(f)]
     local, turkey = f"{EUROPE},{TURKEY}", TURKEY
-    rows = []
-    for name in species:
-        tid = taxon_id(name)
+    cache = RAW / "inat_cache"
+    cache.mkdir(exist_ok=True)
+
+    def sinif_topla(anahtar, fn):
+        """Her sınıfın sonucu ayrı dosyaya yazılır: yarıda kesilirse kaldığı yerden devam eder."""
+        f = cache / f"{anahtar.replace(' ', '_')}.json"
+        if f.exists():
+            return json.loads(f.read_text(encoding="utf-8")), True
+        rows = fn()
+        f.write_text(json.dumps(rows, ensure_ascii=False), encoding="utf-8")
+        return rows, False
+
+    def tur(name):
+        tid, kabul = taxon(name)
         obs = observations(tid, local, OBS_PER_CLASS)
         kapsam = "avrupa_tr"
         if len(obs) < MIN_LOCAL_OBS:
@@ -121,26 +139,26 @@ def collect_inat():
             extra = [o for o in observations(tid, None, OBS_PER_CLASS) if o["id"] not in seen]
             obs += extra[:OBS_PER_CLASS - len(obs)]
             kapsam = "avrupa_tr+dunya"
-        new = list(photo_rows(name, tid, obs, kapsam, PHOTOS_PER_OBS))
-        rows += new
-        print(f"{name:<30} {len(obs):>4} gözlem, {len(new):>4} foto ({kapsam})", flush=True)
-    for name, n in NEGATIVES:
-        tid = taxon_id(name)
-        obs = observations(tid, turkey, n)
-        new = list(photo_rows("mantar_degil", tid, obs, f"tr:{name}", 1))
-        rows += new
-        print(f"mantar_degil / {name:<15} {len(new):>4} foto", flush=True)
+        return list(photo_rows(name, tid, kabul, obs, kapsam, PHOTOS_PER_OBS))
+
+    def negatif(name, n):
+        tid, kabul = taxon(name)
+        return list(photo_rows("mantar_degil", tid, kabul, observations(tid, turkey, n), f"tr:{name}", 1))
+
+    isler = [(n, lambda n=n: tur(n)) for n in species] + [(f"neg_{n}", lambda n=n, k=k: negatif(n, k)) for n, k in NEGATIVES]
+    rows = []
+    with ThreadPoolExecutor(8) as ex:
+        for anahtar, fn in isler:
+            yeni, onbellek = sinif_topla(anahtar, fn)
+            rows += yeni
+            list(ex.map(download, yeni))   # bu sınıfın fotoğraflarını hemen indir
+            print(f"{anahtar:<32} {len(yeni):>4} foto {'(önbellekten)' if onbellek else ''}", flush=True)
 
     with open(RAW / "inat_photos.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
-    print(f"\n{len(rows)} fotoğraf kaydı yazıldı; indiriliyor...", flush=True)
-    with ThreadPoolExecutor(8) as ex:
-        for i, _ in enumerate(ex.map(download, rows), 1):
-            if i % 500 == 0:
-                print(f"  {i}/{len(rows)}", flush=True)
-    print(f"İndirme bitti: {sum(1 for _ in IMG.glob('*.jpg'))} dosya", flush=True)
+    print(f"\n{len(rows)} fotoğraf kaydı; diskte {sum(1 for _ in IMG.glob('*.jpg'))} dosya", flush=True)
 
 
 GBIF_FIELDS = ["gbifID", "species", "scientificName", "taxonRank", "taxonKey", "speciesKey", "decimalLatitude",

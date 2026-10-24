@@ -55,6 +55,12 @@ def test_taksonomi_normalize_uyusmayani_atar():
     assert out[0]["tur"] == "Amanita muscaria"
 
 
+def test_taksonomi_normalize_es_anlamli_adi_kabul_eder():
+    rows = [{"sinif": "Clitocybe rivulosa", "istenen_taxon_adi": "Clitocybe dealbata", "gozlem_taxon_adi": "Clitocybe dealbata"},
+            {"sinif": "Clitocybe rivulosa", "istenen_taxon_adi": "Clitocybe dealbata", "gozlem_taxon_adi": "Clitocybe nebularis"}]
+    assert len(clean.taksonomi_normalize(rows)) == 1
+
+
 def _img(seed, size=(200, 160)):
     rng = np.random.default_rng(seed)
     return Image.fromarray(rng.integers(0, 255, (size[1], size[0], 3), dtype=np.uint8)).filter(ImageFilter.GaussianBlur(4))
