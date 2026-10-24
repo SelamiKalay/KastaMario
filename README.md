@@ -11,7 +11,7 @@ MycoGuard iki açık modeli ve kural tabanlı bir güvenlik katmanını birlikte
 | Katman | Model | Lisans | Görevi |
 |---|---|---|---|
 | 1. Görüntü sınıflandırıcı | **EfficientNet-B0**, bu projede iNaturalist fotoğraflarıyla eğitildi (`ml/train.py`) | Kod MIT; ön eğitimli ağırlıklar [torchvision (BSD-3)](https://github.com/pytorch/vision/blob/main/LICENSE) | Fotoğraftan tür olasılıkları + "mantar değil" tespiti. ONNX olarak **cihazda, internetsiz** çalışır. |
-| 2. Görsel-dil modeli | **[Gemma 4 E4B](https://huggingface.co/google/gemma-4-E4B-it)** (Google DeepMind, açık ağırlıklı, ~4,5 milyar efektif parametre; küçük dil modeli) — [Ollama](https://ollama.com) ile yerel | [Apache 2.0 — Gemma 4 lisansı](https://ai.google.dev/gemma/docs/gemma_4_license) | Fotoğraftaki ayırt edici özellikleri **yapılandırılmış JSON** olarak çıkarır (sap tabanında torba, halka, lamel rengi, alt yüz tipi, substrat); bilgi tabanına dayalı Türkçe asistan. |
+| 2. Görsel-dil modeli | **[Gemma 4 26B A4B](https://huggingface.co/google/gemma-4-26B-A4B-it)** (Google DeepMind, açık ağırlıklı; 26 milyar parametreli, her adımda ~4 milyarı etkin MoE modeli) — [Gemini API](https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api) üzerinden, model kimliği `gemma-4-26b-a4b-it` | [Apache 2.0 — Gemma 4 lisansı](https://ai.google.dev/gemma/docs/gemma_4_license) | Fotoğraftaki ayırt edici özellikleri **yapılandırılmış JSON** olarak çıkarır (sap tabanında torba, halka, lamel rengi, alt yüz tipi, substrat); bilgi tabanına dayalı Türkçe asistan. |
 | 3. Güvenlik kuralları | — | MIT | **En kötü aday kuralı**: adaylardan biri ≥%5 ihtimalle ölümcül/zehirliyse sonuç KIRMIZI. Gemma bulguları riski **yalnızca yükseltebilir**, asla düşüremez. |
 
 ### Örnek: Gemma 4 riski nasıl yükseltir?
@@ -20,7 +20,7 @@ Görüntü modeli bir mantarı %70 "çayır mantarı" görür. Gemma 4 fotoğraf
 ```
 Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mantar mı?
           │                                        │
-          └─► [2] Gemma 4 E4B (Ollama) ──► görsel özellikler (JSON)
+          └─► [2] Gemma 4 (sunucu → Gemini API) ──► görsel özellikler (JSON)
                                                    │
                      [3] Güvenlik kuralları ◄──────┘
                      • en kötü aday kuralı         → 🔴 Zehirli olabilir
@@ -46,21 +46,25 @@ git clone https://github.com/SelamiKalay/BAKLAVA.git
 cd BAKLAVA
 ```
 
-**1. Gemma 4'ü kurun** ([Ollama](https://ollama.com/download)):
-
-```bash
-ollama pull gemma4:e4b
-```
+**1. Gemini API anahtarı alın** (Gemma 4 ücretsiz katmanda): https://aistudio.google.com/apikey
 
 **2. Uygulamayı başlatın** (yalnızca Python 3.10+, ek paket gerekmez):
 
 ```bash
-python server/app.py
+GEMINI_API_KEY=<anahtarınız> python server/app.py
 ```
 
-Tarayıcıda `http://localhost:8000` adresini açın. Telefondan denemek için aynı ağdaki bilgisayarın IP adresini kullanın. Gemma çalışmıyorsa uygulama görüntü modeli + kurallarla çalışmaya devam eder.
+Tarayıcıda `http://localhost:8000` adresini açın. Anahtar yoksa ya da internet kesikse uygulama görüntü modeli + güvenlik kurallarıyla çalışmaya devam eder; Gemma adımı "kullanılamıyor" görünür.
 
-Farklı model: `MYCOGUARD_GEMMA=gemma4:e2b python server/app.py`
+**Başka sağlayıcı** (OpenAI uyumlu herhangi bir uç; ör. DigitalOcean Serverless Inference, Hugging Face, vLLM, Ollama):
+
+```bash
+MYCOGUARD_LLM=openai OPENAI_BASE_URL=https://.../v1 OPENAI_API_KEY=... MYCOGUARD_MODEL=<model-id> python server/app.py
+```
+
+**Telefona aktarma ve sunucuyu yayımlama:** [`docs/mobil.md`](docs/mobil.md) — DigitalOcean App Platform (`.do/app.yaml`) ve Capacitor (Android/iOS).
+
+> **Gizlilik:** Gemma 4 adımında fotoğraf ve sorular sunucu üzerinden Google Gemini API'ye gönderilir; ücretsiz katmanda bu veriler Google ürünlerini geliştirmek için kullanılabilir. Tür tahmini, rehber, takvim ve acil durum bölümleri tamamen telefonda çalışır ve hiçbir veri göndermez.
 
 ## Veri ve model hattı (yeniden üretmek için)
 
@@ -88,7 +92,7 @@ python -m pytest -q
 | `tests/test_decide.py` | 8 örnek vaka, eşik sınırları, en kötü aday kuralı, her tehlikeli tür birinci adaysa KIRMIZI |
 | `tests/test_species_table.py` | Tür tablosu şeması, aylar, belirti saatleri, ikiz türler, tehlikeli türler "Toplanmaz", "güvenli" ifadesi yasağı |
 | `tests/test_parity.py` | Tarayıcıdaki `app/decide.js` ile `src/decide.py` 2000 rastgele vakada aynı kararı veriyor |
-| `tests/test_gemma.py` | Gemma risk yükseltme kuralları, riskin asla düşmemesi, yasak ifade süzgeci, RAG bağlamı, Ollama yokken davranış |
+| `tests/test_gemma.py` | Gemma risk yükseltme kuralları, riskin asla düşmemesi, yasak ifade süzgeci, RAG bağlamı, Gemini ve OpenAI uyumlu istek biçimleri, şema dışı çıktının güvenli varsayılana düşmesi, istek sınırı |
 | `tests/test_clean.py` | İl adı/tür adı/tarih/konum ayrıştırma, lisans filtresi, dHash kopya tespiti, sızıntısız ayırma, dengeleme |
 
 ## Proje yapısı
@@ -114,8 +118,7 @@ python -m pytest -q
 | Bileşen | Lisans |
 |---|---|
 | MycoGuard kodu | MIT (`LICENSE`) |
-| Gemma 4 E4B | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) |
-| Ollama | [MIT](https://github.com/ollama/ollama/blob/main/LICENSE) |
+| Gemma 4 26B A4B (Gemini API) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) |
 | PyTorch / torchvision (EfficientNet-B0 ağırlıkları) | BSD-3 |
 | onnxruntime-web 1.20.1 | MIT |
 | iNaturalist fotoğrafları | Her fotoğrafın kendi CC lisansı; atıflar `data/clean/thumbs.json` ve `data/clean/inat_clean.csv` içinde |

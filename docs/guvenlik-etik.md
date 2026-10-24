@@ -18,7 +18,7 @@ Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en
 10. **Yalnızca yükseltme:** Gemma bulguları riski yükseltebilir (torba → KIRMIZI, kötü fotoğraf → SARI), **asla düşüremez** (`app/decide.js: escalate`, `tests/test_gemma.py`).
 11. **Bilgi tabanına dayalı yanıt (RAG):** Asistan yalnızca `species_info.csv`'deki ilgili türlerin bilgisiyle yanıt verir; yanıtlar yasak ifade süzgecinden geçer.
 12. **Acil durum önceliği:** Kullanıcı mantar yediğini söylerse asistan önce 112 / 114'ü önerir.
-13. **Gizlilik:** Gemma yerel çalışır (Ollama); fotoğraflar üçüncü taraf bir buluta gönderilmez.
+13. **Gizlilik:** Tür tahmini ve rehber telefonda çalışır, veri göndermez. Gemma 4 adımında fotoğraf ve sorular sunucu üzerinden Google Gemini API'ye gider; ücretsiz katmanda Google bu verileri ürün geliştirmede kullanabilir. API anahtarı yalnızca sunucuda tutulur, uygulamaya gömülmez.
 
 ## Bilerek yapmadıklarımız
 - Pişirme / yeme önerisi

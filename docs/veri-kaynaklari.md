@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | iNaturalist (araştırma düzeyi gözlemler) | https://www.inaturalist.org · API v1 | Rehberdeki türler + "mantar değil" sınıfı için fotoğraf ve gözlem bilgileri (`ml/collect.py`) | Fotoğraf başına CC0 / CC BY / CC BY-SA / CC BY-NC / CC BY-NC-SA / CC BY-ND / CC BY-NC-ND — "tüm hakları saklı" fotoğraflar indirilmez ve temizlikte de elenir | Ekim 2026 |
 | GBIF | https://www.gbif.org · Occurrence API | Rehberdeki türlerin Türkiye kayıtları, Kastamonu çevresindeki mantar kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC (veri setine göre) | Ekim 2026 |
-| Gemma 4 E4B | https://huggingface.co/google/gemma-4-E4B-it | Görsel-dil modeli (Ollama: `gemma4:e4b`) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) | Ekim 2026 |
+| Gemma 4 26B A4B | https://huggingface.co/google/gemma-4-26B-A4B-it | Görsel-dil modeli, Gemini API üzerinden (`gemma-4-26b-a4b-it`) | [Apache 2.0](https://ai.google.dev/gemma/docs/gemma_4_license) | Ekim 2026 |
 | EfficientNet-B0 (ImageNet) | https://pytorch.org/vision | Transfer öğrenme başlangıç ağırlıkları | BSD-3 | Ekim 2026 |
 
 Atıflar: rehberde gösterilen her fotoğrafın sahibi ve lisansı `data/clean/thumbs.json` içinde ve uygulamada fotoğrafın üzerinde yazılıdır. Eğitimde kullanılan tüm fotoğrafların atıf ve lisansı `data/clean/inat_clean.csv` içindedir.

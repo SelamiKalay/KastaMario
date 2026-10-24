@@ -8,7 +8,7 @@
 
 ## 24 Ekim 2026 — 1. gün (öğleden sonra)
 - Kapsam Kastamonu'ya odaklandı; bilgi tabanı 28 türe çıktı (Ak köygöçüren, Lepiota, Kükürt mantarı, Şeytan mantarı, Bal mantarı, Yumurta mantarı, Kirpi, Borazan…). Yeni alanlar: belirtiler, belirti saatleri, ilk yardım, boy, yetişme süreci, aylar, toplama notu, Kastamonu notu.
-- Yarışma kuralları (MLH Open Source AI) incelendi → açık ağırlıklı model olarak **Gemma 4 E4B** seçildi.
+- Yarışma kuralları (MLH Open Source AI) incelendi → açık ağırlıklı model olarak **Gemma 4** seçildi (önce yerel E4B planlandı, sonra uzak API'ye geçildi).
 - Gemma 4 sunucusu (`server/`): yapılandırılmış görsel özellik çıkarımı + yalnızca riski yükselten kurallar + bilgi tabanına dayalı asistan.
 - Veri hattı: `ml/collect.py` (iNaturalist + GBIF), `ml/clean.py` (10 adımlı temizlik, dHash kopya tespiti, sızıntısız ayrım), `ml/train.py` (EfficientNet-B0, kalibrasyon, güvenlik metrikleri, ONNX).
 - Arayüz yeniden tasarlandı: Kastamonu teması, 5 sekme (Tara, Rehber, Asistan, Takvim, Yedim!), karanlık mod, PWA.
