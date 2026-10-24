@@ -62,12 +62,12 @@ def test_sema_disi_degerler_guvenli_varsayilana_duser():
 def test_gorsel_ozellikler_uctan_uca(monkeypatch):
     giden = {}
 
-    def sahte(mesajlar, image_b64=None, temperature=0.2):
-        giden.update(mesajlar=mesajlar, image=image_b64, t=temperature)
+    def sahte(mesajlar, images=(), temperature=0.2):
+        giden.update(mesajlar=mesajlar, images=list(images), t=temperature)
         return "```json\n" + json.dumps(oz(sap_tabaninda_torba="var")) + "\n```"
     monkeypatch.setattr(gemma, "uret", sahte)
-    out = gemma.gorsel_ozellikler("QUJD")
-    assert out["sap_tabaninda_torba"] == "var" and giden["image"] == "QUJD" and giden["t"] == 0
+    out = gemma.gorsel_ozellikler(["QUJD"])
+    assert out["sap_tabaninda_torba"] == "var" and giden["images"] == ["QUJD"] and giden["t"] == 0
     assert "gorunmuyor" in giden["mesajlar"][0]["content"]
 
 
@@ -113,7 +113,7 @@ def yakala(monkeypatch):
 def test_gemini_istegi(yakala, monkeypatch):
     monkeypatch.setattr(gemma, "SAGLAYICI", "gemini")
     out = gemma.uret([{"role": "system", "content": "KURAL"}, {"role": "user", "content": "selam"},
-                      {"role": "assistant", "content": "merhaba"}, {"role": "user", "content": "bak"}], image_b64="IMG")
+                      {"role": "assistant", "content": "merhaba"}, {"role": "user", "content": "bak"}], images=["IMG"])
     c = yakala["body"]["contents"]
     assert out == "yanıt" and gemma.MODEL in yakala["url"] and yakala["headers"]["x-goog-api-key"] == "TEST"
     assert c[0]["parts"][0]["text"].startswith("KURAL") and [x["role"] for x in c] == ["user", "model", "user"]
@@ -123,7 +123,7 @@ def test_gemini_istegi(yakala, monkeypatch):
 def test_openai_uyumlu_istek(yakala, monkeypatch):
     monkeypatch.setattr(gemma, "SAGLAYICI", "openai")
     monkeypatch.setattr(gemma, "OPENAI_URL", "https://inference.example/v1")
-    out = gemma.uret([{"role": "system", "content": "KURAL"}, {"role": "user", "content": "bak"}], image_b64="IMG")
+    out = gemma.uret([{"role": "system", "content": "KURAL"}, {"role": "user", "content": "bak"}], images=["IMG"])
     m = yakala["body"]["messages"]
     assert out == "yanıt" and yakala["url"] == "https://inference.example/v1/chat/completions"
     assert m[0] == {"role": "system", "content": "KURAL"} and m[1]["content"][1]["image_url"]["url"].endswith("IMG")
@@ -180,3 +180,40 @@ def test_env_dosyasi_yuklenir_ve_tanimliyi_ezmez(tmp_path, monkeypatch):
 ])
 def test_rag_genel_kelimelerle_alakasiz_tur_secmez(soru, beklenen):
     assert set(gemma.ilgili_turler(INFO, soru, [])) == beklenen
+
+
+def test_coklu_foto_tek_istekte_gider(monkeypatch):
+    giden = {}
+    monkeypatch.setattr(gemma, "uret", lambda m, images=(), temperature=0.2: giden.update(m=m, images=list(images)) or json.dumps(oz()))
+    gemma.gorsel_ozellikler(["A", "B", "C", "D"])
+    assert giden["images"] == ["A", "B", "C"], "en fazla 3 açı"
+    assert "AYNI mantarın" in giden["m"][0]["content"]
+
+
+def test_gemini_coklu_foto_parcalari(yakala, monkeypatch):
+    monkeypatch.setattr(gemma, "SAGLAYICI", "gemini")
+    gemma.uret([{"role": "user", "content": "bak"}], images=["A", "B"])
+    assert [p["inline_data"]["data"] for p in yakala["body"]["contents"][-1]["parts"][1:]] == ["A", "B"]
+
+
+def test_odun_ustunde_kume_uyarisi_adaydan_bagimsiz():
+    assert any("galerina" in u for u in gemma.risk_yukseltme(oz(yetistigi_yer="odun", kumeler_halinde="evet"))["uyarilar"])
+
+
+def test_sohbet_tum_katalogu_ve_ayi_gonderir(monkeypatch):
+    giden = {}
+    monkeypatch.setattr(gemma, "uret", lambda m, **k: giden.update(m=m) or "tamam")
+    gemma.sohbet(INFO, [{"role": "user", "content": "Kastamonu'daki mantarları listele"}], {})
+    sistem = giden["m"][0]["content"]
+    assert all(r["latin_name"] in sistem for r in INFO.values()), "25 türün hepsi katalogda olmalı"
+    assert "TÜR KATALOĞU" in sistem and "Bugün:" in sistem and "madde" in sistem
+
+
+def test_gemini_dusunme_seviyesi_gonderilir(yakala, monkeypatch):
+    monkeypatch.setattr(gemma, "SAGLAYICI", "gemini")
+    monkeypatch.setattr(gemma, "DUSUNME", "minimal")
+    gemma.uret([{"role": "user", "content": "x"}])
+    assert yakala["body"]["generationConfig"]["thinkingConfig"] == {"thinkingLevel": "minimal"}
+    monkeypatch.setattr(gemma, "DUSUNME", "")
+    gemma.uret([{"role": "user", "content": "x"}])
+    assert "thinkingConfig" not in yakala["body"]["generationConfig"]

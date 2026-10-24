@@ -4,7 +4,7 @@
 
 Uç noktalar (mobil uygulama için CORS açık):
     GET  /api/durum    -> asistan hazır mı?
-    POST /api/analiz   {image: base64, adaylar: [ad]}         -> görsel özellikler + risk yükseltme
+    POST /api/analiz   {images: [base64, ...] (1-3 açı)}      -> görsel özellikler + risk yükseltme
     POST /api/sohbet   {mesajlar: [...], baglam: {...}}       -> bilgi tabanına dayalı yanıt
 """
 import json
@@ -87,8 +87,11 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             body = json.loads(self.rfile.read(n) or b"{}")
             if self.path == "/api/analiz":
-                oz = gemma.gorsel_ozellikler(body["image"])
-                return self._json(200, {"ozellikler": oz, **gemma.risk_yukseltme(oz, INFO, body.get("adaylar", []))})
+                images = body.get("images") or [body["image"]]
+                if not isinstance(images, list) or not all(isinstance(b, str) and b for b in images):
+                    raise ValueError("images bir base64 listesi olmalı")
+                oz = gemma.gorsel_ozellikler(images[:3])
+                return self._json(200, {"ozellikler": oz, "foto_sayisi": min(3, len(images)), **gemma.risk_yukseltme(oz)})
             if self.path == "/api/sohbet":
                 return self._json(200, gemma.sohbet(INFO, body["mesajlar"], body.get("baglam", {})))
             return self._json(404, {"hata": "Bulunamadı"})
