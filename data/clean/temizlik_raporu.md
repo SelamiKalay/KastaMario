@@ -12,6 +12,53 @@
 | GBIF | 4. Koordinat aykırı değerleri | 1044 | 1044 | 0 | Türkiye dışı, 0/0 veya ters girilmiş koordinatlar |
 | GBIF | 5. Aynı tür-yer-gün kopyaları | 1044 | 839 | 205 | Aynı gözlemin farklı veri setlerindeki kopyası |
 | GBIF | 6. İl adı normalizasyonu | 839 | 839 | 0 | 53 farklı yazım -> 52 il; Kastamonu yazımları: 'Kastamonu'; Kastamonu kaydı: 129 |
+| iNat | 1. Yinelenen photo_id | 15013 | 14460 | 553 | Aynı fotoğraf birden fazla sorguda gelmiş |
+| iNat | 1b. Rehber dışı sınıflar | 14460 | 14460 | 0 | Kastamonu/Karadeniz'de GBIF kaydı olmadığı için rehberden çıkarılan türler |
+| iNat | 2. Lisans filtresi | 14460 | 14460 | 0 | Yalnızca CC lisanslı fotoğraflar |
+| iNat | 3. Eksik URL | 14460 | 14460 | 0 | Fotoğraf adresi olmayan kayıtlar |
+| iNat | 4. Taksonomi normalizasyonu | 14460 | 14312 | 148 | Alt tür/varyete -> tür; sınıfla uyuşmayanlar atıldı |
+| iNat | 5. Bozuk / inmemiş görüntü | 14312 | 14312 | 0 | Açılamayan veya indirilemeyen dosyalar |
+| iNat | 6. Boyut / en-boy aykırı değer | 14312 | 14312 | 0 | Kısa kenar < 128px veya en/boy > 3.0 |
+| iNat | 7. Birebir kopya (aynı dHash) | 14312 | 14299 | 13 | Farklı kimlikle yüklenmiş aynı fotoğraf |
+| iNat | 8. Neredeyse kopya (Hamming<=4) | 14299 | 14279 | 20 | Kırpılmış/sıkıştırılmış kopyalar (train-test sızıntısını önler) |
+| iNat | 9. Tarih / konum ayrıştırma | 14279 | 14279 | 0 | Ay bilinmeyen: 0, konum bilinmeyen: 0 (atılmadı) |
+| iNat | 10. Sınıf dengeleme | 14279 | 11167 | 3112 | Sınıf başına en fazla 450; < 60 örnekli sınıflar çıkarıldı: yok |
+
+## Model veri seti (sınıf × ayrım)
+
+| Sınıf | train | val | test | toplam | gözlem |
+|---|---:|---:|---:|---:|---:|
+| Agaricus campestris | 319 | 68 | 63 | 450 | 265 |
+| Agaricus xanthodermus | 311 | 72 | 67 | 450 | 270 |
+| Amanita caesarea | 317 | 66 | 66 | 449 | 321 |
+| Amanita muscaria | 317 | 69 | 64 | 450 | 325 |
+| Amanita pantherina | 308 | 73 | 68 | 449 | 311 |
+| Amanita phalloides | 321 | 66 | 63 | 450 | 280 |
+| Amanita rubescens | 316 | 70 | 64 | 450 | 284 |
+| Armillaria mellea | 321 | 64 | 65 | 450 | 283 |
+| Boletus edulis | 317 | 68 | 64 | 449 | 310 |
+| Cantharellus cibarius | 317 | 66 | 67 | 450 | 318 |
+| Coprinus comatus | 318 | 70 | 62 | 450 | 332 |
+| Craterellus cornucopioides | 319 | 65 | 66 | 450 | 315 |
+| Entoloma sinuatum | 192 | 40 | 37 | 269 | 177 |
+| Galerina marginata | 313 | 68 | 69 | 450 | 262 |
+| Gyromitra esculenta | 317 | 68 | 65 | 450 | 317 |
+| Hydnum repandum | 324 | 64 | 61 | 449 | 277 |
+| Hypholoma fasciculare | 311 | 70 | 69 | 450 | 296 |
+| Lactarius deliciosus | 318 | 65 | 67 | 450 | 294 |
+| Lepiota brunneoincarnata | 92 | 18 | 20 | 130 | 81 |
+| Macrolepiota procera | 313 | 71 | 65 | 449 | 314 |
+| Marasmius oreades | 315 | 70 | 64 | 449 | 289 |
+| Morchella esculenta | 316 | 66 | 68 | 450 | 330 |
+| Omphalotus olearius | 312 | 68 | 70 | 450 | 288 |
+| Pleurotus ostreatus | 295 | 63 | 66 | 424 | 254 |
+| Rubroboletus satanas | 319 | 67 | 64 | 450 | 287 |
+| mantar_degil | 315 | 68 | 67 | 450 | 450 |
+
+Çıkarılan sınıflar (< 60 örnek): yok
+Türkiye'den gelen fotoğraf: 542 / 11167
+
+Sızıntı kontrolü (her gözlem yalnızca bir ayrımda): ✅ geçti
 
 ## GBIF — rehberdeki türler
 

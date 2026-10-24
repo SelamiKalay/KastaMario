@@ -240,17 +240,29 @@
   ],
   "Pleurotus ostreatus": [
    {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/1196165"
+   },
+   {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2526530"
    }
   ],
   "Coprinus comatus": [
    {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/47392"
+   },
+   {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/7987658"
    }
   ],
   "Marasmius oreades": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/118240"
+   },
    {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2537250"

@@ -17,6 +17,8 @@ from clean import ALLOWED_LICENSES, IMG, goruntu_kontrol, oku, tur_adi  # noqa: 
 OUT = ROOT / "app" / "img" / "sp"
 # Tüm CC lisansları kabul; önce en serbest olanlar tercih edilir
 TERCIH = ["cc0", "cc-by", "cc-by-sa", "cc-by-nc", "cc-by-nc-sa", "cc-by-nd", "cc-by-nc-nd"]
+# Otomatik seçim türü temsil etmediğinde elle seçilen fotoğraflar (ör. bal mantarında kök kordonu yerine mantar kümesi)
+ELLE_SECIM = {"Armillaria mellea": "119677564"}
 
 
 def main():
@@ -34,7 +36,8 @@ def main():
             rows.append({**r, "lisans": lis})
     sonuc = {}
     for ad, sid in turler.items():
-        adaylar = sorted((r for r in rows if r["sinif"] == ad), key=lambda r: TERCIH.index(r["lisans"]))[:40]
+        adaylar = sorted((r for r in rows if r["sinif"] == ad),
+                         key=lambda r: (str(r["photo_id"]) != ELLE_SECIM.get(ad), TERCIH.index(r["lisans"])))[:40]
         for r in adaylar:
             p = IMG / f"{r['photo_id']}.jpg"
             ok, w, h, _ = goruntu_kontrol(p)

@@ -1439,9 +1439,9 @@ window.MYCO_THUMBS = {
  },
  "Armillaria mellea": {
   "src": "img/sp/s14.jpg",
-  "atif": "no rights reserved",
-  "lisans": "cc0",
-  "kaynak": "https://www.inaturalist.org/observations/107630075"
+  "atif": "(c) natomik, some rights reserved (CC BY)",
+  "lisans": "cc-by",
+  "kaynak": "https://www.inaturalist.org/observations/73316781"
  },
  "Agaricus campestris": {
   "src": "img/sp/s15.jpg",
@@ -1478,6 +1478,36 @@ window.MYCO_THUMBS = {
   "atif": "no rights reserved",
   "lisans": "cc0",
   "kaynak": "https://www.inaturalist.org/observations/400695240"
+ },
+ "Hydnum repandum": {
+  "src": "img/sp/s21.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/190829667"
+ },
+ "Craterellus cornucopioides": {
+  "src": "img/sp/s22.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/311117480"
+ },
+ "Pleurotus ostreatus": {
+  "src": "img/sp/s23.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/68431546"
+ },
+ "Coprinus comatus": {
+  "src": "img/sp/s24.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/99856992"
+ },
+ "Marasmius oreades": {
+  "src": "img/sp/s25.jpg",
+  "atif": "no rights reserved",
+  "lisans": "cc0",
+  "kaynak": "https://www.inaturalist.org/observations/58984897"
  }
 };
 window.MYCO_REFS = {
@@ -1722,17 +1752,29 @@ window.MYCO_REFS = {
   ],
   "Pleurotus ostreatus": [
    {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/1196165"
+   },
+   {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2526530"
    }
   ],
   "Coprinus comatus": [
    {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/47392"
+   },
+   {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/7987658"
    }
   ],
   "Marasmius oreades": [
+   {
+    "ad": "iNaturalist tür sayfası",
+    "url": "https://www.inaturalist.org/taxa/118240"
+   },
    {
     "ad": "GBIF tür sayfası ve görülme kayıtları",
     "url": "https://www.gbif.org/species/2537250"
