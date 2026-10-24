@@ -73,6 +73,13 @@
   .band p { margin: 0; font-size: .82rem; flex: 1; }
   .sos { background: var(--red); color: #fff; border: 0; border-radius: 8px; padding: 10px 14px;
          font-weight: 700; cursor: pointer; font: inherit; font-weight: 700; white-space: nowrap; }
+  .short { display: none; }
+  @media (max-width: 600px) {
+    .band { padding: 8px 12px; gap: 8px; }
+    .band .long { display: none; }
+    .band .short { display: inline; }
+    .sos { padding: 8px 10px; }
+  }
   dialog { border: 0; border-radius: 12px; padding: 0; max-width: 520px; width: calc(100% - 32px); }
   dialog::backdrop { background: rgba(0,0,0,.55); }
   .dlg { padding: 20px; }
@@ -104,8 +111,8 @@
 </main>
 
 <div class="band" role="note">
-  <p>⚠️ MycoGuard hiçbir mantarın yenilebilir olduğunu söylemez. Yeme kararı için mutlaka uzman onayı alın.</p>
-  <button class="sos" id="sosBtn">🚨 Yedim, ne yapmalıyım?</button>
+  <p><span class="long">⚠️ MycoGuard hiçbir mantarın yenilebilir olduğunu söylemez. Yeme kararı için mutlaka uzman onayı alın.</span><span class="short">⚠️ "Yenilebilir" demeyiz. Uzman onayı şart.</span></p>
+  <button class="sos" id="sosBtn"><span class="long">🚨 Yedim, ne yapmalıyım?</span><span class="short">🚨 Yedim!</span></button>
 </div>
 
 <dialog id="sos">
