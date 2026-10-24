@@ -110,12 +110,15 @@ def test_goruntu(x):
 
 
 class GPUVeri:
-    """Bir ayrımın (train/val/test) fotoğrafları ve etiketleri GPU belleğinde; toplu (batch) üretir."""
+    """Bir ayrımın (train/val/test) fotoğrafları ana bellekte (sabitlenmiş), etiketleri GPU'da; her toplu yalnızca kendi
+    fotoğraflarını GPU'ya taşır. (Tüm fotoğrafları GPU'da tutmak, tüm ağ eğitilirken 8 GB'ı aşıp sistemi yavaşlattı.)"""
 
     def __init__(self, X, y, dev, bs, egitim):
-        self.X = torch.from_numpy(np.ascontiguousarray(X)).to(dev)   # uint8 (N, K, K, 3)
+        self.X = torch.from_numpy(np.ascontiguousarray(X))           # uint8 (N, K, K, 3), CPU
+        if torch.device(dev).type == "cuda":
+            self.X = self.X.pin_memory()
         self.y = torch.tensor(y, device=dev)
-        self.bs, self.egitim = bs, egitim
+        self.dev, self.bs, self.egitim = dev, bs, egitim
 
     def __len__(self):
         n = len(self.y)
@@ -123,11 +126,11 @@ class GPUVeri:
 
     def __iter__(self):
         n = len(self.y)
-        sira = torch.randperm(n, device=self.y.device) if self.egitim else torch.arange(n, device=self.y.device)
+        sira = torch.randperm(n) if self.egitim else torch.arange(n)
         for i in range(len(self)):
             idx = sira[i * self.bs:(i + 1) * self.bs]
-            x = self.X[idx].permute(0, 3, 1, 2).float() / 255
-            yield normalize(artir(x) if self.egitim else test_goruntu(x)), self.y[idx]
+            x = self.X[idx].to(self.dev, non_blocking=True).permute(0, 3, 1, 2).float() / 255
+            yield normalize(artir(x) if self.egitim else test_goruntu(x)), self.y[idx.to(self.y.device)]
 
 
 def model_kur(n):

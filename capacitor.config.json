@@ -1,7 +1,7 @@
 {
-  "appId": "app.mycoguard.kastamonu",
-  "appName": "MycoGuard",
+  "appId": "app.kastamario.kastamonu",
+  "appName": "KastaMario",
   "webDir": "app",
   "android": { "allowMixedContent": false },
-  "plugins": { "SplashScreen": { "backgroundColor": "#0f2a33" } }
+  "plugins": { "SplashScreen": { "backgroundColor": "#f4f5f2" } }
 }

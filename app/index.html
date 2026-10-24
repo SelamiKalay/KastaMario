@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#26404d">
-<meta name="description" content="Kastamonu için yapay zekâ destekli mantar zehirlenme risk rehberi.">
-<title>MycoGuard Kastamonu</title>
+<meta name="description" content="KastaMario: Kastamonu için yapay zekâ destekli mantar zehirlenme risk rehberi.">
+<meta name="apple-mobile-web-app-title" content="KastaMario">
+<title>KastaMario</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
   /* ---- Belirteçler: spor beyazı, humus, Küre alacakaranlığı + tehlike renkleri ---- */
@@ -55,9 +57,10 @@
   .top { border-bottom: 1px solid var(--rule); background: var(--surface); }
   .top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; }
   .mark { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-  .mark svg { width: 30px; height: 30px; flex: none; }
+  .mark img { width: 40px; height: 40px; flex: none; }
+  .mark-tx { display: grid; line-height: 1.15; }
   .mark b { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; }
-  .mark span { color: var(--muted); font-family: var(--serif); font-style: italic; }
+  .mark-tx span { color: var(--muted); font-size: .74rem; }
   .ai { margin-left: auto; display: flex; gap: 14px; font-size: .8rem; color: var(--muted); }
   .ai > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
   .ai .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); }
@@ -294,9 +297,37 @@
   .ol li::before { content: counter(s); font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--lethal); line-height: 1.2; }
   .tri { display: grid; gap: 12px; margin-top: 18px; max-width: 62ch; }
 
-  /* ---- Asistan ---- */
-  .chat { display: grid; gap: 16px; max-width: 760px; }
-  .msgs { display: grid; gap: 14px; }
+  /* ---- Mybear: köşe balonu + sohbet paneli ---- */
+  .bear-fab { position: fixed; right: 14px; bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 14px); z-index: 11; width: 66px; height: 66px;
+              padding: 0; border: 0; background: none; cursor: pointer; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .3)); transition: transform .2s; }
+  .bear-fab[hidden] { display: none; }
+  .bear-fab:hover { transform: scale(1.06); }
+  .bear-fab img { width: 100%; height: 100%; display: block; }
+  .bear-fab:focus-visible { outline: 3px solid var(--slate); outline-offset: 4px; border-radius: 50%; }
+  .bear-tip { position: absolute; right: 74px; top: 50%; white-space: nowrap; background: var(--surface); color: var(--ink);
+              border: 1px solid var(--rule); border-radius: 12px; padding: 7px 11px; font-size: .82rem; font-weight: 600;
+              box-shadow: 0 4px 14px rgba(0, 0, 0, .12); pointer-events: none; animation: ipucu 7s ease forwards; }
+  @keyframes ipucu { 0%, 6% { opacity: 0; transform: translate(8px, -50%); } 12%, 85% { opacity: 1; transform: translate(0, -50%); }
+                     100% { opacity: 0; transform: translate(0, -50%); visibility: hidden; } }
+  .bear-panel { position: fixed; right: 14px; bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 14px); z-index: 12;
+                width: min(410px, calc(100% - 28px)); height: min(620px, calc(100dvh - var(--nav) - 100px));
+                display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--rule); border-radius: 18px;
+                box-shadow: 0 18px 50px rgba(0, 0, 0, .28); overflow: hidden; transform-origin: bottom right; animation: panel .22s ease-out; }
+  .bear-panel[hidden] { display: none; }
+  @keyframes panel { from { opacity: 0; transform: scale(.92) translateY(10px); } }
+  @media (max-width: 560px) {
+    .bear-panel { left: 8px; right: 8px; width: auto; bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 8px);
+                  height: calc(100dvh - var(--nav) - env(safe-area-inset-bottom) - 70px); }
+  }
+  .bear-head { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px;
+               background: var(--surface); border-bottom: 1px solid var(--rule); }
+  .bear-head b { font-family: var(--serif); font-size: 1.15rem; display: block; line-height: 1.1; }
+  .bear-head small { color: var(--muted); font-size: .74rem; }
+  .bear-x { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--low-soft); color: var(--ink); cursor: pointer; font-size: 1rem; }
+  .bear-panel .msgs { flex: 1; overflow-y: auto; padding: 14px; overscroll-behavior: contain; }
+  .bear-panel .sugg { padding: 0 14px 8px; }
+  .bear-panel .composer { padding: 10px 12px; border-top: 1px solid var(--rule); background: var(--surface); }
+  .msgs { display: grid; gap: 14px; align-content: start; }
   .msg { max-width: 92%; }
   .msg.u { white-space: pre-wrap; }
   .msg.a p { margin: 0 0 8px; }
@@ -311,14 +342,14 @@
   @keyframes bl { 50% { opacity: .25; } }
   .sugg { display: flex; flex-wrap: wrap; gap: 8px; }
   .sugg button { min-height: 40px; padding: 6px 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: .9rem; text-align: left; }
-  .composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; position: sticky; bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 8px); }
+  .composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
   .composer input { min-height: 48px; padding: 0 14px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); min-width: 0; }
   .note { padding: 12px 14px; border-radius: 8px; background: var(--low-soft); font-size: .92rem; }
 
   /* ---- Alt sekme çubuğu ---- */
   nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--rule);
              padding-bottom: env(safe-area-inset-bottom); }
-  nav.tabs .wrap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: var(--nav); padding: 0 4px; }
+  nav.tabs .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: var(--nav); padding: 0 4px; }
   nav.tabs button { all: unset; cursor: pointer; display: grid; place-items: center; align-content: center; gap: 3px; font-size: .74rem; color: var(--muted); }
   nav.tabs svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 600; }
@@ -339,9 +370,9 @@
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="mark" href="#" data-go="tara" aria-label="MycoGuard Kastamonu, tarama ekranı">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16C3 8 9 4 16 4s13 4 13 12z" fill="#26404d"/><path d="M13 16h6l-1 11h-4z" fill="#26404d" opacity=".55"/><path d="M8 13l3-3M15 9V7M22 11l2-2" stroke="#f4f5f2" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <b>MycoGuard</b><span>Kastamonu</span>
+    <a class="mark" href="#" data-go="tara" aria-label="KastaMario, tarama ekranı">
+      <img src="img/kastamario-96.png" alt="" width="40" height="40">
+      <span class="mark-tx"><b>KastaMario</b><span>Kastamonu mantar rehberi</span></span>
     </a>
     <div class="ai" aria-live="polite">
       <span title="Telefondaki görüntü modeli"><span class="dot" id="dotModel"></span><span class="lbl" id="lblModel">Görüntü modeli</span></span>
@@ -394,19 +425,6 @@
     <div id="list"></div>
   </div>
 
-  <!-- ================= ASİSTAN ================= -->
-  <div class="view" id="v-asistan">
-    <div class="chat">
-      <div class="head">
-        <h2>Mantar asistanı</h2>
-        <p class="muted measure">Google Gemma 4 ile çalışır ve yalnızca bu rehberdeki tür bilgilerine dayanarak yanıt verir.</p>
-      </div>
-      <div class="msgs" id="msgs" aria-live="polite"></div>
-      <div class="sugg" id="sugg"></div>
-      <form class="composer" id="chatForm"><input id="chatIn" placeholder="Sorunuzu yazın" autocomplete="off" aria-label="Soru"><button class="btn" id="chatSend">Sor</button></form>
-    </div>
-  </div>
-
   <!-- ================= TAKVİM ================= -->
   <div class="view" id="v-takvim">
     <div class="head">
@@ -453,18 +471,31 @@
     </section>
   </div>
 
-  <footer>MycoGuard bilgilendirme amaçlıdır; tıbbi tavsiyenin veya uzman tür tanımının yerine geçmez. Açık kaynak (MIT). Asistan: Google Gemma 4 (Apache 2.0).</footer>
+  <footer>KastaMario bilgilendirme amaçlıdır; tıbbi tavsiyenin veya uzman tür tanımının yerine geçmez. Açık kaynak (MIT). Mybear asistanı: Google Gemma 4 (Apache 2.0).</footer>
 </main>
 
 <nav class="tabs" aria-label="Bölümler">
   <div class="wrap" role="tablist">
     <button role="tab" data-go="tara" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Tara</button>
     <button role="tab" data-go="rehber" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Rehber</button>
-    <button role="tab" data-go="asistan" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-5 4z"/><path d="M9 10h6"/></svg>Asistan</button>
     <button role="tab" data-go="takvim" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Takvim</button>
     <button role="tab" data-go="acil" aria-selected="false" class="sos-tab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Yedim</button>
   </div>
 </nav>
+
+<button class="bear-fab" id="bearFab" aria-label="Mybear'a soru sor" aria-expanded="false" aria-controls="bearPanel">
+  <img src="img/mybear-128.png" alt="" width="66" height="66"><span class="bear-tip">Mantar sorunuz mu var?</span>
+</button>
+<section class="bear-panel" id="bearPanel" role="dialog" aria-label="Mybear ile sohbet" hidden>
+  <header class="bear-head">
+    <img src="img/mybear-128.png" alt="" width="44" height="44">
+    <div><b>Mybear</b><small>Mantar rehberin · Gemma 4</small></div>
+    <button class="bear-x" id="bearClose" aria-label="Sohbeti kapat">✕</button>
+  </header>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="sugg" id="sugg"></div>
+  <form class="composer" id="chatForm"><input id="chatIn" placeholder="Mybear'a sorun" autocomplete="off" aria-label="Soru"><button class="btn" id="chatSend">Sor</button></form>
+</section>
 
 <dialog id="spDlg" aria-label="Tür bilgisi"><div class="dlg-bar"><button class="btn quiet" id="spClose">Kapat</button></div><div class="dlg-body" id="spBody"></div></dialog>
 
@@ -645,12 +676,12 @@ function render(c, source, g) {
     const sezon = months(top1).includes(NOW_M);
     html += `<section><div class="callout ${sezon ? "" : "orta"}" style="margin-bottom:24px">${sezon
       ? `${esc(top1.turkce_ad)} ${AY_UZUN[NOW_M - 1]} ayında görülebilir.` : `${esc(top1.turkce_ad)} genelde ${AY_UZUN[NOW_M - 1]} ayında görülmez. Tahmin yanlış olabilir; ekstra dikkatli olun.`}</div>
-      ${speciesPage(top1)}<p style="margin-top:24px"><button class="btn quiet" id="askBtn">Bu sonucu asistana sor</button></p></section>`;
+      ${speciesPage(top1)}<p style="margin-top:24px"><button class="btn quiet" id="askBtn">Bu sonucu Mybear'a sor</button></p></section>`;
   }
   $("result").innerHTML = `<div class="result">${html}</div>`;
   requestAnimationFrame(() => document.querySelectorAll(".bar div[data-w]").forEach(b => b.style.width = b.dataset.w + "%"));
   const ab = $("askBtn");
-  if (ab) ab.onclick = () => { go("asistan"); ask(`Analiz sonucumu açıklar mısın? En olası tür ${INFO[c.simule_top5[0].latin_name].turkce_ad}. Neye dikkat etmeliyim?`); };
+  if (ab) ab.onclick = () => { bearAc(true); ask(`Analiz sonucumu açıklar mısın? En olası tür ${INFO[c.simule_top5[0].latin_name].turkce_ad}. Neye dikkat etmeliyim?`); };
 }
 
 // ---------------- yapay zekâ durumu ----------------
@@ -798,7 +829,17 @@ const syncMode = () => $("calMode").querySelectorAll("button").forEach(x => x.se
 $("calMode").onclick = e => { const b = e.target.closest("button"); if (b) { calMod = b.dataset.v; syncMode(); drawCal(); } };
 drawCal();
 
-// ---------------- asistan ----------------
+// ---------------- Mybear (köşe balonu) ----------------
+const kaydir = () => { const m = $("msgs"); m.scrollTop = m.scrollHeight; };
+function bearAc(ac) {
+  $("bearPanel").hidden = !ac;
+  $("bearFab").hidden = ac;
+  $("bearFab").setAttribute("aria-expanded", ac);
+  if (ac) { kaydir(); if (matchMedia("(min-width: 561px)").matches) $("chatIn").focus(); } else $("bearFab").focus();
+}
+$("bearFab").onclick = () => bearAc(true);
+$("bearClose").onclick = () => bearAc(false);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("bearPanel").hidden) bearAc(false); });
 const chat = [];
 // Asistan yanıtındaki sade Markdown'ı (kalın, italik, madde, numaralı liste) güvenli HTML'e çevirir; önce her şey kaçışlanır.
 function md(text) {
@@ -817,14 +858,15 @@ function bubble(role, text, src) {
   if (role === "user") el.textContent = text; else el.innerHTML = md(text);
   if (src && src.length) { const s = document.createElement("span"); s.className = "src"; s.textContent = "Kaynak: " + src.map(n => INFO[n]?.turkce_ad || n).join(", "); el.appendChild(s); }
   $("msgs").appendChild(el);
+  kaydir();
   return el;
 }
 function initChat() {
-  bubble("assistant", "Kastamonu'daki mantarlar, zehirlenme belirtileri, ne zaman ve nerede yetiştikleri hakkında sorabilirsiniz. Hiçbir mantar için \"yenir\" demem. Mantar yediyseniz önce 112'yi veya 114'ü arayın.");
+  bubble("assistant", "Merhaba, ben **Mybear**! Kastamonu ormanlarındaki mantarları, zehirlenme belirtilerini, ne zaman ve nerede yetiştiklerini sorabilirsin. Hiçbir mantar için \"yenir\" demem. Mantar yediysen önce **112** ya da **114**'ü ara.");
   if (!gemmaReady) {
     const n = document.createElement("p");
     n.className = "note";
-    n.textContent = "Asistan için internet bağlantısı gerekir. Rehber, takvim ve acil durum bölümleri internetsiz de çalışır.";
+    n.textContent = "Mybear için internet bağlantısı gerekir. Rehber, takvim ve acil durum bölümleri internetsiz de çalışır.";
     $("msgs").appendChild(n);
   }
   $("sugg").innerHTML = ["Mantar yedim, ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?", `${AY_UZUN[NOW_M - 1]} ayında hangi mantarlar çıkar?`, "Sarıkız ile zeytin mantarının farkı ne?"]
@@ -833,9 +875,9 @@ function initChat() {
 $("sugg").onclick = e => { const b = e.target.closest("button"); if (b) ask(b.textContent); };
 $("chatForm").onsubmit = e => { e.preventDefault(); const v = $("chatIn").value.trim(); if (v) { $("chatIn").value = ""; ask(v); } };
 async function ask(q) {
-  bubble("user", q).scrollIntoView({ block: "nearest" });
+  bubble("user", q);
   chat.push({ role: "user", content: q });
-  if (!gemmaReady) { bubble("assistant", "Şu an asistana bağlanılamıyor. İnternet bağlantınızı kontrol edip tekrar deneyin; bu sırada Rehber ve Yedim bölümlerini kullanabilirsiniz."); return; }
+  if (!gemmaReady) { bubble("assistant", "Şu an Mybear'a bağlanılamıyor. İnternet bağlantınızı kontrol edip tekrar deneyin; bu sırada Rehber ve Yedim bölümlerini kullanabilirsiniz."); return; }
   const t = bubble("assistant", ""); t.innerHTML = `<span class="dots" aria-label="Yanıt yazılıyor"><span></span><span></span><span></span></span>`;
   $("chatSend").disabled = true;
   try {
@@ -844,7 +886,7 @@ async function ask(q) {
     t.remove();
     if (!r.ok) throw new Error(j.hata);
     chat.push({ role: "assistant", content: j.cevap });
-    bubble("assistant", j.cevap, j.kaynak_turler).scrollIntoView({ block: "nearest" });
+    bubble("assistant", j.cevap, j.kaynak_turler);
   } catch (err) { t.remove(); bubble("assistant", (err.message || "Bağlantı kurulamadı.") + " Lütfen tekrar deneyin."); }
   $("chatSend").disabled = false;
 }

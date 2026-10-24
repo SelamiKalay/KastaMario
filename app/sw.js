@@ -1,6 +1,6 @@
 // Çevrimdışı çalışma: önce ağ, ağ yoksa önbellek (güncel veri her zaman öncelikli).
-const CACHE = "mycoguard-v6";
-const FILES = ["./", "index.html", "config.js", "data.js", "decide.js", "model.js", "manifest.webmanifest", "icon.svg", "img/anatomi.jpg", "fonts/fonts.css", "fonts/IBMPlexSans-latin-1.woff2", "fonts/IBMPlexSans-latin-ext-0.woff2", "fonts/Newsreader-latin-3.woff2", "fonts/Newsreader-latin-5.woff2", "fonts/Newsreader-latin-ext-2.woff2", "fonts/Newsreader-latin-ext-4.woff2",
+const CACHE = "kastamario-v1";
+const FILES = ["./", "index.html", "config.js", "data.js", "decide.js", "model.js", "manifest.webmanifest", "favicon.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "img/kastamario-96.png", "img/mybear-128.png", "img/anatomi.jpg", "fonts/fonts.css", "fonts/IBMPlexSans-latin-1.woff2", "fonts/IBMPlexSans-latin-ext-0.woff2", "fonts/Newsreader-latin-3.woff2", "fonts/Newsreader-latin-5.woff2", "fonts/Newsreader-latin-ext-2.woff2", "fonts/Newsreader-latin-ext-4.woff2",
   "vendor/ort/ort.wasm.min.js", "vendor/ort/ort-wasm-simd-threaded.wasm", "vendor/ort/ort-wasm-simd-threaded.mjs",
   "model/labels.json", "model/mycoguard.onnx"];
 

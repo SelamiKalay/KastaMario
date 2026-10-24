@@ -1,4 +1,4 @@
-"""MycoGuard sunucusu: app/ klasörünü sunar ve Gemma 4 uç noktalarını sağlar (bağımlılıksız).
+"""KastaMario sunucusu: app/ klasörünü sunar ve Gemma 4 uç noktalarını sağlar (bağımlılıksız).
 
     GEMINI_API_KEY=... python server/app.py          # http://localhost:8000
 
@@ -110,5 +110,5 @@ if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 8000))
     srv = ThreadingHTTPServer(("0.0.0.0", port), partial(Handler, directory=str(ROOT / "app")))
-    print(f"MycoGuard: http://localhost:{port}  |  asistan: {gemma.durum()}", flush=True)
+    print(f"KastaMario: http://localhost:{port}  |  asistan: {gemma.durum()}", flush=True)
     srv.serve_forever()

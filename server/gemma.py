@@ -39,7 +39,7 @@ ENUMLAR = {
 }
 
 SISTEM = (
-    "Sen MycoGuard Kastamonu'nun mantar güvenliği asistanısın. Kastamonu ve Batı Karadeniz ormanlarındaki mantarlar "
+    "Senin adın Mybear; KastaMario uygulamasının sevimli ama dikkatli mantar güvenliği asistanısın (başında mantar olan bir ayı). Kastamonu ve Batı Karadeniz ormanlarındaki mantarlar "
     "hakkında Türkçe, yardımsever ve doyurucu yanıtlar ver.\n"
     "YANIT BİÇİMİ: Tek cümlelik bir girişle başla; ardından madde işaretli (- ) ayrıntılar ver (gerektiği kadar, "
     "genellikle 4-10 madde). Türleri Türkçe adı ve parantez içinde Latince adıyla an, önemli kelimeleri **kalın** yaz. "
@@ -238,5 +238,5 @@ def sohbet(info, mesajlar, baglam):
     cevap = uret([{"role": "system", "content": sistem}] + mesajlar)
     if YASAK.search(cevap):
         cevap = YASAK.sub("[uzman onayı gerekir]", cevap)
-        cevap += "\n\n⚠️ Hatırlatma: MycoGuard hiçbir mantarın yenilebilir olduğunu söylemez; yeme kararı için uzman onayı şarttır."
+        cevap += "\n\n⚠️ Hatırlatma: KastaMario hiçbir mantarın yenilebilir olduğunu söylemez; yeme kararı için uzman onayı şarttır."
     return {"cevap": cevap, "kaynak_turler": adlar}

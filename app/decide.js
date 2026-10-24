@@ -1,4 +1,4 @@
-// MycoGuard karar katmanı — src/decide.py ile birebir aynı kural (tests/test_parity.py doğrular).
+// KastaMario karar katmanı — src/decide.py ile birebir aynı kural (tests/test_parity.py doğrular).
 // Tarayıcıda window.MycoDecide, Node'da require("./decide.js") olarak kullanılır.
 (function (root) {
   const DANGER_RISKS_DEFAULT = ["olumcul", "yuksek"];
