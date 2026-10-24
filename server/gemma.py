@@ -177,13 +177,19 @@ def bilgi_tabani(info, adlar):
     return "\n\n".join(f"### {a}\n" + "\n".join(f"- {k}: {info[a][k]}" for k in alanlar) for a in adlar if a in info)
 
 
+GENEL_KELIMELER = {"mantarı", "mantar", "mantari", "zehirli", "yeşil", "kırmızı", "beyaz", "siyah", "sahte", "benekli"}
+
+
 def ilgili_turler(info, soru, baglam_adlari, n=6):
-    """Basit anahtar kelime eşleşmesiyle (RAG) soruyla ilgili türleri seçer."""
-    s = soru.lower()
+    """Basit anahtar kelime eşleşmesiyle (RAG) soruyla ilgili türleri seçer.
+    'mantarı' gibi her türün adında geçen genel kelimeler eşleşme sayılmaz."""
+    kelimeler = re.findall(r"\w+", soru.lower())
     puan = {}
     for a, r in info.items():
         metin = f"{a} {r['turkce_ad']} {r['yerel_ad']}".lower()
-        puan[a] = sum(3 for k in re.split(r"[\s;(),]+", metin) if len(k) > 3 and k in s)
+        # Türkçe ekler için önek eşleşmesi: "köygöçüren" ~ "köygöçüreni"; kısa kelimeler ("sarı") yanlış eşleşmesin diye ≥5 harf
+        puan[a] = sum(3 for k in set(re.split(r"[\s;(),]+", metin))
+                      if len(k) >= 5 and k not in GENEL_KELIMELER and any(w.startswith(k) for w in kelimeler))
     secilen = list(dict.fromkeys(baglam_adlari + [a for a, p in sorted(puan.items(), key=lambda x: -x[1]) if p > 0]))
     return secilen[:n]
 

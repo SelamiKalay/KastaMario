@@ -171,3 +171,12 @@ def test_env_dosyasi_yuklenir_ve_tanimliyi_ezmez(tmp_path, monkeypatch):
     import os
     assert os.environ["MYCO_TEST_A"] == "bir" and os.environ["MYCO_TEST_B"] == "onceden"
     monkeypatch.delenv("MYCO_TEST_A")
+
+
+@pytest.mark.parametrize("soru,beklenen", [
+    ("Köygöçüren ile yumurta mantarını nasıl ayırırım?", {"Amanita phalloides", "Amanita caesarea"}),
+    ("Sarıkız ile zeytin mantarının farkı ne?", {"Cantharellus cibarius", "Omphalotus olearius"}),
+    ("Kanlıca ne zaman çıkar?", {"Lactarius deliciosus"}),
+])
+def test_rag_genel_kelimelerle_alakasiz_tur_secmez(soru, beklenen):
+    assert set(gemma.ilgili_turler(INFO, soru, [])) == beklenen
