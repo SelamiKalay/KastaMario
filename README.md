@@ -175,5 +175,13 @@ python -m pytest -q
 | iNaturalist fotoğrafları | Her fotoğrafın kendi CC lisansı; atıflar `data/clean/thumbs.json` ve `data/clean/inat_clean.csv` içinde |
 | GBIF kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC — bkz. `docs/veri-kaynaklari.md` |
 
+## Ekip
+
+| | GitHub |
+|---|---|
+| Selami Kalay | [@SelamiKalay](https://github.com/SelamiKalay) |
+| | [@emoylmz01](https://github.com/emoylmz01) |
+| | [@rifo5](https://github.com/rifo5) |
+
 ## Sorumluluk reddi
 KastaMario bilgilendirme amaçlıdır; tıbbi tavsiye veya uzman tür tanımının yerine geçmez. Model hata yapabilir; bu yüzden güvenlik kuralları her zaman en kötü olasılığı esas alır. Mantar yediyseniz belirti beklemeden **112** veya **114**'ü (Ulusal Zehir Danışma Merkezi) arayın.
