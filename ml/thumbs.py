@@ -23,8 +23,11 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     OUT.mkdir(parents=True, exist_ok=True)
     turler = {r["latin_name"]: r["id"] for r in oku(ROOT / "data" / "species_info.csv")}
+    # İndirme sürerken de çalışsın diye sınıf başına önbellek dosyalarından okunur (ml/collect.py yazar)
+    ham = [r for f in sorted((ROOT / "data" / "raw" / "inat_cache").glob("*.json"))
+           for r in json.loads(f.read_text(encoding="utf-8"))]
     rows = []
-    for r in oku(ROOT / "data" / "raw" / "inat_photos.csv"):
+    for r in ham:
         lis = (r["lisans"] or "").lower()
         tur = tur_adi(r["gozlem_taxon_adi"])
         if lis in ALLOWED_LICENSES and tur and tur in (r["sinif"], tur_adi(r.get("istenen_taxon_adi"))):

@@ -48,8 +48,20 @@ window.MycoModel = (function () {
     // Tür olasılıkları "mantar olduğu varsayımıyla" yeniden ölçeklenir (demo senaryolarındaki anlamla aynı).
     const species = meta.classes.map((c, i) => ({ latin_name: c, p: probs[i] / Math.max(1e-9, 1 - pNot) }))
       .filter((_, i) => i !== neg).sort((a, b) => b.p - a.p);
-    return { mantar_olma_olasiligi: 1 - pNot, simule_top5: species.slice(0, 5) };
+    return { mantar_olma_olasiligi: 1 - pNot, simule_top5: species.slice(0, 5), tum: species };
   }
 
-  return { load, classify, info: () => meta };
+  // Aynı mantarın birden fazla açısı: olasılıkların ortalaması alınır.
+  async function classifyMany(imgs) {
+    const sonuc = [];
+    for (const img of imgs) sonuc.push(await classify(img));
+    if (sonuc.length === 1) return sonuc[0];
+    const top = {};
+    sonuc.forEach(r => r.tum.forEach(x => top[x.latin_name] = (top[x.latin_name] || 0) + x.p / sonuc.length));
+    const tum = Object.entries(top).map(([latin_name, p]) => ({ latin_name, p })).sort((a, b) => b.p - a.p);
+    const mantar = sonuc.reduce((s, r) => s + r.mantar_olma_olasiligi, 0) / sonuc.length;
+    return { mantar_olma_olasiligi: mantar, simule_top5: tum.slice(0, 5), tum };
+  }
+
+  return { load, classify, classifyMany, info: () => meta };
 })();
