@@ -42,13 +42,13 @@
   0.224,
   0.225
  ],
- "temperature": 0.6782135963439941,
+ "temperature": 0.6824240684509277,
  "metrics": {
-  "top1": 0.8971332311630249,
-  "top5": 0.9820123910903931,
-  "macro_recall": 0.8901314563175104,
-  "tehlikeli_tur_kirmizi_orani": 0.9881756756756757,
-  "tehlikeli_karisiklik_orani": 0.005067567567567568,
-  "ece_kalibre": 0.016428418457508087
+  "top1": 0.907251238822937,
+  "top5": 0.9859471321105957,
+  "macro_recall": 0.903121035738945,
+  "tehlikeli_tur_kirmizi_orani": 0.9847972972972973,
+  "tehlikeli_karisiklik_orani": 0.008445945945945946,
+  "ece_kalibre": 0.017542799934744835
  }
 }

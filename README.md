@@ -6,6 +6,10 @@
 
 > KastaMario **hiçbir mantarın yenilebilir olduğunu söylemez.** Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en fazla boş sepettir. Bu asimetri tasarımın temelidir.
 
+| Tara | Rehber | Takvim | Yedim! |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/img/tara.jpg" width="200" alt="Tara ekranı: Gemma 4 bulguları anatomi fotoğrafında"> | <img src="docs/img/rehber.png" width="200" alt="Rehber ekranı"> | <img src="docs/img/takvim.png" width="200" alt="Takvim ekranı"> | <img src="docs/img/acil.png" width="200" alt="Acil durum ekranı"> |
+
 ## Yapay zekâ ne yapıyor?
 
 KastaMario iki açık modeli ve kural tabanlı bir güvenlik katmanını birlikte kullanır:
@@ -37,19 +41,30 @@ Fotoğraf ─┬─► [1] EfficientNet-B0 (cihazda) ──► top-5 tür + mant
 
 | Metrik | Değer |
 |---|---:|
-| Doğru tür ilk tahminde (top-1) / ilk 5'te (top-5) | **%89,7 / %98,2** |
-| Ölümcül tür fotoğrafının **KIRMIZI** gösterilmesi | **%100** |
-| Ölümcül veya zehirli tür fotoğrafının **KIRMIZI** gösterilmesi | **%98,8** |
-| **Tehlikeli karışıklık** (zehirli → "düşük riskli aday") | **%0,5** |
+| Doğru tür ilk tahminde (top-1) / ilk 5'te (top-5) | **%90,7 / %98,6** |
+| Ölümcül tür fotoğrafının **KIRMIZI** gösterilmesi | **%99,3** |
+| Ölümcül veya zehirli tür fotoğrafının **KIRMIZI** gösterilmesi | **%98,5** |
+| **Tehlikeli karışıklık** (zehirli → "düşük riskli aday") | **%0,8** |
 | Zehirli türün "mantar değil" sayılması | %0 |
-| Kalibrasyon hatası (ECE), sıcaklık ölçeklemeyle | 0,114 → 0,016 |
+| Kalibrasyon hatası (ECE), sıcaklık ölçeklemeyle | 0,110 → 0,018 |
 | Telefonda tahmin süresi (ONNX, internetsiz) | ~0,14 sn |
 
-Model bazı türleri tek başına zor tanır (ör. *Lepiota brunneoincarnata* recall %66,7), ama **en kötü aday kuralı** sayesinde ölümcül türlerin tamamı yine KIRMIZI gösterilir: yapay zekâ ile güvenlik kuralları birlikte çalışır. Ayrıntı: [`results/egitim_raporu.md`](results/egitim_raporu.md).
+Model bazı türleri tek başına zor tanır (ör. *Armillaria mellea* recall %70,8), ama **en kötü aday kuralı** sayesinde ölümcül tür fotoğraflarının %99,3'ü yine KIRMIZI gösterilir: yapay zekâ ile güvenlik kuralları birlikte çalışır. Ayrıntı: [`results/egitim_raporu.md`](results/egitim_raporu.md).
+
+### Dış test: internetten bulunan fotoğraflar
+iNaturalist fotoğrafları birbirine benzer (elde, yakın çekim). Gerçek kullanımı ölçmek için modelin hiç görmediği, farklı kaynaktan **315 Wikimedia Commons fotoğrafı** ile ayrıca test edildi (`ml/commons_test.py`, `ml/eval_dis.py`). İlk sürüm internet/ekran fotoğraflarında zayıftı; eğitime **dayanıklılık artırımı** (döndürme, uzaklaştırma, renk sıcaklığı, bulanıklık, gürültü) ve uygulamaya **çoklu bakış** (orta kare + tam görüntü + ayna, olasılık ortalaması) eklendi:
+
+| Commons (315 fotoğraf) | İlk model | Son model + çoklu bakış |
+|---|---:|---:|
+| top-1 | %75,6 | **%78,4** |
+| top-5 | %91,4 | **%94,6** |
+| Tehlikeli tür → KIRMIZI | %93,8 | **%94,6** |
+
+Aynı modelin iNaturalist test setinde çoklu bakışla top-1'i **%91,2**'dir. Ayrıntı: [`results/dis_test.json`](results/dis_test.json).
 
 ## Özellikler
 - 📷 **Tara:** şapka üstü, şapka altı ve sap tabanı için üç fotoğraf yuvası → görüntü modeli ve Gemma 4 **paralel** çalışır → risk, en olası 5 tür, "karıştırılabilecek tehlikeli türler". Gemma'nın bulguları gerçek bir köygöçüren fotoğrafı üzerindeki anatomi işaretlerinde gösterilir (torba bulunursa kırmızı yanar).
-- 🐻 **Mybear (Gemma 4):** köşedeki balona dokununca açılan sohbet; yanıtlar akarak gelir, internet yoksa **çevrimdışı modda** rehber bilgisinden yanıt verir. "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 25 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
+- 🐻 **Mybear (Gemma 4):** köşedeki balona dokununca açılan sohbet; yanıtlar akarak gelir, internet yoksa **çevrimdışı modda** rehber bilgisinden yanıt verir. "Kastamonu'daki mantarları listele", "Yedim ne yapmalıyım?", "Köygöçüreni yumurta mantarından nasıl ayırırım?" — rehberdeki 27 türün tam kataloğu + soruyla ilgili türlerin ayrıntıları (RAG); madde madde, biçimli yanıtlar; yasak ifadeler süzülür
 - 📖 **Rehber:** 27 tür (yöresel **saçak** ve **koçak** dahil), her biri CC lisanslı fotoğraf ve atıfla — zehirlilik, belirtiler, etki süresi, ilk yardım, boy, yetişme süreci, Kastamonu notu, Türkiye gözlem kayıtları (GBIF), iNaturalist/GBIF ve klinik literatür kaynakları
 - 📅 **Takvim:** ay seçici (her ayın tür sayısı, ölümcül tür uyarısı) + seçili ayın türleri; tüm yıl için fenoloji tablosu
 - 🚨 **Yedim!:** 114 (UZEM) / 112, belirti zaman çizelgesi (6 saatten geç başlayan belirti → ölümcül zehirlenme uyarısı)

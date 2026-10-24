@@ -1,6 +1,6 @@
 // OTOMATİK ÜRETİLDİ: python src/build_app_data.py — elle düzenlemeyin.
 window.MYCO_CASES = {
- "aciklama": "MycoGuard karar katmanı için 8 örnek vaka. Model çıktıları örnek değerlerdir; gerçek fotoğraf analizi app/model ile yapılır.",
+ "aciklama": "KastaMario karar katmanı için 8 örnek vaka. Model çıktıları örnek değerlerdir; gerçek fotoğraf analizi app/model ile yapılır.",
  "surum": "0.1.0",
  "esikler": {
   "mantar_degil_esigi": 0.5,

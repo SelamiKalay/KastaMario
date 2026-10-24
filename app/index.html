@@ -513,7 +513,7 @@
 <dialog id="spDlg" aria-label="Tür bilgisi"><div class="dlg-bar"><button class="btn quiet" id="spClose">Kapat</button></div><div class="dlg-body" id="spBody"></div></dialog>
 
 <script src="config.js?v=5f46e9b5"></script>
-<script src="data.js?v=46dd8871"></script>
+<script src="data.js?v=064698b1"></script>
 <script src="decide.js?v=a13e4659"></script>
 <script src="vendor/ort/ort.wasm.min.js?v=53fe385d"></script>
 <script src="model.js?v=742b1c57"></script>
@@ -1002,6 +1002,10 @@ function triage() {
   $("triage").innerHTML = out;
 }
 ["hAgo", "symp", "hOnset", "ateSp"].forEach(id => $(id).addEventListener("input", triage));
+
+// Doğrudan bağlantı: ör. ".../#acil" acil durum ekranını açar (paylaşım ve ana ekran kısayolları için)
+const ilkGorunum = location.hash.slice(1);
+if (/^\w+$/.test(ilkGorunum) && $("v-" + ilkGorunum)) go(ilkGorunum);
 
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(() => {});
 </script>

@@ -5,211 +5,211 @@
  "n_train": 8462,
  "n_val": 1816,
  "n_test": 1779,
- "top1": 0.8971332311630249,
- "top5": 0.9820123910903931,
- "macro_recall": 0.8901314563175104,
- "temperature": 0.6782135963439941,
- "ece_ham": 0.11415629088878632,
- "ece_kalibre": 0.016428418457508087,
- "tehlikeli_tur_kirmizi_orani": 0.9881756756756757,
- "olumcul_tur_kirmizi_orani": 1.0,
- "tehlikeli_karisiklik_orani": 0.005067567567567568,
+ "top1": 0.907251238822937,
+ "top5": 0.9859471321105957,
+ "macro_recall": 0.903121035738945,
+ "temperature": 0.6824240684509277,
+ "ece_ham": 0.11014563590288162,
+ "ece_kalibre": 0.017542799934744835,
+ "tehlikeli_tur_kirmizi_orani": 0.9847972972972973,
+ "olumcul_tur_kirmizi_orani": 0.9934640522875817,
+ "tehlikeli_karisiklik_orani": 0.008445945945945946,
  "tehlikeli_mantar_degil_orani": 0.0,
  "mantar_degil_dogru_red": 0.8955223880597015,
- "dusuk_risk_gri_orani": 0.8576826196473551,
+ "dusuk_risk_gri_orani": 0.8803526448362721,
  "sinif_recall": {
-  "Agaricus campestris": 0.7936507936507936,
-  "Agaricus xanthodermus": 0.7611940298507462,
+  "Agaricus campestris": 0.8412698412698413,
+  "Agaricus xanthodermus": 0.7761194029850746,
   "Amanita caesarea": 0.9090909090909091,
-  "Amanita muscaria": 0.921875,
-  "Amanita pantherina": 0.8235294117647058,
-  "Amanita phalloides": 0.8888888888888888,
+  "Amanita muscaria": 0.9375,
+  "Amanita pantherina": 0.8676470588235294,
+  "Amanita phalloides": 0.9206349206349206,
   "Amanita rubescens": 0.78125,
-  "Armillaria mellea": 0.7230769230769231,
-  "Boletus edulis": 0.84375,
-  "Cantharellus cibarius": 0.9850746268656716,
-  "Coprinus comatus": 0.9516129032258065,
-  "Craterellus cornucopioides": 0.9545454545454546,
-  "Entoloma sinuatum": 0.8378378378378378,
-  "Galerina marginata": 0.9420289855072463,
-  "Grifola frondosa": 0.9701492537313433,
-  "Gyromitra esculenta": 0.9841269841269841,
-  "Hydnum repandum": 0.8676470588235294,
-  "Hypholoma fasciculare": 0.8382352941176471,
+  "Armillaria mellea": 0.7076923076923077,
+  "Boletus edulis": 0.921875,
+  "Cantharellus cibarius": 0.9701492537313433,
+  "Coprinus comatus": 0.9354838709677419,
+  "Craterellus cornucopioides": 0.9696969696969697,
+  "Entoloma sinuatum": 0.8108108108108109,
+  "Galerina marginata": 0.9710144927536232,
+  "Grifola frondosa": 0.9552238805970149,
+  "Gyromitra esculenta": 1.0,
+  "Hydnum repandum": 0.8529411764705882,
+  "Hypholoma fasciculare": 0.8088235294117647,
   "Lactarius deliciosus": 0.9571428571428572,
-  "Lepiota brunneoincarnata": 0.6666666666666666,
-  "Macrolepiota procera": 0.9264705882352942,
-  "Marasmius oreades": 0.927536231884058,
+  "Lepiota brunneoincarnata": 0.8095238095238095,
+  "Macrolepiota procera": 0.8823529411764706,
+  "Marasmius oreades": 0.9420289855072463,
   "Morchella esculenta": 0.984375,
-  "Omphalotus olearius": 0.9577464788732394,
-  "Pleurotus ostreatus": 0.875,
-  "Ramaria spp.": 0.9848484848484849,
-  "Rubroboletus satanas": 0.9558823529411765,
+  "Omphalotus olearius": 0.971830985915493,
+  "Pleurotus ostreatus": 0.921875,
+  "Ramaria spp.": 1.0,
+  "Rubroboletus satanas": 0.9705882352941176,
   "mantar_degil": 0.9104477611940298
  },
  "karar_tablosu": {
   "olumcul": {
-   "KIRMIZI": 153
+   "KIRMIZI": 152,
+   "GRI": 1
   },
   "yuksek": {
-   "KIRMIZI": 432,
-   "GRI": 3,
+   "KIRMIZI": 431,
+   "GRI": 4,
    "SARI": 4
   },
   "orta": {
-   "SARI": 255,
-   "KIRMIZI": 51,
+   "SARI": 253,
+   "KIRMIZI": 53,
    "GRI": 17,
    "MANTAR_DEGIL": 3
   },
   "dusuk": {
-   "GRI": 681,
-   "KIRMIZI": 83,
+   "GRI": 699,
    "SARI": 29,
-   "MANTAR_DEGIL": 1
+   "KIRMIZI": 66
   },
   "mantar_degil": {
    "MANTAR_DEGIL": 60,
-   "SARI": 1,
-   "KIRMIZI": 6
+   "KIRMIZI": 6,
+   "SARI": 1
   }
  },
  "gecmis": [
   {
    "epoch": 1,
    "asama": "baş",
-   "train_loss": 2.5480610457333652,
-   "val_loss": 1.4599159089479152,
-   "val_top1": 0.6481277346611023,
-   "val_top5": 0.8909691572189331
+   "train_loss": 2.6042359046863788,
+   "val_loss": 1.3421515242118667,
+   "val_top1": 0.6811674237251282,
+   "val_top5": 0.9190528392791748
   },
   {
    "epoch": 2,
    "asama": "baş",
-   "train_loss": 1.8114311324827599,
-   "val_loss": 1.2751740679341792,
-   "val_top1": 0.6773127913475037,
-   "val_top5": 0.9019823670387268
+   "train_loss": 1.9170410046071718,
+   "val_loss": 1.1153300656621152,
+   "val_top1": 0.7340308427810669,
+   "val_top5": 0.9355726838111877
   },
   {
    "epoch": 3,
    "asama": "baş",
-   "train_loss": 1.6933003221497391,
-   "val_loss": 1.221142318805409,
-   "val_top1": 0.6965858936309814,
-   "val_top5": 0.91629958152771
+   "train_loss": 1.8235068691499305,
+   "val_loss": 1.0827254238107655,
+   "val_top1": 0.7428414225578308,
+   "val_top5": 0.9394273161888123
   },
   {
    "epoch": 4,
    "asama": "tüm ağ",
-   "train_loss": 1.5387367416511883,
-   "val_loss": 0.8445963658687827,
-   "val_top1": 0.7808369994163513,
-   "val_top5": 0.9531938433647156
+   "train_loss": 1.6563547569693942,
+   "val_loss": 0.782395466702625,
+   "val_top1": 0.8006607890129089,
+   "val_top5": 0.9631057381629944
   },
   {
    "epoch": 5,
    "asama": "tüm ağ",
-   "train_loss": 1.2448336147900783,
-   "val_loss": 0.6196959606876458,
-   "val_top1": 0.833149790763855,
-   "val_top5": 0.9713656306266785
+   "train_loss": 1.3950606394897809,
+   "val_loss": 0.5898011706211493,
+   "val_top1": 0.8452643156051636,
+   "val_top5": 0.9757709503173828
   },
   {
    "epoch": 6,
    "asama": "tüm ağ",
-   "train_loss": 1.036441903222691,
-   "val_loss": 0.5688671657429918,
-   "val_top1": 0.8617841601371765,
-   "val_top5": 0.9774228930473328
+   "train_loss": 1.2105764737634948,
+   "val_loss": 0.5501405605923236,
+   "val_top1": 0.8661894202232361,
+   "val_top5": 0.9818282127380371
   },
   {
    "epoch": 7,
    "asama": "tüm ağ",
-   "train_loss": 0.9183905074993769,
-   "val_loss": 0.5335142985314525,
-   "val_top1": 0.8700440526008606,
-   "val_top5": 0.9779735803604126
+   "train_loss": 1.1122043123750975,
+   "val_loss": 0.4844102377342758,
+   "val_top1": 0.8865638971328735,
+   "val_top5": 0.9834801554679871
   },
   {
    "epoch": 8,
    "asama": "tüm ağ",
-   "train_loss": 0.8512480331189705,
-   "val_loss": 0.4922535515304179,
-   "val_top1": 0.8783039450645447,
-   "val_top5": 0.982929527759552
+   "train_loss": 1.0426510274410248,
+   "val_loss": 0.4741223854903083,
+   "val_top1": 0.8810572624206543,
+   "val_top5": 0.9823788404464722
   },
   {
    "epoch": 9,
    "asama": "tüm ağ",
-   "train_loss": 0.8099701874183886,
-   "val_loss": 0.47945803246309054,
-   "val_top1": 0.8816079497337341,
-   "val_top5": 0.9796255230903625
+   "train_loss": 0.9859237720568975,
+   "val_loss": 0.4535665873454531,
+   "val_top1": 0.8876652121543884,
+   "val_top5": 0.9851321578025818
   },
   {
    "epoch": 10,
    "asama": "tüm ağ",
-   "train_loss": 0.7816045866771177,
-   "val_loss": 0.4774273061542259,
-   "val_top1": 0.8816079497337341,
-   "val_top5": 0.9807268977165222
+   "train_loss": 0.934493770202001,
+   "val_loss": 0.45662355587083336,
+   "val_top1": 0.892070472240448,
+   "val_top5": 0.9851321578025818
   },
   {
    "epoch": 11,
    "asama": "tüm ağ",
-   "train_loss": 0.7633983068393938,
-   "val_loss": 0.4935883266547703,
-   "val_top1": 0.8865638971328735,
-   "val_top5": 0.9818282127380371
+   "train_loss": 0.8980906411553874,
+   "val_loss": 0.43003575530083693,
+   "val_top1": 0.8948237895965576,
+   "val_top5": 0.9862334728240967
   },
   {
    "epoch": 12,
    "asama": "tüm ağ",
-   "train_loss": 0.7480790556380243,
-   "val_loss": 0.4874122761157116,
-   "val_top1": 0.892070472240448,
-   "val_top5": 0.9807268977165222
+   "train_loss": 0.8697154535488649,
+   "val_loss": 0.4182798511262507,
+   "val_top1": 0.9052863717079163,
+   "val_top5": 0.9851321578025818
   },
   {
    "epoch": 13,
    "asama": "tüm ağ",
-   "train_loss": 0.737763267123338,
-   "val_loss": 0.4867357971384662,
-   "val_top1": 0.8893171548843384,
-   "val_top5": 0.9807268977165222
+   "train_loss": 0.850557999628963,
+   "val_loss": 0.4374753337205769,
+   "val_top1": 0.9036343693733215,
+   "val_top5": 0.9867841601371765
   },
   {
    "epoch": 14,
    "asama": "tüm ağ",
-   "train_loss": 0.7322884504542206,
-   "val_loss": 0.4750177303599891,
-   "val_top1": 0.8893171548843384,
-   "val_top5": 0.9823788404464722
+   "train_loss": 0.8400978152499055,
+   "val_loss": 0.422586021378702,
+   "val_top1": 0.9030836820602417,
+   "val_top5": 0.9884361028671265
   },
   {
    "epoch": 15,
    "asama": "tüm ağ",
-   "train_loss": 0.7286088543407845,
-   "val_loss": 0.47631713623254834,
-   "val_top1": 0.8865638971328735,
-   "val_top5": 0.9818282127380371
+   "train_loss": 0.8306806408094637,
+   "val_loss": 0.42562878020271855,
+   "val_top1": 0.9052863717079163,
+   "val_top5": 0.9878854751586914
   },
   {
    "epoch": 16,
    "asama": "tüm ağ",
-   "train_loss": 0.7242822759982311,
-   "val_loss": 0.4764070575195262,
-   "val_top1": 0.8937224745750427,
-   "val_top5": 0.982929527759552
+   "train_loss": 0.8201288576378967,
+   "val_loss": 0.4268507576723981,
+   "val_top1": 0.907489001750946,
+   "val_top5": 0.9895374178886414
   },
   {
    "epoch": 17,
    "asama": "tüm ağ",
-   "train_loss": 0.7240076245683612,
-   "val_loss": 0.4804067367499095,
-   "val_top1": 0.8898678421974182,
-   "val_top5": 0.982929527759552
+   "train_loss": 0.8185609777768453,
+   "val_loss": 0.42394817820729663,
+   "val_top1": 0.907489001750946,
+   "val_top5": 0.9884361028671265
   }
  ]
 }
