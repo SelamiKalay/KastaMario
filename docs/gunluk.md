@@ -21,3 +21,11 @@
 - Arayüz Anthropic frontend-design yönergeleriyle yeniden tasarlandı: mantar anatomisi çizimi ana öğe, Gemma bulguları çizim üzerinde işaretleniyor; fenoloji tablosu; tehlike etiketi biçiminde sonuç.
 - GBIF verisiyle Karadeniz'de kaydı olmayan 3 tür rehberden çıkarıldı (25 tür kaldı).
 - Not: PyTorch'un CUDA 12.8 deposunda Python 3.14 için torch+torchvision eşleşmesi yok; CUDA 13.0 deposuna geçildi.
+
+## 24 Ekim 2026 — 1. gün (gece)
+- Gemma 4 "düşünme" seviyesi minimal yapıldı: iki fotoğraflı analiz ~180 sn → ~5 sn, bulgular aynı.
+- Asistana 25 türün tam kataloğu verildi; yanıtlar madde madde ve biçimli. Üç açılı fotoğraf ve paralel analiz eklendi.
+- Rehber 25 türün tamamı için CC lisanslı fotoğraf ve kaynaklarla (iNaturalist, GBIF, iki hakemli klinik derleme) yenilendi; anatomi gerçek bir köygöçüren fotoğrafı (CC0) üzerinde.
+- Takvim ay seçici + seçili ay görünümü + tüm yıl tablosu olarak yeniden tasarlandı; yazı tipleri çevrimdışı kullanım için uygulamaya gömüldü; 114 (UZEM) resmî kaynakla doğrulandı.
+- Veri: 15.013 ham fotoğraftan temizlikle 11.167 fotoğraf, 26 sınıf, sızıntısız ayrım.
+- Eğitim ilk denemede çok yavaştı (Windows DataLoader, ~9,5 sn/adım; GPU tek başına 0,26 sn/adım). Fotoğraflar GPU belleğinde tutulup veri artırma GPU'ya taşındı. Eğitim, bilgisayar soğuduktan sonra yapılacak.

@@ -81,6 +81,8 @@ python ml/kaynaklar.py      # tür sayfaları için iNaturalist/GBIF bağlantıl
 python src/build_app_data.py
 ```
 
+**Eğitim hızı:** `ml/train.py` fotoğrafları ilk çalıştırmada bir kez çözüp `%LOCALAPPDATA%\mycoguard\` altına 256×256 önbellek olarak yazar (~2,2 GB; OneDrive dışında, `MYCOGUARD_CACHE` ile değiştirilebilir) ve eğitim sırasında GPU belleğinde tutar; veri artırma (rastgele kırpma, çevirme, renk) toplu halde GPU'da yapılır. Windows'ta klasik DataLoader işçileriyle adım başına ~9,5 sn ölçülürken GPU'nun kendisi 0,26 sn/adım hızındaydı; bu yaklaşım darboğazı kaldırır. Eğitim internet gerektirmez.
+
 **Veri temizleme adımları** (`ml/clean.py`, ayrıntı `data/clean/temizlik_raporu.md`): yinelenen kayıtlar, lisans filtresi (yalnızca CC), taksonomi normalizasyonu (alt tür/varyete → tür), bozuk/küçük/aykırı en-boy oranlı görseller, **algısal hash (dHash) ile birebir ve neredeyse kopya fotoğraflar**, tarih/konum ayrıştırma, sınıf dengeleme ve **gözlem kimliğine göre sızıntısız train/val/test ayrımı**. GBIF tarafında: ABSENT kayıtlar, tür düzeyine indirgeme, Türkiye dışı/0-0/ters koordinatlar, aynı tür-yer-gün kopyaları ve il adı normalizasyonu ("KASTAMONU", "Kastamonu İli", "Kastamonu Province" → `kastamonu`).
 
 **Model sonuçları:** `results/egitim_raporu.md` — top-1/top-5 doğruluk, sınıf bazında recall, kalibrasyon (ECE) ve güvenlik metrikleri: zehirli tür → KIRMIZI oranı ve **tehlikeli karışıklık oranı** (zehirli bir mantarın "düşük riskli" gösterilmesi; hedef ≈ 0).
@@ -98,6 +100,7 @@ python -m pytest -q
 | `tests/test_parity.py` | Tarayıcıdaki `app/decide.js` ile `src/decide.py` 2000 rastgele vakada aynı kararı veriyor; Gemma risk yükseltmesi (`escalate`) iki dilde aynı |
 | `tests/test_gemma.py` | Gemma risk yükseltme kuralları, riskin asla düşmemesi, yasak ifade süzgeci, RAG bağlamı, Gemini ve OpenAI uyumlu istek biçimleri, şema dışı çıktının güvenli varsayılana düşmesi, istek sınırı |
 | `tests/test_clean.py` | İl adı/tür adı/tarih/konum ayrıştırma, lisans filtresi, dHash kopya tespiti, sızıntısız ayırma, dengeleme |
+| `tests/test_train.py` | Eğitim veri hattı (yalnızca CPU): orta kırpma, önbelleğin yeniden kullanımı, GPU veri artırma, toplu üretimi |
 
 ## Proje yapısı
 

@@ -15,9 +15,12 @@ Güvenlik  : test setinde karar katmanıyla birlikte değerlendirme (tehlikeli t
 import argparse
 import csv
 import json
+import math
+import os
 import sys
 import time
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -25,8 +28,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
-from torch.utils.data import DataLoader, Dataset
-from torchvision import models, transforms
+from torchvision import models
+from torchvision.ops import roi_align
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
@@ -41,27 +44,90 @@ RISKLER = ["olumcul", "yuksek", "orta", "dusuk", "mantar_degil"]
 KARARLAR = ["KIRMIZI", "SARI", "GRI", "MANTAR_DEGIL"]
 
 
-class Fotolar(Dataset):
-    def __init__(self, rows, classes, tf):
-        self.paths = [IMG / f"{r['photo_id']}.jpg" for r in rows]
-        self.y = [classes.index(r["sinif"]) for r in rows]
-        self.tf = tf
+# Windows'ta DataLoader işçileri bu makinede adım başına ~9,5 sn harcadı (GPU %5 doluluk; GPU tek başına 0,26 sn/adım).
+# Bunun yerine fotoğraflar bir kez çözülüp 256x256 olarak GPU belleğine alınır, veri artırma toplu halde GPU'da yapılır.
+ONBELLEK_KENAR = 256
+ONBELLEK_DIR = Path(os.environ.get("MYCOGUARD_CACHE", Path.home() / "AppData" / "Local" / "mycoguard"))  # OneDrive dışında
+
+
+def kare_256(path):
+    """Kısa kenarı 256'ya ölçekleyip ortadan 256x256 kırpar (uygulamadaki 'kısa kenar + orta kırpma' ile aynı içerik)."""
+    with Image.open(path) as im:
+        im = im.convert("RGB")
+        k = ONBELLEK_KENAR / min(im.size)
+        im = im.resize((max(ONBELLEK_KENAR, round(im.width * k)), max(ONBELLEK_KENAR, round(im.height * k))),
+                       Image.Resampling.BILINEAR)
+        l, t = (im.width - ONBELLEK_KENAR) // 2, (im.height - ONBELLEK_KENAR) // 2
+        return np.asarray(im.crop((l, t, l + ONBELLEK_KENAR, t + ONBELLEK_KENAR)), dtype=np.uint8)
+
+
+def onbellek(rows, dizin=ONBELLEK_DIR):
+    """Tüm fotoğrafları (N, 256, 256, 3) uint8 dizisine çözer; aynı fotoğraf listesi için diskteki önbelleği yeniden kullanır."""
+    ids = [r["photo_id"] for r in rows]
+    dizin.mkdir(parents=True, exist_ok=True)
+    npy, idj = dizin / "fotolar_256.npy", dizin / "fotolar_256.json"
+    if npy.exists() and idj.exists() and json.loads(idj.read_text()) == ids:
+        return np.load(npy)
+    t0 = time.time()
+    with ThreadPoolExecutor(8) as ex:
+        X = np.stack(list(ex.map(kare_256, [IMG / f"{i}.jpg" for i in ids])))
+    np.save(npy, X)
+    idj.write_text(json.dumps(ids))
+    print(f"Önbellek: {len(ids)} fotoğraf {time.time() - t0:.0f} sn'de çözüldü ({X.nbytes / 2**30:.1f} GB, {dizin})", flush=True)
+    return X
+
+
+def normalize(x):
+    m = torch.tensor(MEAN, device=x.device).view(1, 3, 1, 1)
+    s = torch.tensor(STD, device=x.device).view(1, 3, 1, 1)
+    return (x - m) / s
+
+
+def artir(x, gen=None):
+    """GPU'da örnek başına: rastgele boyutlu kırpma (alan %55-100, en/boy 3/4-4/3) -> 224, yatay çevirme,
+    parlaklık/kontrast ±%25, doygunluk ±%20. x: (B, 3, K, K) float [0, 1] -> (B, 3, 224, 224)."""
+    B, K, d = x.shape[0], x.shape[-1], x.device
+    r = lambda *s: torch.rand(*s, device=d, generator=gen)  # noqa: E731
+    alan = (0.55 + 0.45 * r(B)) * K * K
+    oran = torch.exp(math.log(3 / 4) + (math.log(4 / 3) - math.log(3 / 4)) * r(B))
+    w, h = (alan * oran).sqrt().clamp(max=K), (alan / oran).sqrt().clamp(max=K)
+    x0, y0 = r(B) * (K - w), r(B) * (K - h)
+    kutu = torch.stack([torch.arange(B, device=d, dtype=x.dtype), x0, y0, x0 + w, y0 + h], 1)
+    out = roi_align(x, kutu, output_size=SIZE, sampling_ratio=2, aligned=True)
+    out = torch.where((r(B) < 0.5)[:, None, None, None], out.flip(-1), out)
+    carpan = lambda a: 1 + (r(B, 1, 1, 1) * 2 - 1) * a  # noqa: E731
+    out = out * carpan(0.25)
+    ort_ = out.mean((1, 2, 3), keepdim=True)
+    out = (out - ort_) * carpan(0.25) + ort_
+    gri = out.mean(1, keepdim=True)
+    out = (out - gri) * carpan(0.20) + gri
+    return out.clamp(0, 1)
+
+
+def test_goruntu(x):
+    """Değerlendirme: kısa kenar + orta kare (önbellekteki içerik) -> 224. Uygulamadaki ön işlemeyle aynı içerik."""
+    return F.interpolate(x, size=SIZE, mode="bilinear", antialias=True, align_corners=False)
+
+
+class GPUVeri:
+    """Bir ayrımın (train/val/test) fotoğrafları ve etiketleri GPU belleğinde; toplu (batch) üretir."""
+
+    def __init__(self, X, y, dev, bs, egitim):
+        self.X = torch.from_numpy(np.ascontiguousarray(X)).to(dev)   # uint8 (N, K, K, 3)
+        self.y = torch.tensor(y, device=dev)
+        self.bs, self.egitim = bs, egitim
 
     def __len__(self):
-        return len(self.y)
+        n = len(self.y)
+        return n // self.bs if self.egitim else math.ceil(n / self.bs)
 
-    def __getitem__(self, i):
-        with Image.open(self.paths[i]) as im:
-            return self.tf(im.convert("RGB")), self.y[i]
-
-
-def donusumler():
-    norm = transforms.Normalize(MEAN, STD)
-    train = transforms.Compose([
-        transforms.RandomResizedCrop(SIZE, scale=(0.55, 1.0)), transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(15), transforms.ColorJitter(0.25, 0.25, 0.2, 0.03), transforms.ToTensor(), norm])
-    test = transforms.Compose([transforms.Resize(SIZE), transforms.CenterCrop(SIZE), transforms.ToTensor(), norm])
-    return train, test
+    def __iter__(self):
+        n = len(self.y)
+        sira = torch.randperm(n, device=self.y.device) if self.egitim else torch.arange(n, device=self.y.device)
+        for i in range(len(self)):
+            idx = sira[i * self.bs:(i + 1) * self.bs]
+            x = self.X[idx].permute(0, 3, 1, 2).float() / 255
+            yield normalize(artir(x) if self.egitim else test_goruntu(x)), self.y[idx]
 
 
 def model_kur(n):
@@ -70,30 +136,29 @@ def model_kur(n):
     return m
 
 
-def calistir(model, dl, dev, opt=None, crit=None, sched=None, scaler=None):
+def calistir(model, veri, opt=None, crit=None, sched=None):
+    """Bir tur eğitim (opt verilirse) ya da değerlendirme. fp32: bu GPU'da AMP iki kat yavaş ölçüldü."""
     egit = opt is not None
     model.train(egit)
-    tum_logit, tum_y, kayip = [], [], 0.0
+    tum_logit, tum_y, kayip, n = [], [], 0.0, 0
     t0 = time.time()
     with torch.set_grad_enabled(egit):
-        for adim, (x, y) in enumerate(dl, 1):
-            if egit and adim % 25 == 0:
-                print(f"    adım {adim}/{len(dl)}  {time.time() - t0:.0f} sn", flush=True)
-            x, y = x.to(dev, non_blocking=True), y.to(dev, non_blocking=True)
-            with torch.autocast(dev.type, enabled=dev.type == "cuda"):
-                out = model(x)
-                loss = crit(out, y) if crit else F.cross_entropy(out, y)
+        for adim, (x, y) in enumerate(veri, 1):
+            out = model(x)
+            loss = crit(out, y) if crit else F.cross_entropy(out, y)
             if egit:
                 opt.zero_grad(set_to_none=True)
-                scaler.scale(loss).backward()
-                scaler.step(opt)
-                scaler.update()
+                loss.backward()
+                opt.step()
                 if sched:
                     sched.step()
+                if adim % 50 == 0:
+                    print(f"    adım {adim}/{len(veri)}  {time.time() - t0:.0f} sn", flush=True)
             kayip += loss.item() * len(y)
-            tum_logit.append(out.float().detach().cpu())
+            n += len(y)
+            tum_logit.append(out.detach().float().cpu())
             tum_y.append(y.cpu())
-    return torch.cat(tum_logit), torch.cat(tum_y), kayip / len(dl.dataset)
+    return torch.cat(tum_logit), torch.cat(tum_y), kayip / max(1, n)
 
 
 def topk(logits, y, k):
@@ -196,7 +261,6 @@ def main():
     ap.add_argument("--epochs", type=int, default=14)
     ap.add_argument("--head-epochs", type=int, default=3)
     ap.add_argument("--bs", type=int, default=64)
-    ap.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
     torch.manual_seed(42)
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -208,17 +272,19 @@ def main():
     classes = sorted(siniflar - {NEG}) + ([NEG] if NEG in siniflar else [])
     tr, va, te = ([r for r in rows if r["split"] == s] for s in ("train", "val", "test"))
     print(f"{len(classes)} sınıf | train {len(tr)} · val {len(va)} · test {len(te)}", flush=True)
-    t_tr, t_te = donusumler()
-    kw = dict(batch_size=a.bs, num_workers=a.workers, pin_memory=True, persistent_workers=a.workers > 0)
-    dl_tr = DataLoader(Fotolar(tr, classes, t_tr), shuffle=True, drop_last=True, **kw)
-    dl_va = DataLoader(Fotolar(va, classes, t_te), **kw)
-    dl_te = DataLoader(Fotolar(te, classes, t_te), **kw)
+    X = onbellek(tr + va + te)
+    y = [classes.index(r["sinif"]) for r in tr + va + te]
+    a1, a2 = len(tr), len(tr) + len(va)
+    dl_tr = GPUVeri(X[:a1], y[:a1], dev, a.bs, egitim=True)
+    dl_va = GPUVeri(X[a1:a2], y[a1:a2], dev, a.bs * 2, egitim=False)
+    dl_te = GPUVeri(X[a2:], y[a2:], dev, a.bs * 2, egitim=False)
+    del X
 
     say = Counter(r["sinif"] for r in tr)
     w = torch.tensor([(len(tr) / (len(classes) * say[c])) ** 0.5 for c in classes], dtype=torch.float32)
     crit = nn.CrossEntropyLoss(weight=w.to(dev), label_smoothing=0.1)
     model = model_kur(len(classes)).to(dev)
-    scaler = torch.amp.GradScaler(enabled=dev.type == "cuda")
+    torch.backends.cudnn.benchmark = True
     gecmis, en_iyi, en_iyi_durum = [], -1.0, None
 
     def asama(epochs, params, lr, isim, ep0):
@@ -227,8 +293,8 @@ def main():
         sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=lr, total_steps=epochs * len(dl_tr), pct_start=0.15)
         for e in range(epochs):
             t0 = time.time()
-            _, _, tl = calistir(model, dl_tr, dev, opt, crit, sched, scaler)
-            vl, vy, vloss = calistir(model, dl_va, dev)
+            _, _, tl = calistir(model, dl_tr, opt, crit, sched)
+            vl, vy, vloss = calistir(model, dl_va)
             g = {"epoch": ep0 + e + 1, "asama": isim, "train_loss": tl, "val_loss": vloss,
                  "val_top1": topk(vl, vy, 1), "val_top5": topk(vl, vy, 5)}
             gecmis.append(g)
@@ -245,9 +311,11 @@ def main():
     asama(a.epochs, model.parameters(), 4e-4, "tüm ağ", a.head_epochs)
     model.load_state_dict(en_iyi_durum)
 
-    vl, vy, _ = calistir(model, dl_va, dev)
+    vl, vy, _ = calistir(model, dl_va)
     T_ = sicaklik_bul(vl, vy)
-    tl_, ty, _ = calistir(model, dl_te, dev)
+    tl_, ty, _ = calistir(model, dl_te)
+    del dl_tr, dl_va, dl_te
+    torch.cuda.empty_cache()
     p_ham, p_kal = F.softmax(tl_, 1), F.softmax(tl_ / T_, 1)
     pred = tl_.argmax(1)
     cm = np.zeros((len(classes), len(classes)), dtype=int)
