@@ -92,7 +92,7 @@ window.MYCO_CASES = {
      "p": 0.04
     },
     {
-     "latin_name": "Cortinarius orellanus",
+     "latin_name": "Hydnum repandum",
      "p": 0.02
     },
     {
@@ -194,30 +194,30 @@ window.MYCO_CASES = {
   },
   {
    "id": "c7",
-   "baslik": "Peri halkası + zehirli çayır hunisi",
-   "aciklama": "Çimenlikte halka şeklinde dizilmiş küçük açık renkli mantarlar. Aynı çayırda gerçekçi karışıklık.",
-   "foto_ipucu": "Küçük bej şapkalar, çimen, halka düzeni",
+   "baslik": "Çayır mantarı + kurşuni pembe yaprak",
+   "aciklama": "Yayla çayırında bulunan açık renkli mantar. Birinci tahmin zararsız görünüyor ama ağır zehirlenme yapan Entoloma adaylar arasında.",
+   "foto_ipucu": "Beyazımsı şapka, çayır kenarı, lameller soluk pembe",
    "mantar_olma_olasiligi": 0.95,
    "simule_top5": [
     {
-     "latin_name": "Marasmius oreades",
-     "p": 0.58
-    },
-    {
-     "latin_name": "Clitocybe rivulosa",
-     "p": 0.3
-    },
-    {
      "latin_name": "Agaricus campestris",
+     "p": 0.55
+    },
+    {
+     "latin_name": "Entoloma sinuatum",
+     "p": 0.25
+    },
+    {
+     "latin_name": "Marasmius oreades",
+     "p": 0.1
+    },
+    {
+     "latin_name": "Agaricus xanthodermus",
      "p": 0.06
     },
     {
      "latin_name": "Coprinus comatus",
      "p": 0.04
-    },
-    {
-     "latin_name": "Macrolepiota procera",
-     "p": 0.02
     }
    ],
    "beklenen_seviye": "KIRMIZI"
@@ -283,32 +283,6 @@ window.MYCO_SPECIES = [
  },
  {
   "id": "s02",
-  "latin_name": "Amanita virosa",
-  "turkce_ad": "Ak köygöçüren (Ölüm meleği)",
-  "yerel_ad": "Ak köygöçüren",
-  "risk": "olumcul",
-  "zehir_notu": "Köygöçüren ile aynı amatoksinleri içerir; tamamen beyazdır, beyaz yenilebilir mantarlarla karışır.",
-  "belirtiler": "6-24 saat belirtisiz dönem; sonra şiddetli kusma, ishal, karın ağrısı; geçici iyileşme; karaciğer ve böbrek yetmezliği.",
-  "belirti_baslangici": "6-24 saat (gecikmeli)",
-  "belirti_saat_min": "6",
-  "belirti_saat_max": "24",
-  "ilk_yardim_notu": "Belirti beklemeden 112 / 114. Mantar örneğini saklayın.",
-  "habitat": "Kayın, ladin ve göknar ormanları; nemli, asitli topraklar",
-  "substrat": "Toprak (mikorizal)",
-  "kastamonu_notu": "Kayın-göknar ormanlarında (Küre, Ilgaz'ın nemli yamaçları) beklenir.",
-  "sapka_cm": "5-12",
-  "sap_cm": "8-15",
-  "yetisme_sureci": "Mikorizal; yaz-sonbahar yağmurlarından sonra torbalı yumurtadan çıkar, birkaç günde açılır.",
-  "mevsim": "Yaz - Sonbahar",
-  "aylar": "7;8;9;10",
-  "toplama_notu": "Toplanmaz.",
-  "ikiz_turler": "Agaricus campestris;Amanita phalloides;Macrolepiota procera",
-  "ayirt_edici_ipucu": "Tamamen beyaz; sap tabanında torba, sapta yırtık halka, sapı pullu-saçaklı. Lameller hiç kararmaz (çayır mantarında kahverengileşir).",
-  "dogrulama_durumu": "uzman_incelemesinde",
-  "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
- },
- {
-  "id": "s03",
   "latin_name": "Galerina marginata",
   "turkce_ad": "Kenarlı galerina (Ölümcül galerina)",
   "yerel_ad": "—",
@@ -334,33 +308,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s04",
-  "latin_name": "Cortinarius orellanus",
-  "turkce_ad": "Dağ örümcekağı mantarı",
-  "yerel_ad": "—",
-  "risk": "olumcul",
-  "zehir_notu": "Orellanin içerir; kalıcı böbrek hasarı yapabilir.",
-  "belirtiler": "Günler sonra aşırı susama, yorgunluk, baş ağrısı, bel/yan ağrısı, idrarda azalma; böbrek yetmezliği.",
-  "belirti_baslangici": "2-20 gün (çok gecikmeli); mantarla ilişkilendirilmeyebilir",
-  "belirti_saat_min": "48",
-  "belirti_saat_max": "480",
-  "ilk_yardim_notu": "Mantar yedikten günler sonra böbrek şikâyeti başlarsa doktora mantar yediğinizi mutlaka söyleyin.",
-  "habitat": "Meşe ve kayın ormanları, asitli topraklar",
-  "substrat": "Toprak (mikorizal)",
-  "kastamonu_notu": "Meşe-kayın ormanlarında beklenir.",
-  "sapka_cm": "3-8",
-  "sap_cm": "4-10",
-  "yetisme_sureci": "Mikorizal; yaz sonu yağmurlarıyla çıkar.",
-  "mevsim": "Yaz sonu - Sonbahar",
-  "aylar": "8;9;10",
-  "toplama_notu": "Toplanmaz.",
-  "ikiz_turler": "Cantharellus cibarius",
-  "ayirt_edici_ipucu": "Turuncu-kahverengi şapka, pas rengi lameller ve spor izi; genç örneklerde örümcek ağı benzeri perde.",
-  "dogrulama_durumu": "uzman_incelemesinde",
-  "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
- },
- {
-  "id": "s05",
+  "id": "s03",
   "latin_name": "Lepiota brunneoincarnata",
   "turkce_ad": "Pembe kahve lepiota",
   "yerel_ad": "—",
@@ -386,7 +334,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s06",
+  "id": "s04",
   "latin_name": "Amanita muscaria",
   "turkce_ad": "Sinek mantarı (Kırmızı benekli amanita)",
   "yerel_ad": "Sinek mantarı",
@@ -412,7 +360,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s07",
+  "id": "s05",
   "latin_name": "Amanita pantherina",
   "turkce_ad": "Panter mantarı",
   "yerel_ad": "—",
@@ -438,7 +386,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s08",
+  "id": "s06",
   "latin_name": "Gyromitra esculenta",
   "turkce_ad": "Sahte kuzugöbeği (Beyin mantarı)",
   "yerel_ad": "Sahte kuzugöbeği",
@@ -464,7 +412,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s09",
+  "id": "s07",
   "latin_name": "Omphalotus olearius",
   "turkce_ad": "Zeytin mantarı (Turuncu huni)",
   "yerel_ad": "—",
@@ -490,33 +438,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s10",
-  "latin_name": "Clitocybe rivulosa",
-  "turkce_ad": "Zehirli çayır hunisi",
-  "yerel_ad": "—",
-  "risk": "yuksek",
-  "zehir_notu": "Muskarin içerir.",
-  "belirtiler": "Aşırı terleme, salya ve gözyaşı artışı, göz bebeği küçülmesi, nabız yavaşlaması, nefes darlığı, ishal.",
-  "belirti_baslangici": "15 dakika - 2 saat",
-  "belirti_saat_min": "0.25",
-  "belirti_saat_max": "2",
-  "ilk_yardim_notu": "112 / 114. Atropin hastanede uygulanabilir.",
-  "habitat": "Çayırlar, çimenlikler, parklar (peri halkası oluşturabilir)",
-  "substrat": "Toprak / çim",
-  "kastamonu_notu": "Yayla ve köy çayırlarında peri halkası mantarıyla birlikte çıkabilir.",
-  "sapka_cm": "2-5",
-  "sap_cm": "2-4",
-  "yetisme_sureci": "Çimenlikte toprak artıklarını ayrıştırır; sonbahar yağmurlarıyla çıkar.",
-  "mevsim": "Yaz sonu - Sonbahar",
-  "aylar": "8;9;10;11",
-  "toplama_notu": "Toplanmaz.",
-  "ikiz_turler": "Marasmius oreades",
-  "ayirt_edici_ipucu": "Beyazımsı, unlu görünümlü şapka; sık lameller sapa doğru iner. Peri halkası mantarıyla aynı çayırda çıkabilir.",
-  "dogrulama_durumu": "uzman_incelemesinde",
-  "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
- },
- {
-  "id": "s11",
+  "id": "s08",
   "latin_name": "Entoloma sinuatum",
   "turkce_ad": "Kurşuni pembe yaprak",
   "yerel_ad": "—",
@@ -542,7 +464,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s12",
+  "id": "s09",
   "latin_name": "Hypholoma fasciculare",
   "turkce_ad": "Kükürt mantarı (Kükürt başlı)",
   "yerel_ad": "—",
@@ -568,7 +490,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s13",
+  "id": "s10",
   "latin_name": "Rubroboletus satanas",
   "turkce_ad": "Şeytan mantarı",
   "yerel_ad": "—",
@@ -594,7 +516,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s14",
+  "id": "s11",
   "latin_name": "Amanita rubescens",
   "turkce_ad": "Kızaran amanita",
   "yerel_ad": "—",
@@ -620,7 +542,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s15",
+  "id": "s12",
   "latin_name": "Agaricus xanthodermus",
   "turkce_ad": "Sarı lekeli kuzu mantarı",
   "yerel_ad": "—",
@@ -646,7 +568,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s16",
+  "id": "s13",
   "latin_name": "Morchella esculenta",
   "turkce_ad": "Kuzugöbeği",
   "yerel_ad": "Kuzugöbeği",
@@ -672,7 +594,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s17",
+  "id": "s14",
   "latin_name": "Armillaria mellea",
   "turkce_ad": "Bal mantarı (Ağaç mantarı)",
   "yerel_ad": "Ağaç mantarı",
@@ -698,7 +620,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s18",
+  "id": "s15",
   "latin_name": "Agaricus campestris",
   "turkce_ad": "Çayır mantarı",
   "yerel_ad": "Kuzu mantarı",
@@ -718,13 +640,13 @@ window.MYCO_SPECIES = [
   "mevsim": "Yaz sonu - Sonbahar",
   "aylar": "7;8;9;10",
   "toplama_notu": "Görülme dönemi Temmuz-Ekim. Yalnızca uzman tür onayından sonra; lameller pembe-kahve değilse hiç toplanmamalı.",
-  "ikiz_turler": "Amanita phalloides;Amanita virosa;Agaricus xanthodermus;Entoloma sinuatum",
+  "ikiz_turler": "Amanita phalloides;Agaricus xanthodermus;Entoloma sinuatum",
   "ayirt_edici_ipucu": "Lameller pembeden çikolata kahvesine döner (amanitalarda hep beyazdır); sap tabanında torba yoktur.",
   "dogrulama_durumu": "uzman_incelemesinde",
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s19",
+  "id": "s16",
   "latin_name": "Boletus edulis",
   "turkce_ad": "Ayı mantarı (Çörek mantarı)",
   "yerel_ad": "Ayı mantarı",
@@ -750,7 +672,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s20",
+  "id": "s17",
   "latin_name": "Cantharellus cibarius",
   "turkce_ad": "Sarıkız (Horoz mantarı)",
   "yerel_ad": "Sarıkız; Horoz mantarı",
@@ -770,13 +692,13 @@ window.MYCO_SPECIES = [
   "mevsim": "Yaz - Sonbahar",
   "aylar": "6;7;8;9;10",
   "toplama_notu": "Görülme dönemi Haziran-Ekim. Yalnızca uzman tür onayından sonra.",
-  "ikiz_turler": "Omphalotus olearius;Cortinarius orellanus",
+  "ikiz_turler": "Omphalotus olearius",
   "ayirt_edici_ipucu": "Gerçek lamel yok; sapa inen kalın, çatallı, kırışık damarlar. Topraktan tek tek çıkar, odun üzerinde kümeler yapmaz.",
   "dogrulama_durumu": "uzman_incelemesinde",
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s21",
+  "id": "s18",
   "latin_name": "Lactarius deliciosus",
   "turkce_ad": "Kanlıca (Çıntar)",
   "yerel_ad": "Kanlıca; Çıntar",
@@ -802,7 +724,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s22",
+  "id": "s19",
   "latin_name": "Macrolepiota procera",
   "turkce_ad": "Nar mantarı (Şemsiye mantarı)",
   "yerel_ad": "Şemsiye mantarı",
@@ -828,7 +750,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s23",
+  "id": "s20",
   "latin_name": "Amanita caesarea",
   "turkce_ad": "Yumurta mantarı (Paşa mantarı)",
   "yerel_ad": "Yumurta mantarı",
@@ -854,7 +776,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s24",
+  "id": "s21",
   "latin_name": "Hydnum repandum",
   "turkce_ad": "Kirpi mantarı",
   "yerel_ad": "—",
@@ -880,7 +802,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s25",
+  "id": "s22",
   "latin_name": "Craterellus cornucopioides",
   "turkce_ad": "Borazan mantarı (Siyah borazan)",
   "yerel_ad": "—",
@@ -906,7 +828,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s26",
+  "id": "s23",
   "latin_name": "Pleurotus ostreatus",
   "turkce_ad": "İstiridye mantarı (Kayın mantarı)",
   "yerel_ad": "Kayın mantarı",
@@ -932,7 +854,7 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s27",
+  "id": "s24",
   "latin_name": "Coprinus comatus",
   "turkce_ad": "Mürekkep mantarı (Saçlı mürekkep)",
   "yerel_ad": "—",
@@ -958,12 +880,12 @@ window.MYCO_SPECIES = [
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  },
  {
-  "id": "s28",
+  "id": "s25",
   "latin_name": "Marasmius oreades",
   "turkce_ad": "Peri halkası mantarı",
   "yerel_ad": "—",
   "risk": "dusuk",
-  "zehir_notu": "Genel olarak zehirsiz kabul edilir. Aynı çayırda zehirli Clitocybe türleriyle birlikte çıkabilir.",
+  "zehir_notu": "Genel olarak zehirsiz kabul edilir. Aynı çayırda ölümcül küçük Lepiota türleriyle birlikte çıkabilir.",
   "belirtiler": "Genelde zehirlenme beklenmez.",
   "belirti_baslangici": "—",
   "belirti_saat_min": "",
@@ -978,10 +900,462 @@ window.MYCO_SPECIES = [
   "mevsim": "İlkbahar sonu - Sonbahar",
   "aylar": "5;6;7;8;9;10",
   "toplama_notu": "Görülme dönemi Mayıs-Ekim. Yalnızca uzman tür onayından sonra.",
-  "ikiz_turler": "Clitocybe rivulosa",
+  "ikiz_turler": "Lepiota brunneoincarnata",
   "ayirt_edici_ipucu": "Seyrek, sapa bağlanmayan lameller; sert, bükülünce kırılmayan esnek sap; kuruyup suyla yeniden canlanır.",
   "dogrulama_durumu": "uzman_incelemesinde",
   "kaynak": "Genel mikoloji literatürü; GBIF Türkiye kayıtları"
  }
 ];
-window.MYCO_GBIF = {};
+window.MYCO_GBIF = {
+ "Amanita phalloides": {
+  "tr": 25,
+  "kastamonu": 2,
+  "aylar": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   12,
+   7,
+   1
+  ]
+ },
+ "Galerina marginata": {
+  "tr": 7,
+  "kastamonu": 1,
+  "aylar": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   2,
+   2,
+   0
+  ]
+ },
+ "Lepiota brunneoincarnata": {
+  "tr": 1,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0
+  ]
+ },
+ "Amanita muscaria": {
+  "tr": 58,
+  "kastamonu": 3,
+  "aylar": [
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   5,
+   11,
+   11,
+   18,
+   6,
+   5
+  ]
+ },
+ "Amanita pantherina": {
+  "tr": 45,
+  "kastamonu": 2,
+  "aylar": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   2,
+   18,
+   16,
+   5
+  ]
+ },
+ "Gyromitra esculenta": {
+  "tr": 18,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   1,
+   9,
+   5,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0
+  ]
+ },
+ "Omphalotus olearius": {
+  "tr": 12,
+  "kastamonu": 0,
+  "aylar": [
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   2,
+   3
+  ]
+ },
+ "Entoloma sinuatum": {
+  "tr": 3,
+  "kastamonu": 0,
+  "aylar": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0
+  ]
+ },
+ "Hypholoma fasciculare": {
+  "tr": 37,
+  "kastamonu": 1,
+  "aylar": [
+   0,
+   4,
+   3,
+   2,
+   0,
+   2,
+   0,
+   1,
+   0,
+   14,
+   7,
+   3
+  ]
+ },
+ "Rubroboletus satanas": {
+  "tr": 2,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ]
+ },
+ "Amanita rubescens": {
+  "tr": 33,
+  "kastamonu": 0,
+  "aylar": [
+   1,
+   0,
+   2,
+   0,
+   0,
+   5,
+   6,
+   4,
+   3,
+   4,
+   6,
+   1
+  ]
+ },
+ "Agaricus xanthodermus": {
+  "tr": 6,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   2,
+   3,
+   0
+  ]
+ },
+ "Morchella esculenta": {
+  "tr": 11,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   2,
+   5,
+   3,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "Armillaria mellea": {
+  "tr": 35,
+  "kastamonu": 0,
+  "aylar": [
+   3,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   8,
+   10,
+   11
+  ]
+ },
+ "Agaricus campestris": {
+  "tr": 10,
+  "kastamonu": 0,
+  "aylar": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   3,
+   1,
+   3
+  ]
+ },
+ "Boletus edulis": {
+  "tr": 13,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   2,
+   0,
+   0,
+   2,
+   0,
+   1,
+   2,
+   5,
+   0,
+   0
+  ]
+ },
+ "Cantharellus cibarius": {
+  "tr": 14,
+  "kastamonu": 1,
+  "aylar": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   2,
+   1,
+   3,
+   3,
+   1,
+   1,
+   1
+  ]
+ },
+ "Lactarius deliciosus": {
+  "tr": 36,
+  "kastamonu": 1,
+  "aylar": [
+   11,
+   0,
+   0,
+   0,
+   1,
+   2,
+   3,
+   1,
+   1,
+   5,
+   4,
+   7
+  ]
+ },
+ "Macrolepiota procera": {
+  "tr": 48,
+  "kastamonu": 3,
+  "aylar": [
+   3,
+   0,
+   0,
+   1,
+   3,
+   3,
+   3,
+   2,
+   3,
+   18,
+   5,
+   7
+  ]
+ },
+ "Amanita caesarea": {
+  "tr": 44,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   2,
+   3,
+   11,
+   19,
+   6,
+   1
+  ]
+ },
+ "Hydnum repandum": {
+  "tr": 9,
+  "kastamonu": 0,
+  "aylar": [
+   3,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   1,
+   1,
+   1
+  ]
+ },
+ "Craterellus cornucopioides": {
+  "tr": 16,
+  "kastamonu": 0,
+  "aylar": [
+   2,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   2,
+   2,
+   4,
+   3,
+   2
+  ]
+ },
+ "Pleurotus ostreatus": {
+  "tr": 37,
+  "kastamonu": 0,
+  "aylar": [
+   2,
+   2,
+   3,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   6,
+   12,
+   9
+  ]
+ },
+ "Coprinus comatus": {
+  "tr": 129,
+  "kastamonu": 0,
+  "aylar": [
+   2,
+   1,
+   1,
+   17,
+   30,
+   4,
+   1,
+   0,
+   4,
+   28,
+   25,
+   16
+  ]
+ },
+ "Marasmius oreades": {
+  "tr": 10,
+  "kastamonu": 0,
+  "aylar": [
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   2,
+   3,
+   2
+  ]
+ }
+};
+window.MYCO_THUMBS = {};

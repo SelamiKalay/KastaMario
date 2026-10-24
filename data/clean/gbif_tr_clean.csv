@@ -1,0 +1,840 @@
+gbifID,tur,enlem,boylam,ay,eventDate,il_norm,kastamonu,basisOfRecord,datasetName
+6498194964,Amanita phalloides,41.122155,29.655005,11,2025-11-08T16:31:24,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6499304481,Amanita phalloides,41.07147,29.545067,11,2025-11-07T11:15:56,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231207676,Amanita phalloides,41.18,28.9896,9,2024-09-21,istanbul,False,HUMAN_OBSERVATION,
+4973831427,Amanita phalloides,37.002349,36.281441,10,2024-10-12T11:46,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4976274398,Amanita phalloides,41.176139,28.960686,10,2024-10-28T09:31:55,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4978195795,Amanita phalloides,41.985273,27.328864,10,2024-10-13T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130955007,Amanita phalloides,41.148114,29.196572,10,2024-10-19T10:07:05,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6499759346,Amanita phalloides,41.99552,27.329772,10,2024-10-13T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007845101,Amanita phalloides,40.969783,39.809795,11,2024-11-09T11:47:58,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4014940172,Amanita phalloides,41.190365,28.981008,1,2023-01-07T13:18:50,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4953021142,Amanita phalloides,41.130781,29.202283,10,2023-10-22T10:24:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6352727007,Amanita phalloides,41.186184,28.962627,10,2023-10-28T10:38:24,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500855097,Amanita phalloides,38.335453,27.002744,12,2023-12-17T14:53,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4129692952,Amanita phalloides,41.195494,28.990722,11,2022-11-04T15:26:20,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231206649,Amanita phalloides,40.6163,29.4517,10,2021-10-29,yalova,False,HUMAN_OBSERVATION,
+6231175459,Amanita phalloides,40.6163,29.4517,11,2021-11-12,yalova,False,HUMAN_OBSERVATION,
+6231231782,Amanita phalloides,41.0,29.0,10,2019-10-20,istanbul,False,HUMAN_OBSERVATION,
+3971988144,Amanita phalloides,41.1775,28.98187,8,2016-08-20,,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+2563565535,Amanita phalloides,41.437487,33.467509,10,2016-10-02T15:44,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231419930,Amanita phalloides,42.0,33.0,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+3971980811,Amanita phalloides,,,3,2015-03-23,artvin,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+2851042388,Amanita phalloides,41.218913,28.946632,10,2014-10-12T10:15,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231199691,Amanita phalloides,40.5998,29.4162,11,2012-11-30,yalova,False,HUMAN_OBSERVATION,
+6231349556,Amanita phalloides,40.37,29.27,11,2010-11-07,yalova,False,HUMAN_OBSERVATION,
+1990326786,Amanita phalloides,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+6231405540,Galerina marginata,38.4911,28.0587,1,2024-01-15,,False,HUMAN_OBSERVATION,
+6191011283,Galerina marginata,,,11,2023-11-26,,False,MATERIAL_SAMPLE,
+6231310090,Galerina marginata,41.517,33.4168,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+4512195533,Galerina marginata,40.968342,29.181696,11,2010-11-06T15:00,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5283813877,Galerina marginata,,,10,1977-10-27T00:00,,False,PRESERVED_SPECIMEN,
+4023675946,Galerina marginata,41.0,39.73,8,1972-08-23,,False,PRESERVED_SPECIMEN,Agaricales externi
+5283814166,Galerina marginata,,,8,1929-08-01T00:00,,False,PRESERVED_SPECIMEN,
+6231419805,Lepiota brunneoincarnata,40.6428,29.4347,10,2015-10-11,yalova,False,HUMAN_OBSERVATION,
+6498961410,Amanita muscaria,40.956688,41.122811,8,2026-08-02T09:57:11,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6518344831,Amanita muscaria,40.676774,38.249781,8,2026-08-14T17:02:47,giresun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6552420512,Amanita muscaria,41.229408,42.448306,9,2026-09-09T13:34:48,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6567156952,Amanita muscaria,41.160278,41.79448,9,2026-09-23T08:43:47,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5140072828,Amanita muscaria,41.159657,32.327796,4,2025-04-10T10:57,karabuk,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5844219996,Amanita muscaria,40.885008,39.325437,9,2025-09-29T13:53:03,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889276258,Amanita muscaria,40.670849,39.006659,9,2025-09-23T13:47:24,gumushane,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890055848,Amanita muscaria,40.668573,38.999867,9,2025-09-23T14:03:09,gumushane,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6131173647,Amanita muscaria,40.959475,41.114145,9,2025-09-23T15:16,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5840025042,Amanita muscaria,40.617345,30.183731,10,2025-10-05T19:36:46,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5844345402,Amanita muscaria,41.70129,34.596361,10,2025-10-11T14:25:09,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5867749026,Amanita muscaria,37.045473,36.517011,10,2025-10-13T13:38,gaziantep,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5868039846,Amanita muscaria,41.770281,27.685126,10,2025-10-19T14:02,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889282154,Amanita muscaria,37.028238,36.491771,10,2025-10-13T13:34,gaziantep,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890298174,Amanita muscaria,37.045902,36.518836,10,2025-10-13T14:59,gaziantep,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6133468105,Amanita muscaria,40.626549,31.286303,10,2025-10-18T14:12:13,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6414015375,Amanita muscaria,41.775917,27.68525,10,2025-10-19T14:04:20,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6579659869,Amanita muscaria,40.630272,31.288078,10,2025-10-12T08:31:21,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512142248,Amanita muscaria,41.165067,28.929392,1,2024-01-10T11:52:22,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4925941642,Amanita muscaria,40.963163,41.015344,8,2024-08-14T14:41:31,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954712676,Amanita muscaria,40.138039,29.138242,10,2024-10-12T11:50:02,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4973947050,Amanita muscaria,41.966947,27.348275,10,2024-10-13T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5069779275,Amanita muscaria,40.973222,31.564297,10,2024-10-12T16:57:40,duzce,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4987755493,Amanita muscaria,41.539092,32.775622,11,2024-11-16T16:54:44,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500809393,Amanita muscaria,40.790947,40.955031,8,2023-08-21T09:46:55,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506391041,Amanita muscaria,40.792629,40.955262,8,2023-08-21T10:40:07,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506394107,Amanita muscaria,40.791912,40.955565,8,2023-08-21T10:04:03,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935936523,Amanita muscaria,40.79226,40.955369,8,2023-08-21T10:36:52,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897697409,Amanita muscaria,40.856197,40.94136,7,2022-07-29T12:45:42,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3915263581,Amanita muscaria,40.124298,29.14213,9,2022-09-16T12:29:07,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6273758309,Amanita muscaria,41.703504,33.818408,10,2022-10-02T11:31:53,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3966722666,Amanita muscaria,40.638459,31.765752,11,2022-11-05T14:03,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4607461013,Amanita muscaria,41.177472,28.983828,11,2022-11-15T09:38:58,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3343721872,Amanita muscaria,40.963371,41.017239,8,2021-08-21T17:21,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3343819097,Amanita muscaria,41.00275,41.026749,8,2021-08-22T12:06:29,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994451190,Amanita muscaria,41.353231,42.342387,8,2021-08-21T13:11,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4863595431,Amanita muscaria,40.917442,41.144497,9,2021-09-07T14:38,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4936426832,Amanita muscaria,40.534837,29.82907,10,2021-10-30T12:55:48,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3455740235,Amanita muscaria,41.184012,28.988502,12,2021-12-19T11:47:54Z,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3705816799,Amanita muscaria,41.174602,29.392074,12,2021-12-18T19:41,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2901815748,Amanita muscaria,40.933475,37.772097,10,2020-10-17T20:10:28,ordu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2980869953,Amanita muscaria,41.215653,36.356447,11,2020-11-02T16:59:42,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563565412,Amanita muscaria,40.918552,41.067718,7,2019-07-29T15:38,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231325580,Amanita muscaria,41.0,41.0,7,2019-07-29,rize,False,HUMAN_OBSERVATION,
+6544631305,Amanita muscaria,40.917,41.049,7,2019-07-01,,False,HUMAN_OBSERVATION,
+2366117952,Amanita muscaria,40.477086,37.723142,8,2019-08-12T15:58:57,ordu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2422923272,Amanita muscaria,40.955516,41.0937,9,2019-09-05T22:51:40,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231255916,Amanita muscaria,41.0,29.0,12,2019-12-15,istanbul,False,HUMAN_OBSERVATION,
+4597028994,Amanita muscaria,40.606097,40.301147,7,2018-07-08T17:02:57,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2851052400,Amanita muscaria,41.250693,28.956531,12,2018-12-22T13:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231392360,Amanita muscaria,42.0,33.0,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+6477585308,Amanita muscaria,41.54577,33.36411,10,2016-10-01,,True,HUMAN_OBSERVATION,
+3499374263,Amanita muscaria,40.107589,29.085475,9,2014-09-21T09:11,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4029107495,Amanita muscaria,40.96198,29.150283,10,2010-10-31T12:08,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516789427,Amanita muscaria,41.003205,29.38792,11,2010-11-07T16:50,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231325122,Amanita muscaria,40.9534,41.1011,12,2009-12-08,rize,False,HUMAN_OBSERVATION,
+6231312073,Amanita muscaria,41.4127,42.2465,11,2003-11-07,artvin,False,HUMAN_OBSERVATION,
+1990327641,Amanita muscaria,40.862778,39.613333,9,1997-09-26,trabzon,False,PRESERVED_SPECIMEN,
+5935171086,Amanita pantherina,39.91044,28.382191,10,2025-10-15T15:34:58,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5936131147,Amanita pantherina,40.854338,30.112217,10,2025-10-26T11:42:40,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178596557,Amanita pantherina,40.709,31.513751,10,2025-10-24T17:37:58,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6413768826,Amanita pantherina,41.738133,27.783042,10,2025-10-26T13:31:47,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889576297,Amanita pantherina,41.194111,28.989345,11,2025-11-01T13:04:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5892913641,Amanita pantherina,40.916355,29.407283,11,2025-11-08T08:53:21,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5908615599,Amanita pantherina,40.855178,38.251374,11,2025-11-18T16:54:01,giresun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5908624372,Amanita pantherina,40.901117,38.223163,11,2025-11-17T13:59:27,giresun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5909331369,Amanita pantherina,40.977789,38.306389,11,2025-11-18T16:58:11,giresun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935537020,Amanita pantherina,37.004017,36.297482,11,2025-11-23T09:08:56,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5936131419,Amanita pantherina,41.066656,29.375903,11,2025-11-22T08:44:30,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5936144371,Amanita pantherina,41.188563,28.987517,11,2025-11-01T11:26:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935979604,Amanita pantherina,41.109837,29.494606,12,2025-12-11T12:51:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6131682185,Amanita pantherina,41.084986,29.049121,12,2025-12-06T15:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6499515375,Amanita pantherina,41.173241,28.99125,12,2025-12-13T10:42:09,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4953195559,Amanita pantherina,41.956973,27.395857,10,2024-10-05T18:30,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4981914260,Amanita pantherina,41.194713,28.991133,10,2024-10-05T11:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007869850,Amanita pantherina,41.989161,27.333245,10,2024-10-13T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007869996,Amanita pantherina,41.230695,36.360052,10,2024-10-27T14:07:06,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5069765786,Amanita pantherina,41.846644,27.562308,10,2024-10-12T09:31:04,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5069777836,Amanita pantherina,41.151646,29.12155,10,2024-10-07T10:38:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5936070153,Amanita pantherina,41.18761,28.967716,10,2024-10-26T15:21:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4014938152,Amanita pantherina,41.189819,28.98144,1,2023-01-07T13:14:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506232074,Amanita pantherina,41.713125,34.586469,8,2023-08-12T14:14:37,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4453927500,Amanita pantherina,40.428899,27.911339,11,2023-11-25T12:36,balikesir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510128302,Amanita pantherina,41.893742,34.867394,11,2023-11-01T17:21,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512280986,Amanita pantherina,41.068222,28.693119,12,2023-12-16T05:16,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506229693,Amanita pantherina,41.65649,33.138696,7,2022-07-16T11:59,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4440791606,Amanita pantherina,41.125603,29.226295,10,2022-10-02T18:22:28,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4116191796,Amanita pantherina,41.095787,29.030172,12,2022-12-17T15:33:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3985734484,Amanita pantherina,41.644036,33.119867,9,2021-09-19T14:04,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935994301,Amanita pantherina,40.908931,31.041536,10,2021-10-09,duzce,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5936100993,Amanita pantherina,41.142945,28.863576,11,2020-11-12T17:49:47,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3759581812,Amanita pantherina,41.178284,28.991934,10,2019-10-28T17:03,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231381597,Amanita pantherina,41.0,29.0,10,2018-10-21,istanbul,False,HUMAN_OBSERVATION,
+3971981207,Amanita pantherina,41.1775,28.98187,8,2016-08-20,,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+4127447441,Amanita pantherina,39.607567,27.616246,10,2016-10-20,balikesir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5069750038,Amanita pantherina,36.991865,36.39516,10,2015-10-29T16:03,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6498862803,Amanita pantherina,41.095615,30.692356,11,2015-11-14T12:11,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4596760966,Amanita pantherina,40.961087,29.171397,11,2010-11-06T13:00,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4596804595,Amanita pantherina,40.961455,29.147165,11,2010-11-06T12:53,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231244155,Amanita pantherina,40.37,29.27,11,2010-11-07,yalova,False,HUMAN_OBSERVATION,
+4535624273,Amanita pantherina,41.18695,28.989454,9,2009-09-29T20:18,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231409811,Amanita pantherina,41.1966,28.9503,10,2008-10-12,istanbul,False,HUMAN_OBSERVATION,
+574643987,Amanita pantherina,,,11,2007-11-18,izmir,False,PRESERVED_SPECIMEN,Edinburgh (E) Herbarium Specimens
+2563615855,Gyromitra esculenta,40.583654,32.511648,10,2016-10-30T15:22,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231359433,Gyromitra esculenta,40.5825,32.4923,10,2016-10-30,camlidere,False,HUMAN_OBSERVATION,
+6196172475,Gyromitra esculenta,,,5,2014-05-14,,False,PRESERVED_SPECIMEN,
+6196313601,Gyromitra esculenta,,,5,2014-05-12,,False,PRESERVED_SPECIMEN,
+6274956438,Gyromitra esculenta,,,3,2013-03-30,,False,PRESERVED_SPECIMEN,
+6190278104,Gyromitra esculenta,,,4,2013-04-13,,False,PRESERVED_SPECIMEN,
+6218379357,Gyromitra esculenta,,,4,2013-04-22,,False,PRESERVED_SPECIMEN,
+6218381605,Gyromitra esculenta,,,4,2013-04-29,,False,PRESERVED_SPECIMEN,
+6237400490,Gyromitra esculenta,,,4,2013-04-20,,False,PRESERVED_SPECIMEN,
+6190798116,Gyromitra esculenta,,,4,2012-04-26,,False,PRESERVED_SPECIMEN,
+6196264482,Gyromitra esculenta,,,4,2012-04-22,,False,PRESERVED_SPECIMEN,
+6190040259,Gyromitra esculenta,,,4,2011-04-11,,False,PRESERVED_SPECIMEN,
+6196178893,Gyromitra esculenta,,,5,2011-05-07,,False,PRESERVED_SPECIMEN,
+6190908629,Gyromitra esculenta,,,4,2010-04-18,,False,PRESERVED_SPECIMEN,
+6218465561,Gyromitra esculenta,,,4,2010-04-25,,False,PRESERVED_SPECIMEN,
+6218283467,Gyromitra esculenta,,,5,2010-05-02,,False,PRESERVED_SPECIMEN,
+6237304602,Gyromitra esculenta,,,5,2010-05-06,,False,PRESERVED_SPECIMEN,
+6191011458,Gyromitra esculenta,,,,,,False,PRESERVED_SPECIMEN,
+5889920772,Omphalotus olearius,38.177618,26.787533,10,2025-10-25T14:19:26,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6186044636,Omphalotus olearius,40.462483,28.96437,10,2025-10-25T13:08:06,yalova,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6253100333,Omphalotus olearius,38.938622,26.906069,10,2025-10-29T10:39:24,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516287900,Omphalotus olearius,41.0472,29.0152,1,2024-01-03T11:55:44,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935541726,Omphalotus olearius,41.835192,27.557422,10,2024-10-20T07:21:20,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516412508,Omphalotus olearius,38.436767,28.084687,12,2023-12-20T13:26,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231263599,Omphalotus olearius,38.4783,28.0927,12,2023-12-22,,False,HUMAN_OBSERVATION,
+5008185435,Omphalotus olearius,40.394196,27.867031,11,2021-11-08T12:05,balikesir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506251550,Omphalotus olearius,38.602249,26.474177,12,2021-12-04T08:47:42,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4028935082,Omphalotus olearius,36.991571,36.352937,1,2018-01-29T13:52,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6518983002,Omphalotus olearius,41.312528,36.106807,10,2015-10-27T12:04,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231177823,Omphalotus olearius,40.37,29.27,11,2010-11-07,yalova,False,HUMAN_OBSERVATION,
+4516258356,Entoloma sinuatum,41.19,28.991228,1,2024-01-04T10:37:50,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4011618369,Entoloma sinuatum,41.406852,28.484227,11,2014-11-09T12:07,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231318526,Entoloma sinuatum,40.6163,29.4517,11,2010-11-07,yalova,False,HUMAN_OBSERVATION,
+6159474986,Hypholoma fasciculare,39.705654,29.338592,2,2026-02-16T17:36:30,kutahya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6171362658,Hypholoma fasciculare,41.047536,29.016231,3,2026-03-02T12:45,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5868170684,Hypholoma fasciculare,41.768159,27.639183,10,2025-10-19T13:29,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935718613,Hypholoma fasciculare,41.19439,28.991273,10,2025-10-29T13:07,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178859565,Hypholoma fasciculare,40.704208,31.515219,10,2025-10-24T17:51:22,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935399648,Hypholoma fasciculare,41.049143,29.015263,11,2025-11-11T16:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130396533,Hypholoma fasciculare,41.181372,28.991092,11,2025-11-23T13:06,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479313297,Hypholoma fasciculare,40.743831,37.302867,11,2025-11-22T12:15:24,ordu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935648722,Hypholoma fasciculare,41.081761,29.049675,12,2025-12-14T14:03:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4525306280,Hypholoma fasciculare,41.085325,29.051475,2,2024-02-20T16:21:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231143094,Hypholoma fasciculare,41.0853,29.0515,2,2024-02-20,istanbul,False,HUMAN_OBSERVATION,
+6231190006,Hypholoma fasciculare,41.0854,29.0515,2,2024-02-24,istanbul,False,HUMAN_OBSERVATION,
+4599745844,Hypholoma fasciculare,41.1988,28.9907,3,2024-03-17T15:11:31,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231399928,Hypholoma fasciculare,41.0868,29.0607,3,2024-03-21,istanbul,False,HUMAN_OBSERVATION,
+6231333900,Hypholoma fasciculare,41.0858,29.0515,4,2024-04-24,istanbul,False,HUMAN_OBSERVATION,
+6231273796,Hypholoma fasciculare,41.7353,33.0045,6,2024-06-10,,True,HUMAN_OBSERVATION,
+4952701333,Hypholoma fasciculare,41.115897,29.205213,10,2024-10-02T13:37:23,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954696578,Hypholoma fasciculare,41.958346,27.396759,10,2024-10-05T18:30,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954791758,Hypholoma fasciculare,41.215145,28.963005,10,2024-10-13T10:16:59,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4976470263,Hypholoma fasciculare,41.176139,28.960686,10,2024-10-28T09:30:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5006890997,Hypholoma fasciculare,41.232259,36.368588,10,2024-10-20T17:21:19,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007326365,Hypholoma fasciculare,41.972819,27.339864,10,2024-10-13T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4980398323,Hypholoma fasciculare,41.047906,29.016731,11,2024-11-08T16:17:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4982009310,Hypholoma fasciculare,41.085707,29.051762,11,2024-11-14T13:41:09,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4993858848,Hypholoma fasciculare,41.045864,29.017078,12,2024-12-03T11:38:28,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935774521,Hypholoma fasciculare,41.047945,29.018301,12,2024-12-13T12:53,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4014871622,Hypholoma fasciculare,41.20708,28.964418,10,2022-10-16T11:14,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3018026522,Hypholoma fasciculare,41.837166,34.78877,10,2020-10-28T16:03,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2984531076,Hypholoma fasciculare,41.047839,29.016197,11,2020-11-08T17:28:10,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231141448,Hypholoma fasciculare,41.0536,31.2326,10,2018-10-14,duzce,False,HUMAN_OBSERVATION,
+2563567191,Hypholoma fasciculare,40.094845,33.234909,10,2017-10-07T11:33,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+575210879,Hypholoma fasciculare,,,11,2006-11-25,izmir,False,PRESERVED_SPECIMEN,Edinburgh (E) Herbarium Specimens
+575330083,Hypholoma fasciculare,,,10,2005-10-23,mugla,False,PRESERVED_SPECIMEN,Edinburgh (E) Herbarium Specimens
+4868872900,Hypholoma fasciculare,,,6,1979-06-27T00:00,,False,PRESERVED_SPECIMEN,
+4868707071,Hypholoma fasciculare,,,8,1979-08-01T00:00,,False,PRESERVED_SPECIMEN,
+4023668750,Hypholoma fasciculare,40.8,26.6,4,1972-04-08,,False,PRESERVED_SPECIMEN,Agaricales externi
+3761694268,Hypholoma fasciculare,41.2317,41.82,,2010/2021,,False,MATERIAL_SAMPLE,
+3456790960,Rubroboletus satanas,39.425775,39.722458,9,2019-09-22T15:58,tunceli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4091792840,Rubroboletus satanas,41.105778,29.716994,10,2016-10-30T14:12,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6413460125,Amanita rubescens,41.9584,27.392397,6,2026-06-20T18:12:58,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6518453861,Amanita rubescens,40.957262,41.113858,7,2026-07-31T08:33:02,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6498600468,Amanita rubescens,40.925636,41.159816,8,2026-08-10T13:31:06,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935309207,Amanita rubescens,41.116352,29.742943,10,2025-10-26T14:28:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890257799,Amanita rubescens,41.19605,28.988863,11,2025-11-01T12:26:11,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5938045755,Amanita rubescens,41.121746,29.655271,11,2025-11-08T15:52:18,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130413863,Amanita rubescens,41.208839,28.904684,11,2025-11-13T12:27:05,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130815756,Amanita rubescens,41.185392,28.989317,11,2025-11-01T11:17:15,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5932226873,Amanita rubescens,41.973667,27.385249,12,2025-12-13T16:31:26,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510104065,Amanita rubescens,41.178639,28.989464,1,2024-01-04T11:08:33,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4950304120,Amanita rubescens,41.181592,28.991339,9,2024-09-21T13:09:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935780474,Amanita rubescens,41.19265,28.990331,9,2024-09-21T14:13:41,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4138343336,Amanita rubescens,41.175373,28.952576,6,2023-06-24T13:16:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4407192658,Amanita rubescens,41.118331,29.20396,6,2023-06-25T18:47:10,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4946590649,Amanita rubescens,41.187628,28.979525,6,2023-06-15T17:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4453721128,Amanita rubescens,41.038246,29.693818,10,2023-10-28T12:17:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3860610988,Amanita rubescens,41.195995,28.984613,7,2022-07-02T10:48:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3873341686,Amanita rubescens,41.195062,28.982987,7,2022-07-15T10:26:37,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3892337464,Amanita rubescens,40.863811,40.935013,7,2022-07-17T11:16:35,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3892339454,Amanita rubescens,40.856306,31.655612,7,2022-07-13T18:06:53,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4945768356,Amanita rubescens,41.197657,28.948704,7,2022-07-15T11:03:14,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3902537863,Amanita rubescens,40.963712,41.013346,8,2022-08-19T11:11:47,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935328270,Amanita rubescens,40.781315,31.553049,8,2022-08-02T12:53,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130876377,Amanita rubescens,40.963615,41.014317,8,2021-08-21T17:27:04,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3759210748,Amanita rubescens,41.17467,28.986118,10,2021-10-23T12:19:41,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4901267319,Amanita rubescens,41.948924,27.376551,6,2020-06-03T16:29:46,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2850837412,Amanita rubescens,41.195087,28.949979,11,2018-11-04T13:28,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935417545,Amanita rubescens,41.06551,30.655233,10,2017-10-17T16:21,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4046683788,Amanita rubescens,41.190281,28.988322,11,2017-11-17T12:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3971961887,Amanita rubescens,,,3,2015-03-21,trabzon,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+6487932601,Amanita rubescens,40.6846,39.657,3,2015-03-21,,False,MATERIAL_SAMPLE,EUKARYOME dataset
+6231173120,Amanita rubescens,41.1179,28.6279,9,2008-09-21,istanbul,False,HUMAN_OBSERVATION,
+3761392605,Amanita rubescens,41.2317,41.82,,2010/2021,,False,MATERIAL_SAMPLE,
+6178385775,Agaricus xanthodermus,40.707058,30.322175,11,2025-11-09T13:54:16,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6542190303,Agaricus xanthodermus,,,5,2023-05-21,,False,MATERIAL_SAMPLE,
+6274888418,Agaricus xanthodermus,,,10,2013-10-06,,False,PRESERVED_SPECIMEN,
+6196216492,Agaricus xanthodermus,,,10,2012-10-16,,False,PRESERVED_SPECIMEN,
+6196187171,Agaricus xanthodermus,,,11,2012-11-03,,False,PRESERVED_SPECIMEN,
+6254270343,Agaricus xanthodermus,,,11,2011-11-14,,False,PRESERVED_SPECIMEN,
+6235938782,Morchella esculenta,37.166563,34.594056,4,2026-04-25T13:16,mersin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480930263,Morchella esculenta,40.743831,37.302867,6,2026-06-29,ordu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5168312055,Morchella esculenta,37.143428,28.451357,4,2025-04-10T01:23,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480057362,Morchella esculenta,37.754164,28.995124,5,2025-05-04T18:32,denizli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3096987535,Morchella esculenta,36.966629,28.862817,3,2019-03-09T20:42,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3351732585,Morchella esculenta,,,4,2019-04-04,,False,PRESERVED_SPECIMEN,
+3349278035,Morchella esculenta,,,5,2019-05-20,,False,MATERIAL_SAMPLE,
+6253227930,Morchella esculenta,40.241425,32.260386,5,2019-05-01T11:47:53,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3351721758,Morchella esculenta,,,3,2017-03-18,,False,PRESERVED_SPECIMEN,
+3351121122,Morchella esculenta,,,4,2015-04-10,,False,PRESERVED_SPECIMEN,
+6431851810,Morchella esculenta,38.882323,34.159356,4,2013-04-26T11:23,aksaray,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178755325,Armillaria mellea,40.715497,31.523574,10,2025-10-15T11:53:51,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178786974,Armillaria mellea,40.708463,31.514567,10,2025-10-18T14:09:07,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178995691,Armillaria mellea,40.715123,31.519368,10,2025-10-15T12:45:47,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130234447,Armillaria mellea,41.08474,29.047128,11,2025-11-02T10:37,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510067688,Armillaria mellea,41.048031,29.013975,1,2024-01-03T11:20:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512181786,Armillaria mellea,41.182397,28.993664,1,2024-01-04T09:04:15,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512253809,Armillaria mellea,41.036291,29.182741,1,2024-01-06T09:29:35,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231132459,Armillaria mellea,41.081,29.0344,7,2024-07-16,istanbul,False,HUMAN_OBSERVATION,
+4974201295,Armillaria mellea,37.001523,36.287158,10,2024-10-19T12:04,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4982186235,Armillaria mellea,41.192357,28.992119,11,2024-11-14T15:42:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4987709732,Armillaria mellea,41.045459,29.015643,11,2024-11-22T17:05:44,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4993894558,Armillaria mellea,41.049143,29.015263,12,2024-12-02T16:55:11,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007384382,Armillaria mellea,41.047992,29.015025,12,2024-12-02T15:34:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4430557003,Armillaria mellea,40.936325,29.399113,10,2023-10-14T15:24:04,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510181329,Armillaria mellea,41.013802,28.983015,12,2023-12-22T13:23,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516204196,Armillaria mellea,41.048386,29.014306,12,2023-12-30T16:32:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516292238,Armillaria mellea,41.047331,29.014392,12,2023-12-30T16:16:25,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516408860,Armillaria mellea,41.045169,29.01525,12,2023-12-30T15:14:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516446280,Armillaria mellea,41.083756,29.051506,12,2023-12-28T14:09:19,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231161989,Armillaria mellea,41.0823,29.0506,12,2023-12-26,istanbul,False,HUMAN_OBSERVATION,
+6231280639,Armillaria mellea,41.0841,29.0481,12,2023-12-26,istanbul,False,HUMAN_OBSERVATION,
+6231294672,Armillaria mellea,41.0839,29.0501,12,2023-12-24,istanbul,False,HUMAN_OBSERVATION,
+6133527015,Armillaria mellea,41.083381,29.049542,11,2022-11-17T15:34:46,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3455460558,Armillaria mellea,41.012736,29.047239,11,2021-11-06T12:52:51,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2963772125,Armillaria mellea,41.197995,28.989813,10,2020-10-28T14:48:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3455275934,Armillaria mellea,40.96004,29.076382,12,2020-12-17T11:10:32,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2596343979,Armillaria mellea,41.070971,31.151956,10,2019-10-26T22:50,duzce,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231348035,Armillaria mellea,41.0,29.0,11,2019-11-10,istanbul,False,HUMAN_OBSERVATION,
+4510284478,Armillaria mellea,41.1663,28.443049,11,2016-11-06T12:00,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231170501,Armillaria mellea,40.6098,29.3097,11,2015-11-13,yalova,False,HUMAN_OBSERVATION,
+4596832558,Armillaria mellea,41.032496,29.350347,11,2013-11-03T13:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4596764959,Armillaria mellea,41.01216,29.354303,11,2010-11-13T14:00,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231190671,Armillaria mellea,41.1966,28.9503,10,2008-10-20,istanbul,False,HUMAN_OBSERVATION,
+4023665432,Armillaria mellea,40.733333,31.6,8,1972-08-30,,False,PRESERVED_SPECIMEN,Agaricales externi
+3761690184,Armillaria mellea,41.2317,41.82,,2010/2021,,False,MATERIAL_SAMPLE,
+6178715594,Agaricus campestris,40.705486,31.514828,10,2025-10-12T17:43:54,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231352883,Agaricus campestris,38.4694,28.0732,1,2024-01-13,,False,HUMAN_OBSERVATION,
+4926370947,Agaricus campestris,41.353231,42.342387,7,2024-07-30T14:50,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5006774385,Agaricus campestris,37.948312,27.273005,12,2024-12-30T17:28:54,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4465834031,Agaricus campestris,38.384075,27.900914,12,2023-12-10T12:05:50,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007008080,Agaricus campestris,39.532478,26.521613,12,2023-12-04T11:13:01,canakkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4607021128,Agaricus campestris,41.176467,28.985497,10,2022-10-16T14:15:51,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3391346782,Agaricus campestris,41.104713,29.310216,10,2021-10-09T22:58:15,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231334683,Agaricus campestris,41.0,29.0,11,2019-11-10,istanbul,False,HUMAN_OBSERVATION,
+2563507394,Agaricus campestris,40.710755,33.123174,6,2017-06-14T14:24,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5892471294,Boletus edulis,40.970105,39.811378,6,2025-06-14T09:48:52,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889727035,Boletus edulis,41.170074,28.973363,10,2025-10-25T14:14:07,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890222975,Boletus edulis,41.194343,28.99139,10,2025-10-29T13:14,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5892552078,Boletus edulis,41.762806,27.649826,10,2025-10-19T13:38,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6179337682,Boletus edulis,40.604625,30.18343,10,2025-10-05T14:23:36,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6422825586,Boletus edulis,41.813422,27.529392,10,2025-10-28T17:15:41,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5281864037,Boletus edulis,41.957913,27.393108,9,2024-09-15T18:01,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6170927918,Boletus edulis,41.138983,29.015717,6,2023-06-04T13:05:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3915464642,Boletus edulis,41.169316,28.970534,9,2022-09-04T11:10:26,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994051079,Boletus edulis,41.353231,42.342387,8,2021-08-21T12:59,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231229698,Boletus edulis,,,,2018,istanbul,False,HUMAN_OBSERVATION,
+3972270843,Boletus edulis,,,3,2015-03-21,trabzon,False,MATERIAL_SAMPLE,Tedersoo L et al. Global soil samples
+6487926478,Boletus edulis,40.6846,39.657,3,2015-03-21,,False,MATERIAL_SAMPLE,EUKARYOME dataset
+6551769383,Cantharellus cibarius,40.871016,37.916492,7,2026-07-30T15:59:31,ordu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4875579845,Cantharellus cibarius,41.1879,32.403044,6,2024-06-02T15:51,karabuk,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4949956120,Cantharellus cibarius,36.986615,36.326261,9,2024-09-20T10:20,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3881497420,Cantharellus cibarius,40.782774,31.541147,6,2022-06-16T12:33,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4855272033,Cantharellus cibarius,40.689378,30.213062,11,2022-11-12T12:28:55,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994029993,Cantharellus cibarius,41.30819,42.489367,8,2021-08-21T12:56,artvin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6253136553,Cantharellus cibarius,40.962574,41.021553,8,2021-08-23T11:05:37,rize,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3391362124,Cantharellus cibarius,41.715375,33.074478,9,2021-09-20T12:01,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6518559218,Cantharellus cibarius,41.312528,36.106807,1,2019-01-01T15:48,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2529282538,Cantharellus cibarius,38.363153,27.291306,12,2019-12-15T13:24,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231260795,Cantharellus cibarius,,,,2019,istanbul,False,HUMAN_OBSERVATION,
+2856842356,Cantharellus cibarius,41.152609,28.726419,10,2014-10-18T15:39,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4023414913,Cantharellus cibarius,40.73,31.6,8,1972-08-30,,False,PRESERVED_SPECIMEN,Aphyllophorales externi
+4023413017,Cantharellus cibarius,41.0,28.0,9,1972-09-03,,False,PRESERVED_SPECIMEN,Aphyllophorales externi
+5892399122,Lactarius deliciosus,37.491085,30.564293,11,2025-11-10T13:12:26,burdur,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6159141259,Lactarius deliciosus,41.085061,29.049688,12,2025-12-24T10:43:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231361411,Lactarius deliciosus,41.0853,29.0445,12,2025-12-06,istanbul,False,HUMAN_OBSERVATION,
+4516413091,Lactarius deliciosus,38.477244,28.132931,1,2024-01-14T16:40:53,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516542238,Lactarius deliciosus,38.4911,28.058675,1,2024-01-15T14:22:44,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4519097559,Lactarius deliciosus,38.458472,28.129225,1,2024-01-30T15:46:23,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6178319591,Lactarius deliciosus,37.115637,36.658203,1,2024-01-22T13:54:57,gaziantep,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231233660,Lactarius deliciosus,41.1854,28.9975,1,2024-01-10,istanbul,False,HUMAN_OBSERVATION,
+6231265839,Lactarius deliciosus,38.4585,28.1292,1,2024-01-30,,False,HUMAN_OBSERVATION,
+4872089301,Lactarius deliciosus,40.368903,32.006519,5,2024-05-25T16:10,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008307836,Lactarius deliciosus,41.085496,29.044782,12,2024-12-09T13:27:30,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231258719,Lactarius deliciosus,41.0855,29.0448,12,2024-12-09,istanbul,False,HUMAN_OBSERVATION,
+4607482925,Lactarius deliciosus,41.141658,29.0149,1,2023-01-01T16:29:33,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007288169,Lactarius deliciosus,39.852301,34.944623,6,2023-06-10T15:51,yozgat,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231123765,Lactarius deliciosus,41.0856,29.0451,12,2023-12-24,istanbul,False,HUMAN_OBSERVATION,
+4067230667,Lactarius deliciosus,40.382442,32.011403,7,2022-07-12T14:13,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4067262608,Lactarius deliciosus,40.381353,32.004214,7,2022-07-12T17:05,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4067657616,Lactarius deliciosus,40.378844,32.028978,7,2022-07-09T15:29,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4067322662,Lactarius deliciosus,41.027295,31.919505,10,2022-10-30T13:03:19,zinguldak,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4606994807,Lactarius deliciosus,41.176858,28.981797,11,2022-11-26T11:16:21,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4018201747,Lactarius deliciosus,41.876828,27.976758,12,2022-12-17T11:12:40,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3018145154,Lactarius deliciosus,37.004165,28.327183,1,2021-01-05T15:44Z,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3032119261,Lactarius deliciosus,36.868121,28.241352,1,2021-01-17T13:40Z,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3391306976,Lactarius deliciosus,41.643817,33.119975,9,2021-09-19T13:44,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4936535699,Lactarius deliciosus,40.536013,29.828428,10,2021-10-30T12:39:33,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231294830,Lactarius deliciosus,41.0,29.0,1,2020-01-04,istanbul,False,HUMAN_OBSERVATION,
+4506425346,Lactarius deliciosus,38.58919,26.467982,1,2019-01-05T16:10,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4091526496,Lactarius deliciosus,36.986938,36.305217,12,2018-12-02T20:50,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2573904501,Lactarius deliciosus,40.376285,32.012959,6,2016-06-09T15:10,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2856588360,Lactarius deliciosus,40.614772,31.288954,10,2014-10-18T16:00,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512307428,Lactarius deliciosus,40.937215,29.234752,11,2009-11-07T15:46,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+698926487,Lactarius deliciosus,41.321317,36.127183,10,2002-10-22,,False,PRESERVED_SPECIMEN,
+698926488,Lactarius deliciosus,41.321317,36.12575,10,2002-10-22,,False,PRESERVED_SPECIMEN,
+698926451,Lactarius deliciosus,41.25,36.333333,8,1997-08-30,samsun,False,PRESERVED_SPECIMEN,
+698926518,Lactarius deliciosus,41.25,36.333333,11,1997-11-26,samsun,False,PRESERVED_SPECIMEN,
+3349647946,Lactarius deliciosus,,,,,,False,PRESERVED_SPECIMEN,
+6320600432,Macrolepiota procera,41.349298,36.170916,5,2026-05-18T14:53,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6551917617,Macrolepiota procera,40.5397,30.0471,9,2026-09-13T12:35:19,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5844328617,Macrolepiota procera,41.49692,33.41242,10,2025-10-11T13:00:17,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889905710,Macrolepiota procera,40.866604,29.122787,10,2025-10-27T17:19:56,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5903981140,Macrolepiota procera,41.099568,29.359445,10,2025-10-25T08:30:32,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6431076109,Macrolepiota procera,41.766838,27.64458,10,2025-10-19T12:16:35,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6451716793,Macrolepiota procera,41.070931,29.545578,11,2025-11-02T11:33:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5932818020,Macrolepiota procera,40.4669,32.626862,12,2025-12-12T16:07:13,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231327468,Macrolepiota procera,38.4651,28.0749,1,2024-01-13,,False,HUMAN_OBSERVATION,
+4952964299,Macrolepiota procera,41.115047,29.202428,10,2024-10-02T13:22:25,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954466411,Macrolepiota procera,41.216025,28.955788,10,2024-10-10T16:09:15,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4950242651,Macrolepiota procera,41.025031,28.897205,4,2023-04-16T15:56:28,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4121268274,Macrolepiota procera,41.101792,29.033886,5,2023-05-22T12:28:39,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4399870601,Macrolepiota procera,41.104838,29.032702,5,2023-05-22T12:33,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4453759465,Macrolepiota procera,37.125564,28.275264,11,2023-11-17T14:37:06,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500818271,Macrolepiota procera,40.677446,26.067425,12,2023-12-14T12:37:41,edirne,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510169575,Macrolepiota procera,38.329907,27.039586,12,2023-12-02T14:55:59,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4597460529,Macrolepiota procera,38.400562,27.396052,12,2023-12-10T16:52:16,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3881474931,Macrolepiota procera,40.279178,31.249881,6,2022-06-30T09:45,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3888799857,Macrolepiota procera,40.268458,31.256594,7,2022-07-01T13:25,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3903188875,Macrolepiota procera,40.440933,32.066719,7,2022-07-14T17:24,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4950014302,Macrolepiota procera,41.258352,33.786909,7,2022-07-11T13:30:15,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3947084501,Macrolepiota procera,41.186692,28.961903,10,2022-10-23T07:22:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3947129733,Macrolepiota procera,41.18456,28.98895,10,2022-10-16T11:33:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4112072412,Macrolepiota procera,41.126739,29.228345,10,2022-10-02T17:46:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4506254702,Macrolepiota procera,41.185222,28.989689,10,2022-10-30T10:52:56,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3994168119,Macrolepiota procera,41.181264,28.980119,12,2022-12-11T10:20:51,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4014825815,Macrolepiota procera,38.349878,27.6796,12,2022-12-28T16:13:11,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3018077164,Macrolepiota procera,36.835979,28.192944,1,2021-01-05T14:44Z,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3018113230,Macrolepiota procera,36.935452,28.256372,1,2021-01-04T13:18Z,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3391703069,Macrolepiota procera,41.716142,33.074761,9,2021-09-20T13:47,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4126734970,Macrolepiota procera,41.170422,28.935864,10,2021-10-20T18:40:45,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3743222330,Macrolepiota procera,40.6,31.62,6,2020-06-27T14:19:13Z,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3772745374,Macrolepiota procera,40.751747,31.592368,10,2020-10-17T20:01:14,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4900854455,Macrolepiota procera,41.959433,27.392407,10,2020-10-27T17:07:51,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480078805,Macrolepiota procera,40.15637,26.571985,10,2020-10-24T15:50:21,canakkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480631032,Macrolepiota procera,40.145581,26.541796,10,2020-10-24T15:27:01,canakkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3109297423,Macrolepiota procera,40.554288,28.956374,11,2020-11-02T16:57:06,yalova,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3008522138,Macrolepiota procera,41.076839,29.31812,12,2020-12-04T15:08:22,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4116291393,Macrolepiota procera,41.260155,28.942223,10,2019-10-19T12:04,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231381438,Macrolepiota procera,41.0,29.0,11,2019-11-17,istanbul,False,HUMAN_OBSERVATION,
+2563517287,Macrolepiota procera,39.583819,33.494014,6,2017-06-17T14:13,kinkkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4028709280,Macrolepiota procera,36.985077,36.389986,11,2015-11-05T15:43,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512203801,Macrolepiota procera,40.939656,29.244409,10,2010-10-23T15:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512275753,Macrolepiota procera,40.942671,29.233545,10,2010-10-23T14:40,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1990326798,Macrolepiota procera,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+4065019424,Macrolepiota procera,40.0,31.0,8,1972-08-29,,False,PRESERVED_SPECIMEN,Agaricales externi
+5859136623,Macrolepiota procera,,,8,1972-08-29T00:00,,False,PRESERVED_SPECIMEN,
+5889213940,Amanita caesarea,40.14455,27.45502,11,2025-11-01T11:07:22,canakkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897519176,Amanita caesarea,40.854182,29.527031,11,2025-11-15T08:48:51,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897828246,Amanita caesarea,40.151783,27.49353,11,2025-11-16T13:13:46,canakkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6498391414,Amanita caesarea,41.070539,29.545603,11,2025-11-02T12:36:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4953131571,Amanita caesarea,41.540497,28.028514,9,2024-09-28T16:38:46,tekirdag,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4953161248,Amanita caesarea,37.047175,36.334542,9,2024-09-20T10:20,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5062929539,Amanita caesarea,40.969855,39.811038,9,2024-09-30T10:45:41,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889775832,Amanita caesarea,41.180044,28.989608,9,2024-09-21T13:25:33,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890167443,Amanita caesarea,41.180928,28.990597,9,2024-09-21T13:45:19,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130455447,Amanita caesarea,41.553037,28.051767,9,2024-09-29T13:42:18,tekirdag,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4952243367,Amanita caesarea,41.957119,27.398501,10,2024-10-05T18:30,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954596042,Amanita caesarea,41.230392,28.972933,10,2024-10-13T11:12,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4954767051,Amanita caesarea,41.192813,28.99251,10,2024-10-05T13:00,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4974206568,Amanita caesarea,37.001835,36.284387,10,2024-10-12T02:58,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4982375992,Amanita caesarea,41.842736,27.565214,10,2024-10-12T11:34:52,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500547593,Amanita caesarea,42.057225,34.94218,10,2023-10-31T13:24:55,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4606637183,Amanita caesarea,41.189128,28.987036,10,2023-10-22T13:39:12,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4952268449,Amanita caesarea,41.213917,28.963478,10,2023-10-17T12:10:41,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6422649966,Amanita caesarea,41.193038,28.991281,10,2023-10-28T09:51:36,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4062647499,Amanita caesarea,40.942143,31.748362,8,2022-08-30T15:54,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4062542481,Amanita caesarea,41.184057,28.971695,9,2022-09-04T10:46,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4062892492,Amanita caesarea,41.198463,28.989508,9,2022-09-11T11:02:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4063003493,Amanita caesarea,41.194203,28.9894,9,2022-09-11T11:02,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4172143313,Amanita caesarea,41.194868,28.986706,9,2022-09-04T11:11,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4607528443,Amanita caesarea,41.176947,28.982063,10,2022-10-16T15:29:23,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3384107151,Amanita caesarea,41.174428,30.435398,10,2021-10-02T13:34:39,sakarya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3759080755,Amanita caesarea,41.174337,28.98774,10,2021-10-23T13:35:08,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3859099885,Amanita caesarea,41.105033,29.322311,10,2021-10-25T10:17:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2901792748,Amanita caesarea,41.147411,28.636817,10,2020-10-06T20:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5036929622,Amanita caesarea,41.147692,29.638368,11,2020-11-12T17:22:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3384331567,Amanita caesarea,37.088293,27.312056,12,2020-12-01T03:37,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231328602,Amanita caesarea,41.0,29.0,7,2019-07-27,istanbul,False,HUMAN_OBSERVATION,
+4062858537,Amanita caesarea,36.979395,36.317571,8,2019-08-02T18:15,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4901121556,Amanita caesarea,41.934793,27.365822,8,2019-08-04T07:47:40,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2851041391,Amanita caesarea,41.18104,28.940194,10,2019-10-27T12:12,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3759636811,Amanita caesarea,41.166093,29.134038,10,2019-10-29T12:55,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4900973480,Amanita caesarea,41.75911,27.43392,6,2018-06-20,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563564611,Amanita caesarea,41.870323,27.95772,7,2018-07-13T15:24,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231329438,Amanita caesarea,42.0,28.0,10,2016-10-02,ka,False,HUMAN_OBSERVATION,
+6231276356,Amanita caesarea,40.6163,29.4517,10,2015-10-11,yalova,False,HUMAN_OBSERVATION,
+3499623913,Amanita caesarea,41.459127,28.280704,9,2014-09-19T08:13,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3996622221,Amanita caesarea,36.814282,33.329524,6,2010-06-20,mersin,False,HUMAN_OBSERVATION,
+6231349795,Amanita caesarea,40.36,29.28,10,2010-10-30,yalova,False,HUMAN_OBSERVATION,
+6231221465,Amanita caesarea,41.19,28.97,11,2008-11-09,istanbul,False,HUMAN_OBSERVATION,
+4510365038,Hydnum repandum,41.163922,28.928297,1,2024-01-04T09:21:03,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512202406,Hydnum repandum,41.165067,28.929392,1,2024-01-10T11:47:10,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007074818,Hydnum repandum,41.326397,28.338155,12,2024-12-15T17:24:10,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4034704473,Hydnum repandum,41.156556,29.003617,1,2023-01-15T15:03,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231129321,Hydnum repandum,41.0,29.0,11,2019-11-23,istanbul,False,HUMAN_OBSERVATION,
+1935620931,Hydnum repandum,41.154636,29.218561,10,2018-10-28T13:26:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5027626791,Hydnum repandum,41.17738,28.980936,9,2004-09-12T00:00,,False,HUMAN_OBSERVATION,
+1990327645,Hydnum repandum,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+4023432892,Hydnum repandum,40.73,31.6,8,1972-08-30,,False,PRESERVED_SPECIMEN,Aphyllophorales externi
+4512099905,Craterellus cornucopioides,41.19833,28.989885,1,2024-01-10T13:30:16,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512226995,Craterellus cornucopioides,41.163633,28.928297,1,2024-01-11T12:33:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5908908185,Craterellus cornucopioides,40.933272,39.45302,10,2024-10-03T18:30:34,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3712432460,Craterellus cornucopioides,40.722452,31.090601,9,2021-09-25T16:20,duzce,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3747078487,Craterellus cornucopioides,41.207623,29.318342,12,2021-12-18T19:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563566009,Craterellus cornucopioides,41.070971,31.151956,10,2018-10-14T16:58,duzce,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231154568,Craterellus cornucopioides,41.0,31.0,10,2018-10-14,duzce,False,HUMAN_OBSERVATION,
+2856849370,Craterellus cornucopioides,41.244573,28.249719,11,2016-11-05T12:05,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6487913466,Craterellus cornucopioides,40.842,40.4885,3,2015-03-23,,False,MATERIAL_SAMPLE,EUKARYOME dataset
+2999210632,Craterellus cornucopioides,37.105956,27.294204,8,2014-08-09T12:00,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231347851,Craterellus cornucopioides,40.9837,29.1451,11,2010-11-16,istanbul,False,HUMAN_OBSERVATION,
+574879049,Craterellus cornucopioides,,,11,2009-11-21,kirklareli,False,PRESERVED_SPECIMEN,Edinburgh (E) Herbarium Specimens
+6231202487,Craterellus cornucopioides,41.19,28.97,12,2008-12-09,istanbul,False,HUMAN_OBSERVATION,
+5025146019,Craterellus cornucopioides,41.197571,28.937937,10,2006-10-28T00:00,,False,HUMAN_OBSERVATION,
+1990326865,Craterellus cornucopioides,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+4023431577,Craterellus cornucopioides,40.73,31.6,8,1972-08-30,,False,PRESERVED_SPECIMEN,Aphyllophorales externi
+6186042177,Pleurotus ostreatus,41.084858,29.051932,3,2026-03-28T10:03:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920134428,Pleurotus ostreatus,39.974872,32.232753,10,2025-10-29T12:11:57,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897796753,Pleurotus ostreatus,37.454463,30.58827,11,2025-11-08T17:39:10,burdur,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6251991106,Pleurotus ostreatus,39.831606,32.828622,12,2025-12-07T12:28,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516255808,Pleurotus ostreatus,41.178639,28.989464,1,2024-01-10T11:19:04,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4599746854,Pleurotus ostreatus,41.084567,29.053347,3,2024-03-20T15:25:03,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008250266,Pleurotus ostreatus,39.953241,32.760079,10,2024-10-31T13:30,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935702088,Pleurotus ostreatus,37.128366,33.269677,10,2024-10-12T18:01,karaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5076811201,Pleurotus ostreatus,41.085867,29.048437,12,2024-12-13T16:20:24,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4039128118,Pleurotus ostreatus,41.068489,28.961993,2,2023-02-16T10:52,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4453835058,Pleurotus ostreatus,40.428899,27.911339,11,2023-11-25T12:51,balikesir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008130294,Pleurotus ostreatus,39.887607,32.856014,11,2023-11-11T14:47,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500551768,Pleurotus ostreatus,41.104291,29.023347,12,2023-12-12T16:16:19,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4500711427,Pleurotus ostreatus,39.887607,32.856014,12,2023-12-17T13:33,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3986076240,Pleurotus ostreatus,40.965851,29.068323,11,2022-11-18T13:59:17,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6190218119,Pleurotus ostreatus,,,4,2021-04-07,,False,MATERIAL_SAMPLE,
+3455392203,Pleurotus ostreatus,40.981857,29.05763,11,2021-11-12T11:41:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5838120366,Pleurotus ostreatus,38.351588,33.968895,12,2021-12-16T12:55:32,aksaray,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2574312790,Pleurotus ostreatus,41.047517,28.992255,2,2020-02-21T11:04:56,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2999203827,Pleurotus ostreatus,38.475844,27.195104,12,2020-12-06T16:49:15,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6190255820,Pleurotus ostreatus,,,10,2019-10-12,,False,MATERIAL_SAMPLE,
+6231200214,Pleurotus ostreatus,40.1039,32.0541,12,2019-12-22,ankara,False,HUMAN_OBSERVATION,
+2563616771,Pleurotus ostreatus,39.88857,33.024129,12,2018-12-22T16:45,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231137902,Pleurotus ostreatus,39.8931,33.0106,12,2018-12-22,ankara,False,HUMAN_OBSERVATION,
+6431083761,Pleurotus ostreatus,41.080499,29.033726,10,2017-10-15T13:14,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6190188895,Pleurotus ostreatus,,,11,2017-11-08,,False,MATERIAL_SAMPLE,
+6190266060,Pleurotus ostreatus,,,11,2017-11-24,,False,MATERIAL_SAMPLE,
+6191515856,Pleurotus ostreatus,,,11,2017-11-05,,False,MATERIAL_SAMPLE,
+6191561255,Pleurotus ostreatus,,,11,2017-11-04,,False,MATERIAL_SAMPLE,
+6130324398,Pleurotus ostreatus,40.657476,30.09511,1,2016-01-09T13:26,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6191385204,Pleurotus ostreatus,,,10,2016-10-23,,False,MATERIAL_SAMPLE,
+6190617875,Pleurotus ostreatus,,,11,2015-11-05,,False,MATERIAL_SAMPLE,
+5936235145,Pleurotus ostreatus,37.181009,33.222243,3,2012-03-14T20:00,karaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+575100789,Pleurotus ostreatus,,,11,2009-11-20,,False,PRESERVED_SPECIMEN,Edinburgh (E) Herbarium Specimens
+6190221165,Pleurotus ostreatus,,,9,2008-09-06,,False,MATERIAL_SAMPLE,
+4516302421,Pleurotus ostreatus,36.68261,30.534099,11,2008-11-05T15:14,antalya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6190177853,Pleurotus ostreatus,,,,,,False,MATERIAL_SAMPLE,
+6253256534,Coprinus comatus,40.184642,29.966242,4,2026-04-16T09:14:37,bilecik,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320925046,Coprinus comatus,39.887325,32.654406,4,2026-04-29T16:49:49,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6481017632,Coprinus comatus,39.864775,32.817783,4,2026-04-18T16:00,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6251625693,Coprinus comatus,39.88437,32.7883,5,2026-05-02T11:56:18,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6273397936,Coprinus comatus,39.779241,32.822991,5,2026-05-09T13:38:34,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6273839013,Coprinus comatus,38.32618,33.98434,5,2026-05-10T18:37:25,aksaray,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320156719,Coprinus comatus,39.883534,32.785457,5,2026-05-17T15:22:49,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320476963,Coprinus comatus,39.862109,32.644518,5,2026-05-11T17:21:35,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320975470,Coprinus comatus,40.980094,32.005731,5,2026-05-16T13:37:47,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6334279847,Coprinus comatus,39.867905,32.735046,5,2026-05-19T12:27:15,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6352369325,Coprinus comatus,40.6856,31.630128,5,2026-05-18T18:40:26,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480161788,Coprinus comatus,39.874247,32.78502,5,2026-05-10T19:13:18,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6481228714,Coprinus comatus,39.860578,32.784762,5,2026-05-26T15:23:51,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480221302,Coprinus comatus,39.829358,32.662912,6,2026-06-04T16:36,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479341658,Coprinus comatus,40.052064,33.289069,7,2026-07-05T13:43,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6579782350,Coprinus comatus,39.825475,32.779411,9,2026-09-23T09:34:27,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6578830592,Coprinus comatus,40.518227,29.901207,10,2026-10-04T14:13:17,bilecik,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6579650788,Coprinus comatus,39.827511,32.843523,10,2026-10-03T12:14:53,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5153430409,Coprinus comatus,41.001465,29.020061,4,2025-04-28T14:46:56,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920303765,Coprinus comatus,39.565932,33.494765,4,2025-04-20T15:19,kinkkale,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6195449408,Coprinus comatus,37.094305,33.328082,4,2025-04-26T14:38:24,karaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5153417835,Coprinus comatus,39.893768,32.785757,5,2025-05-04T07:26:02,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5153640731,Coprinus comatus,39.893983,32.785073,5,2025-05-03T09:00:49,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5153671182,Coprinus comatus,37.063529,34.396416,5,2025-05-01T17:24:21,mersin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5154099941,Coprinus comatus,39.893565,32.785077,5,2025-05-04T07:22:25,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5154235773,Coprinus comatus,39.894979,32.782185,5,2025-05-07T19:53:54,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5154965321,Coprinus comatus,39.868122,32.73506,5,2025-05-09T11:17:45,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5166785172,Coprinus comatus,38.657177,39.064719,5,2025-05-17T18:42:44,elazig,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5167503982,Coprinus comatus,39.892589,32.788259,5,2025-05-25T11:58:03,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5198627240,Coprinus comatus,41.167757,27.506836,6,2025-06-14T15:25:16,tekirdag,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5889266604,Coprinus comatus,39.956498,32.710626,10,2025-10-27T17:56:36,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890113638,Coprinus comatus,39.950503,32.80372,10,2025-10-29T15:47,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5890142390,Coprinus comatus,41.794852,27.733128,10,2025-10-22T17:24:25,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897273441,Coprinus comatus,37.073546,37.342591,10,2025-10-24T14:36:25,gaziantep,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6131461889,Coprinus comatus,40.709,31.513751,10,2025-10-29T14:13:48,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6147563639,Coprinus comatus,41.04765,29.016347,10,2025-10-23T11:14:58,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479219282,Coprinus comatus,41.00519,28.633644,10,2025-10-22T20:46:14,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5892817254,Coprinus comatus,41.79745,27.482495,11,2025-11-08T11:17,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897231765,Coprinus comatus,38.468892,27.078581,11,2025-11-13T08:18:23,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5897327784,Coprinus comatus,40.995855,28.729212,11,2025-11-11T12:06:25,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920081807,Coprinus comatus,40.991408,29.137111,11,2025-11-16T14:16:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920149511,Coprinus comatus,40.995832,28.729287,11,2025-11-12T17:22:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920164878,Coprinus comatus,40.740259,29.962508,11,2025-11-14T16:31:14,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5920221740,Coprinus comatus,36.843749,31.095798,11,2025-11-26T14:28:30,antalya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5932258479,Coprinus comatus,38.56465,26.863865,11,2025-11-04T08:28:34,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5932634996,Coprinus comatus,41.110218,29.039419,11,2025-11-02T13:30:41,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6481167916,Coprinus comatus,41.088917,29.043673,11,2025-11-03T13:40:13,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6499784831,Coprinus comatus,41.112123,27.267612,11,2025-11-06T11:14,tekirdag,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5938609682,Coprinus comatus,41.138125,29.030939,12,2025-12-16T16:42:43,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480130736,Coprinus comatus,41.033661,29.028414,12,2025-12-22T14:44:17,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4510324661,Coprinus comatus,41.051403,29.014628,1,2024-01-03T11:02:42,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4600106911,Coprinus comatus,37.701727,38.670433,3,2024-03-09T16:02,adiyaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4993898746,Coprinus comatus,39.924237,32.694483,5,2024-05-28T12:35:54,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6191000554,Coprinus comatus,,,5,2024-05-05,,False,MATERIAL_SAMPLE,
+4954434882,Coprinus comatus,41.047017,29.013514,10,2024-10-15T12:05:37,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994258594,Coprinus comatus,39.868956,32.739712,10,2024-10-27T14:31,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994473064,Coprinus comatus,41.166027,35.440098,10,2024-10-04T17:51:09,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007024040,Coprinus comatus,41.80169,27.521288,10,2024-10-26T19:36,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008256369,Coprinus comatus,40.140122,29.097422,10,2024-10-12T14:26:40,bursa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5908948345,Coprinus comatus,39.912313,32.795546,10,2024-10-31T13:15,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479179135,Coprinus comatus,40.653111,31.62634,10,2024-10-27T10:50:05,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479276711,Coprinus comatus,39.793706,30.492719,10,2024-10-10T11:12:38,eskisehir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5062888529,Coprinus comatus,41.185952,28.974229,11,2024-11-09T11:26:34,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4993787869,Coprinus comatus,41.049143,29.015263,12,2024-12-02T16:45:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4994276975,Coprinus comatus,41.049143,29.015263,12,2024-12-10T11:10:44,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5007914040,Coprinus comatus,41.08514,29.048721,12,2024-12-05T10:16:38,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008116340,Coprinus comatus,41.051113,29.014663,12,2024-12-14T12:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6413975047,Coprinus comatus,41.050486,29.018167,12,2024-12-03T12:07:58,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4103476616,Coprinus comatus,41.238709,29.104935,4,2023-04-19T10:14:44,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479149800,Coprinus comatus,38.397818,29.014614,4,2023-04-08T10:11:15,usak,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479585373,Coprinus comatus,40.203467,30.258967,4,2023-04-22T17:15:59,bilecik,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480466885,Coprinus comatus,36.982118,30.464246,4,2023-04-14T18:48,antalya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480688072,Coprinus comatus,41.224337,29.21842,4,2023-04-16T15:20:03,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480695577,Coprinus comatus,41.151021,28.683491,4,2023-04-19T10:49,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479785454,Coprinus comatus,37.112423,33.270873,5,2023-05-03T14:15:28,karaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4162297360,Coprinus comatus,39.457206,40.091208,6,2023-06-24T15:38,tunceli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4431031303,Coprinus comatus,41.031753,29.067928,10,2023-10-12T12:49:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4442400137,Coprinus comatus,40.922225,29.354243,10,2023-10-31T10:29:29,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4442528252,Coprinus comatus,41.028522,28.887962,11,2023-11-02T20:52:55,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4458797535,Coprinus comatus,41.141286,29.094342,12,2023-12-05T16:06:20,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4465655423,Coprinus comatus,40.734256,30.161397,12,2023-12-03T11:33:50,kocaeli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4507633988,Coprinus comatus,41.103912,29.029233,12,2023-12-28T14:45,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4863922921,Coprinus comatus,36.863414,31.022095,12,2023-12-09T15:51:25,antalya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4921602322,Coprinus comatus,41.084567,29.048638,12,2023-12-10,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3986020576,Coprinus comatus,41.015356,29.043333,4,2022-04-30T13:46:23,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480850006,Coprinus comatus,37.781372,38.265155,4,2022-04-05,adiyaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3772944966,Coprinus comatus,41.675526,28.066213,5,2022-05-03T14:08:44,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3784705750,Coprinus comatus,40.426237,32.600347,5,2022-05-16T15:07:13,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3892599539,Coprinus comatus,39.8886,32.65282,6,2022-06-30T14:06:30,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3961056513,Coprinus comatus,40.168716,39.697045,9,2022-09-28T13:08,gumushane,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3986053893,Coprinus comatus,41.186478,28.968022,10,2022-10-23T09:04:01,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3986284106,Coprinus comatus,37.937851,27.277326,11,2022-11-17T14:40,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4936813985,Coprinus comatus,41.127911,29.265295,11,2022-11-13T14:02:09,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480903462,Coprinus comatus,39.368898,29.250935,11,2022-11-13T17:28:37,kutahya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6500105280,Coprinus comatus,41.005347,28.306904,11,2022-11-05T14:45:47,,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4006555659,Coprinus comatus,40.989767,29.053361,12,2022-12-13T12:36:57,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480847643,Coprinus comatus,40.585902,27.556251,12,2022-12-28T13:06:22,balikesir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3061586497,Coprinus comatus,38.451805,27.215587,1,2021-01-05T08:48:52,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3039323873,Coprinus comatus,40.08504,43.451628,2,2021-02-08T19:28,igdir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3985698410,Coprinus comatus,37.86903,32.44733,4,2021-04-19T15:43:09,konya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3384174592,Coprinus comatus,40.770113,31.575016,9,2021-09-19T10:13,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3399165167,Coprinus comatus,40.990129,28.72553,10,2021-10-16T09:49:45,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3415596366,Coprinus comatus,40.990125,28.72553,10,2021-10-14T18:34:25,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3873680507,Coprinus comatus,41.067337,28.695438,10,2021-10-17T14:08:12,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3698121490,Coprinus comatus,38.489771,26.961599,11,2021-11-13T14:18:29,izmir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3705454465,Coprinus comatus,40.995712,28.728399,11,2021-11-04T15:16:37,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3985659500,Coprinus comatus,36.346925,30.020553,11,2021-11-30T15:36:02,antalya,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3985720371,Coprinus comatus,39.869202,32.783552,5,2020-05-12T12:39:47,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2988708784,Coprinus comatus,41.44952,31.75965,11,2020-11-23T12:57:35,zinguldak,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3008516605,Coprinus comatus,40.863705,26.913803,11,2020-11-15T16:09:07,tekirdag,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2251904131,Coprinus comatus,39.871919,32.784289,5,2019-05-26T18:20:47,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563565303,Coprinus comatus,40.382919,32.024482,5,2019-05-19T16:26,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2573828897,Coprinus comatus,39.872429,32.784546,5,2019-05-26T10:08:50,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231262410,Coprinus comatus,40.0,32.0,5,2019-05-19,ankara,False,HUMAN_OBSERVATION,
+6480388493,Coprinus comatus,41.72553,35.019095,9,2019-09-28T12:13:16,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2429368498,Coprinus comatus,38.6545,27.343673,10,2019-10-04T11:00:47,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3705597443,Coprinus comatus,40.778767,39.639992,10,2019-10-02T09:46,trabzon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231215304,Coprinus comatus,41.0,29.0,11,2019-11-17,istanbul,False,HUMAN_OBSERVATION,
+3455167926,Coprinus comatus,36.960643,28.675343,12,2019-12-07T08:53,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1920795886,Coprinus comatus,38.788375,30.461596,10,2018-10-03T13:40:06,afyon,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6500496654,Coprinus comatus,41.312528,36.106807,11,2018-11-10,samsun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2856826388,Coprinus comatus,41.206986,29.232937,12,2014-12-07T10:23,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4596986311,Coprinus comatus,40.931689,29.236464,4,2013-04-06T12:58,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2883185852,Coprinus comatus,38.653064,34.856004,5,2011-05-28T10:46,nevsehir,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4018295823,Coprinus comatus,37.399722,33.148611,5,2011-05-25T17:03,karaman,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4018280247,Coprinus comatus,36.97373,36.37324,10,2010-10-30T16:19,osmaniye,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4512170575,Coprinus comatus,40.936028,29.232656,11,2010-11-28T11:08,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6480818160,Coprinus comatus,41.703523,27.261169,4,2009-04-19T15:49,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2634011601,Coprinus comatus,36.71566,29.272871,10,2008-10-31T08:01,mugla,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5844147443,Marasmius oreades,40.928705,29.281062,10,2025-10-08T17:27:27,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130033476,Marasmius oreades,40.963896,29.178751,10,2025-10-29T09:52,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6479811110,Marasmius oreades,40.874126,38.393121,11,2025-11-05T16:01,giresun,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5292631832,Marasmius oreades,40.708772,31.464803,4,2023-04-17T12:41:57,bolu,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4440698669,Marasmius oreades,40.987825,29.052381,11,2023-11-08T12:41:54,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4516287629,Marasmius oreades,38.464343,28.233189,12,2023-12-18T13:53:04,manisa,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4006585979,Marasmius oreades,41.873678,27.966314,12,2022-12-17T13:13:23,kirklareli,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4910881748,Marasmius oreades,41.166455,29.648498,11,2020-11-01T06:08:02Z,istanbul,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5133138486,Marasmius oreades,39.86264,32.798706,5,2019-05-26T13:03,ankara,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1990326743,Marasmius oreades,40.862778,39.613333,9,1996-09-26,trabzon,False,PRESERVED_SPECIMEN,
+6274131581,Fomitopsis pinicola,41.532458,32.761652,4,2026-04-22T15:06,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320710714,Evernia prunastri,41.52792,32.769237,4,2026-04-24T14:26,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6320766339,Hypogymnia tubulosa,41.529343,32.770543,4,2026-04-24T13:58,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6334312311,Lobaria pulmonaria,41.532243,32.762132,4,2026-04-22T15:09,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6274036916,Xanthoria parietina,41.296478,33.792858,5,2026-05-09T10:21:23,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6274328307,Evernia prunastri,41.294891,33.788555,5,2026-05-09T10:59:15,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6399849500,Bjerkandera adusta,41.743253,33.014703,5,2026-05-26T15:46:51,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6399512498,Xanthoria parietina,41.438914,33.764837,6,2026-06-10T12:59:42,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6552042539,Cladonia foliacea,41.282395,32.684755,9,2026-09-18T16:47:46,karabuk,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5087887632,Xanthoria parietina,41.42571,33.771739,3,2025-03-13T17:06:23,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5892582084,Lepiota cristata,41.70012,34.596116,10,2025-10-11,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6334084895,Gomphidius glutinosus,41.729972,33.496522,10,2025-10-11T17:24:57,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6499838225,Aleuria aurantia,41.99235,33.275295,11,2025-11-27T23:25:26,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4910753535,Geopyxis foetida,41.739606,33.017136,6,2024-06-09,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5176377380,Fomitopsis pinicola,41.734664,33.003872,6,2024-06-10T11:44:17,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6179045577,Geopyxis foetida,41.74011,33.017532,6,2024-06-10T11:10:58,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231146593,Cerioporus varius,41.7396,33.0174,6,2024-06-09,,True,HUMAN_OBSERVATION,
+6231148434,Mycena galericulata,41.7387,33.01,6,2024-06-08,,True,HUMAN_OBSERVATION,
+6231155495,Mycena tenerrima,41.7404,33.0211,6,2024-06-10,,True,HUMAN_OBSERVATION,
+6231198092,Megacollybia platyphylla,41.7373,33.0049,6,2024-06-10,,True,HUMAN_OBSERVATION,
+6231198649,Mucidula mucida,41.7344,33.0011,6,2024-06-10,,True,HUMAN_OBSERVATION,
+6231199134,Neoboletus erythropus,41.7396,33.0171,6,2024-06-09,,True,HUMAN_OBSERVATION,
+6231224932,Xylaria filiformis,41.738,33.01,6,2024-06-09,,True,HUMAN_OBSERVATION,
+6231234468,Mycetinis alliaceus,41.7374,33.0098,6,2024-06-11,,True,HUMAN_OBSERVATION,
+6231236550,Sarcosphaera coronaria,41.7345,33.0039,6,2024-06-10,,True,HUMAN_OBSERVATION,
+6231240056,Onnia tomentosa,41.7429,33.0068,6,2024-06-10,,True,HUMAN_OBSERVATION,
+6231269417,Candolleomyces candolleanus,41.7376,33.01,6,2024-06-11,,True,HUMAN_OBSERVATION,
+6231300470,Cerioporus squamosus,41.7375,33.0064,6,2024-06-08,,True,HUMAN_OBSERVATION,
+6231335168,Gloeophyllum sepiarium,41.7387,33.01,6,2024-06-08,,True,HUMAN_OBSERVATION,
+4919395832,Xanthoria parietina,41.258595,32.674255,7,2024-07-22T20:02:49,karabuk,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6519482698,Coprinopsis picacea,41.794387,33.707411,10,2024-10-10,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4982376471,Pseudohydnum gelatinosum,41.542787,32.770448,11,2024-11-16T09:57:33,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4987399533,Physcia adscendens,41.541277,32.779828,11,2024-11-17T10:10:13,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4987622549,Mycena epipterygia,41.542978,32.7704,11,2024-11-16T09:55:53,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4993913505,Clavaria fragilis,41.543357,32.771358,11,2024-11-16T09:04:45,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008285695,Usnea florida,41.539963,32.777234,11,2024-11-16T07:57:19,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5008295598,Calocera furcata,41.542838,32.770247,11,2024-11-16T10:46:05,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5076791057,Leotia lubrica,41.542842,32.770288,11,2024-11-16T10:44:16,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5076815029,Fomitopsis pinicola,41.542803,32.770425,11,2024-11-16T09:59:10,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5076844031,Ascocoryne sarcoides,41.542858,32.770573,11,2024-11-16T10:27:08,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935590607,Lobaria pulmonaria,41.54324,32.770837,11,2024-11-16T09:50:37,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6130947099,Hygrophorus abieticola,41.539132,32.777213,11,2024-11-16T16:42:07,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6131428628,Hygrophorus abieticola,41.538633,32.77494,11,2024-11-16T17:07:25,bartin,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231153466,Clavariadelphus truncatus,41.5401,32.7742,11,2024-11-16,,True,HUMAN_OBSERVATION,
+6231237452,Tricholomopsis rutilans,41.5406,32.7707,11,2024-11-16,,True,HUMAN_OBSERVATION,
+6231311612,Hygrophorus chrysodon,41.5399,32.7785,11,2024-11-16,,True,HUMAN_OBSERVATION,
+6231375182,Hygrocybe chlorophana,41.5399,32.7782,11,2024-11-16,,True,HUMAN_OBSERVATION,
+6231396783,Tricholoma terreum,41.5386,32.7749,11,2024-11-16,,True,HUMAN_OBSERVATION,
+6231398476,Hygrophorus chrysodon,41.5389,32.7775,11,2024-11-16,,True,HUMAN_OBSERVATION,
+4980466591,Calocybe gambosa,41.610958,33.275197,4,2023-04-27T10:46:32,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5903958803,Caloscypha fulgens,41.686653,33.272458,4,2023-04-28T14:53:15,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4399998896,Ganoderma lucidum,41.717414,34.586395,8,2023-08-12T17:29:25,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4442565192,Russula virescens,42.005975,34.944431,10,2023-10-31T15:25,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+5935688692,Gymnopilus junonius,42.005375,34.942562,10,2023-10-31T15:09:14,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3881683779,Cetraria islandica,41.079069,33.809426,7,2022-07-28T13:29:22,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438637531,Parmelia sulcata,41.062323,33.738868,7,2022-07-29T17:08:27,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438648551,Lobothallia radiosa,41.081001,33.813128,7,2022-07-28T14:00,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438783532,Hypogymnia tubulosa,41.062324,33.738868,7,2022-07-29T17:09:17,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438822523,Lecidea tessellata,41.081001,33.813128,7,2022-07-28T13:59,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438663527,Parmelia sulcata,41.066083,33.746374,8,2022-08-01T10:04,cankiri,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4438753524,Cladonia foliacea,41.358068,33.767731,8,2022-08-02T11:18:12,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3391292963,Gomphidius glutinosus,41.644417,33.119672,9,2021-09-19T14:41,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3456762991,Clavariadelphus truncatus,41.716756,33.074661,9,2021-09-20T12:30,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4096560468,Russula aurea,41.716114,33.074619,9,2021-09-20T12:05,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+4177170377,Rubroboletus lupinus,41.715825,33.075203,9,2021-09-20T13:57,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231378128,Oudemansiella melanotricha,41.6368,33.0993,9,2021-09-19,kastamonu,True,HUMAN_OBSERVATION,
+6231389619,Gomphidius glutinosus,41.6461,33.1147,9,2021-09-19,kastamonu,True,HUMAN_OBSERVATION,
+6231330134,Calocybe ionides,41.6468,33.1133,10,2021-10-08,kastamonu,True,HUMAN_OBSERVATION,
+2980801103,Peltigera praetextata,41.843597,34.783625,10,2020-10-28T12:49,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2981081251,Mucidula mucida,41.837132,34.789677,10,2020-10-28T16:19,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+3018071537,Paxillus involutus,41.838108,34.788067,10,2020-10-28T15:39,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6451812565,Lobaria pulmonaria,41.839298,34.77985,10,2020-10-28T14:35,sinop,False,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2013683725,Hericium cirrhatum,41.164846,33.340054,6,2018-06-26T13:45,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1898788758,Ganoderma lucidum,41.134911,33.231133,7,2018-07-20T12:27,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1898788757,Hericium erinaceus,41.154756,33.208995,10,2017-10-17T14:20,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+1898788759,Sparassis crispa,41.13099,33.176861,10,2017-10-21T16:24,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563564861,Calocera viscosa,41.437487,33.467509,10,2016-10-02T16:20,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563565182,Clavariadelphus truncatus,41.437487,33.467509,10,2016-10-02T16:24,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563566217,Geastrum triplex,41.437487,33.467509,10,2016-10-02T17:20,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+2563617174,Tricholoma saponaceum,41.437487,33.467509,10,2016-10-02T17:21,kastamonu,True,HUMAN_OBSERVATION,iNaturalist research-grade observations
+6231198818,Calocera viscosa,42.0,33.0,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+6231214128,Cortinarius variicolor,41.5142,33.4151,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+6231281526,Clavariadelphus truncatus,42.0,33.0,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+6231348210,Geastrum triplex,41.517,33.4168,10,2016-10-02,kastamonu,True,HUMAN_OBSERVATION,
+6477585309,Geastrum triplex,41.545,33.364,10,2016-10-01,,True,HUMAN_OBSERVATION,
+4023436128,Epicladonia stenospora,41.746388,33.288888,7,2014-07-08,,True,PRESERVED_SPECIMEN,Aphyllophorales externi
+4023436146,Zyzygomyces bachmannii,41.746388,33.288888,7,2014-07-08,,True,PRESERVED_SPECIMEN,Aphyllophorales externi
+4023436196,Zyzygomyces bachmannii,41.168888,33.775,7,2014-07-07,,True,PRESERVED_SPECIMEN,Aphyllophorales externi
+4023436307,Zyzygomyces bachmannii,41.183055,33.808611,7,2014-07-07,,True,PRESERVED_SPECIMEN,Aphyllophorales externi
+4026573140,Epicladonia stenospora,41.235555,33.8375,7,2014-07-07,,True,PRESERVED_SPECIMEN,Ascomycetes externi
+6540043584,Variospora velana,41.711389,34.923889,8,2012-08-27,,True,PRESERVED_SPECIMEN,
+6540051950,Kuettlingeria atroflava,41.198611,34.675,8,2012-08-26,,True,PRESERVED_SPECIMEN,
+6540072117,Pyrenodesmia albopustulata,41.711389,34.923889,8,2012-08-27,,True,PRESERVED_SPECIMEN,
+6540040054,Kuettlingeria albolutescens,41.827425,32.644247,4,2007-04-18,,True,PRESERVED_SPECIMEN,
+6540041211,Diplotomma renobalesii,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540041977,Candelariella oleaginescens,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540042279,Athallia inconnexa,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540046380,Pyrenodesmia erodens,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540049803,Circinaria contorta,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540054081,Flavoplaca flavocitrina,41.981361,34.046461,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540056048,Flavoplaca communis,41.948417,33.136286,4,2007-04-19,,True,PRESERVED_SPECIMEN,
+6540056939,Kuettlingeria xerica,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540057878,Rufoplaca subpallida,41.827425,32.644247,4,2007-04-18,,True,PRESERVED_SPECIMEN,
+6540063921,Flavoplaca flavocitrina,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540069741,Rufoplaca subpallida,41.948417,33.136286,4,2007-04-19,,True,PRESERVED_SPECIMEN,
+6540072426,Athallia cerinelloides,41.838178,32.751881,4,2007-04-18,,True,PRESERVED_SPECIMEN,
+6540074571,Blastenia crenularia,41.948333,33.136389,4,2007-04-19,,True,PRESERVED_SPECIMEN,
+6540075992,Kuettlingeria teicholyta,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540081119,Polyozosia agardhiana,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540081197,Flavoplaca limonia,41.948417,33.136286,4,2007-04-19,,True,PRESERVED_SPECIMEN,
+6540083901,Pisutiella conversa,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540084631,Kuettlingeria fuscoatroides,41.948417,33.136286,4,2007-04-19,,True,PRESERVED_SPECIMEN,
+6540098893,Flavoplaca calcitrapa,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540100610,Blastenia crenularia,41.8275,32.644167,4,2007-04-18,,True,PRESERVED_SPECIMEN,
+6540102086,Lathagrium auriforme,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+6540110091,Flavoplaca nigromarina,41.827425,32.644247,4,2007-04-18,,True,PRESERVED_SPECIMEN,
+6540120910,Verrucaria macrostoma,41.947264,34.278353,4,2007-04-20,,True,PRESERVED_SPECIMEN,
+1503076696,Lecanora sulphurata,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,
+1503076700,Omphalodina chrysoleuca,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,
+1503076712,Glaucomaria rupicola,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,
+1503076729,Protoparmeliopsis garovaglii,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,
+1503076739,Polychidium muscicola,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,
+2594384397,Bryoria implexa,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594384490,Xanthoparmelia stenophylla,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594388334,Xanthoparmelia delisei,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594388373,Melanelixia subargentifera,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594388391,Parmelia saxatilis,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594388968,Melanohalea exasperatula,41.05,33.73,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594389439,Parmelina tiliacea,40.88,33.63,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+2594389528,Bryoria implexa,41.05,33.73,6,2007-06-11,cankiri,False,PRESERVED_SPECIMEN,"Herbario de la Facultad de Farmacia, Universidad Complutense, Madrid (MAF-Lich)"
+3024277133,Usnea intermedia,41.05,33.73333,6,2007-06-11,,True,PRESERVED_SPECIMEN,
+328182475,Nephroma parile,41.7,34.7,6,2004-06-30,sinop,False,PRESERVED_SPECIMEN,
+328266696,Pyrenula nitida,41.7,34.7,6,2004-06-30,sinop,False,PRESERVED_SPECIMEN,
+328334603,Thelotrema lepadinum,41.7,34.7,6,2004-06-30,sinop,False,PRESERVED_SPECIMEN,
+351762523,Opeltia flavorubescens,41.7,34.63333,6,2004-06-30,sinop,False,PRESERVED_SPECIMEN,
+1052092018,Lichenodiplis lecanorae,41.7,34.63333,6,2004-06-30,sinop,False,PRESERVED_SPECIMEN,
+637836,Toniniopsis subincompta,41.49053,33.66997,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076585528,Toniniopsis subincompta,41.366667,33.783333,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076587186,Circinaria calcarea,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076587207,Bacidia circumspecta,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076590469,Catapyrenium squamulosum,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076590473,Catillaria lenticularis,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076591336,Calicium viride,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076592400,Caloplaca herbidella,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076592470,Catillaria nigroclavata,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076594329,Athallia cerinelloides,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076595441,Gyalolechia fulgida,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076598678,Lecanora cadubriae,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076598688,Glaucomaria carpinea,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076600727,Lecanora chlarotera,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076600792,Lecidella laureri,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076601145,Megaspora verrucosa,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076601271,Ochrolechia szatalaensis,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076602080,Lecanactis abietina,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076602235,Squamarina lentigera,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076602324,Parmelina tiliacea,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076602434,Phaeophyscia orbicularis,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076602627,Placocarpus schaereri,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076602947,Ramalina fraxinea,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076603186,Thalloidima sedifolium,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076603623,Physconia perisidiosa,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076603940,Ramalina farinacea,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076603960,Rinodinella controversa,41.468889,34.766667,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076604016,Rinodina exigua,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076604146,Toninia cinereovirens,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076605130,Thalloidima opuntioides,41.466105,34.77112,8,1976-08-12,sinop,False,PRESERVED_SPECIMEN,
+5076606319,Parmelia submontana,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076606483,Physcia aipolia,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+5076608047,Bryoria fuscescens,41.113611,33.918889,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076611036,Bryoria fuscescens,41.09985,33.865078,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+5076615842,Athallia holocarpa,41.704858,34.203674,8,1976-08-12,kastamonu,True,PRESERVED_SPECIMEN,
+788508073,Pseudevernia furfuracea,41.065,33.75,6,1929-06-23,cankiri,False,PRESERVED_SPECIMEN,
+788660163,Bryoria fuscescens,41.065,33.75,6,1929-06-23,cankiri,False,PRESERVED_SPECIMEN,
+4170165594,Evernia divaricata,41.065,33.75,6,1929-06-23,cankiri,False,PRESERVED_SPECIMEN,
+5138287672,Usnea barbata,41.223731,32.798142,6,1929-06-20,,True,PRESERVED_SPECIMEN,
+1840768814,Acarospora veronensis,40.943055,33.324999,,,,True,PRESERVED_SPECIMEN,Meise Botanic Garden Herbarium (BR)
+1840770015,Circinaria fruticulosa,40.943055,33.324999,,,,True,PRESERVED_SPECIMEN,Meise Botanic Garden Herbarium (BR)
+6189560794,Geastrum quadrifidum,41.08,33.75,,,,True,PRESERVED_SPECIMEN,
+351730910,Toniniopsis subincompta,,,8,1976-08-11,kastamonu,True,PRESERVED_SPECIMEN,
+3500150527,Toniniopsis subincompta,,,,1976,kastamonu,True,PRESERVED_SPECIMEN,
