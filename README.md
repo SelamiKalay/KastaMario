@@ -1,12 +1,14 @@
 # 🍄 KastaMario — Kastamonu mushroom guide
 
-[Türkçe](README.tr.md) · **English**
+**English** | [Türkçe](README.tr.md)
 
 <img src="app/img/kastamario.png" alt="KastaMario logo" width="120" align="right">
 
 **An AI-powered mushroom poisoning risk guide.** Take a photo of a mushroom and KastaMario shows the likely species, the poisoning risk, deadly look-alikes, how many hours until symptoms start, what to do if you ate it, and where and when the mushroom grows. It is built for the forests of Kastamonu, Türkiye (Küre Mountains, Ilgaz, coastal chestnut–oak forests).
 
 > KastaMario **never says a mushroom is edible.** Mistaking a poisonous mushroom for an edible one can kill; mistaking an edible one for poisonous costs, at most, an empty basket. This asymmetry is the foundation of the design.
+
+> 🏆 Built by a team of three at the **MLH Open Source AI** hackathon (October 2026). See [Team](#team).
 
 **Why now:** in October 2026 more than 40 people in Kastamonu went to hospital with mushroom poisoning in a single week, and in neighbouring Sinop 76 people sought treatment between 1 September and 14 October. Experts warn there is no way to tell a poisonous mushroom at home, and folk tests (silver spoon, vinegar, cooking with onion) do not work.
 
@@ -203,6 +205,8 @@ python -m pytest -q
 | GBIF records | CC0 / CC BY / CC BY-NC per record — see `docs/veri-kaynaklari.md` |
 
 ## Team
+
+KastaMario was built for the **MLH Open Source AI** hackathon in October 2026.
 
 - [@SelamiKalay](https://github.com/SelamiKalay)
 - [@emoylmz01](https://github.com/emoylmz01)

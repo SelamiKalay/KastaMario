@@ -1,12 +1,14 @@
 # 🍄 KastaMario — Kastamonu mantar rehberi
 
-**Türkçe** · [English](README.md)
+[English](README.md) | **Türkçe**
 
 <img src="app/img/kastamario.png" alt="KastaMario logosu" width="120" align="right">
 
 **Yapay zekâ destekli mantar zehirlenme risk rehberi.** Mantarın fotoğrafını çekin; KastaMario olası türleri, zehirlenme riskini, ölümcül ikiz türleri, belirtilerin kaç saatte başladığını, yediyseniz ne yapmanız gerektiğini, mantarın nerede ve ne zaman yetiştiğini gösterir. Kastamonu ormanları (Küre Dağları, Ilgaz, kıyı kestane-meşe ormanları) için hazırlanmıştır.
 
 > KastaMario **hiçbir mantarın yenilebilir olduğunu söylemez.** Zehirliyi yenilebilir sanmak ölümcül olabilir; yenilebiliri zehirli sanmak en fazla boş sepettir. Bu asimetri tasarımın temelidir.
+
+> 🏆 **MLH Open Source AI** hackathon'unda (Ekim 2026) üç kişilik bir ekiple geliştirildi. Bkz. [Ekip](#ekip).
 
 **Neden şimdi:** Ekim 2026'da Kastamonu'da bir haftada 40'tan fazla kişi mantar zehirlenmesiyle hastaneye başvurdu; komşu Sinop'ta 1 Eylül–14 Ekim arasında 76 kişi tedavi gördü. Uzmanlar zehirli mantarı evde ayırt etmenin bir yolu olmadığını, gümüş kaşık, sirke, soğanla pişirme gibi halk testlerinin işe yaramadığını vurguluyor.
 
@@ -180,6 +182,8 @@ python -m pytest -q
 | GBIF kayıtları | Kayıt başına CC0 / CC BY / CC BY-NC — bkz. `docs/veri-kaynaklari.md` |
 
 ## Ekip
+
+KastaMario, Ekim 2026'daki **MLH Open Source AI** hackathon'u için geliştirildi.
 
 - [@SelamiKalay](https://github.com/SelamiKalay)
 - [@emoylmz01](https://github.com/emoylmz01)
