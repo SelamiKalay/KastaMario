@@ -39,7 +39,7 @@ Aynı Wi-Fi'da tünelsiz test: telefonda `http://<bilgisayarın-yerel-IP'si>:800
 2. Yerelde deneme: `GEMINI_API_KEY=... python server/app.py` → http://localhost:8000
 
 ## 2. Sunucuyu yayımlama (DigitalOcean App Platform)
-1. Repo GitHub'da public olmalı (`SelamiKalay/BAKLAVA`).
+1. Repo GitHub'da public olmalı (`SelamiKalay/KastaMario`).
 2. DigitalOcean → Apps → Create App → GitHub reposunu seçin; ya da `doctl apps create --spec .do/app.yaml`.
 3. Ortam değişkenleri: `GEMINI_API_KEY` (Encrypted). Diğerleri `.do/app.yaml` içinde.
 4. Yayımlanan adresi (ör. `https://mycoguard-xxxx.ondigitalocean.app/`) not edin.

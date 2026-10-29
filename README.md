@@ -100,8 +100,8 @@ On this test set the image model already showed 98.8% of dangerous species as RE
 ## Quick start
 
 ```bash
-git clone https://github.com/SelamiKalay/BAKLAVA.git
-cd BAKLAVA
+git clone https://github.com/SelamiKalay/KastaMario.git
+cd KastaMario
 ```
 
 **1. Get a Gemini API key** (Gemma 4 is on the free tier): https://aistudio.google.com/apikey

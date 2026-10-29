@@ -92,8 +92,8 @@ Bu test setinde görüntü modeli tehlikeli türlerin %98,8'ini zaten KIRMIZI g�
 ## Hızlı başlangıç
 
 ```bash
-git clone https://github.com/SelamiKalay/BAKLAVA.git
-cd BAKLAVA
+git clone https://github.com/SelamiKalay/KastaMario.git
+cd KastaMario
 ```
 
 **1. Gemini API anahtarı alın** (Gemma 4 ücretsiz katmanda): https://aistudio.google.com/apikey

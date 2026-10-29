@@ -5,7 +5,7 @@ region: fra
 services:
   - name: web
     github:
-      repo: SelamiKalay/BAKLAVA
+      repo: SelamiKalay/KastaMario
       branch: main
       deploy_on_push: true
     environment_slug: python
